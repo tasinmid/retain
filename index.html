@@ -138,72 +138,7 @@
             width: 100%; /* 3/3 underline */
         }
 
-        /* Chat bubble styles for "Sound familiar?" section */
-        .chat-bubble {
-            position: relative;
-        }
 
-        .chat-bubble::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-        }
-
-        /* Tail for left-aligned bubbles (points right) */
-        .chat-bubble-left::after {
-            border-left-color: #f9fafb; /* bg-gray-50 */
-            border-right-width: 0;
-            top: 20px;
-            right: -10px;
-            z-index: 1;
-        }
-        /* Border for the tail */
-        .chat-bubble-left::before {
-            border-left-color: #e5e7eb; /* border-gray-200 */
-            border-right-width: 0;
-            top: 19px;
-            right: -12px;
-            z-index: 0;
-        }
-
-
-        /* Tail for right-aligned bubbles (points left) */
-        .chat-bubble-right::after {
-            border-right-color: #f9fafb; /* bg-gray-50 */
-            border-left-width: 0;
-            top: 20px;
-            left: -10px;
-            z-index: 1;
-        }
-        /* Border for the tail */
-        .chat-bubble-right::before {
-            border-right-color: #e5e7eb; /* border-gray-200 */
-            border-left-width: 0;
-            top: 19px;
-            left: -12px;
-            z-index: 0;
-        }
-
-        /* Tail for bottom-aligned bubbles (points top-center) */
-        .chat-bubble-bottom::after {
-            border-bottom-color: #f9fafb; /* bg-gray-50 */
-            border-top-width: 0;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-        /* Border for the tail */
-        .chat-bubble-bottom::before {
-            border-bottom-color: #e5e7eb; /* border-gray-200 */
-            border-top-width: 0;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0;
-        }
     </style>
 </head>
 <body class="bg-white">
@@ -301,22 +236,36 @@
                         </p>
                     </div>
 
-                    <!-- Grid Layout for Pain Points -->
-                    <div class="grid md:grid-cols-2 gap-8 text-lg text-gray-800">
-                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-left">
-                            <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
-                        </div>
-                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-right">
-                            <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
-                        </div>
-                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-left">
-                            <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
-                        </div>
-                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-right">
-                            <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
-                        </div>
-                        <div class="md:col-span-2 p-6 bg-gray-50 border border-gray-200 rounded-2xl text-center chat-bubble chat-bubble-bottom">
-                            <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
+                    <!-- Central Divider Layout -->
+                    <div class="relative">
+                        <!-- Vertical Line (desktop only) -->
+                        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
+
+                        <div class="space-y-8 text-lg text-gray-800">
+                            <!-- Line 1: Left -->
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
+                            </div>
+
+                            <!-- Line 2: Right -->
+                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
+                                <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
+                            </div>
+
+                            <!-- Line 3: Left -->
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
+                            </div>
+
+                            <!-- Line 4: Right -->
+                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
+                                <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
+                            </div>
+
+                            <!-- Line 5: Full-width -->
+                            <div class="md:w-1/2 md:pr-12 md:text-right pt-4">
+                                <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
+                            </div>
                         </div>
                     </div>
                 </div>
