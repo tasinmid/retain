@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retain - Customer Loyalty Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1f2937',
+                        secondary: '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link.active::after {
+            width: 66.66%;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex items-baseline">
+                        <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
+                        <span class="text-2xl font-bold text-gray-900">Retain</span>
+                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
+                    <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
+                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
+                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
+                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
+                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">About</a>
+                    <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
+                        Book a Call
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Page -->
+    <section>
+        <div class="page-container bg-gradient-to-b from-white to-gray-50">
+            <div class="content-wrapper max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+                <div class="inline-flex items-center bg-gray-900 text-white px-6 py-3 rounded-full mb-8">
+                    <i class="fas fa-bullseye w-5 h-5 mr-2"></i>
+                    <span class="font-medium">Our philosophy</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">About Retain</h2>
+                <div class="space-y-8 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                    <p>
+                        Most businesses suffer from "customer amnesia"—they forget everything about their customers between interactions, forcing them to start from zero every time.
+                    </p>
+                    <p>
+                        We believe long-term customer memory is the foundation of sustainable growth. When you remember your customers' preferences, history, and needs, you can serve them better and build genuine loyalty that compounds over time.
+                    </p>
+                    <p>
+                        Retain was built for businesses that value outcomes over trends, systems over quick fixes, and partnerships over transactions. We're calm, confident, and focused on what actually moves the needle for your business—without the hype.
+                    </p>
+                </div>
+                <div class="mt-12">
+                    <a href="/" class="text-gray-700 hover:text-gray-900 inline-flex items-center nav-link">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-2xl font-bold text-gray-900">Retain</span>
+                    <p class="text-gray-600 mt-1 text-sm">Building customer loyalty systems</p>
+                </div>
+                <div class="text-gray-600 text-sm text-center md:text-right">
+                    <p>© 2026 Retain. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
