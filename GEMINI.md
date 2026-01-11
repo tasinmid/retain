@@ -24,6 +24,7 @@ This file summarizes the work done on the Retain website project.
     - Removed the central gray line from the "Sound familiar?" section.
     - Improved the design of the "Our Core Principles" section with colored icons and new icon choices, and then removed the heading.
     - Adjusted the vertical alignment of the logo in the navbar.
+    - Updated the "Looking for solutions?" heading: made it bigger, less bold, with a white underline (2/3 width, 3/3 on hover) that starts from the right of the text, and made it a link to the solutions page.
 
 3.  **Refactoring to a Multi-Page Website:**
     - Directories for each section (`home`, `how-it-works`, `solutions`, etc.) have been created.
