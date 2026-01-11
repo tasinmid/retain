@@ -72,10 +72,30 @@
                     <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
                     <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
                     <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
+                    <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap active">
                         Book a Call
                     </a>
                 </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
+                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
+                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
+                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
             </div>
         </div>
     </nav>
@@ -97,7 +117,7 @@
                         <h3 class="text-2xl font-bold text-gray-900 mb-3">Book your 15-minute consultation</h3>
                         <p class="text-gray-600">We'll discuss your business, challenges, and whether Retain is the right fit.</p>
                     </div>
-                    <button class="bg-black text-white px-10 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg w-full sm:w-auto flex items-center justify-center group mx-auto">
+                    <button class="bg-black text-white px-10 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg w-full sm:w-auto flex items-center justify-center group">
                         Schedule Your Call
                         <i class="fas fa-arrow-right ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                     </button>
@@ -107,7 +127,7 @@
                     </div>
                 </div>
                 <div class="mt-12">
-                    <a href="/" class="text-gray-600 hover:text-gray-900 inline-flex items-center nav-link">← Back to Home</a>
+                    <a href="/home/" class="text-gray-600 hover:text-gray-900 inline-flex items-center nav-link">← Back to Home</a>
                 </div>
             </div>
         </div>
@@ -128,5 +148,15 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -6,14 +6,19 @@
     <title>Retain - Customer Loyalty Systems</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
                     colors: {
                         primary: '#1f2937',
                         secondary: '#6b7280',
-                        customBlue: '#87a6df'
+                        customBlue: '#87a6df',
+                        darkBlue: '#212938'
                     }
                 }
             }
@@ -190,6 +195,26 @@
                         Book a Call
                     </a>
                 </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Home</a>
+                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
+                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
+                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
+                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
             </div>
         </div>
     </nav>
@@ -297,7 +322,27 @@
 
             <div class="py-20 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
-                    <div class="h-64 bg-customBlue rounded-3xl shadow-2xl mb-16"></div>
+                    <div class="bg-darkBlue rounded-3xl shadow-2xl p-12 mb-16 relative">
+                        <h2 class="text-center text-white text-4xl font-bold mb-12">Looking for solutions?</h2>
+                        <div class="space-y-8 text-white">
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <h3 class="uppercase font-bold text-3xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Earn your customers’ loyalty</h3>
+                                <p class="text-lg text-gray-300">Build stronger relationships by delivering consistent value. Keep your brand top-of-mind and turn one-time buyers into long-term fans.</p>
+                            </div>
+                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
+                                <h3 class="uppercase font-bold text-3xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Know your customers—without losing context</h3>
+                                <p class="text-lg text-gray-300">Keep every interaction, preference, and conversation in one place. Use the insights to reach out at the right time with <span class="font-bold text-white">personalized, automated messages or calls</span>.</p>
+                            </div>
+                            <div class="md:w-1/2 md:pr-12 md:text-right">
+                                <h3 class="uppercase font-bold text-3xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Focus on customers who already know you</h3>
+                                <p class="text-lg text-gray-300">Save time and resources by targeting former prospects who are more likely to convert. Leverage detailed customer data to send <span class="font-bold text-white">personalized emails</span> to the right person at the right moment.</p>
+                            </div>
+                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
+                                <h3 class="uppercase font-bold text-3xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Turn existing customers into repeat buyers</h3>
+                                <p class="text-lg text-gray-300">Upsell and cross-sell effectively with context-driven recommendations. Reach the right customers at the right time with <span class="font-bold text-white">personalized, automated emails or calls</span> for repeat purchases or new offers.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -409,132 +454,61 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Typewriter Effect
             const words = ["scratch", "void", "nothing", "Zero"];
             const textEl = document.getElementById('typewriter-text');
             const cursorEl = document.getElementById('typewriter-cursor');
             
-            if (!textEl || !cursorEl) return;
+            if (textEl && cursorEl) {
+                let wordIndex = 0;
+                let charIndex = 0;
+                let isDeleting = false;
+                const typeSpeed = 100;
+                const deleteSpeed = 50;
+                const pauseDuration = 2000;
 
-            let wordIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            const typeSpeed = 100;
-            const deleteSpeed = 50;
-            const pauseDuration = 2000;
+                function type() {
+                    const currentWord = words[wordIndex];
 
-            function type() {
-                const currentWord = words[wordIndex];
+                    if (!isDeleting) {
+                        textEl.textContent = currentWord.substring(0, charIndex + 1);
+                        charIndex++;
+                        cursorEl.style.animation = 'blink 1s infinite step-end';
 
-                if (!isDeleting) {
-                    textEl.textContent = currentWord.substring(0, charIndex + 1);
-                    charIndex++;
-                    cursorEl.style.animation = 'blink 1s infinite step-end';
+                        if (charIndex === currentWord.length) {
+                            cursorEl.style.animation = 'none';
+                            setTimeout(() => {
+                                isDeleting = true;
+                                type();
+                            }, pauseDuration);
+                            return;
+                        }
+                    } else {
+                        textEl.textContent = currentWord.substring(0, charIndex - 1);
+                        charIndex--;
+                        cursorEl.style.animation = 'blink 1s infinite step-end';
 
-                    if (charIndex === currentWord.length) {
-                        cursorEl.style.animation = 'none';
-                        setTimeout(() => {
-                            isDeleting = true;
-                            type();
-                        }, pauseDuration);
-                        return;
+                        if (charIndex === 0) {
+                            isDeleting = false;
+                            wordIndex = (wordIndex + 1) % words.length;
+                        }
                     }
-                } else {
-                    textEl.textContent = currentWord.substring(0, charIndex - 1);
-                    charIndex--;
-                    cursorEl.style.animation = 'blink 1s infinite step-end';
 
-                    if (charIndex === 0) {
-                        isDeleting = false;
-                        wordIndex = (wordIndex + 1) % words.length;
-                    }
+                    setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
                 }
-
-                setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+                type();
             }
 
-            type();
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
         });
-    </script>
-
-    <!-- Premium Chat Widget -->
-    <div id="chatbot-container" class="fixed bottom-8 right-8 z-[100] flex flex-col items-end font-sans">
-        <div id="chatbot-window" class="mb-6 w-[400px] max-w-[90vw] h-[600px] bg-white rounded-[2.5rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.25)] overflow-hidden flex flex-col border border-slate-100">
-            <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-500/30 shadow-lg" alt="Avatar">
-                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg leading-none">Aria</h4>
-                        <span class="text-[11px] text-emerald-300 font-medium tracking-wide uppercase">AI Strategist</span>
-                    </div>
-                </div>
-                <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                    <i class="fas fa-times text-lg text-slate-300"></i>
-                </button>
-            </div>
-
-            <div id="chatbot-messages" class="flex-1 overflow-y-auto p-6 space-y-6 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
-                <div class="text-center">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</span>
-                </div>
-                <div class="flex justify-start items-end gap-2">
-                    <div class="bg-white border border-slate-100 p-4 rounded-3xl rounded-bl-none shadow-[0_4px_12px_rgba(0,0,0,0.03)] max-w-[85%]">
-                        <p class="text-[15px] leading-relaxed text-slate-700">Hi! I'm Aria. How can I help you today? ✨</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="px-6 py-2 flex gap-2 overflow-x-auto no-scrollbar bg-white">
-                <button class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 hover:bg-emerald-500 hover:text-white transition-all whitespace-nowrap">View Features</button>
-                <button class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 hover:bg-emerald-500 hover:text-white transition-all whitespace-nowrap">Talk to Sales</button>
-            </div>
-
-            <div class="p-6 bg-white border-t border-slate-50">
-                <div class="flex items-center gap-3 bg-slate-100 rounded-[1.5rem] px-5 py-3 focus-within:ring-2 focus-within:ring-emerald-500/20 transition-all">
-                    <input type="text" id="chatbot-input" placeholder="Type your message..." class="flex-1 bg-transparent border-none text-[15px] outline-none placeholder:text-slate-400">
-                    <button id="chatbot-send" class="text-emerald-500 hover:scale-110 transition-transform">
-                        <i class="fas fa-paper-plane text-lg"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 bg-slate-900 text-white rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center group z-10 focus:outline-none">
-            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition"></i>
-            <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
-        </button>
-    </div>
-
-    <script>
-        const btn = document.getElementById('chatbot-toggle');
-        const win = document.getElementById('chatbot-window');
-        const iconMsg = document.getElementById('icon-msg');
-        const iconClose = document.getElementById('icon-close');
-        const closeBtn = document.getElementById('chatbot-close');
-
-        function toggleChat() {
-            const isActive = win.classList.contains('is-active');
-
-            if (isActive) {
-                win.classList.remove('is-active');
-                iconMsg.classList.remove('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.add('opacity-0', '-rotate-90', 'scale-50');
-                btn.classList.remove('bg-white', 'text-slate-900');
-                btn.classList.add('bg-slate-900', 'text-white', 'ripple-active');
-            } else {
-                win.classList.add('is-active');
-                iconMsg.classList.add('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.remove('opacity-0', '-rotate-90', 'scale-50');
-                btn.classList.remove('bg-slate-900', 'text-white', 'ripple-active');
-                btn.classList.add('bg-white', 'text-slate-900');
-            }
-        }
-
-        btn.addEventListener('click', toggleChat);
-        closeBtn.addEventListener('click', toggleChat);
     </script>
 </body>
 </html>
