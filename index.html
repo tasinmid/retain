@@ -113,6 +113,97 @@
             background-color: black;
             color: white;
         }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; /* Adjust as needed */
+            left: 0;
+            width: 0;
+            height: 2px; /* Underline thickness */
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-link.active::after {
+            width: 66.66%; /* 2/3 underline */
+        }
+
+        .nav-link:hover::after {
+            width: 100%; /* 3/3 underline */
+        }
+
+        /* Chat bubble styles for "Sound familiar?" section */
+        .chat-bubble {
+            position: relative;
+        }
+
+        .chat-bubble::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+
+        /* Tail for left-aligned bubbles (points right) */
+        .chat-bubble-left::after {
+            border-left-color: #f9fafb; /* bg-gray-50 */
+            border-right-width: 0;
+            top: 20px;
+            right: -10px;
+            z-index: 1;
+        }
+        /* Border for the tail */
+        .chat-bubble-left::before {
+            border-left-color: #e5e7eb; /* border-gray-200 */
+            border-right-width: 0;
+            top: 19px;
+            right: -12px;
+            z-index: 0;
+        }
+
+
+        /* Tail for right-aligned bubbles (points left) */
+        .chat-bubble-right::after {
+            border-right-color: #f9fafb; /* bg-gray-50 */
+            border-left-width: 0;
+            top: 20px;
+            left: -10px;
+            z-index: 1;
+        }
+        /* Border for the tail */
+        .chat-bubble-right::before {
+            border-right-color: #e5e7eb; /* border-gray-200 */
+            border-left-width: 0;
+            top: 19px;
+            left: -12px;
+            z-index: 0;
+        }
+
+        /* Tail for bottom-aligned bubbles (points top-center) */
+        .chat-bubble-bottom::after {
+            border-bottom-color: #f9fafb; /* bg-gray-50 */
+            border-top-width: 0;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        /* Border for the tail */
+        .chat-bubble-bottom::before {
+            border-bottom-color: #e5e7eb; /* border-gray-200 */
+            border-top-width: 0;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -125,7 +216,7 @@
                     <span class="text-2xl font-bold text-gray-900">Retained</span>
 
                 </div>
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-10">
                     <a href="#home" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
                     <a href="#how-it-works" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
                     <a href="#solutions" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
@@ -172,26 +263,26 @@
                 </div>
             </div>
 
-            <div class="bg-gray-50 py-16">
+            <div class="bg-white py-16">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid md:grid-cols-3 gap-8 text-center">
-                        <div class="p-6">
-                            <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-brain w-7 h-7 text-white"></i>
+                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm card-hover">
+                            <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-brain w-7 h-7 text-gray-900"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">System over tools</h3>
                             <p class="text-gray-600">We build integrated retention systems, not standalone features</p>
                         </div>
-                        <div class="p-6">
-                            <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-repeat w-7 h-7 text-white"></i>
+                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm card-hover">
+                            <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-repeat w-7 h-7 text-gray-900"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">Outcomes over hype</h3>
                             <p class="text-gray-600">Focus on measurable business results that compound</p>
                         </div>
-                        <div class="p-6">
-                            <div class="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-user-check w-7 h-7 text-white"></i>
+                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm card-hover">
+                            <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-user-check w-7 h-7 text-gray-900"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">Partnership over setup</h3>
                             <p class="text-gray-600">We install AND operate your system monthly</p>
@@ -210,36 +301,22 @@
                         </p>
                     </div>
 
-                    <!-- Central Divider Layout -->
-                    <div class="relative">
-                        <!-- Vertical Line (desktop only) -->
-                        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
-
-                        <div class="space-y-8 text-lg text-gray-800">
-                            <!-- Line 1: Left -->
-                            <div class="md:pr-12 md:text-right">
-                                <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
-                            </div>
-
-                            <!-- Line 2: Right -->
-                            <div class="md:pl-12 md:text-left">
-                                <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
-                            </div>
-
-                            <!-- Line 3: Left -->
-                            <div class="md:pr-12 md:text-right">
-                                <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
-                            </div>
-
-                            <!-- Line 4: Right -->
-                            <div class="md:pl-12 md:text-left">
-                                <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
-                            </div>
-
-                            <!-- Line 5: Full-width -->
-                            <div class="text-center pt-4">
-                                <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
-                            </div>
+                    <!-- Grid Layout for Pain Points -->
+                    <div class="grid md:grid-cols-2 gap-8 text-lg text-gray-800">
+                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-left">
+                            <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
+                        </div>
+                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-right">
+                            <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
+                        </div>
+                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-left">
+                            <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
+                        </div>
+                        <div class="p-6 bg-gray-50 border border-gray-200 rounded-2xl chat-bubble chat-bubble-right">
+                            <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
+                        </div>
+                        <div class="md:col-span-2 p-6 bg-gray-50 border border-gray-200 rounded-2xl text-center chat-bubble chat-bubble-bottom">
+                            <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
                         </div>
                     </div>
                 </div>
@@ -693,6 +770,19 @@
                 document.querySelector('footer').classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'auto' });
+
+            // Update active state for nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeNavLink = document.querySelector(`.nav-link[href="${hash}"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            } else {
+                // If no hash or invalid hash, default to #home
+                document.querySelector('.nav-link[href="#home"]').classList.add('active');
+            }
         }
 
         document.querySelectorAll('.nav-link').forEach(link => {
