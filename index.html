@@ -142,129 +142,279 @@
 
         
 
-                /* Chat bubble styles for "Sound familiar?" section */
-
-                .chat-bubble {
-
-                    position: relative;
-
-                    padding: 1.5rem; /* p-6 */
-
-                    border-radius: 1rem; /* rounded-lg */
-
-                }
+                                        /* Chat bubble styles for "Sound familiar?" section */
 
         
 
-                .chat-bubble::after, .chat-bubble::before {
-
-                    content: '';
-
-                    position: absolute;
-
-                    width: 0;
-
-                    height: 0;
-
-                    border-style: solid;
-
-                }
+                                        .chat-bubble {
 
         
 
-                /* Left-side bubble (white with black border) */
-
-                .chat-bubble-left {
-
-                    background-color: white;
-
-                    border: 2px solid black;
-
-                }
+                                            position: relative;
 
         
 
-                .chat-bubble-left::after { /* Tail */
-
-                    border-width: 10px 0 10px 10px;
-
-                    border-color: transparent transparent transparent white;
-
-                    top: 20px;
-
-                    right: -10px;
-
-                    z-index: 1;
-
-                }
-
-                .chat-bubble-left::before { /* Border */
-
-                    border-width: 12px 0 12px 12px;
-
-                    border-color: transparent transparent transparent black;
-
-                    top: 18px;
-
-                    right: -14px;
-
-                    z-index: 0;
-
-                }
+                                            padding: 1.5rem; /* p-6 */
 
         
 
-                /* Right-side bubble (black with white text) */
-
-                .chat-bubble-right {
-
-                    background-color: black;
-
-                    color: white;
-
-                    border: 2px solid black;
-
-                }
+                                            border-radius: 1rem; /* rounded-2xl */
 
         
 
-                .chat-bubble-right .font-semibold {
-
-                    color: white;
-
-                }
+                                            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
 
         
 
-                .chat-bubble-right::after { /* Tail */
+                                            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-                    border-width: 10px 10px 10px 0;
+        
 
-                    border-color: transparent black transparent transparent;
+                                        }
 
-                    top: 20px;
+        
 
-                    left: -10px;
+                                
 
-                    z-index: 1;
+        
 
-                }
+                                        .chat-bubble:hover {
 
-                .chat-bubble-right::before { /* Border */
+        
 
-                    border-width: 12px 12px 12px 0;
+                                            transform: translateY(-4px) scale(1.02);
 
-                    border-color: transparent black transparent transparent;
+        
 
-                    top: 18px;
+                                            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
 
-                    left: -14px;
+        
 
-                    z-index: 0;
+                                        }
 
-                }
+        
 
-            </style>
+                                
+
+        
+
+                                        .chat-bubble::after, .chat-bubble::before {
+
+        
+
+                                            content: '';
+
+        
+
+                                            position: absolute;
+
+        
+
+                                            width: 0;
+
+        
+
+                                            height: 0;
+
+        
+
+                                            border-style: solid;
+
+        
+
+                                        }
+
+        
+
+                                
+
+        
+
+                                        /* Left-side bubble (white with black border) */
+
+        
+
+                                        .chat-bubble-left {
+
+        
+
+                                            background-color: white;
+
+        
+
+                                            border: 2px solid black;
+
+        
+
+                                        }
+
+        
+
+                                
+
+        
+
+                                        .chat-bubble-left::after { /* Tail */
+
+        
+
+                                            border-width: 10px 0 10px 10px;
+
+        
+
+                                            border-color: transparent transparent transparent white;
+
+        
+
+                                            top: 20px;
+
+        
+
+                                            right: -10px;
+
+        
+
+                                            z-index: 1;
+
+        
+
+                                        }
+
+        
+
+                                        .chat-bubble-left::before { /* Border */
+
+        
+
+                                            border-width: 12px 0 12px 12px;
+
+        
+
+                                            border-color: transparent transparent transparent black;
+
+        
+
+                                            top: 18px;
+
+        
+
+                                            right: -14px;
+
+        
+
+                                            z-index: 0;
+
+        
+
+                                        }
+
+        
+
+                                
+
+        
+
+                                        /* Right-side bubble (black with white text) */
+
+        
+
+                                        .chat-bubble-right {
+
+        
+
+                                            background-color: black;
+
+        
+
+                                            color: white;
+
+        
+
+                                            border: 2px solid black;
+
+        
+
+                                        }
+
+        
+
+                                
+
+        
+
+                                        .chat-bubble-right .font-semibold {
+
+        
+
+                                            color: white;
+
+        
+
+                                        }
+
+        
+
+                                
+
+        
+
+                                        .chat-bubble-right::after { /* Tail */
+
+        
+
+                                            border-width: 10px 10px 10px 0;
+
+        
+
+                                            border-color: transparent black transparent transparent;
+
+        
+
+                                            top: 20px;
+
+        
+
+                                            left: -10px;
+
+        
+
+                                            z-index: 1;
+
+        
+
+                                        }
+
+        
+
+                                        .chat-bubble-right::before { /* Border */
+
+        
+
+                                            border-width: 12px 12px 12px 0;
+
+        
+
+                                            border-color: transparent black transparent transparent;
+
+        
+
+                                            top: 18px;
+
+        
+
+                                            left: -14px;
+
+        
+
+                                            z-index: 0;
+
+        
+
+                                        }
+
+        
+
+                                    </style>
 </head>
 <body class="bg-white">
 
