@@ -134,12 +134,137 @@
             width: 66.66%; /* 2/3 underline */
         }
 
-        .nav-link:hover::after {
-            width: 100%; /* 3/3 underline */
-        }
+                .nav-link:hover::after {
 
+                    width: 100%; /* 3/3 underline */
 
-    </style>
+                }
+
+        
+
+                /* Chat bubble styles for "Sound familiar?" section */
+
+                .chat-bubble {
+
+                    position: relative;
+
+                    padding: 1.5rem; /* p-6 */
+
+                    border-radius: 1rem; /* rounded-lg */
+
+                }
+
+        
+
+                .chat-bubble::after, .chat-bubble::before {
+
+                    content: '';
+
+                    position: absolute;
+
+                    width: 0;
+
+                    height: 0;
+
+                    border-style: solid;
+
+                }
+
+        
+
+                /* Left-side bubble (white with black border) */
+
+                .chat-bubble-left {
+
+                    background-color: white;
+
+                    border: 2px solid black;
+
+                }
+
+        
+
+                .chat-bubble-left::after { /* Tail */
+
+                    border-width: 10px 0 10px 10px;
+
+                    border-color: transparent transparent transparent white;
+
+                    top: 20px;
+
+                    right: -10px;
+
+                    z-index: 1;
+
+                }
+
+                .chat-bubble-left::before { /* Border */
+
+                    border-width: 12px 0 12px 12px;
+
+                    border-color: transparent transparent transparent black;
+
+                    top: 18px;
+
+                    right: -14px;
+
+                    z-index: 0;
+
+                }
+
+        
+
+                /* Right-side bubble (black with white text) */
+
+                .chat-bubble-right {
+
+                    background-color: black;
+
+                    color: white;
+
+                    border: 2px solid black;
+
+                }
+
+        
+
+                .chat-bubble-right .font-semibold {
+
+                    color: white;
+
+                }
+
+        
+
+                .chat-bubble-right::after { /* Tail */
+
+                    border-width: 10px 10px 10px 0;
+
+                    border-color: transparent black transparent transparent;
+
+                    top: 20px;
+
+                    left: -10px;
+
+                    z-index: 1;
+
+                }
+
+                .chat-bubble-right::before { /* Border */
+
+                    border-width: 12px 12px 12px 0;
+
+                    border-color: transparent black transparent transparent;
+
+                    top: 18px;
+
+                    left: -14px;
+
+                    z-index: 0;
+
+                }
+
+            </style>
 </head>
 <body class="bg-white">
 
@@ -243,28 +368,38 @@
 
                         <div class="space-y-8 text-lg text-gray-800">
                             <!-- Line 1: Left -->
-                            <div class="md:w-1/2 md:pr-12 md:text-right">
-                                <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
+                            <div class="md:w-1/2">
+                                <div class="chat-bubble chat-bubble-left">
+                                    <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
+                                </div>
                             </div>
 
                             <!-- Line 2: Right -->
-                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
-                                <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
+                            <div class="md:w-1/2 md:ml-auto">
+                                <div class="chat-bubble chat-bubble-right">
+                                    <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
+                                </div>
                             </div>
 
                             <!-- Line 3: Left -->
-                            <div class="md:w-1/2 md:pr-12 md:text-right">
-                                <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
+                            <div class="md:w-1/2">
+                                <div class="chat-bubble chat-bubble-left">
+                                    <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
+                                </div>
                             </div>
 
                             <!-- Line 4: Right -->
-                            <div class="md:w-1/2 md:ml-auto md:pl-12 md:text-left">
-                                <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
+                            <div class="md:w-1/2 md:ml-auto">
+                                <div class="chat-bubble chat-bubble-right">
+                                    <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
+                                </div>
                             </div>
 
-                            <!-- Line 5: Full-width -->
-                            <div class="md:w-1/2 md:pr-12 md:text-right pt-4">
-                                <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
+                            <!-- Line 5: Left -->
+                            <div class="md:w-1/2 pt-4">
+                                <div class="chat-bubble chat-bubble-left">
+                                    <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
+                                </div>
                             </div>
                         </div>
                     </div>
