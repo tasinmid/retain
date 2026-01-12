@@ -228,6 +228,7 @@
         .marquee-content {
             animation: marquee-scroll 60s linear infinite; /* Adjust speed as needed */
             width: max-content; /* Ensure content takes full width */
+            will-change: transform;
         }
 
         @keyframes marquee-scroll {
@@ -438,21 +439,20 @@
                     <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-20 font-poppins heading-underline-black">Companies We've Worked With</h2>
                 </div>
                 <div class="marquee-container">
-                    <div class="marquee-content flex items-center gap-x-12">
-                        <!-- Logos - Original set -->
-                        <img src="/company1.png" alt="Company 1" class="h-[100px] grayscale opacity-100 -mt-10">                                  
-                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100">
-                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100">
-                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100">
-                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-150">
-                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150">
+                                            <div class="marquee-content flex items-center">                        <!-- Logos - Original set -->
+                        <img src="/company1.png" alt="Company 1" class="h-[100px] grayscale opacity-100 -mt-10 mr-8">                                  
+                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-150 mr-16">
+                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150 mr-16">
                         <!-- Logos - Duplicated set for seamless loop -->
-                        <img src="/company1.png" alt="Company 1" class="h-[100px] grayscale opacity-100 -mt-10">          
-                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100">
-                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100">
-                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100">
-                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-150">
-                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150">
+                        <img src="/company1.png" alt="Company 1" class="h-[100px] grayscale opacity-100 -mt-10 mr-8">          
+                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100 mr-16">
+                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-150 mr-16">
+                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150 mr-16">
                     </div>
                 </div>
             </div>
