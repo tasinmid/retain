@@ -123,7 +123,31 @@
             padding: 1.5rem;
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .chat-bubble.is-not-in-view {
+            opacity: 0;
+        }
+
+        #chat-bubble-1.is-not-in-view {
+            transform: translateX(-100%) translateY(-50%);
+        }
+
+        #chat-bubble-2.is-not-in-view {
+            transform: translateX(100%) translateY(-50%);
+        }
+
+        #chat-bubble-3.is-not-in-view {
+            transform: translateX(-100%);
+        }
+
+        #chat-bubble-4.is-not-in-view {
+            transform: translateX(100%);
+        }
+
+        #chat-bubble-5.is-not-in-view {
+            transform: translateX(-100%) translateY(50%);
         }
         .chat-bubble:hover {
             transform: translateY(-4px) scale(1.02);
@@ -353,7 +377,7 @@
                 </div>
             </div>
 
-            <div class="py-12 sm:py-20 px-6 lg:px-8 bg-white">
+            <div id="sound-familiar-section" class="py-12 sm:py-20 px-6 lg:px-8 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Sound familiar?</h2>
@@ -365,27 +389,27 @@
                     <div class="relative">
                         <div class="space-y-8 text-base sm:text-lg text-gray-800">
                             <div class="w-11/12 md:w-1/2">
-                                <div class="chat-bubble chat-bubble-left">
+                                <div id="chat-bubble-1" class="chat-bubble chat-bubble-left is-not-in-view">
                                     <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
-                                <div class="chat-bubble chat-bubble-right">
+                                <div id="chat-bubble-2" class="chat-bubble chat-bubble-right is-not-in-view">
                                     <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2">
-                                <div class="chat-bubble chat-bubble-left">
+                                <div id="chat-bubble-3" class="chat-bubble chat-bubble-left is-not-in-view">
                                     <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
-                                <div class="chat-bubble chat-bubble-right">
+                                <div id="chat-bubble-4" class="chat-bubble chat-bubble-right is-not-in-view">
                                     <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 pt-4">
-                                <div class="chat-bubble chat-bubble-left">
+                                <div id="chat-bubble-5" class="chat-bubble chat-bubble-left is-not-in-view">
                                     <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
                                 </div>
                             </div>
@@ -623,6 +647,25 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+
+            // Scroll animation for "Sound familiar?" section
+            const soundFamiliarSection = document.getElementById('sound-familiar-section');
+            if (soundFamiliarSection) {
+                const chatBubbles = soundFamiliarSection.querySelectorAll('.chat-bubble');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            chatBubbles.forEach((bubble, index) => {
+                                setTimeout(() => {
+                                    bubble.classList.remove('is-not-in-view');
+                                }, index * 200); // Stagger the animation
+                            });
+                            observer.unobserve(soundFamiliarSection);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                observer.observe(soundFamiliarSection);
+            }
         });
     </script>
     <script src="/chatwidget.js"></script>
