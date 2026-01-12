@@ -413,7 +413,7 @@
                             </div>
                             <!-- Row 2 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution2.png" alt="Solution 2" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none order-last md:order-first">
+                                <img src="/solution2.png" alt="Solution 2" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
                                 <div class="md:pl-12 md:text-left">
                                     <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Turn existing customers into repeat buyers</h3>
                                     <p class="text-base sm:text-lg text-gray-300">Upsell and cross-sell effectively with context-driven recommendations. Reach the right customers at the right time with <span class="font-bold text-white">personalized, automated emails or calls</span> for repeat purchases or new offers.</p>
@@ -425,11 +425,11 @@
                                     <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Focus on customers who already know you</h3>
                                     <p class="text-base sm:text-lg text-gray-300">Save time and resources by targeting former prospects who are more likely to convert. Leverage detailed customer data to send <span class="font-bold text-white">personalized emails</span> to the right person at the right moment.</p>
                                 </div>
-                                <img src="/solution3.png" alt="Solution 3" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none">
+                                <img src="/solution3.png" alt="Solution 3" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
                             </div>
                             <!-- Row 4 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution4.png" alt="Solution 4" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none order-last md:order-first">
+                                <img src="/solution4.png" alt="Solution 4" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
                                 <div class="md:pl-12 md:text-left">
                                     <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Know your customers—without losing context</h3>
                                     <p class="text-base sm:text-lg text-gray-300">Keep every interaction, preference, and conversation in one place. Use the insights to reach out at the right time with <span class="font-bold text-white">personalized, automated messages or calls</span>.</p>
@@ -644,37 +644,62 @@
                 let currentProgress = 0;
                 const lerpFactor = 0.15;
 
-                function update() {
-                    currentProgress += (targetProgress - currentProgress) * lerpFactor;
-                    
+                // Function to set bubbles to final state (for mobile)
+                function setBubblesToFinalState() {
                     chatBubbles.forEach(bubble => {
                         if (bubble.el) {
-                            const currentX = bubble.startX * (1 - currentProgress);
-                            const currentY = bubble.startY * (1 - currentProgress);
-                            bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
-                            bubble.el.style.opacity = currentProgress;
+                            bubble.el.style.transform = `translateX(0) translateY(0)`;
+                            bubble.el.style.opacity = 1;
                         }
                     });
-
-                    requestAnimationFrame(update);
                 }
 
-                function onScroll() {
-                    const sectionTop = soundFamiliarSection.offsetTop;
-                    const sectionHeight = soundFamiliarSection.offsetHeight;
-                    const scrollY = window.scrollY;
-                    const windowHeight = window.innerHeight;
+                let isMobileView = window.innerWidth < 768; // Tailwind's 'md' breakpoint
 
-                    let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
-                    targetProgress = Math.max(0, Math.min(1, progress));
+                if (isMobileView) {
+                    setBubblesToFinalState();
+                } else {
+                    // Animation logic for desktop/tablet
+                    function update() {
+                        currentProgress += (targetProgress - currentProgress) * lerpFactor;
+                        
+                        chatBubbles.forEach(bubble => {
+                            if (bubble.el) {
+                                const currentX = bubble.startX * (1 - currentProgress);
+                                const currentY = bubble.startY * (1 - currentProgress);
+                                bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
+                                bubble.el.style.opacity = currentProgress;
+                            }
+                        });
+
+                        requestAnimationFrame(update);
+                    }
+
+                    function onScroll() {
+                        const sectionTop = soundFamiliarSection.offsetTop;
+                        const sectionHeight = soundFamiliarSection.offsetHeight;
+                        const scrollY = window.scrollY;
+                        const windowHeight = window.innerHeight;
+
+                        let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
+                        targetProgress = Math.max(0, Math.min(1, progress));
+                    }
+
+                    window.addEventListener('scroll', onScroll);
+                    
+                    // Initial call to set the state
+                    onScroll();
+                    // Start the animation loop
+                    update();
                 }
 
-                window.addEventListener('scroll', onScroll);
-                
-                // Initial call to set the state
-                onScroll();
-                // Start the animation loop
-                update();
+                // Add a listener to reset state on resize if switching between mobile/desktop views
+                window.addEventListener('resize', () => {
+                    const newIsMobileView = window.innerWidth < 768;
+                    if (isMobileView !== newIsMobileView) {
+                        location.reload(); // Simple reload to re-evaluate animation logic
+                    }
+                });
             }
         });
     </script>
