@@ -54,7 +54,7 @@ This file summarizes the work done on the Retain website project.
 
 9.  **Company Logos Section (home/index.html):**
     - Added a "Companies We've Worked With" section just before the "Business outcomes that matter" section in `home/index.html`. This section displays six company logos (`company1.png` to `company6.png`) styled in grayscale with a hover effect.
-    - Adjusted the size of `company1.png` to `h-32` and the other company logos to `h-16` for a much bigger visual presentation.
+    - Adjusted the size of `company1.png` to `h-48` and the other company logos to `h-16` for a much bigger visual presentation.
 
 10. **Infinite Scrolling Company Logos (home/index.html):**
     - Transformed the "Companies We've Worked With" section into an infinite horizontal scrolling marquee.
