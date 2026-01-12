@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retain - Customer Loyalty Systems</title>
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -25,8 +26,15 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
+            scroll-snap-type: y mandatory;
+        }
+        section {
+            scroll-snap-align: start;
         }
         .card-hover {
             transition: all 0.3s ease;
@@ -187,6 +195,23 @@
 
         .heading-underline:hover::after {
             width: 100%;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            animation: marquee-scroll 60s linear infinite; /* Adjust speed as needed */
+            width: max-content; /* Ensure content takes full width */
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
         }
     </style>
 </head>
@@ -356,7 +381,7 @@
                             </div>
                             <!-- Row 2 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution2.png" alt="Solution 2" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
+                                <img src="/solution2.png" alt="Solution 2" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none">
                                 <div class="md:pl-12 md:text-left">
                                     <h3 class="uppercase font-bold text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Turn existing customers into repeat buyers</h3>
                                     <p class="text-lg text-gray-300">Upsell and cross-sell effectively with context-driven recommendations. Reach the right customers at the right time with <span class="font-bold text-white">personalized, automated emails or calls</span> for repeat purchases or new offers.</p>
@@ -368,17 +393,45 @@
                                     <h3 class="uppercase font-bold text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Focus on customers who already know you</h3>
                                     <p class="text-lg text-gray-300">Save time and resources by targeting former prospects who are more likely to convert. Leverage detailed customer data to send <span class="font-bold text-white">personalized emails</span> to the right person at the right moment.</p>
                                 </div>
-                                <img src="/solution3.png" alt="Solution 3" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
+                                <img src="/solution3.png" alt="Solution 3" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none">
                             </div>
                             <!-- Row 4 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution4.png" alt="Solution 4" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
+                                <img src="/solution4.png" alt="Solution 4" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-none">
                                 <div class="md:pl-12 md:text-left">
                                     <h3 class="uppercase font-bold text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Know your customers—without losing context</h3>
                                     <p class="text-lg text-gray-300">Keep every interaction, preference, and conversation in one place. Use the insights to reach out at the right time with <span class="font-bold text-white">personalized, automated messages or calls</span>.</p>
                                 </div>
                             </div>
                         </div>
+                        <a href="/solutions/" class="mt-8 inline-flex items-center justify-center bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-medium group">
+                            Learn more <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Companies We've Worked With -->
+            <div class="py-12 bg-white overflow-hidden">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-8">Companies We've Worked With</h2>
+                </div>
+                <div class="marquee-container">
+                    <div class="marquee-content flex items-center gap-x-12">
+                        <!-- Logos - Original set -->
+                        <img src="/company1.png" alt="Company 1" class="h-45 grayscale opacity-100">
+                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100">
+                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100">
+                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100">
+                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-100">
+                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150">
+                        <!-- Logos - Duplicated set for seamless loop -->
+                        <img src="/company1.png" alt="Company 1" class="h-45 grayscale opacity-100">
+                        <img src="/company2.jpg" alt="Company 2" class="h-16 grayscale opacity-100">
+                        <img src="/company3.png" alt="Company 3" class="h-16 grayscale opacity-100">
+                        <img src="/company4.png" alt="Company 4" class="h-16 grayscale opacity-100">
+                        <img src="/company5.png" alt="Company 5" class="h-20 grayscale opacity-100">
+                        <img src="/company6.png" alt="Company 6" class="h-32 grayscale opacity-150">
                     </div>
                 </div>
             </div>

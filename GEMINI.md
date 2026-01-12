@@ -29,7 +29,34 @@ This file summarizes the work done on the Retain website project.
 3.  **Refactoring to a Multi-Page Website:**
     - Directories for each section (`home`, `how-it-works`, `solutions`, etc.) have been created.
     - The original `index.html` file has been split into individual `index.html` files within each new section directory.
-    - The root `index.html` file (which was the home page) has been moved to `home/index.html`.
+    - The root `index.html` file (which was the home page) has-been moved to `home/index.html`.
     - A new `index.html` file has been created in the root directory to redirect users to `/home/`.
     - The navigation links have been updated to point to the new directory structure.
     - A consistent layout (header, footer) has been applied to each new page.
+
+4.  **Navbar Consistency Across Pages:**
+    - Standardized navbar styling across all `index.html` files (home, about, how-it-works, solutions, who-it-for, why-retain, contact) to match `solutions/index.html`. This involved ensuring correct class application for desktop and mobile navigation links.
+    - Ensured consistent font usage in the navbar by setting `Inter` as the primary font and removing conflicting `Poppins` font definitions from `home/index.html`.
+    - Corrected an extraneous space in the `Inter` font import URL in `home/index.html` for proper font loading.
+
+5.  **Navbar Navigation:**
+    - Made the "Retain" text and logo image in the navbar of all `index.html` files clickable, linking them to the `/home/` page.
+
+6.  **Enhanced Scrolling Experience (home/index.html):**
+    - Implemented smooth scrolling for the `html` element using `scroll-behavior: smooth;`.
+    - Applied scroll-snap functionality to the `body` (`scroll-snap-type: y mandatory;`) and each `<section>` (`scroll-snap-align: start;`) in `home/index.html` for a smoother, section-aligned scrolling effect.
+
+7.  **"Looking for Solutions?" Section Enhancement (home/index.html):**
+    - Added a gray "Learn more" button with a right arrow at the bottom of the blue-colored rounded sphere within the "Looking for solutions?" section. This button links to the `/solutions/` page.
+
+8.  **Favicon Implementation:**
+    - Applied `darkFavicon.png` as the favicon for the entire website by adding `<link rel="icon" type="image/png" href="/darkFavicon.png">` to the `<head>` section of all `index.html` files (excluding the root redirect).
+
+9.  **Company Logos Section (home/index.html):**
+    - Added a "Companies We've Worked With" section just before the "Business outcomes that matter" section in `home/index.html`. This section displays six company logos (`company1.png` to `company6.png`) styled in grayscale with a hover effect.
+    - Adjusted the size of `company1.png` to `h-32` and the other company logos to `h-16` for a much bigger visual presentation.
+
+10. **Infinite Scrolling Company Logos (home/index.html):**
+    - Transformed the "Companies We've Worked With" section into an infinite horizontal scrolling marquee.
+    - Modified the HTML structure to include `marquee-container` and `marquee-content` divs, with duplicated logos for a seamless loop.
+    - Added CSS (`@keyframes marquee-scroll`) to `home/index.html`'s `<style>` block to animate the logos from right to left continuously.
