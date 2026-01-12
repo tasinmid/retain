@@ -32,6 +32,7 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-snap-type: y mandatory;
+            overflow-x: hidden;
         }
         section {
             scroll-snap-align: start;
@@ -124,6 +125,8 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+
+
 
 
         .chat-bubble:hover {
@@ -630,12 +633,31 @@
             const soundFamiliarSection = document.getElementById('sound-familiar-section');
             if (soundFamiliarSection) {
                 const chatBubbles = [
-                    { el: document.getElementById('chat-bubble-1'), startX: -100, startY: -50, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-2'), startX: 100, startY: -50, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-3'), startX: -100, startY: 0, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-4'), startX: 100, startY: 0, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-5'), startX: -100, startY: 50, endX: 0, endY: 0 }
+                    { el: document.getElementById('chat-bubble-1'), startX: -40, startY: -20, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-2'), startX: 40, startY: -20, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-3'), startX: -40, startY: 0, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-4'), startX: 40, startY: 0, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-5'), startX: -40, startY: 20, endX: 0, endY: 0 }
                 ];
+
+                let targetProgress = 0;
+                let currentProgress = 0;
+                const lerpFactor = 0.15;
+
+                function update() {
+                    currentProgress += (targetProgress - currentProgress) * lerpFactor;
+                    
+                    chatBubbles.forEach(bubble => {
+                        if (bubble.el) {
+                            const currentX = bubble.startX * (1 - currentProgress);
+                            const currentY = bubble.startY * (1 - currentProgress);
+                            bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
+                            bubble.el.style.opacity = currentProgress;
+                        }
+                    });
+
+                    requestAnimationFrame(update);
+                }
 
                 function onScroll() {
                     const sectionTop = soundFamiliarSection.offsetTop;
@@ -643,26 +665,16 @@
                     const scrollY = window.scrollY;
                     const windowHeight = window.innerHeight;
 
-                    // Calculate the progress of the scroll within the section
                     let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
-                    progress = Math.max(0, Math.min(1, progress));
-
-                    chatBubbles.forEach(bubble => {
-                        if (bubble.el) {
-                            const currentX = bubble.startX * (1 - progress);
-                            const currentY = bubble.startY * (1 - progress);
-                            bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
-                            bubble.el.style.opacity = progress;
-                        }
-                    });
+                    targetProgress = Math.max(0, Math.min(1, progress));
                 }
 
-                window.addEventListener('scroll', () => {
-                    requestAnimationFrame(onScroll);
-                });
+                window.addEventListener('scroll', onScroll);
                 
                 // Initial call to set the state
                 onScroll();
+                // Start the animation loop
+                update();
             }
         });
     </script>
