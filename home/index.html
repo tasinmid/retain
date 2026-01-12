@@ -123,32 +123,9 @@
             padding: 1.5rem;
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .chat-bubble.is-not-in-view {
-            opacity: 0;
-        }
 
-        #chat-bubble-1.is-not-in-view {
-            transform: translateX(-100%) translateY(-50%);
-        }
-
-        #chat-bubble-2.is-not-in-view {
-            transform: translateX(100%) translateY(-50%);
-        }
-
-        #chat-bubble-3.is-not-in-view {
-            transform: translateX(-100%);
-        }
-
-        #chat-bubble-4.is-not-in-view {
-            transform: translateX(100%);
-        }
-
-        #chat-bubble-5.is-not-in-view {
-            transform: translateX(-100%) translateY(50%);
-        }
         .chat-bubble:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -389,27 +366,27 @@
                     <div class="relative">
                         <div class="space-y-8 text-base sm:text-lg text-gray-800">
                             <div class="w-11/12 md:w-1/2">
-                                <div id="chat-bubble-1" class="chat-bubble chat-bubble-left is-not-in-view">
+                                <div id="chat-bubble-1" class="chat-bubble chat-bubble-left">
                                     <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
-                                <div id="chat-bubble-2" class="chat-bubble chat-bubble-right is-not-in-view">
+                                <div id="chat-bubble-2" class="chat-bubble chat-bubble-right">
                                     <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2">
-                                <div id="chat-bubble-3" class="chat-bubble chat-bubble-left is-not-in-view">
+                                <div id="chat-bubble-3" class="chat-bubble chat-bubble-left">
                                     <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
-                                <div id="chat-bubble-4" class="chat-bubble chat-bubble-right is-not-in-view">
+                                <div id="chat-bubble-4" class="chat-bubble chat-bubble-right">
                                     <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 pt-4">
-                                <div id="chat-bubble-5" class="chat-bubble chat-bubble-left is-not-in-view">
+                                <div id="chat-bubble-5" class="chat-bubble chat-bubble-left">
                                     <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
                                 </div>
                             </div>
@@ -648,23 +625,44 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
+
             // Scroll animation for "Sound familiar?" section
             const soundFamiliarSection = document.getElementById('sound-familiar-section');
             if (soundFamiliarSection) {
-                const chatBubbles = soundFamiliarSection.querySelectorAll('.chat-bubble');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            chatBubbles.forEach((bubble, index) => {
-                                setTimeout(() => {
-                                    bubble.classList.remove('is-not-in-view');
-                                }, index * 200); // Stagger the animation
-                            });
-                            observer.unobserve(soundFamiliarSection);
+                const chatBubbles = [
+                    { el: document.getElementById('chat-bubble-1'), startX: -100, startY: -50, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-2'), startX: 100, startY: -50, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-3'), startX: -100, startY: 0, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-4'), startX: 100, startY: 0, endX: 0, endY: 0 },
+                    { el: document.getElementById('chat-bubble-5'), startX: -100, startY: 50, endX: 0, endY: 0 }
+                ];
+
+                function onScroll() {
+                    const sectionTop = soundFamiliarSection.offsetTop;
+                    const sectionHeight = soundFamiliarSection.offsetHeight;
+                    const scrollY = window.scrollY;
+                    const windowHeight = window.innerHeight;
+
+                    // Calculate the progress of the scroll within the section
+                    let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
+                    progress = Math.max(0, Math.min(1, progress));
+
+                    chatBubbles.forEach(bubble => {
+                        if (bubble.el) {
+                            const currentX = bubble.startX * (1 - progress);
+                            const currentY = bubble.startY * (1 - progress);
+                            bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
+                            bubble.el.style.opacity = progress;
                         }
                     });
-                }, { threshold: 0.1 });
-                observer.observe(soundFamiliarSection);
+                }
+
+                window.addEventListener('scroll', () => {
+                    requestAnimationFrame(onScroll);
+                });
+                
+                // Initial call to set the state
+                onScroll();
             }
         });
     </script>
