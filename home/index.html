@@ -265,6 +265,27 @@
         #solutions-container, #extra-section-container {
             transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
         }
+
+        .purple-sheen-text {
+            background: linear-gradient(115deg,
+                black 0%,
+                black 30%,
+                #9b4dff 45%,
+                #9b4dff 55%,
+                black 70%,
+                black 100%
+            );
+            background-size: 300% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: shine 7s linear infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: -300% center; }
+            100% { background-position: 300% center; }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -489,7 +510,7 @@
             </div>
 
             <div id="extra-section-container" class="max-w-6xl mx-auto py-28 px-6 lg:px-8 bg-white rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] my-16">
-                <p class="text-black text-left text-5xl font-bold px-10">The Goal: keep earning from customers long after the first sale</p>
+                <p class="text-left text-5xl font-bold px-10 purple-sheen-text">The Goal: keep earning from customers long after the first sale</p>
             </div>
 
             <!-- Business Outcomes Section -->
