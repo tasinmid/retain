@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.shine-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 90px;
+  font-weight: 800;
+  color: black;
+  background: linear-gradient(115deg,
+    black 0%,
+    black 30%,
+    #9b4dff 45%,  /* purple center */
+    #9b4dff 55%,  /* extended sheen width */
+    black 70%,
+    black 100%
+  );
+  background-size: 300% auto; /* broader sweep */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 7s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: -300% center; }
+  100% { background-position: 300% center; }
+}
+</style>
+</head>
+<body>
+  <div class="shine-text">RETAINED</div>
+</body>
+</html>
