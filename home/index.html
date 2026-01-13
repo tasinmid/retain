@@ -262,15 +262,8 @@
             opacity: 1;
         }
 
-        .reveal-on-scroll {
-            opacity: 1;
-            transform: translateY(80px);
-            transition: transform 0.8s ease-out;
-        }
-
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
+        #solutions-container {
+            transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
         }
     </style>
 </head>
@@ -427,7 +420,7 @@
 
             <div class="py-12 sm:py-20 px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
-                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden reveal-on-scroll">
+                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden">
                         <div id="cursor-glow"></div>
                         <a href="/solutions/" class="text-white text-3xl sm:text-5xl font-semibold mb-12 heading-underline inline-block">Looking for solutions?</a>
                         <div class="space-y-8 text-white">
@@ -656,9 +649,10 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Cursor glow for solutions section
+            // Cursor glow & Parallax for solutions section
             const solutionsContainer = document.getElementById('solutions-container');
             if (solutionsContainer) {
+                // Cursor glow
                 const cursorGlow = document.getElementById('cursor-glow');
                 solutionsContainer.addEventListener('mousemove', (e) => {
                     const rect = solutionsContainer.getBoundingClientRect();
@@ -667,8 +661,19 @@
                     cursorGlow.style.left = `${x}px`;
                     cursorGlow.style.top = `${y}px`;
                 });
-            }
 
+                // Parallax
+                const strength = 80;
+                window.addEventListener('scroll', () => {
+                    const rect = solutionsContainer.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    if (rect.top < viewportHeight && rect.bottom > 0) {
+                        const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
+                        const translateY = progress * (strength / 2);
+                        solutionsContainer.style.transform = `translateY(${translateY}px)`;
+                    }
+                }, { passive: true });
+            }
 
             // Scroll animation for "Sound familiar?" section
             const soundFamiliarSection = document.getElementById('sound-familiar-section');
@@ -742,24 +747,6 @@
                     }
                 });
             }
-
-            // Scroll reveal animation
-            const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
         });
     </script>
     <script src="/chatwidget.js"></script>
