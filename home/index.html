@@ -262,7 +262,7 @@
             opacity: 1;
         }
 
-        #solutions-container {
+        #solutions-container, #extra-section-container {
             transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
         }
     </style>
@@ -488,6 +488,10 @@
                 </div>
             </div>
 
+            <div id="extra-section-container" class="max-w-6xl mx-auto py-20 px-6 lg:px-8 bg-white rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] my-16">
+                <!-- Add any content for the white rounded square here if needed -->
+            </div>
+
             <!-- Business Outcomes Section -->
             <div class="py-12 sm:py-20 px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto">
@@ -662,18 +666,27 @@
                     cursorGlow.style.top = `${y}px`;
                 });
 
-                // Parallax
-                const strength = 80;
-                window.addEventListener('scroll', () => {
-                    const rect = solutionsContainer.getBoundingClientRect();
-                    const viewportHeight = window.innerHeight;
-                    if (rect.top < viewportHeight && rect.bottom > 0) {
-                        const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
-                        const translateY = progress * (strength / 2);
-                        solutionsContainer.style.transform = `translateY(${translateY}px)`;
-                    }
-                }, { passive: true });
-            }
+                            // Parallax
+                            const parallaxElements = [
+                                { id: 'solutions-container', strength: 80 },
+                                { id: 'extra-section-container', strength: 80 }
+                            ];
+                
+                            const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
+                
+                            if (parallaxContainers.length > 0) {
+                                window.addEventListener('scroll', () => {
+                                    const viewportHeight = window.innerHeight;
+                                    parallaxContainers.forEach(({ el, strength }) => {
+                                        const rect = el.getBoundingClientRect();
+                                        if (rect.top < viewportHeight && rect.bottom > 0) {
+                                            const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
+                                            const translateY = progress * (strength / 2);
+                                            el.style.transform = `translateY(${translateY}px)`;
+                                        }
+                                    });
+                                }, { passive: true });
+                            }            }
 
             // Scroll animation for "Sound familiar?" section
             const soundFamiliarSection = document.getElementById('sound-familiar-section');
