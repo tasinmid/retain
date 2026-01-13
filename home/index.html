@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -17,12 +18,15 @@
                     
                     fontFamily: {
                         raleway: ['Raleway', 'sans-serif'],
+                        robotoMono: ['Roboto Mono', 'monospace'],
                     },
                     colors: {
                         primary: '#1f2937',
                         secondary: '#6b7280',
                         customBlue: '#87a6df',
-                        darkBlue: '#060525'
+                        darkBlue: '#060525',
+                        lightPurple: '#F2F1FD',
+                        borderPurple: '#B1ADCE'
                     }
                 }
             }
@@ -513,8 +517,9 @@
                 </div>
             </div>
 
-            <div id="extra-section-container" class="max-w-6xl mx-auto py-16 px-6 lg:px-8 bg-white rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] my-16">
+            <div id="extra-section-container" class="max-w-6xl mx-auto py-16 px-6 lg:px-8 bg-lightPurple rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] my-16 border border-borderPurple">
                 <p class="text-left text-5xl font-medium px-10 purple-sheen-text leading-tight font-raleway">The Goal: keep earning from customers long after the first sale</p>
+                <p class="text-left text-xl text-gray-700 mt-8 px-10 leading-relaxed font-roboto-mono"><strong class="font-bold">The Process:</strong> Integrate every customer-facing channel like, WhatsApp, Instagram, Messenger, and more, into a centralized CRM to automatically capture leads, conversations, and interaction history. Use AI driven automation to write and send personalized messages for each individual customer, ensuring outreach happens at the right time and in the right context. Every conversation is summarized and stored, so customer knowledge never gets lost and your team always has full visibility, even as people or roles change.</p>
             </div>
 
             <!-- Business Outcomes Section -->
