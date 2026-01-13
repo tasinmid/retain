@@ -248,9 +248,9 @@
 
         #cursor-glow {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 80%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -260,6 +260,17 @@
 
         #solutions-container:hover #cursor-glow {
             opacity: 1;
+        }
+
+        .reveal-on-scroll {
+            opacity: 1;
+            transform: translateY(80px);
+            transition: transform 0.8s ease-out;
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -416,7 +427,7 @@
 
             <div class="py-12 sm:py-20 px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
-                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden">
+                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden reveal-on-scroll">
                         <div id="cursor-glow"></div>
                         <a href="/solutions/" class="text-white text-3xl sm:text-5xl font-semibold mb-12 heading-underline inline-block">Looking for solutions?</a>
                         <div class="space-y-8 text-white">
@@ -731,6 +742,24 @@
                     }
                 });
             }
+
+            // Scroll reveal animation
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
         });
     </script>
     <script src="/chatwidget.js"></script>
