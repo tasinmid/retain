@@ -245,6 +245,22 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
         }
+
+        #cursor-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #solutions-container:hover #cursor-glow {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -400,7 +416,8 @@
 
             <div class="py-12 sm:py-20 px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
-                    <div class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center">
+                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden">
+                        <div id="cursor-glow"></div>
                         <a href="/solutions/" class="text-white text-3xl sm:text-5xl font-semibold mb-12 heading-underline inline-block">Looking for solutions?</a>
                         <div class="space-y-8 text-white">
                             <!-- Row 1 -->
@@ -446,7 +463,7 @@
             <!-- Companies We've Worked With -->
             <div class="py-12 bg-white overflow-hidden">
                 <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span class="heading-underline-black">Companies We've Worked With</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span class="heading-underline-black">We've Worked With</span></h2>
                 </div>
                 <div class="marquee-container">
                                             <div class="marquee-content flex items-center">                        <!-- Logos - Original set -->
@@ -627,6 +644,19 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
+
+            // Cursor glow for solutions section
+            const solutionsContainer = document.getElementById('solutions-container');
+            if (solutionsContainer) {
+                const cursorGlow = document.getElementById('cursor-glow');
+                solutionsContainer.addEventListener('mousemove', (e) => {
+                    const rect = solutionsContainer.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    cursorGlow.style.left = `${x}px`;
+                    cursorGlow.style.top = `${y}px`;
+                });
+            }
 
 
             // Scroll animation for "Sound familiar?" section
