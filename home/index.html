@@ -270,7 +270,7 @@
             opacity: 1;
         }
 
-        #solutions-container, #extra-section-container {
+        #solutions-container, #sheen-border-container {
             transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
         }
 
@@ -290,11 +290,39 @@
             animation: shine 7s linear infinite;
         }
 
-        @keyframes shine {
-            0% { background-position: -300% center; }
-            100% { background-position: 300% center; }
-        }
-    </style>
+                @keyframes shine {
+
+                    0% { background-position: -300% center; }
+
+                    100% { background-position: 300% center; }
+
+                }
+
+        
+
+                .sheen-border-wrapper {
+
+                  background: linear-gradient(115deg,
+
+                    #B1ADCE 0%,
+
+                    #B1ADCE 40%,
+
+                    #F2F1FD 50%, /* Lighter purple sheen */
+
+                    #B1ADCE 60%,
+
+                    #B1ADCE 100%
+
+                  );
+
+                  background-size: 300% auto;
+
+                  animation: shine 7s linear infinite;
+
+                }
+
+            </style>
 </head>
 <body class="bg-white">
 
@@ -517,9 +545,11 @@
                 </div>
             </div>
 
-            <div id="extra-section-container" class="max-w-6xl mx-auto py-16 px-6 lg:px-8 bg-lightPurple rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] my-16 border border-borderPurple">
-                <p class="text-left text-5xl font-medium px-10 purple-sheen-text leading-tight font-raleway">The Goal: keep earning from customers long after the first sale</p>
-                <p class="text-left text-xl text-gray-700 mt-8 px-10 leading-relaxed font-roboto-mono"><strong class="font-bold">The Process:</strong> Integrate every customer-facing channel like, WhatsApp, Instagram, Messenger, and more, into a centralized CRM to automatically capture leads, conversations, and interaction history. Use AI driven automation to write and send personalized messages for each individual customer, ensuring outreach happens at the right time and in the right context. Every conversation is summarized and stored, so customer knowledge never gets lost and your team always has full visibility, even as people or roles change.</p>
+            <div id="sheen-border-container" class="max-w-6xl mx-auto my-16 p-[2px] rounded-3xl sheen-border-wrapper shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)]">
+                <div id="extra-section-container" class="py-16 px-6 lg:px-8 bg-lightPurple rounded-[22px]">
+                    <p class="text-left text-5xl font-medium px-10 purple-sheen-text leading-tight font-raleway">The Goal: keep earning from customers long after the first sale</p>
+                    <p class="text-left text-xl text-gray-700 mt-8 px-10 leading-relaxed font-roboto-mono"><strong class="font-bold">The Process:</strong> Integrate every customer-facing channel like, WhatsApp, Instagram, Messenger, and more, into a centralized CRM to automatically capture leads, conversations, and interaction history. Use AI driven automation to write and send personalized messages for each individual customer, ensuring outreach happens at the right time and in the right context. Every conversation is summarized and stored, so customer knowledge never gets lost and your team always has full visibility, even as people or roles change.</p>
+                </div>
             </div>
 
             <!-- Business Outcomes Section -->
@@ -699,7 +729,7 @@
                             // Parallax
                             const parallaxElements = [
                                                 { id: 'solutions-container', strength: 160 },
-                                                { id: 'extra-section-container', strength: 160 }                            ];
+                                                { id: 'sheen-border-container', strength: 160 }                            ];
                 
                             const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
                 

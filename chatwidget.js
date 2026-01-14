@@ -35,7 +35,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(16, 185, 129, 0.4);
+            background: rgba(222, 114, 213, 0.4);
             border-radius: 9999px;
             z-index: -1;
             animation: ripple 2s infinite;
