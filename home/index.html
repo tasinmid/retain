@@ -257,6 +257,15 @@
             100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
         }
 
+        @keyframes marquee-scroll-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-reverse {
+            animation-name: marquee-scroll-reverse;
+        }
+
         #cursor-glow {
             position: absolute;
             width: 300px;
@@ -450,7 +459,7 @@
                 </div>
             </div>
 
-            <div id="sound-familiar-section" class="py-12 sm:py-20 px-6 lg:px-8 bg-white">
+            <div id="sound-familiar-section" class="py-16 sm:py-24 px-6 lg:px-8 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Sound familiar?</h2>
@@ -494,17 +503,17 @@
             <div id="dynamic-center-text" class="absolute left-0 w-full z-10">
                 <div class="marquee-container">
                     <div class="marquee-content flex">
-                        <p class="text-7xl font-prompt font-bold text-gray-800 whitespace-nowrap px-8 py-4">
-                            Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle"> <a href="https://solven.app/" class="text-black hover:text-gray-700">Solven.app</a>
+                        <p class="text-7xl font-prompt font-bold text-gray-400 whitespace-nowrap px-8 py-4">
+                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
                         </p>
-                        <p class="text-7xl font-prompt font-bold text-gray-800 whitespace-nowrap px-8 py-4">
-                            Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle"> <a href="https://solven.app/" class="text-black hover:text-gray-700">Solven.app</a>
+                        <p class="text-7xl font-prompt font-bold text-gray-400 whitespace-nowrap px-8 py-4">
+                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="py-12 sm:py-20 px-6 lg:px-8 mt-20">
+            <div class="py-12 sm:py-20 px-6 lg:px-8 mt-32">
                 <div class="max-w-6xl mx-auto">
                     <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 mb-16 relative text-center overflow-hidden">
                         <div id="cursor-glow"></div>
@@ -556,7 +565,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span class="heading-underline-black">We've Worked With</span></h2>
                 </div>
                 <div class="marquee-container">
-                                            <div class="marquee-content flex items-center">                        <!-- Logos - Original set -->
+                                            <div class="marquee-content flex items-center marquee-reverse">                        <!-- Logos - Original set -->
                         <img src="/company1.png" alt="Company 1" class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">                                  
                         <img src="/company2.jpg" alt="Company 2" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
                         <img src="/company3.png" alt="Company 3" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
