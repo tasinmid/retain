@@ -598,11 +598,86 @@
 
             <div class="py-12 sm:py-20 px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
-                    <div id="new-sphere-section" class="bg-darkBlue rounded-3xl shadow-2xl h-64 flex flex-col items-center justify-center p-8 text-white">
-                        <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                            "Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"
-                        </p>
-                        <p class="text-lg font-semibold">- Jane Doe, CEO of ExampleCorp</p>
+                    <div id="new-sphere-section" class="bg-darkBlue rounded-3xl shadow-2xl h-64 relative overflow-hidden text-white">
+                        <div id="review-carousel" class="absolute inset-0 flex transition-transform duration-500 ease-in-out">
+                            <!-- Review 1 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"
+                                </p>
+                                <p class="text-lg font-semibold">- Jane Doe, CEO of ExampleCorp</p>
+                            </div>
+                            <!-- Review 2 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "Outstanding system! Our customer engagement has never been better. Retain truly understands loyalty."
+                                </p>
+                                <p class="text-lg font-semibold">- John Smith, Marketing Director, InnovateX</p>
+                            </div>
+                            <!-- Review 3 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "A game-changer for our business. The automated insights are incredibly powerful."
+                                </p>
+                                <p class="text-lg font-semibold">- Emily Chen, Founder, Growthify</p>
+                            </div>
+                            <!-- Review 4 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "The impact of Retain on our customer retention rates was immediate and impressive. A truly invaluable partner."
+                                </p>
+                                <p class="text-lg font-semibold">- David Lee, Product Manager, TechSolutions</p>
+                            </div>
+                            <!-- Review 5 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "We struggled with customer churn for years. Retain provided the solution we needed. Fantastic results!"
+                                </p>
+                                <p class="text-lg font-semibold">- Sarah Chen, Operations Director, GlobalConnect</p>
+                            </div>
+                            <!-- Review 6 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "Seamless integration and powerful analytics. Retain made understanding our customers easier than ever."
+                                </p>
+                                <p class="text-lg font-semibold">- Michael Brown, CTO, DataSense</p>
+                            </div>
+                            <!-- Review 7 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "Highly intuitive and incredibly effective. Retain is now a core part of our customer strategy."
+                                </p>
+                                <p class="text-lg font-semibold">- Jessica Green, Founder, FutureFlow</p>
+                            </div>
+                            <!-- Review 8 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "Our best investment this year. Customer loyalty has surged thanks to Retain's innovative platform."
+                                </p>
+                                <p class="text-lg font-semibold">- Chris White, Head of Sales, ApexSystems</p>
+                            </div>
+                            <!-- Review 9 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "From concept to implementation, Retain exceeded our expectations. Truly a leader in customer engagement."
+                                </p>
+                                <p class="text-lg font-semibold">- Laura Black, Customer Success Lead, BridgeCo</p>
+                            </div>
+                            <!-- Review 10 -->
+                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
+                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                                    "The personalized approach Retain offers is unmatched. Our customers feel truly valued."
+                                </p>
+                                <p class="text-lg font-semibold">- Kevin Blue, Brand Manager, CreativePulse</p>
+                            </div>
+                        </div>
+                        <!-- Navigation Buttons -->
+                        <button id="prev-review" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button id="next-review" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -839,6 +914,66 @@
                         location.reload(); // Simple reload to re-evaluate animation logic
                     }
                 });
+            }
+
+            // Carousel for New Sphere Section
+            const reviewCarousel = document.getElementById('review-carousel');
+            const prevReviewBtn = document.getElementById('prev-review');
+            const nextReviewBtn = document.getElementById('next-review');
+            const reviewItems = reviewCarousel ? reviewCarousel.querySelectorAll(':scope > div') : []; // Select direct children divs
+
+            if (reviewCarousel && prevReviewBtn && nextReviewBtn && reviewItems.length > 0) {
+                let currentIndex = 0;
+                const autoAdvanceInterval = 5000; // 5 seconds
+                let autoAdvanceTimer;
+
+                function showReview(index) {
+                    if (index < 0) {
+                        currentIndex = reviewItems.length - 1;
+                    } else if (index >= reviewItems.length) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex = index;
+                    }
+                    reviewCarousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }
+
+                function nextReview() {
+                    showReview(currentIndex + 1);
+                }
+
+                function prevReview() {
+                    showReview(currentIndex - 1);
+                }
+
+                function startAutoAdvance() {
+                    stopAutoAdvance(); // Clear any existing timer
+                    autoAdvanceTimer = setInterval(nextReview, autoAdvanceInterval);
+                }
+
+                function stopAutoAdvance() {
+                    clearInterval(autoAdvanceTimer);
+                }
+
+                // Event Listeners
+                nextReviewBtn.addEventListener('click', () => {
+                    nextReview();
+                });
+                prevReviewBtn.addEventListener('click', () => {
+                    prevReview();
+                    stopAutoAdvance(); // Stop auto-advance on manual interaction
+                    startAutoAdvance(); // Restart after a brief pause
+                });
+
+                // Start auto-advance initially
+                startAutoAdvance();
+
+                // Optional: Pause auto-advance on hover over the carousel container
+                const newSphereSection = document.getElementById('new-sphere-section');
+                if (newSphereSection) {
+                    newSphereSection.addEventListener('mouseenter', stopAutoAdvance);
+                    newSphereSection.addEventListener('mouseleave', startAutoAdvance);
+                }
             }
         });
     </script>
