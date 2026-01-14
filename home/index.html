@@ -687,7 +687,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white rounded-t-3xl shadow-[0_-15px_40px_-10px_rgba(0,0,0,0.3)] py-8 px-4 sm:px-6 lg:px-8">
+    <footer class="bg-white rounded-t-3xl shadow-[0_-20px_50px_-10px_rgba(0,0,0,0.7)] py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
@@ -705,6 +705,7 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded fired!'); // Global Debug Log
             // Typewriter Effect
             const heroContent = document.getElementById('hero-content');
             const typewriterWrapper = document.getElementById('typewriter-wrapper');
@@ -917,49 +918,64 @@
             }
 
             // Carousel for New Sphere Section
+            console.log('Carousel script loaded.'); // Debug Log
             const reviewCarousel = document.getElementById('review-carousel');
             const prevReviewBtn = document.getElementById('prev-review');
             const nextReviewBtn = document.getElementById('next-review');
             const reviewItems = reviewCarousel ? reviewCarousel.querySelectorAll(':scope > div') : []; // Select direct children divs
 
             if (reviewCarousel && prevReviewBtn && nextReviewBtn && reviewItems.length > 0) {
+                console.log('Carousel elements found. reviewCarousel:', reviewCarousel, 'prevReviewBtn:', prevReviewBtn, 'nextReviewBtn:', nextReviewBtn, 'reviewItems.length:', reviewItems.length); // Debug Log
                 let currentIndex = 0;
                 const autoAdvanceInterval = 5000; // 5 seconds
                 let autoAdvanceTimer;
 
                 function showReview(index) {
+                    console.log('showReview() called with index:', index); // Log
                     if (index < 0) {
                         currentIndex = reviewItems.length - 1;
+                        console.log('Wrapping to end, new currentIndex:', currentIndex);
                     } else if (index >= reviewItems.length) {
                         currentIndex = 0;
+                        console.log('Wrapping to beginning, new currentIndex:', currentIndex);
                     } else {
                         currentIndex = index;
+                        console.log('Setting currentIndex:', currentIndex);
                     }
                     reviewCarousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    console.log('Transform applied:', reviewCarousel.style.transform);
                 }
 
                 function nextReview() {
+                    console.log('nextReview() called!'); // Log
                     showReview(currentIndex + 1);
                 }
 
                 function prevReview() {
+                    console.log('prevReview() called!'); // Log
                     showReview(currentIndex - 1);
                 }
 
                 function startAutoAdvance() {
+                    console.log('startAutoAdvance() called!'); // Log
                     stopAutoAdvance(); // Clear any existing timer
                     autoAdvanceTimer = setInterval(nextReview, autoAdvanceInterval);
                 }
 
                 function stopAutoAdvance() {
+                    console.log('stopAutoAdvance() called!'); // Log
                     clearInterval(autoAdvanceTimer);
                 }
 
                 // Event Listeners
                 nextReviewBtn.addEventListener('click', () => {
+                    console.log('Next button clicked!'); // Log
                     nextReview();
+                    stopAutoAdvance(); // Stop auto-advance on manual interaction
+                    startAutoAdvance(); // Restart after a brief pause (optional, for better UX)
                 });
                 prevReviewBtn.addEventListener('click', () => {
+                    console.log('Prev button clicked!'); // Log
                     prevReview();
                     stopAutoAdvance(); // Stop auto-advance on manual interaction
                     startAutoAdvance(); // Restart after a brief pause
