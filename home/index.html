@@ -268,9 +268,9 @@
 
         #cursor-glow {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 80%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 80%);
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
@@ -596,12 +596,23 @@
                 </div>
             </div>
 
+            <div class="py-12 sm:py-20 px-6 lg:px-8">
+                <div class="max-w-6xl mx-auto">
+                    <div id="new-sphere-section" class="bg-darkBlue rounded-3xl shadow-2xl h-64 flex flex-col items-center justify-center p-8 text-white">
+                        <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
+                            "Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"
+                        </p>
+                        <p class="text-lg font-semibold">- Jane Doe, CEO of ExampleCorp</p>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+    <footer class="bg-white rounded-t-3xl shadow-[0_-15px_40px_-10px_rgba(0,0,0,0.3)] py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
@@ -612,6 +623,7 @@
                     <p>© 2026 Retain. All rights reserved.</p>
                 </div>
             </div>
+
         </div>
     </footer>
 
@@ -717,7 +729,8 @@
                             // Parallax
                             const parallaxElements = [
                                                 { id: 'solutions-container', strength: 160 },
-                                                { id: 'sheen-border-container', strength: 160 }                            ];
+                                                { id: 'sheen-border-container', strength: 160 },
+                                                { id: 'new-sphere-section', strength: 160 }                            ];
                 
                             const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
                 
