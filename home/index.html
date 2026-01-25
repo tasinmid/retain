@@ -529,7 +529,7 @@
             </div>
 
             <!-- Companies We've Worked With -->
-            <div class="pt-4 pb-12 bg-white overflow-hidden">
+            <div class="pt-4 pb-0 bg-white overflow-hidden">
                 <div class="max-w-7xl mx-auto text-center">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span class="heading-underline-black">We've Worked With</span></h2>
                 </div>
@@ -552,7 +552,7 @@
                 </div>
             </div>
 
-            <div class="my-8">
+            <div class="my-4">
                 <div class="max-w-6xl mx-auto">
                     <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 relative text-center overflow-hidden">
                         <div id="cursor-glow"></div>
@@ -819,7 +819,12 @@
                                         const rect = el.getBoundingClientRect();
                                         if (rect.top < viewportHeight && rect.bottom > 0) {
                                             const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
-                                            const translateY = progress * (strength / 2);
+                                            let translateY = progress * (strength / 2);
+
+                                            if (el.id === 'solutions-container') {
+                                                translateY -= 40; // Apply vertical offset
+                                            }
+
                                             el.style.transform = `translateY(${translateY}px)`;
                                         }
                                     });
