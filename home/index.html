@@ -806,7 +806,7 @@
 
                             // Parallax
                             const parallaxElements = [
-                                                { id: 'solutions-container', strength: 160 },
+                                                { id: 'solutions-container', strength: 240 },
                                                 { id: 'sheen-border-container', strength: 160 },
                                                 { id: 'new-sphere-section', strength: 160 }                            ];
                 
@@ -973,14 +973,10 @@
                 nextReviewBtn.addEventListener('click', () => {
                     console.log('Next button clicked!'); // Log
                     nextReview();
-                    stopAutoAdvance(); // Stop auto-advance on manual interaction
-                    startAutoAdvance(); // Restart after a brief pause (optional, for better UX)
                 });
                 prevReviewBtn.addEventListener('click', () => {
                     console.log('Prev button clicked!'); // Log
                     prevReview();
-                    stopAutoAdvance(); // Stop auto-advance on manual interaction
-                    startAutoAdvance(); // Restart after a brief pause
                 });
 
                 // Start auto-advance initially
