@@ -1,0 +1,100 @@
+Initializing n8n process
+n8n ready on ::, port 5678
+n8n Task Broker ready on 127.0.0.1, port 5679
+Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode
+[license SDK] Skipping renewal on init: license cert is not due for renewal
+Registered runner "JS Task Runner" (zeegcFMKcouRrFoNf1SEK) 
+Version: 2.1.5
+Start Active Workflows:
+Activated workflow "Chatwidget" (ID: f2GBrGIJlPIuxIAY)
+Activated workflow "My workflow 4" (ID: GdF8a5M0qHTzhVHD)
+
+Editor is now accessible via:
+https://tahmidn8n.solven.app
+Received SIGINT. Shutting down...
+[runnner:js] Received SIGINT signal, shutting down...
+[runnner:js] Task runner stopped
+Initializing n8n process
+n8n ready on ::, port 5678
+n8n Task Broker ready on 127.0.0.1, port 5679
+Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode
+[license SDK] Skipping renewal on init: license cert is not due for renewal
+Registered runner "JS Task Runner" (OFQs94DxaUiY_zSRLQPyz) 
+Version: 2.1.5
+Start Active Workflows:
+Activated workflow "Chatwidget" (ID: f2GBrGIJlPIuxIAY)
+Activated workflow "My workflow 4" (ID: GdF8a5M0qHTzhVHD)
+
+Editor is now accessible via:
+https://tahmidn8n.solven.app
+(node:3138987) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+404 No successful execution found for the workflow
+2026-01-27T14:55:13.018Z [Rudder] error: Response error code: ETIMEDOUT
+2026-01-27T14:57:28.176Z [Rudder] error: Response error code: ETIMEDOUT
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+Database connection timed out
+503 Database is not ready!
+503 Database is not ready!
+Database connection recovered
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+404 No successful execution found for the workflow
+(node:3138987) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+2026-01-27T18:53:56.761Z [Rudder] error: Response error code: ETIMEDOUT
+Blocked GET /robots.txt for "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36; compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot"
+2026-01-28T06:53:57.236Z [Rudder] error: Response error code: ETIMEDOUT
+timeout of 3000ms exceeded
+Error while fetching community nodes: timeout of 3000ms exceeded
+Pruning old insights data
+Node does not have any credentials set
+Node does not have any credentials set
+404 No successful execution found for the workflow
+2026-01-28T18:01:13.593Z [Rudder] error: Response error code: ETIMEDOUT
+2026-01-28T18:02:00.284Z [Rudder] error: Response error code: ECONNRESET
+404 No successful execution found for the workflow
+No such file
+No such file
+No such file
+No such file
+Blocked GET /robots.txt for "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36; compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot"
+Failed to restore binary data ID - No such file or dir
+Failed to restore binary data ID - No such file or dir
+ResponseError: This webhook is not registered for POST requests. Did you mean to make a GET request?
+    at LiveWebhooks.findWebhook (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:192:10)
+    at LiveWebhooks.findAccessControlOptions (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:45:19)
+    at WebhookRequestHandler.setupCorsHeaders (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:216:20)
+    at WebhookRequestHandler.handleRequest (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:55:27)
+    at /usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:257:3
+ResponseError: This webhook is not registered for POST requests. Did you mean to make a GET request?
+    at LiveWebhooks.findWebhook (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:192:10)
+    at LiveWebhooks.findAccessControlOptions (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:45:19)
+    at WebhookRequestHandler.setupCorsHeaders (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:216:20)
+    at WebhookRequestHandler.handleRequest (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:55:27)
+    at /usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:257:3
+ResponseError: This webhook is not registered for POST requests. Did you mean to make a GET request?
+    at LiveWebhooks.findWebhook (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:192:10)
+    at LiveWebhooks.findAccessControlOptions (/usr/local/lib/node_modules/n8n/src/webhooks/live-webhooks.ts:45:19)
+    at WebhookRequestHandler.setupCorsHeaders (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:216:20)
+    at WebhookRequestHandler.handleRequest (/usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:55:27)
+    at /usr/local/lib/node_modules/n8n/src/webhooks/webhook-request-handler.ts:257:3
+Failed to restore binary data ID - No such file or dir
+2026-01-29T08:11:26.384Z [Rudder] error: Response error code: ETIMEDOUT
+2026-01-29T08:11:26.409Z [Rudder] error: Error: ETIMEDOUT
+read ETIMEDOUT
+read ETIMEDOUT
