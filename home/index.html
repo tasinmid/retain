@@ -862,7 +862,10 @@
             <div class="py-16 sm:py-24 px-6 lg:px-8 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Works seamlessly with your existing system</h2>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">
+                            <span id="split-heading-top" class="block">Works seamlessly with</span>
+                            <span id="split-heading-bottom" class="block">your existing system</span>
+                        </h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                             Integrate Retain with your current tools and workflows without disruption
                         </p>
@@ -1434,6 +1437,44 @@
                     document.getElementById(`${tabId}-viz`).classList.add('active');
                 });
             });
+            
+            // Split heading animation for integration section
+            const splitHeadingTop = document.getElementById('split-heading-top');
+            const splitHeadingBottom = document.getElementById('split-heading-bottom');
+            
+            if (splitHeadingTop && splitHeadingBottom) {
+                const headingObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            window.addEventListener('scroll', handleSplitHeadingAnimation, { passive: true });
+                        } else {
+                            window.removeEventListener('scroll', handleSplitHeadingAnimation);
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% of section is visible
+                
+                headingObserver.observe(splitHeadingTop.parentElement.parentElement); // Observe the section
+                
+                function handleSplitHeadingAnimation() {
+                    const rect = splitHeadingTop.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const scrollPosition = window.scrollY + windowHeight / 2;
+                    const elementPosition = rect.top + window.scrollY + rect.height / 2;
+                    const distanceFromCenter = scrollPosition - elementPosition;
+                    const maxDistance = windowHeight / 2;
+                    const scrollPercentage = Math.max(-1, Math.min(1, distanceFromCenter / maxDistance));
+                    
+                    // Move top line to the left, bottom line to the right
+                    const offset = Math.abs(scrollPercentage) * 50; // Max 50px movement
+                    splitHeadingTop.style.transform = `translateX(${-offset}px)`;
+                    splitHeadingBottom.style.transform = `translateX(${offset}px)`;
+                    
+                    // Add slight fade effect for depth
+                    const opacity = 1 - Math.abs(scrollPercentage) * 0.3;
+                    splitHeadingTop.style.opacity = opacity;
+                    splitHeadingBottom.style.opacity = opacity;
+                }
+            }
             
             // Scroll-based tab switching functionality
             if (tabSection) {
