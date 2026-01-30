@@ -137,9 +137,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-
-
-
         .chat-bubble:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -253,7 +250,6 @@
         .tab-viz {
             display: none;
         }
-
 
         .marquee-container {
             width: 100%;
@@ -369,7 +365,7 @@
             color: white; /* Ensure text is white */
             transition: background-position 0.3s ease; /* Smooth transition for hover effect */
         }
-            </style>
+    </style>
 </head>
 <body class="bg-white">
 
@@ -486,7 +482,7 @@
                     <div class="text-center mb-16">
                         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Sound familiar?</h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                            You’re not alone. Most businesses suffer from “customer amnesia” — and it’s costing them growth.
+                            You're not alone. Most businesses suffer from "customer amnesia" — and it's costing them growth.
                         </p>
                     </div>
 
@@ -494,7 +490,7 @@
                         <div class="space-y-8 text-base sm:text-lg text-gray-800">
                             <div class="w-11/12 md:w-1/2">
                                 <div id="chat-bubble-1" class="chat-bubble chat-bubble-left">
-                                    <span class="font-semibold">You’ve spent time getting buyers…</span> but can’t leverage them for repeat sales or referrals.
+                                    <span class="font-semibold">You've spent time getting buyers…</span> but can't leverage them for repeat sales or referrals.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
@@ -583,7 +579,7 @@
                             <!-- Row 1 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
                                 <div class="md:pr-12 md:text-right">
-                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Earn your customers’ loyalty</h3>
+                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Earn your customers' loyalty</h3>
                                     <p class="text-base sm:text-lg text-gray-300">Build stronger relationships by delivering consistent value. Keep your brand top-of-mind and turn one-time buyers into long-term fans.</p>
                                 </div>
                                 <img src="/solution1.png" alt="Solution 1" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
@@ -1263,6 +1259,7 @@
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
             const tabVisualizations = document.querySelectorAll('.tab-viz');
+            const tabSection = document.querySelector('.py-16.sm\\:py-24.px-6.lg\\:px-8.bg-gradient-to-br.from-lightPurple.to-white');
             
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -1324,6 +1321,55 @@
                     document.getElementById(`${tabId}-viz`).classList.add('active');
                 });
             });
+            
+            // Scroll-based tab switching functionality
+            if (tabSection) {
+                const tabIds = ['profile', 'reply', 'reach', 'upsell'];
+                
+                // Observer to detect when section is in view
+                const tabObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add scroll event listener when section comes into view
+                            window.addEventListener('scroll', handleScroll, { passive: true });
+                        } else {
+                            // Remove scroll event listener when section goes out of view
+                            window.removeEventListener('scroll', handleScroll);
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% of section is visible
+                
+                tabObserver.observe(tabSection);
+                
+                function handleScroll() {
+                    // Calculate the scroll position relative to the section
+                    const rect = tabSection.getBoundingClientRect();
+                    const sectionTop = rect.top + window.scrollY;
+                    const sectionHeight = rect.height;
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+                    
+                    // Calculate the percentage of the section scrolled through
+                    const scrollPercentage = Math.max(0, Math.min(1, (scrollPosition - sectionTop) / sectionHeight));
+                    
+                    // Determine which tab should be active based on scroll position
+                    const tabIndex = Math.floor(scrollPercentage * tabIds.length);
+                    const activeTabIndex = Math.min(tabIndex, tabIds.length - 1);
+                    const activeTabId = tabIds[activeTabIndex];
+                    
+                    // Switch to the calculated tab
+                    switchToTab(activeTabId);
+                }
+                
+                function switchToTab(tabId) {
+                    // Find the button for this tab
+                    const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+                    
+                    if (targetButton && !targetButton.classList.contains('tab-active')) {
+                        // Simulate a click on the target button to activate it
+                        targetButton.click();
+                    }
+                }
+            }
         });
     </script>
     <script>(function() {
