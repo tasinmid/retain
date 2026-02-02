@@ -7,13 +7,22 @@
     <link rel="icon" type="image/png" href="/darkFavicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    
                     fontFamily: {
+                        raleway: ['Raleway', 'sans-serif'],
+                        robotoMono: ['Roboto Mono', 'monospace'],
+                        prompt: ['Prompt', 'sans-serif'],
+                        googleSans: ['Google Sans', 'sans-serif'],
                         rubik: ['Rubik', 'sans-serif'],
                     },
                     colors: {
@@ -29,9 +38,324 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Rubik', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html {
+            scroll-behavior: smooth;
         }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+        }
+        section {
+            scroll-snap-align: start;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        #typewriter-cursor {
+            font-family: 'Inter', monospace;
+            color: #1f2937;
+            display: inline-block;
+            margin-left: 2px;
+            line-height: 1;
+        }
+        #typewriter-wrapper.is-typing #typewriter-cursor {
+            animation: blink 1s infinite step-end;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #chatbot-window {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: scale(0.8) translateY(40px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transform-origin: bottom right;
+        }
+        #chatbot-window.is-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .ripple-active::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(16, 185, 129, 0.4);
+            border-radius: 9999px;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar { 
+            display: none; 
+        }
+        ::selection {
+            background-color: black;
+            color: white;
+        }
+        ::-moz-selection {
+            background-color: black;
+            color: white;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link.active::after {
+            width: 66.66%;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .chat-bubble {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .chat-bubble:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chat-bubble::after, .chat-bubble::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .chat-bubble-left {
+            background-color: white;
+            border: 2px solid black;
+        }
+        .chat-bubble-left::after {
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+            top: 20px;
+            right: -10px;
+            z-index: 1;
+        }
+        .chat-bubble-left::before {
+            border-width: 12px 0 12px 12px;
+            border-color: transparent transparent transparent black;
+            top: 18px;
+            right: -14px;
+            z-index: 0;
+        }
+        .chat-bubble-right {
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+        }
+        .chat-bubble-right .font-semibold {
+            color: white;
+        }
+        .chat-bubble-right::after {
+            border-width: 10px 10px 10px 0;
+            border-color: transparent black transparent transparent;
+            top: 20px;
+            left: -10px;
+            z-index: 1;
+        }
+        .chat-bubble-right::before {
+            border-width: 12px 12px 12px 0;
+            border-color: transparent black transparent transparent;
+            top: 18px;
+            left: -14px;
+            z-index: 0;
+        }
+
+        .heading-underline {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 66.66%;
+            height: 3px;
+            background-color: white;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .heading-underline:hover::after {
+            width: 100%;
+        }
+
+        .heading-underline-black {
+            position: relative;
+            text-decoration: none; /* Ensure no default underline */
+        }
+
+        .heading-underline-black::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; /* Adjust as needed for vertical position */
+            left: 0; /* Align to the left of the parent span */
+            width: 66.66%; /* Initial 2/3 width */
+            height: 3px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .heading-underline-black:hover::after {
+            width: 100%; /* Full width on hover */
+        }
+        
+        /* Tab Navigation Styles */
+        .tab-active {
+            border-color: #1f2937 !important; /* gray-900 */
+            color: #1f2937 !important; /* gray-900 */
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-viz.active {
+            display: block;
+        }
+        
+        .tab-viz {
+            display: none;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            animation: marquee-scroll 40s linear infinite;
+            width: max-content; /* Ensure content takes full width */
+            will-change: transform;
+        }
+
+        @media (min-width: 768px) {
+            .marquee-content {
+                animation-duration: 60s;
+            }
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
+        }
+
+        @keyframes marquee-scroll-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-reverse {
+            animation-name: marquee-scroll-reverse;
+        }
+
+        #cursor-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #solutions-container:hover #cursor-glow {
+            opacity: 1;
+        }
+
+        #solutions-container, #sheen-border-container {
+            transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
+        }
+
+        .purple-sheen-text {
+            background: linear-gradient(115deg,
+                black 0%,
+                black 30%,
+                #9b4dff 45%,
+                #9b4dff 55%,
+                black 70%,
+                black 100%
+            );
+            background-size: 300% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: shine 7s linear infinite;
+        }
+
+                @keyframes shine {
+
+                    0% { background-position: -300% center; }
+
+                    100% { background-position: 300% center; }
+
+                }
+
+        
+
+                .sheen-border-wrapper {
+
+                  background: linear-gradient(115deg,
+
+                    #B1ADCE 0%,
+
+                    #B1ADCE 40%,
+
+                    #F2F1FD 50%, /* Lighter purple sheen */
+
+                    #B1ADCE 60%,
+
+                    #B1ADCE 100%
+
+                  );
+
+                  background-size: 300% auto;
+
+                  animation: shine 7s linear infinite;
+
+                }
+
         .sheen-button {
             background: linear-gradient(115deg,
                 #4f00bc 0%, /* Darker purple */
@@ -45,20 +369,17 @@
             color: white; /* Ensure text is white */
             transition: background-position 0.3s ease; /* Smooth transition for hover effect */
         }
-        @keyframes shine {
-            0% { background-position: -300% center; }
-            100% { background-position: 300% center; }
-        }
     </style>
 </head>
 <body class="bg-white">
+
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="flex items-baseline">
-                        <a href="/" class="flex items-baseline">
+                        <a href="/home/" class="flex items-baseline">
                             <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
                             <span class="text-2xl font-bold text-gray-900">Retain</span>
                         </a>
@@ -66,13 +387,12 @@
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">Home</a>
-                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">About</a>
-                    <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">How It Works</a>
-                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">Solutions</a>
-                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">Who It's For</a>
-                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium">Why Retain</a>
-                    <a href="/integrations/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium active">Integrations</a>
+                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
+                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
+                    <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
+                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Solutions</a>
+                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
+                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
                     <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
                         Book a Call
                     </a>
@@ -90,17 +410,53 @@
 
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
                 <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
                 <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
-                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Solutions</a>
                 <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
                 <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
-                <a href="/integrations/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Integrations</a>
                 <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
             </div>
         </div>
     </nav>
+
+    <!-- Chat Widget -->
+    <div id="chatbot-container" class="fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans">
+        <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
+            <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-500/30 shadow-lg">
+                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg leading-none">Aria</h4>
+                        <span class="text-xs text-emerald-300 font-medium tracking-wide uppercase">AI Strategist</span>
+                    </div>
+                </div>
+                <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
+            </div>
+
+            <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
+                <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
+            </div>
+
+            <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
+                <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
+                    <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button type="submit" class="text-emerald-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none">
+            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition"></i>
+            <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
+        </button>
+    </div>
 
     <!-- Integrations Page Content -->
     <section class="py-16 sm:py-24">
@@ -258,7 +614,7 @@
                 <!-- Integration Card 11 -->
                 <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
                     <div class="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-square text-teal-600 text-2xl"></i>
+                        <i class="fas fa-notiom text-teal-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Notion</h3>
                     <p class="text-gray-600 mb-4">Sync customer data and project information with Notion</p>
@@ -470,6 +826,55 @@
         </div>
     </footer>
 
+    <style>
+        #chatbot-container {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar { 
+            display: none; 
+        }
+        .chat-message {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: inline-block;
+            word-break: break-word;
+        }
+        .chat-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 3px;
+            align-items: center;
+            justify-content: center;
+        }
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background-color: black;
+            border-radius: 50%;
+            animation: blink 1.4s infinite both;
+        }
+        .typing-dots span:nth-child(1) { animation-delay: 0s; }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+
+        .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+    </style>
+
     <script>
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -477,6 +882,89 @@
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // Chat widget functionality
+        // ---- 2. Session ID ----
+        let session_id = sessionStorage.getItem('chatwidget_session_id');
+        if (!session_id) {
+            session_id = crypto.randomUUID();
+            sessionStorage.setItem('chatwidget_session_id', session_id);
+        }
+
+        // ---- 4. Toggle Logic ----
+        const btn = document.getElementById('chatbot-toggle');
+        const win = document.getElementById('chatbot-window');
+        const iconMsg = document.getElementById('icon-msg');
+        const iconClose = document.getElementById('icon-close');
+        const closeBtn = document.getElementById('chatbot-close');
+
+        function toggleChat() {
+            const isActive = win.classList.contains('is-active');
+            if (isActive) {
+                win.classList.remove('is-active');
+                iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
+                iconClose.classList.add('opacity-0','-rotate-90','scale-50');
+                btn.style.backgroundColor = '#0f172a';
+                btn.style.color = '#ffffff';
+                btn.classList.add('ripple-active');
+            } else {
+                win.classList.add('is-active');
+                iconMsg.classList.add('opacity-0','rotate-90','scale-50');
+                iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
+                btn.style.backgroundColor = '#ffffff';
+                btn.style.color = '#0f172a';
+                btn.classList.remove('ripple-active');
+            }
+        }
+
+        btn.addEventListener('click', toggleChat);
+        closeBtn.addEventListener('click', toggleChat);
+
+        // ---- 5. Message Sending + Persistent Typing ----
+        const form = document.getElementById('chatbot-form');
+        const input = document.getElementById('chatbot-input');
+        const messages = document.getElementById('chatbot-messages');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+
+            // ---- User bubble ----
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
+            userMsg.style.maxWidth = 'fit-content';
+            userMsg.style.maxWidth = '80%';
+            userMsg.innerText = text;
+            messages.appendChild(userMsg);
+            requestAnimationFrame(() => userMsg.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.value = '';
+
+            // ---- AI typing bubble ----
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
+            typingBubble.style.maxWidth = 'fit-content';
+            typingBubble.style.maxWidth = '80%';
+            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+            messages.appendChild(typingBubble);
+            requestAnimationFrame(() => typingBubble.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+
+            // ---- Send POST request ----
+            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_msg: text, session_id })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const aiText = data.reply || '';
+                typingBubble.innerHTML = aiText;
+                messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            })
+            // No catch: typing bubble stays until reply arrives
         });
     </script>
 </body>
