@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 
     <script>
         tailwind.config = {
@@ -37,340 +38,6 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-snap-type: y mandatory;
-            overflow-x: hidden;
-        }
-        section {
-            scroll-snap-align: start;
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        #typewriter-cursor {
-            font-family: 'Inter', monospace;
-            color: #1f2937;
-            display: inline-block;
-            margin-left: 2px;
-            line-height: 1;
-        }
-        #typewriter-wrapper.is-typing #typewriter-cursor {
-            animation: blink 1s infinite step-end;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        #chatbot-window {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: scale(0.8) translateY(40px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            transform-origin: bottom right;
-        }
-        #chatbot-window.is-active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: scale(1) translateY(0);
-        }
-        .glass-header {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        @keyframes ripple {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.6); opacity: 0; }
-        }
-        .ripple-active::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(16, 185, 129, 0.4);
-            border-radius: 9999px;
-            z-index: -1;
-            animation: ripple 2s infinite;
-        }
-        .no-scrollbar::-webkit-scrollbar { 
-            display: none; 
-        }
-        ::selection {
-            background-color: black;
-            color: white;
-        }
-        ::-moz-selection {
-            background-color: black;
-            color: white;
-        }
-        .nav-link {
-            position: relative;
-            text-decoration: none;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: black;
-            transition: width 0.3s ease-in-out;
-        }
-        .nav-link.active::after {
-            width: 66.66%;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .chat-bubble {
-            position: relative;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .chat-bubble:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .chat-bubble::after, .chat-bubble::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
-        .chat-bubble-left {
-            background-color: white;
-            border: 2px solid black;
-        }
-        .chat-bubble-left::after {
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent white;
-            top: 20px;
-            right: -10px;
-            z-index: 1;
-        }
-        .chat-bubble-left::before {
-            border-width: 12px 0 12px 12px;
-            border-color: transparent transparent transparent black;
-            top: 18px;
-            right: -14px;
-            z-index: 0;
-        }
-        .chat-bubble-right {
-            background-color: black;
-            color: white;
-            border: 2px solid black;
-        }
-        .chat-bubble-right .font-semibold {
-            color: white;
-        }
-        .chat-bubble-right::after {
-            border-width: 10px 10px 10px 0;
-            border-color: transparent black transparent transparent;
-            top: 20px;
-            left: -10px;
-            z-index: 1;
-        }
-        .chat-bubble-right::before {
-            border-width: 12px 12px 12px 0;
-            border-color: transparent black transparent transparent;
-            top: 18px;
-            left: -14px;
-            z-index: 0;
-        }
-
-        .heading-underline {
-            position: relative;
-            text-decoration: none;
-        }
-
-        .heading-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 66.66%;
-            height: 3px;
-            background-color: white;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .heading-underline:hover::after {
-            width: 100%;
-        }
-
-        .heading-underline-black {
-            position: relative;
-            text-decoration: none; /* Ensure no default underline */
-        }
-
-        .heading-underline-black::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; /* Adjust as needed for vertical position */
-            left: 0; /* Align to the left of the parent span */
-            width: 66.66%; /* Initial 2/3 width */
-            height: 3px;
-            background-color: black;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .heading-underline-black:hover::after {
-            width: 100%; /* Full width on hover */
-        }
-        
-        /* Tab Navigation Styles */
-        .tab-active {
-            border-color: #1f2937 !important; /* gray-900 */
-            color: #1f2937 !important; /* gray-900 */
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-viz.active {
-            display: block;
-        }
-        
-        .tab-viz {
-            display: none;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-
-        .marquee-content {
-            animation: marquee-scroll 40s linear infinite;
-            width: max-content; /* Ensure content takes full width */
-            will-change: transform;
-        }
-
-        @media (min-width: 768px) {
-            .marquee-content {
-                animation-duration: 60s;
-            }
-        }
-
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
-        }
-
-        @keyframes marquee-scroll-reverse {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
-
-        .marquee-reverse {
-            animation-name: marquee-scroll-reverse;
-        }
-
-        #cursor-glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 80%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #solutions-container:hover #cursor-glow {
-            opacity: 1;
-        }
-
-        #solutions-container, #sheen-border-container {
-            transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
-        }
-
-        .purple-sheen-text {
-            background: linear-gradient(115deg,
-                black 0%,
-                black 30%,
-                #9b4dff 45%,
-                #9b4dff 55%,
-                black 70%,
-                black 100%
-            );
-            background-size: 300% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: shine 7s linear infinite;
-        }
-
-                @keyframes shine {
-
-                    0% { background-position: -300% center; }
-
-                    100% { background-position: 300% center; }
-
-                }
-
-        
-
-                .sheen-border-wrapper {
-
-                  background: linear-gradient(115deg,
-
-                    #B1ADCE 0%,
-
-                    #B1ADCE 40%,
-
-                    #F2F1FD 50%, /* Lighter purple sheen */
-
-                    #B1ADCE 60%,
-
-                    #B1ADCE 100%
-
-                  );
-
-                  background-size: 300% auto;
-
-                  animation: shine 7s linear infinite;
-
-                }
-
-        .rotate-180 { transform: rotate(180deg); }
-        .sheen-button {
-            background: linear-gradient(115deg,
-                #4f00bc 0%, /* Darker purple */
-                #6f00e6 30%, /* Medium purple */
-                #9b4dff 50%, /* Lighter purple for the sheen */
-                #6f00e6 70%,
-                #4f00bc 100%
-            );
-            background-size: 300% auto;
-            animation: shine 7s linear infinite;
-            color: white; /* Ensure text is white */
-            transition: background-position 0.3s ease; /* Smooth transition for hover effect */
-        }
-    </style>
 </head>
 <body class="bg-white">
 
@@ -564,6 +231,7 @@
                         <img src="/company4.png" alt="Company 4" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
                         <img src="/company5.png" alt="Company 5" class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
                         <img src="/company6.png" alt="Company 6" class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;" oncontextmenu="return false;" alt="Company 7" class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
                         <!-- Logos - Duplicated set for seamless loop -->
                         <img src="/company1.png" alt="Company 1" class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">          
                         <img src="/company2.jpg" alt="Company 2" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
@@ -571,6 +239,7 @@
                         <img src="/company4.png" alt="Company 4" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
                         <img src="/company5.png" alt="Company 5" class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
                         <img src="/company6.png" alt="Company 6" class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;" oncontextmenu="return false;" alt="Company 7" class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
                     </div>
                 </div>
             </div>
@@ -854,6 +523,7 @@
                         </div>
                     </div>
                     
+
                     <div class="text-center mt-12">
                         <a href="/contact/" class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
                             Explore the System
@@ -997,8 +667,8 @@
             </div>
 
             <!-- Join us and deliver the Next Best Touchpoint section with smooth dropdown -->
-            <div class="py-16 sm:py-24 px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-purple-50">
-                <div class="max-w-6xl mx-auto">
+            <div id="dropdown-section" class="py-16 sm:py-24 px-4 lg:px-8 xl:px-16 2xl:px-24 bg-gradient-to-br from-gray-50 to-purple-50">
+                <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-16">
                         <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 font-googleSans">
                             <span class="block">Join us and deliver the</span>
@@ -1009,244 +679,331 @@
                         </p>
                     </div>
 
-                    <!-- Two column layout with dropdowns on left and content on right -->
-                    <div class="grid md:grid-cols-2 gap-12 mb-16">
-                        <!-- Left side - Enhanced dropdown menu section -->
-                        <div class="space-y-3">
+                    <!-- Two column layout with dropdowns on left (larger) and content on right (smaller) -->
+                    <div class="grid md:grid-cols-12 gap-8 mb-16">
+                        <!-- Left side - Ultra smooth dropdown menu section (takes 7/12 of space) -->
+                        <div class="md:col-span-7 space-y-4">
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-300 font-semibold flex justify-between items-center enhanced-dropdown-btn group">
+                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-purple-200 transition-colors">
-                                            <span class="text-purple-700 font-bold text-sm">1</span>
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <span class="text-white font-bold text-base">1</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">Understand what truly matters to your customers</span>
+                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-all duration-500">Understand what truly matters to your customers</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-transform duration-500 ease-in-out transform origin-center"></i>
+                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="enhanced-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
-                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
                                         <p class="text-gray-700 text-base leading-relaxed">Use zero-party and first-party data to create experiences that feel tailored, not generic.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-300 font-semibold flex justify-between items-center enhanced-dropdown-btn group">
+                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-blue-200 transition-colors">
-                                            <span class="text-blue-700 font-bold text-sm">2</span>
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <span class="text-white font-bold text-base">2</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">Increase lifetime value</span>
+                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-all duration-500">Increase lifetime value</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-transform duration-500 ease-in-out transform origin-center"></i>
+                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="enhanced-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
-                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
                                         <p class="text-gray-700 text-base leading-relaxed">Design touchpoints that turn a first-time buyer into a repeat spender — and then into a loyal advocate.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-300 font-semibold flex justify-between items-center enhanced-dropdown-btn group">
+                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-emerald-200 transition-colors">
-                                            <span class="text-emerald-700 font-bold text-sm">3</span>
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <span class="text-white font-bold text-base">3</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">Stay top of mind</span>
+                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-all duration-500">Stay top of mind</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-transform duration-500 ease-in-out transform origin-center"></i>
+                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="enhanced-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
-                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
                                         <p class="text-gray-700 text-base leading-relaxed">Reward ongoing engagement and ensure you are the brand they choose when it is time to buy.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-300 font-semibold flex justify-between items-center enhanced-dropdown-btn group">
+                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-amber-200 transition-colors">
-                                            <span class="text-amber-700 font-bold text-sm">4</span>
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <span class="text-white font-bold text-base">4</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors">Win without discounts</span>
+                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-all duration-500">Win without discounts</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-transform duration-500 ease-in-out transform origin-center"></i>
+                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="enhanced-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
-                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
                                         <p class="text-gray-700 text-base leading-relaxed">Bring customers back for reasons that go deeper than price.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-300 font-semibold flex justify-between items-center enhanced-dropdown-btn group">
+                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-rose-200 transition-colors">
-                                            <span class="text-rose-700 font-bold text-sm">5</span>
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-500 to-rose-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                            <span class="text-white font-bold text-base">5</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-rose-700 transition-colors">Turn customers into advocates</span>
+                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-rose-700 transition-all duration-500">Turn customers into advocates</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-transform duration-500 ease-in-out transform origin-center"></i>
+                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="enhanced-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
-                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
+                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                    <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
                                         <p class="text-gray-700 text-base leading-relaxed">Your best advocates are your current customers. Incentivize referrals, reviews, and social sharing.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right side - Additional content -->
-                        <div class="flex flex-col justify-center">
-                            <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 h-full">
-                                <h3 class="text-2xl font-bold text-gray-900 mb-6">Why Choose Retain?</h3>
-                                <div class="space-y-6">
-                                    <div class="flex items-start">
-                                        <div class="flex-shrink-0">
-                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                                                <i class="fas fa-chart-line text-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <h4 class="text-lg font-medium text-gray-900">Increased Retention</h4>
-                                            <p class="mt-2 text-gray-600">Boost customer retention rates by up to 40% with our proven strategies and automated systems.</p>
-                                        </div>
-                                    </div>
+                        <!-- Right side - Office demo video (takes 5/12 of space) -->
+                        <div class="md:col-span-5 flex flex-col justify-center">
+                            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg h-full flex items-center justify-center">
+                                <video src="/officedemo.mp4" autoplay muted loop playsinline class="w-full h-full rounded-2xl object-cover">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                    <div class="flex items-start">
-                                        <div class="flex-shrink-0">
-                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                                <i class="fas fa-bullseye text-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <h4 class="text-lg font-medium text-gray-900">Personalized Experiences</h4>
-                                            <p class="mt-2 text-gray-600">Create highly personalized customer journeys that feel tailor-made for each individual.</p>
-                                        </div>
-                                    </div>
+            <div class="py-12 sm:py-20 px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 font-rubik bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">What Our Clients Say</h2>
+                        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                            Real feedback from businesses that transformed their customer loyalty
+                        </p>
+                    </div>
 
-                                    <div class="flex items-start">
-                                        <div class="flex-shrink-0">
-                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-emerald-500 text-white">
-                                                <i class="fas fa-sync-alt text-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <h4 class="text-lg font-medium text-gray-900">Continuous Optimization</h4>
-                                            <p class="mt-2 text-gray-600">Our systems continuously learn and adapt to deliver better results over time.</p>
-                                        </div>
-                                    </div>
+                    <div class="grid md:grid-cols-3 gap-10">
+                        <!-- Review 1 -->
+                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-200/50 group">
+                            <div class="flex items-center mb-6">
+                                <div class="flex text-yellow-400 mr-3">
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
                                 </div>
+                                <span class="ml-auto text-sm text-gray-500 font-medium">2 weeks ago</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-purple-800 transition-colors duration-300">"Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"</p>
+                            <div class="flex items-center pt-4 border-t border-gray-100">
+                                <img src="/client-avatar-1.jpg" alt="Jane Doe" class="w-14 h-14 rounded-full object-cover border-2 border-purple-200 p-0.5 group-hover:border-purple-300 transition-colors duration-300">
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-purple-700 transition-colors duration-300">Jane Doe</h4>
+                                    <p class="text-sm text-gray-600 font-medium">CEO, ExampleCorp</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-200/50 group">
+                            <div class="flex items-center mb-6">
+                                <div class="flex text-yellow-400 mr-3">
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                </div>
+                                <span class="ml-auto text-sm text-gray-500 font-medium">1 month ago</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-indigo-800 transition-colors duration-300">"Outstanding system! Our customer engagement has never been better. Retain truly understands loyalty."</p>
+                            <div class="flex items-center pt-4 border-t border-gray-100">
+                                <img src="/client-avatar-2.jpg" alt="John Smith" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-200 p-0.5 group-hover:border-indigo-300 transition-colors duration-300">
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-indigo-700 transition-colors duration-300">John Smith</h4>
+                                    <p class="text-sm text-gray-600 font-medium">Marketing Director, InnovateX</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-200/50 group">
+                            <div class="flex items-center mb-6">
+                                <div class="flex text-yellow-400 mr-3">
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                    <i class="fas fa-star text-lg"></i>
+                                </div>
+                                <span class="ml-auto text-sm text-gray-500 font-medium">3 weeks ago</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-pink-800 transition-colors duration-300">"A game-changer for our business. The automated insights are incredibly powerful and easy to implement."</p>
+                            <div class="flex items-center pt-4 border-t border-gray-100">
+                                <img src="/client-avatar-3.jpg" alt="Emily Chen" class="w-14 h-14 rounded-full object-cover border-2 border-pink-200 p-0.5 group-hover:border-pink-300 transition-colors duration-300">
+                                <div class="ml-4">
+                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-pink-700 transition-colors duration-300">Emily Chen</h4>
+                                    <p class="text-sm text-gray-600 font-medium">Founder, Growthify</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 text-center">
+                        <div class="inline-flex space-x-8">
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-indigo-600">98%</div>
+                                <div class="text-sm text-gray-600 mt-1">Client Satisfaction</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-indigo-600">4.9/5</div>
+                                <div class="text-sm text-gray-600 mt-1">Average Rating</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl sm:text-4xl font-bold text-indigo-600">250+</div>
+                                <div class="text-sm text-gray-600 mt-1">Happy Clients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expert Consultation Section -->
+            <div class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-gray-800">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center text-white mb-8 font-poppins leading-tight">Learn how Retain can help you succeed. Talk to one of our experts today!</h2>
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <!-- Left side - Benefits content -->
+                        <div class="md:col-span-5">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Why talk to our experts?</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">Personalized assessment of your current customer retention strategy</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">Expert recommendations tailored to your specific business needs</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">Demonstration of our platform's key features and benefits</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">Pricing options and implementation timeline discussion</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Right side - Form-like box -->
+                        <div class="md:col-span-7">
+                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl p-10 h-full border border-gray-700">
                                 
-                                <div class="mt-8 pt-6 border-t border-gray-200">
-                                    <a href="/contact/" class="inline-block w-full bg-gradient-to-r from-purple-600 to-indigo-700 text-white text-center px-6 py-4 rounded-xl hover:opacity-90 transition-opacity font-semibold">
-                                        Start Building Loyalty Today
-                                    </a>
-                                </div>
+                                <form class="space-y-7">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">First Name *</label>
+                                            <div class="relative">
+                                                <input type="text" placeholder="First Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">Last Name *</label>
+                                            <div class="relative">
+                                                <input type="text" placeholder="Last Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Work Email *</label>
+                                        <div class="relative">
+                                            <input type="email" placeholder="your.email@company.com" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Company Name *</label>
+                                        <div class="relative">
+                                            <input type="text" placeholder="Company Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Country *</label>
+                                        <div class="relative">
+                                            <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 pr-10">
+                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                                <i class="fas fa-chevron-down text-gray-500"></i>
+                                            </div>
+                                            <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
+                                                <div id="country-options" class="py-2">
+                                                    <!-- Options will be populated by JS -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                                        <div class="flex space-x-2">
+                                            <div class="w-1/4">
+                                                <div class="bg-gray-800 text-indigo-400 py-3.5 px-4 rounded-lg border border-gray-700 text-center font-medium" id="phone-code">+</div>
+                                            </div>
+                                            <div class="w-3/4">
+                                                <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
+                                        <textarea placeholder="Tell us about your business needs and goals" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 h-32 resize-none"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02]">
+                                        Secure Consultation
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                            <i class="fas fa-plug ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="py-12 sm:py-20 px-6 lg:px-8">
-                <div class="max-w-6xl mx-auto">
-                    <div id="new-sphere-section" class="bg-darkBlue rounded-3xl shadow-2xl h-64 relative overflow-hidden text-white">
-                        <div id="review-carousel" class="absolute inset-0 flex transition-transform duration-500 ease-in-out">
-                            <!-- Review 1 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"
-                                </p>
-                                <p class="text-lg font-semibold">- Jane Doe, CEO of ExampleCorp</p>
-                            </div>
-                            <!-- Review 2 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "Outstanding system! Our customer engagement has never been better. Retain truly understands loyalty."
-                                </p>
-                                <p class="text-lg font-semibold">- John Smith, Marketing Director, InnovateX</p>
-                            </div>
-                            <!-- Review 3 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "A game-changer for our business. The automated insights are incredibly powerful."
-                                </p>
-                                <p class="text-lg font-semibold">- Emily Chen, Founder, Growthify</p>
-                            </div>
-                            <!-- Review 4 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "The impact of Retain on our customer retention rates was immediate and impressive. A truly invaluable partner."
-                                </p>
-                                <p class="text-lg font-semibold">- David Lee, Product Manager, TechSolutions</p>
-                            </div>
-                            <!-- Review 5 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "We struggled with customer churn for years. Retain provided the solution we needed. Fantastic results!"
-                                </p>
-                                <p class="text-lg font-semibold">- Sarah Chen, Operations Director, GlobalConnect</p>
-                            </div>
-                            <!-- Review 6 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "Seamless integration and powerful analytics. Retain made understanding our customers easier than ever."
-                                </p>
-                                <p class="text-lg font-semibold">- Michael Brown, CTO, DataSense</p>
-                            </div>
-                            <!-- Review 7 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "Highly intuitive and incredibly effective. Retain is now a core part of our customer strategy."
-                                </p>
-                                <p class="text-lg font-semibold">- Jessica Green, Founder, FutureFlow</p>
-                            </div>
-                            <!-- Review 8 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "Our best investment this year. Customer loyalty has surged thanks to Retain's innovative platform."
-                                </p>
-                                <p class="text-lg font-semibold">- Chris White, Head of Sales, ApexSystems</p>
-                            </div>
-                            <!-- Review 9 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "From concept to implementation, Retain exceeded our expectations. Truly a leader in customer engagement."
-                                </p>
-                                <p class="text-lg font-semibold">- Laura Black, Customer Success Lead, BridgeCo</p>
-                            </div>
-                            <!-- Review 10 -->
-                            <div class="w-full flex-shrink-0 flex flex-col items-center justify-center p-8 text-white">
-                                <p class="text-xl sm:text-2xl italic text-center max-w-2xl mb-4">
-                                    "The personalized approach Retain offers is unmatched. Our customers feel truly valued."
-                                </p>
-                                <p class="text-lg font-semibold">- Kevin Blue, Brand Manager, CreativePulse</p>
-                            </div>
-                        </div>
-                        <!-- Navigation Buttons -->
-                        <button id="prev-review" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button id="next-review" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full z-10">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </section>
 
@@ -1262,708 +1019,10 @@
                     <p>© 2026 Retain. All rights reserved.</p>
                 </div>
             </div>
-
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOMContentLoaded fired!'); // Global Debug Log
-            // Typewriter Effect
-            const heroContent = document.getElementById('hero-content');
-            const typewriterWrapper = document.getElementById('typewriter-wrapper');
-            const textEl = document.getElementById('typewriter-text');
-            const cursorEl = document.getElementById('typewriter-cursor');
-            
-            if (heroContent && typewriterWrapper && textEl && cursorEl) {
-                const words = ["scratch", "void", "nothing", "Zero"];
-                let wordIndex = 0;
-                let charIndex = 0;
-                let isDeleting = false;
-                let timeoutId;
-
-                const typeSpeed = 100;
-                const deleteSpeed = 50;
-                const pauseDuration = 2000;
-
-                function type() {
-                    const currentWord = words[wordIndex];
-                    cursorEl.style.animation = 'blink 1s infinite step-end';
-
-                    if (!isDeleting) {
-                        textEl.textContent = currentWord.substring(0, charIndex + 1);
-                        charIndex++;
-
-                        if (charIndex === currentWord.length) {
-                            cursorEl.style.animation = 'none';
-                            timeoutId = setTimeout(() => {
-                                isDeleting = true;
-                                type();
-                            }, pauseDuration);
-                            return;
-                        }
-                    } else {
-                        textEl.textContent = currentWord.substring(0, charIndex - 1);
-                        charIndex--;
-
-                        if (charIndex === 0) {
-                            isDeleting = false;
-                            wordIndex = (wordIndex + 1) % words.length;
-                        }
-                    }
-
-                    timeoutId = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
-                }
-                
-                function reset() {
-                    clearTimeout(timeoutId);
-                    textEl.textContent = '';
-                    wordIndex = 0;
-                    charIndex = 0;
-                    isDeleting = false;
-                    cursorEl.style.animation = '';
-                }
-
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            if (!typewriterWrapper.classList.contains('is-typing')) {
-                                typewriterWrapper.classList.add('is-typing');
-                                reset();
-                                type();
-                            }
-                        } else {
-                            if (typewriterWrapper.classList.contains('is-typing')) {
-                                typewriterWrapper.classList.remove('is-typing');
-                                reset();
-                            }
-                        }
-                    });
-                }, { threshold: 0.5 }); // Start when 50% of the element is visible
-
-                observer.observe(heroContent);
-            }
-
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Cursor glow & Parallax for solutions section
-            const solutionsContainer = document.getElementById('solutions-container');
-            if (solutionsContainer) {
-                // Cursor glow
-                const cursorGlow = document.getElementById('cursor-glow');
-                solutionsContainer.addEventListener('mousemove', (e) => {
-                    const rect = solutionsContainer.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    cursorGlow.style.left = `${x}px`;
-                    cursorGlow.style.top = `${y}px`;
-                });
-
-                            // Parallax
-                            const parallaxElements = [
-                                                { id: 'solutions-container', strength: 240 },
-                                                { id: 'sheen-border-container', strength: 160 },
-                                                { id: 'new-sphere-section', strength: 160 }                            ];
-                
-                            const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
-                
-                            if (parallaxContainers.length > 0) {
-                                window.addEventListener('scroll', () => {
-                                    const viewportHeight = window.innerHeight;
-                                    parallaxContainers.forEach(({ el, strength }) => {
-                                        const rect = el.getBoundingClientRect();
-                                        if (rect.top < viewportHeight && rect.bottom > 0) {
-                                            const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
-                                            let translateY = progress * (strength / 2);
-
-                                            if (el.id === 'solutions-container') {
-                                                translateY -= 40; // Apply vertical offset
-                                            }
-
-                                            el.style.transform = `translateY(${translateY}px)`;
-                                        }
-                                    });
-
-                                    // Dynamic centering for the text block
-                                    const soundFamiliarSection = document.getElementById('sound-familiar-section');
-                                    const sheenBorderContainer = document.getElementById('sheen-border-container');
-                                    const dynamicText = document.getElementById('dynamic-center-text');
-
-                                    if (soundFamiliarSection && sheenBorderContainer && dynamicText) {
-                                        const topRect = soundFamiliarSection.getBoundingClientRect();
-                                        const bottomRect = sheenBorderContainer.getBoundingClientRect();
-                                        const parentRect = dynamicText.offsetParent.getBoundingClientRect();
-
-                                        const topBoundary = topRect.bottom - parentRect.top;
-                                        const bottomBoundary = bottomRect.top - parentRect.top;
-                                        
-                                        const textHeight = dynamicText.offsetHeight;
-                                        
-                                        const middle = topBoundary + ((bottomBoundary - topBoundary) * 0.4) - (textHeight / 2);
-                                        
-                                        dynamicText.style.top = `${middle}px`;
-                                    }
-                                }, { passive: true });
-                            }            }
-
-            // Scroll animation for "Sound familiar?" section
-            const soundFamiliarSection = document.getElementById('sound-familiar-section');
-            if (soundFamiliarSection) {
-                const chatBubbles = [
-                    { el: document.getElementById('chat-bubble-1'), startX: -40, startY: -20, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-2'), startX: 40, startY: -20, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-3'), startX: -40, startY: 0, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-4'), startX: 40, startY: 0, endX: 0, endY: 0 },
-                    { el: document.getElementById('chat-bubble-5'), startX: -40, startY: 20, endX: 0, endY: 0 }
-                ];
-
-                let targetProgress = 0;
-                let currentProgress = 0;
-                const lerpFactor = 0.15;
-
-                // Function to set bubbles to final state (for mobile)
-                function setBubblesToFinalState() {
-                    chatBubbles.forEach(bubble => {
-                        if (bubble.el) {
-                            bubble.el.style.transform = `translateX(0) translateY(0)`;
-                            bubble.el.style.opacity = 1;
-                        }
-                    });
-                }
-
-                let isMobileView = window.innerWidth < 768; // Tailwind's 'md' breakpoint
-
-                if (isMobileView) {
-                    setBubblesToFinalState();
-                } else {
-                    // Animation logic for desktop/tablet
-                    function update() {
-                        currentProgress += (targetProgress - currentProgress) * lerpFactor;
-                        
-                        chatBubbles.forEach(bubble => {
-                            if (bubble.el) {
-                                const currentX = bubble.startX * (1 - currentProgress);
-                                const currentY = bubble.startY * (1 - currentProgress);
-                                bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
-                                bubble.el.style.opacity = currentProgress;
-                            }
-                        });
-
-                        requestAnimationFrame(update);
-                    }
-
-                    function onScroll() {
-                        const sectionTop = soundFamiliarSection.offsetTop;
-                        const sectionHeight = soundFamiliarSection.offsetHeight;
-                        const scrollY = window.scrollY;
-                        const windowHeight = window.innerHeight;
-
-                        let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
-                        targetProgress = Math.max(0, Math.min(1, progress));
-                    }
-
-                    window.addEventListener('scroll', onScroll);
-                    
-                    // Initial call to set the state
-                    onScroll();
-                    // Start the animation loop
-                    update();
-                }
-
-                // Add a listener to reset state on resize if switching between mobile/desktop views
-                window.addEventListener('resize', () => {
-                    const newIsMobileView = window.innerWidth < 768;
-                    if (isMobileView !== newIsMobileView) {
-                        location.reload(); // Simple reload to re-evaluate animation logic
-                    }
-                });
-            }
-
-            // Carousel for New Sphere Section
-            console.log('Carousel script loaded.'); // Debug Log
-            const reviewCarousel = document.getElementById('review-carousel');
-            const prevReviewBtn = document.getElementById('prev-review');
-            const nextReviewBtn = document.getElementById('next-review');
-            const reviewItems = reviewCarousel ? reviewCarousel.querySelectorAll(':scope > div') : []; // Select direct children divs
-
-            if (reviewCarousel && prevReviewBtn && nextReviewBtn && reviewItems.length > 0) {
-                console.log('Carousel elements found. reviewCarousel:', reviewCarousel, 'prevReviewBtn:', prevReviewBtn, 'nextReviewBtn:', nextReviewBtn, 'reviewItems.length:', reviewItems.length); // Debug Log
-                let currentIndex = 0;
-                const autoAdvanceInterval = 5000; // 5 seconds
-                let autoAdvanceTimer;
-
-                function showReview(index) {
-                    console.log('showReview() called with index:', index); // Log
-                    if (index < 0) {
-                        currentIndex = reviewItems.length - 1;
-                        console.log('Wrapping to end, new currentIndex:', currentIndex);
-                    } else if (index >= reviewItems.length) {
-                        currentIndex = 0;
-                        console.log('Wrapping to beginning, new currentIndex:', currentIndex);
-                    } else {
-                        currentIndex = index;
-                        console.log('Setting currentIndex:', currentIndex);
-                    }
-                    reviewCarousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    console.log('Transform applied:', reviewCarousel.style.transform);
-                }
-
-                function nextReview() {
-                    console.log('nextReview() called!'); // Log
-                    showReview(currentIndex + 1);
-                }
-
-                function prevReview() {
-                    console.log('prevReview() called!'); // Log
-                    showReview(currentIndex - 1);
-                }
-
-                function startAutoAdvance() {
-                    console.log('startAutoAdvance() called!'); // Log
-                    stopAutoAdvance(); // Clear any existing timer
-                    autoAdvanceTimer = setInterval(nextReview, autoAdvanceInterval);
-                }
-
-                function stopAutoAdvance() {
-                    console.log('stopAutoAdvance() called!'); // Log
-                    clearInterval(autoAdvanceTimer);
-                }
-
-                // Event Listeners
-                nextReviewBtn.addEventListener('click', () => {
-                    console.log('Next button clicked!'); // Log
-                    nextReview();
-                });
-                prevReviewBtn.addEventListener('click', () => {
-                    console.log('Prev button clicked!'); // Log
-                    prevReview();
-                });
-
-                // Start auto-advance initially
-                startAutoAdvance();
-
-                // Optional: Pause auto-advance on hover over the carousel container
-                const newSphereSection = document.getElementById('new-sphere-section');
-                if (newSphereSection) {
-                    newSphereSection.addEventListener('mouseenter', stopAutoAdvance);
-                    newSphereSection.addEventListener('mouseleave', startAutoAdvance);
-                }
-            }
-            
-            // Tab functionality for "From Insights to Action" section
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            const tabVisualizations = document.querySelectorAll('.tab-viz');
-            const tabSection = document.querySelector('.py-16.sm\\:py-24.px-6.lg\\:px-8.bg-gradient-to-br.from-lightPurple.to-white');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    
-                    // Remove active class from all buttons
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('tab-active');
-                        const btnTabId = btn.getAttribute('data-tab');
-                        if (btnTabId === 'profile') {
-                            btn.classList.remove('bg-gradient-to-r', 'from-purple-50', 'to-indigo-50', 'border-purple-200');
-                            btn.classList.add('bg-white', 'border-gray-200');
-                        } else if (btnTabId === 'reply') {
-                            btn.classList.remove('bg-blue-50', 'border-blue-200');
-                            btn.classList.add('bg-white', 'border-gray-200');
-                        } else if (btnTabId === 'reach') {
-                            btn.classList.remove('bg-green-50', 'border-green-200');
-                            btn.classList.add('bg-white', 'border-gray-200');
-                        } else if (btnTabId === 'upsell') {
-                            btn.classList.remove('bg-yellow-50', 'border-yellow-200');
-                            btn.classList.add('bg-white', 'border-gray-200');
-                        }
-                    });
-                    
-                    // Add active class to clicked button
-                    button.classList.add('tab-active');
-                    if (tabId === 'profile') {
-                        button.classList.remove('bg-white', 'border-gray-200');
-                        button.classList.add('bg-gradient-to-r', 'from-purple-50', 'to-indigo-50', 'border-purple-200');
-                    } else if (tabId === 'reply') {
-                        button.classList.remove('bg-white', 'border-gray-200');
-                        button.classList.add('bg-blue-50', 'border-blue-200');
-                    } else if (tabId === 'reach') {
-                        button.classList.remove('bg-white', 'border-gray-200');
-                        button.classList.add('bg-green-50', 'border-green-200');
-                    } else if (tabId === 'upsell') {
-                        button.classList.remove('bg-white', 'border-gray-200');
-                        button.classList.add('bg-yellow-50', 'border-yellow-200');
-                    }
-                    
-                    // Hide all content sections
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        content.classList.add('hidden');
-                    });
-                    
-                    // Show corresponding content
-                    document.getElementById(`${tabId}-content`).classList.remove('hidden');
-                    document.getElementById(`${tabId}-content`).classList.add('active');
-                    
-                    // Hide all visualization sections
-                    tabVisualizations.forEach(viz => {
-                        viz.classList.remove('active');
-                        viz.classList.add('hidden');
-                    });
-                    
-                    // Show corresponding visualization
-                    document.getElementById(`${tabId}-viz`).classList.remove('hidden');
-                    document.getElementById(`${tabId}-viz`).classList.add('active');
-                });
-            });
-            
-            // Split heading animation for integration section
-            const splitHeadingTop = document.getElementById('split-heading-top');
-            const splitHeadingBottom = document.getElementById('split-heading-bottom');
-            
-            if (splitHeadingTop && splitHeadingBottom) {
-                const headingObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            window.addEventListener('scroll', handleSplitHeadingAnimation, { passive: true });
-                        } else {
-                            window.removeEventListener('scroll', handleSplitHeadingAnimation);
-                        }
-                    });
-                }, { threshold: 0.5 }); // Trigger when 50% of section is visible
-                
-                headingObserver.observe(splitHeadingTop.parentElement.parentElement); // Observe the section
-                
-                function handleSplitHeadingAnimation() {
-                    const rect = splitHeadingTop.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-                    const scrollPosition = window.scrollY + windowHeight / 2;
-                    const elementPosition = rect.top + window.scrollY + rect.height / 2;
-                    const distanceFromCenter = scrollPosition - elementPosition;
-                    const maxDistance = windowHeight / 2;
-                    const scrollPercentage = Math.max(-1, Math.min(1, distanceFromCenter / maxDistance));
-                    
-                    // Move first line left to right, second line right to left
-                    const offset = scrollPercentage * 50; // Max 50px movement, maintaining direction
-                    splitHeadingTop.style.transform = `translateX(${offset}px)`;
-                    splitHeadingBottom.style.transform = `translateX(${-offset}px)`;
-                    
-                    // Add slight fade effect for depth
-                    const opacity = 1 - Math.abs(scrollPercentage) * 0.3;
-                    splitHeadingTop.style.opacity = opacity;
-                    splitHeadingBottom.style.opacity = opacity;
-                }
-            }
-            
-            // Scroll-based tab switching functionality
-            if (tabSection) {
-                const tabIds = ['profile', 'reply', 'reach', 'upsell'];
-                
-                // Observer to detect when section is in view
-                const tabObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // Add scroll event listener when section comes into view
-                            window.addEventListener('scroll', handleScroll, { passive: true });
-                        } else {
-                            // Remove scroll event listener when section goes out of view
-                            window.removeEventListener('scroll', handleScroll);
-                        }
-                    });
-                }, { threshold: 0.5 }); // Trigger when 50% of section is visible
-                
-                tabObserver.observe(tabSection);
-                
-                function handleScroll() {
-                    // Calculate the scroll position relative to the section
-                    const rect = tabSection.getBoundingClientRect();
-                    const sectionTop = rect.top + window.scrollY;
-                    const sectionHeight = rect.height;
-                    const scrollPosition = window.scrollY + window.innerHeight / 2;
-                    
-                    // Calculate the percentage of the section scrolled through
-                    const scrollPercentage = Math.max(0, Math.min(1, (scrollPosition - sectionTop) / sectionHeight));
-                    
-                    // Determine which tab should be active based on scroll position
-                    const tabIndex = Math.floor(scrollPercentage * tabIds.length);
-                    const activeTabIndex = Math.min(tabIndex, tabIds.length - 1);
-                    const activeTabId = tabIds[activeTabIndex];
-                    
-                    // Switch to the calculated tab
-                    switchToTab(activeTabId);
-                }
-                
-                function switchToTab(tabId) {
-                    // Find the button for this tab
-                    const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
-                    
-                    if (targetButton && !targetButton.classList.contains('tab-active')) {
-                        // Simulate a click on the target button to activate it
-                        targetButton.click();
-                    }
-                }
-            }
-        });
-    </script>
-    <script>(function() {
-
-    // ---- 1. Inject Styles ----
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-
-        @keyframes ripple {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.6); opacity: 0; }
-        }
-        .ripple-active::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(222, 114, 213, 0.4);
-            border-radius: 9999px;
-            z-index: -1;
-            animation: ripple 2s infinite;
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-
-        .chat-message {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            display: inline-block;
-            word-break: break-word;
-        }
-        .chat-message.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .typing-dots {
-            display: inline-flex;
-            gap: 3px;
-            align-items: center;
-            justify-content: center;
-        }
-        .typing-dots span {
-            width: 6px;
-            height: 6px;
-            background-color: black;
-            border-radius: 50%;
-            animation: blink 1.4s infinite both;
-        }
-        .typing-dots span:nth-child(1) { animation-delay: 0s; }
-        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes blink {
-            0%, 80%, 100% { opacity: 0; }
-            40% { opacity: 1; }
-        }
-
-        .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-    `;
-    document.head.appendChild(style);
-
-    // ---- 2. Session ID ----
-    let session_id = sessionStorage.getItem('chatwidget_session_id');
-    if (!session_id) {
-        session_id = crypto.randomUUID();
-        sessionStorage.setItem('chatwidget_session_id', session_id);
-    }
-
-    // ---- 3. Inject HTML ----
-    const container = document.createElement('div');
-    container.id = 'chatbot-container';
-    container.className = 'fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans';
-    container.innerHTML = `
-        <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
-            <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-500/30 shadow-lg">
-                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg leading-none">Aria</h4>
-                        <span class="text-xs text-emerald-300 font-medium tracking-wide uppercase">AI Strategist</span>
-                    </div>
-                </div>
-                <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
-            </div>
-
-            <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
-                <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
-            </div>
-
-            <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
-                <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
-                    <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
-                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <button type="submit" class="text-emerald-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
-                </form>
-            </div>
-        </div>
-
-        <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none">
-            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition"></i>
-            <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
-        </button>
-    `;
-    document.body.appendChild(container);
-
-    // ---- 4. Toggle Logic ----
-    const btn = document.getElementById('chatbot-toggle');
-    const win = document.getElementById('chatbot-window');
-    const iconMsg = document.getElementById('icon-msg');
-    const iconClose = document.getElementById('icon-close');
-    const closeBtn = document.getElementById('chatbot-close');
-
-                    // Enhanced dropdown functionality for the "Join us and deliver the Next Best Touchpoint" section
-                    document.addEventListener("DOMContentLoaded", function() {
-                        const dropdownButtons = document.querySelectorAll(".enhanced-dropdown-btn");
-                        
-                        dropdownButtons.forEach(button => {
-                            button.addEventListener("click", function() {
-                                const content = this.nextElementSibling;
-                                const icon = this.querySelector("i");
-                                const isOpen = content.classList.contains("max-h-0");
-                                
-                                // Close all other dropdowns first
-                                dropdownButtons.forEach(otherButton => {
-                                    if (otherButton !== button) {
-                                        const otherContent = otherButton.nextElementSibling;
-                                        const otherIcon = otherButton.querySelector("i");
-                                        
-                                        // Only close if it's currently open
-                                        if (!otherContent.classList.contains("max-h-0")) {
-                                            // Collapsing
-                                            otherContent.style.maxHeight = otherContent.scrollHeight + "px";
-                                            
-                                            // Force reflow
-                                            void otherContent.offsetWidth;
-                                            
-                                            otherContent.style.maxHeight = "0px";
-                                            otherContent.classList.add("opacity-0");
-                                            
-                                            // Add class after animation completes
-                                            setTimeout(() => {
-                                                if (!otherContent.classList.contains("max-h-0")) {
-                                                    otherContent.classList.add("max-h-0");
-                                                }
-                                            }, 500);
-                                            
-                                            // Remove rotation from icon
-                                            otherIcon.classList.remove("rotate-180");
-                                        }
-                                    }
-                                });
-                                
-                                // Toggle current dropdown
-                                if (isOpen) {
-                                    // Expanding current dropdown
-                                    content.classList.remove("max-h-0", "opacity-0");
-                                    content.style.maxHeight = content.scrollHeight + "px";
-                                } else {
-                                    // Collapsing current dropdown
-                                    content.style.maxHeight = content.scrollHeight + "px";
-                                    
-                                    // Force reflow
-                                    void content.offsetWidth;
-                                    
-                                    content.style.maxHeight = "0px";
-                                    content.classList.add("opacity-0");
-                                    
-                                    // Add class after animation completes
-                                    setTimeout(() => {
-                                        if (!content.classList.contains("max-h-0")) {
-                                            content.classList.add("max-h-0");
-                                        }
-                                    }, 500);
-                                }
-                                
-                                // Toggle rotation class for current icon
-                                icon.classList.toggle("rotate-180");
-                            });
-                        });
-                    });
-    function toggleChat() {
-        const isActive = win.classList.contains('is-active');
-        if (isActive) {
-            win.classList.remove('is-active');
-            iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
-            iconClose.classList.add('opacity-0','-rotate-90','scale-50');
-            btn.style.backgroundColor = '#0f172a';
-            btn.style.color = '#ffffff';
-            btn.classList.add('ripple-active');
-        } else {
-            win.classList.add('is-active');
-            iconMsg.classList.add('opacity-0','rotate-90','scale-50');
-            iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.color = '#0f172a';
-            btn.classList.remove('ripple-active');
-        }
-    }
-
-    btn.addEventListener('click', toggleChat);
-    closeBtn.addEventListener('click', toggleChat);
-
-    // ---- 5. Message Sending + Persistent Typing ----
-    const form = document.getElementById('chatbot-form');
-    const input = document.getElementById('chatbot-input');
-    const messages = document.getElementById('chatbot-messages');
-
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const text = input.value.trim();
-        if (!text) return;
-
-        // ---- User bubble ----
-        const userMsg = document.createElement('div');
-        userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
-        userMsg.style.maxWidth = 'fit-content';
-        userMsg.style.maxWidth = '80%';
-        userMsg.innerText = text;
-        messages.appendChild(userMsg);
-        requestAnimationFrame(() => userMsg.classList.add('show'));
-        messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-        input.value = '';
-
-        // ---- AI typing bubble ----
-        const typingBubble = document.createElement('div');
-        typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
-        typingBubble.style.maxWidth = 'fit-content';
-        typingBubble.style.maxWidth = '80%';
-        typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-        messages.appendChild(typingBubble);
-        requestAnimationFrame(() => typingBubble.classList.add('show'));
-        messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-
-        // ---- Send POST request ----
-        fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_msg: text, session_id })
-        })
-        .then(res => res.json())
-        .then(data => {
-            const aiText = data.reply || '';
-            typingBubble.innerHTML = aiText;
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-        })
-        // No catch: typing bubble stays until reply arrives
-    });
-
-})();
-</script>
+    <script src="countrycode.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
