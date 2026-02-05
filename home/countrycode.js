@@ -358,6 +358,99 @@ document.addEventListener('click', function(event) {
   }
 });
 
+// Form validation function
+function validateForm(event) {
+  event.preventDefault(); // Prevent default form submission
+  
+  // Get all required fields
+  const firstName = document.querySelector('input[placeholder="First Name"]');
+  const lastName = document.querySelector('input[placeholder="Last Name"]');
+  const workEmail = document.querySelector('input[placeholder="your.email@company.com"]');
+  const companyName = document.querySelector('input[placeholder="Company Name"]');
+  const countryInput = document.getElementById('country-input');
+  const submitButton = document.querySelector('button[type="submit"]');
+  
+  // Reset previous error indicators
+  const allInputs = document.querySelectorAll('input, textarea');
+  allInputs.forEach(input => {
+    input.classList.remove('border-red-500');
+    // Remove any existing error messages
+    const existingError = input.parentNode.querySelector('.error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+  });
+  
+  let isValid = true;
+  let errorMessage = '';
+  
+  // Validate first name
+  if (!firstName.value.trim()) {
+    firstName.classList.add('border-red-500');
+    showError(firstName, 'First name is required');
+    isValid = false;
+  }
+  
+  // Validate last name
+  if (!lastName.value.trim()) {
+    lastName.classList.add('border-red-500');
+    showError(lastName, 'Last name is required');
+    isValid = false;
+  }
+  
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!workEmail.value.trim()) {
+    workEmail.classList.add('border-red-500');
+    showError(workEmail, 'Work email is required');
+    isValid = false;
+  } else if (!emailRegex.test(workEmail.value.trim())) {
+    workEmail.classList.add('border-red-500');
+    showError(workEmail, 'Please enter a valid email address');
+    isValid = false;
+  }
+  
+  // Validate company name
+  if (!companyName.value.trim()) {
+    companyName.classList.add('border-red-500');
+    showError(companyName, 'Company name is required');
+    isValid = false;
+  }
+  
+  // Validate country
+  if (!countryInput.value.trim() || countryInput.value.trim() === "Select or type a country...") {
+    countryInput.classList.add('border-red-500');
+    showError(countryInput, 'Country is required');
+    isValid = false;
+  }
+  
+  // If form is valid, submit it
+  if (isValid) {
+    // Here you would typically submit the form data
+    alert('Form submitted successfully!');
+    // Uncomment the next line to actually submit the form
+    // event.target.submit();
+  } else {
+    // Scroll to the first error field
+    const firstErrorField = document.querySelector('input.border-red-500, select.border-red-500');
+    if (firstErrorField) {
+      firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrorField.focus();
+    }
+  }
+}
+
+// Function to show error message
+function showError(field, message) {
+  // Create error message element
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'error-message text-red-500 text-xs mt-1';
+  errorDiv.textContent = message;
+  
+  // Add error message after the field
+  field.parentNode.appendChild(errorDiv);
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Populate the initial country options
@@ -369,6 +462,12 @@ document.addEventListener('DOMContentLoaded', function() {
     countryInput.addEventListener('focus', toggleDropdown);
     countryInput.addEventListener('input', handleInputSearch);
     countryInput.addEventListener('keydown', handleKeyboardNavigation);
+  }
+  
+  // Add form submission listener
+  const formElement = document.querySelector('form.space-y-7');
+  if (formElement) {
+    formElement.addEventListener('submit', validateForm);
   }
   
   // Update phone code when a country is selected
