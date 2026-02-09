@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    
+
                     fontFamily: {
                         raleway: ['Raleway', 'sans-serif'],
                         robotoMono: ['Roboto Mono', 'monospace'],
@@ -39,6 +40,7 @@
         }
     </script>
 </head>
+
 <body class="bg-white">
 
     <!-- Navigation -->
@@ -51,25 +53,39 @@
                             <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
                             <span class="text-2xl font-bold text-gray-900">Retain</span>
                         </a>
-                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
+                        <a href="https://solven.app/"
+                            class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank"
+                            rel="noopener noreferrer">by Solven</a>
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Home</a>
-                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                    <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
-                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
-                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
-                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
+                    <a href="/home/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Home</a>
+                    <a href="/about/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
+                    <a href="/how-it-works/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It
+                        Works</a>
+                    <a href="/solutions/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
+                    <a href="/who-it-for/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's
+                        For</a>
+                    <a href="/why-retain/"
+                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
+                    <a href="/contact/"
+                        class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
                         Book a Call
                     </a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <button id="mobile-menu-button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
@@ -78,13 +94,23 @@
 
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Home</a>
-                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
-                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
-                <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
-                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
-                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
+                <a href="/home/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Home</a>
+                <a href="/about/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/how-it-works/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It
+                    Works</a>
+                <a href="/solutions/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a href="/who-it-for/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's
+                    For</a>
+                <a href="/why-retain/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why
+                    Retain</a>
+                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a
+                    Call</a>
             </div>
         </div>
     </nav>
@@ -98,22 +124,29 @@
                         <i class="fas fa-heart w-4 h-4 mr-2 text-xs"></i>
                         <span class="text-sm font-medium">Building customer loyalty systems</span>
                     </div>
-                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-none tracking-tight font-poppins">                                                                                                                  
-                          Stop starting from  
-                        <span id="typewriter-wrapper" class="inline-flex items-end justify-center min-w-[100px] sm:min-w-[130px] md:min-w-[170px] text-left md:text-center relative"> 
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-none tracking-tight font-poppins">
+                        Stop starting from
+                        <span id="typewriter-wrapper"
+                            class="inline-flex items-end justify-center min-w-[100px] sm:min-w-[130px] md:min-w-[170px] text-left md:text-center relative">
                             <span id="typewriter-text" class="inline-block"></span>
                             <span id="typewriter-cursor">|</span>
                         </span>
                     </h1>
-                    <p class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                        Retain installs and operates an intelligent customer system that captures, remembers, and grows relationships—so every interaction builds on the last.
+                    <p
+                        class="text-lg sm:text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                        Retain installs and operates an intelligent customer system that captures, remembers, and grows
+                        relationships—so every interaction builds on the last.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <a href="/contact/" class="bg-black text-white px-10 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg flex items-center group">
+                        <a href="/contact/"
+                            class="bg-black text-white px-10 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg flex items-center group">
                             Book Your Consultation
-                            <i class="fas fa-arrow-right ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            <i
+                                class="fas fa-arrow-right ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <div class="flex items-center text-gray-600 bg-white/70 backdrop-blur-sm px-6 py-3 rounded-xl border border-gray-200">
+                        <div
+                            class="flex items-center text-gray-600 bg-white/70 backdrop-blur-sm px-6 py-3 rounded-xl border border-gray-200">
                             <i class="fas fa-calendar w-5 h-5 mr-2"></i>
                             <span class="font-medium">15-minute strategy call</span>
                         </div>
@@ -125,7 +158,8 @@
                 <div class="max-w-6xl mx-auto px-6 lg:px-8">
                     <div class="grid md:grid-cols-3 gap-8 text-center">
                         <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm card-hover">
-                            <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <div
+                                class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-sitemap w-7 h-7 text-emerald-600"></i>
                             </div>
                             <h3 class="text-xl font-semibold text-gray-900 mb-2">System over tools</h3>
@@ -152,9 +186,11 @@
             <div id="sound-familiar-section" class="py-16 sm:py-24 px-6 lg:px-8 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Sound familiar?</h2>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">Sound
+                            familiar?</h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                            You're not alone. Most businesses suffer from "customer amnesia" — and it's costing them growth.
+                            You're not alone. Most businesses suffer from "customer amnesia" — and it's costing them
+                            growth.
                         </p>
                     </div>
 
@@ -162,27 +198,32 @@
                         <div class="space-y-8 text-base sm:text-lg text-gray-800">
                             <div class="w-11/12 md:w-1/2">
                                 <div id="chat-bubble-1" class="chat-bubble chat-bubble-left">
-                                    <span class="font-semibold">You've spent time getting buyers…</span> but can't leverage them for repeat sales or referrals.
+                                    <span class="font-semibold">You've spent time getting buyers…</span> but can't
+                                    leverage them for repeat sales or referrals.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
                                 <div id="chat-bubble-2" class="chat-bubble chat-bubble-right">
-                                    <span class="font-semibold">Years in business,</span> yet no memory of past buying behavior or preferences.
+                                    <span class="font-semibold">Years in business,</span> yet no memory of past buying
+                                    behavior or preferences.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2">
                                 <div id="chat-bubble-3" class="chat-bubble chat-bubble-left">
-                                    <span class="font-semibold">Every campaign feels like starting from scratch</span> — no continuity, no compounding value.
+                                    <span class="font-semibold">Every campaign feels like starting from scratch</span> —
+                                    no continuity, no compounding value.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 ml-auto">
                                 <div id="chat-bubble-4" class="chat-bubble chat-bubble-right">
-                                    <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue hiding in plain sight.
+                                    <span class="font-semibold">No up-selling and cross-selling.</span> Missed revenue
+                                    hiding in plain sight.
                                 </div>
                             </div>
                             <div class="w-11/12 md:w-1/2 pt-4">
                                 <div id="chat-bubble-5" class="chat-bubble chat-bubble-left">
-                                    <span class="font-semibold">Leads go unaccounted and opportunities slip away</span> — because nothing remembers what happened last time.
+                                    <span class="font-semibold">Leads go unaccounted and opportunities slip away</span>
+                                    — because nothing remembers what happened last time.
                                 </div>
                             </div>
                         </div>
@@ -194,22 +235,40 @@
                 <div class="marquee-container">
                     <div class="marquee-content flex">
                         <p class="text-7xl font-prompt font-bold text-gray-400 whitespace-nowrap px-8 py-4">
-                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
+                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img
+                                src="/lightFavicon.png" alt="Retain Logo"
+                                class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your
+                            customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo"
+                                class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
                         </p>
                         <p class="text-7xl font-prompt font-bold text-gray-400 whitespace-nowrap px-8 py-4">
-                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo" class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
+                            <a href="https://solven.app/" class="text-gray-400 hover:text-gray-700">Solven.app</a> <img
+                                src="/lightFavicon.png" alt="Retain Logo"
+                                class="inline-block h-12 w-12 mx-2 align-middle opacity-50"> Earn loyalty of your
+                            customers with Retain. <img src="/lightFavicon.png" alt="Retain Logo"
+                                class="inline-block h-12 w-12 mx-2 align-middle opacity-50">
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="py-12 sm:py-20 px-6 lg:px-8 mt-32">
-                <div id="sheen-border-container" class="max-w-6xl mx-auto p-[2px] rounded-3xl sheen-border-wrapper shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)]">
+                <div id="sheen-border-container"
+                    class="max-w-6xl mx-auto p-[2px] rounded-3xl sheen-border-wrapper shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)]">
                     <div id="extra-section-container" class="py-16 px-6 lg:px-8 bg-lightPurple rounded-[22px]">
-                        <p class="text-left text-5xl font-medium px-10 purple-sheen-text leading-tight font-raleway">The Goal: keep earning from customers long after the first sale</p>
-                        <p class="text-left text-xl text-gray-700 mt-8 px-10 leading-relaxed font-roboto-mono"><strong class="font-bold">The Process:</strong> Integrate every customer-facing channel like, WhatsApp, Instagram, Messenger, and more, into a centralized CRM to automatically capture leads, conversations, and interaction history. Use AI driven automation to write and send personalized messages for each individual customer, ensuring outreach happens at the right time and in the right context. Every conversation is summarized and stored, so customer knowledge never gets lost and your team always has full visibility, even as people or roles change.</p>
+                        <p class="text-left text-5xl font-medium px-10 purple-sheen-text leading-tight font-raleway">The
+                            Goal: keep earning from customers long after the first sale</p>
+                        <p class="text-left text-xl text-gray-700 mt-8 px-10 leading-relaxed font-roboto-mono"><strong
+                                class="font-bold">The Process:</strong> Integrate every customer-facing channel like,
+                            WhatsApp, Instagram, Messenger, and more, into a centralized CRM to automatically capture
+                            leads, conversations, and interaction history. Use AI driven automation to write and send
+                            personalized messages for each individual customer, ensuring outreach happens at the right
+                            time and in the right context. Every conversation is summarized and stored, so customer
+                            knowledge never gets lost and your team always has full visibility, even as people or roles
+                            change.</p>
                         <div class="text-left px-10 mt-10">
-                            <a href="/contact/" class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
+                            <a href="/contact/"
+                                class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
                                 Start Achieving This Goal
                                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                             </a>
@@ -221,70 +280,115 @@
             <!-- Companies We've Worked With -->
             <div class="pt-4 pb-0 bg-white overflow-hidden">
                 <div class="max-w-7xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span class="heading-underline-black">We've Worked With</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-20 font-poppins"><span
+                            class="heading-underline-black">We've Worked With</span></h2>
                 </div>
                 <div class="marquee-container">
-                    <div class="marquee-content flex items-center">                        <!-- Logos - Original set -->
-                        <img src="/company1.png" alt="Company 1" class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">                                  
-                        <img src="/company2.jpg" alt="Company 2" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company3.png" alt="Company 3" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company4.png" alt="Company 4" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company5.png" alt="Company 5" class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
-                        <img src="/company6.png" alt="Company 6" class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
-                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;" oncontextmenu="return false;" alt="Company 7" class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
+                    <div class="marquee-content flex items-center"> <!-- Logos - Original set -->
+                        <img src="/company1.png" alt="Company 1"
+                            class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">
+                        <img src="/company2.jpg" alt="Company 2"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company3.png" alt="Company 3"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company4.png" alt="Company 4"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company5.png" alt="Company 5"
+                            class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company6.png" alt="Company 6"
+                            class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;"
+                            oncontextmenu="return false;" alt="Company 7"
+                            class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
                         <!-- Logos - Duplicated set for seamless loop -->
-                        <img src="/company1.png" alt="Company 1" class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">          
-                        <img src="/company2.jpg" alt="Company 2" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company3.png" alt="Company 3" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company4.png" alt="Company 4" class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
-                        <img src="/company5.png" alt="Company 5" class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
-                        <img src="/company6.png" alt="Company 6" class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
-                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;" oncontextmenu="return false;" alt="Company 7" class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company1.png" alt="Company 1"
+                            class="h-[60px] sm:h-[100px] grayscale opacity-100 -mt-10 mr-4 sm:mr-8">
+                        <img src="/company2.jpg" alt="Company 2"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company3.png" alt="Company 3"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company4.png" alt="Company 4"
+                            class="h-10 sm:h-16 grayscale opacity-100 mr-16 sm:mr-16">
+                        <img src="/company5.png" alt="Company 5"
+                            class="h-12 sm:h-20 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company6.png" alt="Company 6"
+                            class="h-20 sm:h-32 grayscale opacity-150 mr-16 sm:mr-16">
+                        <img src="/company7.png" onmousedown="return false;" onselectstart="return false;"
+                            oncontextmenu="return false;" alt="Company 7"
+                            class="h-40 sm:h-64 grayscale opacity-150 mr-16 sm:mr-16">
                     </div>
                 </div>
             </div>
 
             <div class="my-4">
                 <div class="max-w-6xl mx-auto">
-                    <div id="solutions-container" class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 relative text-center overflow-hidden">
+                    <div id="solutions-container"
+                        class="bg-darkBlue rounded-3xl shadow-2xl p-6 sm:p-12 relative text-center overflow-hidden">
                         <div id="cursor-glow"></div>
-                        <a href="/solutions/" class="text-white text-3xl sm:text-5xl font-semibold mb-12 heading-underline inline-block">How to achieve it?</a>
+                        <a href="/solutions/"
+                            class="text-white text-3xl sm:text-5xl font-semibold mb-12 heading-underline inline-block">How
+                            to achieve it?</a>
                         <div class="space-y-8 text-white">
                             <!-- Row 1 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
                                 <div class="md:pr-12 md:text-right">
-                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Earn your customers' loyalty</h3>
-                                    <p class="text-base sm:text-lg text-gray-300">Build stronger relationships by delivering consistent value. Keep your brand top-of-mind and turn one-time buyers into long-term fans.</p>
+                                    <h3
+                                        class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">
+                                        Earn your customers' loyalty</h3>
+                                    <p class="text-base sm:text-lg text-gray-300">Build stronger relationships by
+                                        delivering consistent value. Keep your brand top-of-mind and turn one-time
+                                        buyers into long-term fans.</p>
                                 </div>
-                                <img src="/solution1.png" alt="Solution 1" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
+                                <img src="/solution1.png" alt="Solution 1"
+                                    class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
                             </div>
                             <!-- Row 2 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution2.png" alt="Solution 2" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
+                                <img src="/solution2.png" alt="Solution 2"
+                                    class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
                                 <div class="md:pl-12 md:text-left">
-                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Turn existing customers into repeat buyers</h3>
-                                    <p class="text-base sm:text-lg text-gray-300">Upsell and cross-sell effectively with context-driven recommendations. Reach the right customers at the right time with <span class="font-bold text-white">personalized, automated emails or calls</span> for repeat purchases or new offers.</p>
+                                    <h3
+                                        class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">
+                                        Turn existing customers into repeat buyers</h3>
+                                    <p class="text-base sm:text-lg text-gray-300">Upsell and cross-sell effectively with
+                                        context-driven recommendations. Reach the right customers at the right time with
+                                        <span class="font-bold text-white">personalized, automated emails or
+                                            calls</span> for repeat purchases or new offers.</p>
                                 </div>
                             </div>
                             <!-- Row 3 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
                                 <div class="md:pr-12 md:text-right">
-                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Focus on customers who already know you</h3>
-                                    <p class="text-base sm:text-lg text-gray-300">Save time and resources by targeting former prospects who are more likely to convert. Leverage detailed customer data to send <span class="font-bold text-white">personalized emails</span> to the right person at the right moment.</p>
+                                    <h3
+                                        class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">
+                                        Focus on customers who already know you</h3>
+                                    <p class="text-base sm:text-lg text-gray-300">Save time and resources by targeting
+                                        former prospects who are more likely to convert. Leverage detailed customer data
+                                        to send <span class="font-bold text-white">personalized emails</span> to the
+                                        right person at the right moment.</p>
                                 </div>
-                                <img src="/solution3.png" alt="Solution 3" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
+                                <img src="/solution3.png" alt="Solution 3"
+                                    class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105">
                             </div>
                             <!-- Row 4 -->
                             <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <img src="/solution4.png" alt="Solution 4" class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
+                                <img src="/solution4.png" alt="Solution 4"
+                                    class="w-full rounded-lg object-cover transition-transform duration-300 hover:scale-105 order-last md:order-first">
                                 <div class="md:pl-12 md:text-left">
-                                    <h3 class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">Know your customers—without losing context</h3>
-                                    <p class="text-base sm:text-lg text-gray-300">Keep every interaction, preference, and conversation in one place. Use the insights to reach out at the right time with <span class="font-bold text-white">personalized, automated messages or calls</span>.</p>
+                                    <h3
+                                        class="uppercase font-bold text-2xl sm:text-4xl text-white mb-4 font-poppins tracking-wide leading-relaxed">
+                                        Know your customers—without losing context</h3>
+                                    <p class="text-base sm:text-lg text-gray-300">Keep every interaction, preference,
+                                        and conversation in one place. Use the insights to reach out at the right time
+                                        with <span class="font-bold text-white">personalized, automated messages or
+                                            calls</span>.</p>
                                 </div>
                             </div>
                         </div>
-                        <a href="/solutions/" class="mt-8 inline-flex items-center justify-center bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-medium group">
-                            Learn more <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <a href="/solutions/"
+                            class="mt-8 inline-flex items-center justify-center bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-medium group">
+                            Learn more <i
+                                class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
                 </div>
@@ -294,7 +398,8 @@
             <div class="py-16 sm:py-24 px-6 lg:px-8 bg-gradient-to-br from-lightPurple to-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">From Insights to Action, in a Single System</h2>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-poppins">From
+                            Insights to Action, in a Single System</h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                             Transform customer data into actionable strategies with our unified analytics platform
                         </p>
@@ -305,61 +410,77 @@
                             <!-- Tab Navigation in Thin Box -->
                             <div class="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
                                 <nav class="flex flex-col space-y-2">
-                                    <button type="button" class="tab-button tab-active py-4 px-5 text-left font-medium text-sm bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg hover:from-purple-100 hover:to-indigo-100 transition-all duration-200 flex items-center border border-purple-200" data-tab="profile">
+                                    <button type="button"
+                                        class="tab-button tab-active py-4 px-5 text-left font-medium text-sm bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg hover:from-purple-100 hover:to-indigo-100 transition-all duration-200 flex items-center border border-purple-200"
+                                        data-tab="profile">
                                         <i class="fas fa-user-circle text-purple-600 mr-3"></i>
                                         <div>
-                                            <h3 class="text-sm font-bold text-gray-900">Get a profile of everyone you work with</h3>
+                                            <h3 class="text-sm font-bold text-gray-900">Get a profile of everyone you
+                                                work with</h3>
                                         </div>
                                     </button>
-                                    <button type="button" class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-blue-50 transition-all duration-200 flex items-center border border-gray-200" data-tab="reply">
+                                    <button type="button"
+                                        class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-blue-50 transition-all duration-200 flex items-center border border-gray-200"
+                                        data-tab="reply">
                                         <i class="fas fa-bolt text-blue-600 mr-3"></i>
                                         <div>
                                             <h3 class="text-sm font-bold text-gray-900">Reply fast and sell more</h3>
                                         </div>
                                     </button>
-                                    <button type="button" class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-green-50 transition-all duration-200 flex items-center border border-gray-200" data-tab="reach">
+                                    <button type="button"
+                                        class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-green-50 transition-all duration-200 flex items-center border border-gray-200"
+                                        data-tab="reach">
                                         <i class="fas fa-envelope-open-text text-green-600 mr-3"></i>
                                         <div>
-                                            <h3 class="text-sm font-bold text-gray-900">Make cold reach outs more personalized</h3>
+                                            <h3 class="text-sm font-bold text-gray-900">Make cold reach outs more
+                                                personalized</h3>
                                         </div>
                                     </button>
-                                    <button type="button" class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-yellow-50 transition-all duration-200 flex items-center border border-gray-200" data-tab="upsell">
+                                    <button type="button"
+                                        class="tab-button py-4 px-5 text-left font-medium text-sm bg-white rounded-lg hover:bg-yellow-50 transition-all duration-200 flex items-center border border-gray-200"
+                                        data-tab="upsell">
                                         <i class="fas fa-chart-line text-yellow-600 mr-3"></i>
                                         <div>
-                                            <h3 class="text-sm font-bold text-gray-900">Keep upselling and cross-selling</h3>
+                                            <h3 class="text-sm font-bold text-gray-900">Keep upselling and cross-selling
+                                            </h3>
                                         </div>
                                     </button>
                                 </nav>
                             </div>
-                            
+
                             <!-- Tab Content Descriptions -->
                             <div id="profile-content" class="tab-content active">
                                 <p class="text-gray-600 text-lg">
-                                    Build comprehensive profiles of every customer and prospect with their interaction history, preferences, and purchase patterns in one centralized location.
+                                    Build comprehensive profiles of every customer and prospect with their interaction
+                                    history, preferences, and purchase patterns in one centralized location.
                                 </p>
                             </div>
                             <div id="reply-content" class="tab-content hidden">
                                 <p class="text-gray-600 text-lg">
-                                    Respond to customer inquiries faster with AI-powered suggestions and automated responses that maintain your brand voice while increasing conversion rates.
+                                    Respond to customer inquiries faster with AI-powered suggestions and automated
+                                    responses that maintain your brand voice while increasing conversion rates.
                                 </p>
                             </div>
                             <div id="reach-content" class="tab-content hidden">
                                 <p class="text-gray-600 text-lg">
-                                    Transform your cold outreach with personalized messages based on customer data and behavioral insights that resonate with each recipient.
+                                    Transform your cold outreach with personalized messages based on customer data and
+                                    behavioral insights that resonate with each recipient.
                                 </p>
                             </div>
                             <div id="upsell-content" class="tab-content hidden">
                                 <p class="text-gray-600 text-lg">
-                                    Identify and capitalize on upselling and cross-selling opportunities with targeted recommendations based on customer usage patterns and preferences.
+                                    Identify and capitalize on upselling and cross-selling opportunities with targeted
+                                    recommendations based on customer usage patterns and preferences.
                                 </p>
                             </div>
                         </div>
-                        
+
                         <!-- Tab Content Descriptions -->
                         <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
                             <!-- Profile Content -->
                             <div id="profile-viz" class="tab-viz active">
-                                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100">
+                                <div
+                                    class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100">
                                     <div class="flex items-center mb-4">
                                         <div class="bg-purple-500 rounded-lg p-2 mr-4">
                                             <i class="fas fa-user-circle text-white text-xl"></i>
@@ -392,10 +513,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Reply Content -->
                             <div id="reply-viz" class="tab-viz hidden">
-                                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
+                                <div
+                                    class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">
                                     <div class="flex items-center mb-4">
                                         <div class="bg-blue-500 rounded-lg p-2 mr-4">
                                             <i class="fas fa-bolt text-white text-xl"></i>
@@ -432,10 +554,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Reach Content -->
                             <div id="reach-viz" class="tab-viz hidden">
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
+                                <div
+                                    class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
                                     <div class="flex items-center mb-4">
                                         <div class="bg-green-500 rounded-lg p-2 mr-4">
                                             <i class="fas fa-envelope-open-text text-white text-xl"></i>
@@ -453,7 +576,8 @@
                                         </li>
                                         <li class="flex items-start">
                                             <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                            <span class="text-gray-700">Higher engagement with personalized content</span>
+                                            <span class="text-gray-700">Higher engagement with personalized
+                                                content</span>
                                         </li>
                                         <li class="flex items-start">
                                             <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
@@ -476,10 +600,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Upsell Content -->
                             <div id="upsell-viz" class="tab-viz hidden">
-                                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border border-yellow-100">
+                                <div
+                                    class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border border-yellow-100">
                                     <div class="flex items-center mb-4">
                                         <div class="bg-yellow-500 rounded-lg p-2 mr-4">
                                             <i class="fas fa-chart-line text-white text-xl"></i>
@@ -522,10 +647,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div class="text-center mt-12">
-                        <a href="/contact/" class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
+                        <a href="/contact/"
+                            class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
                             Explore the System
                             <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
@@ -537,9 +663,12 @@
             <div class="py-16 sm:py-24 px-6 lg:px-8 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 font-googleSans">
-                            <span id="split-heading-top" class="block">Works <span class="purple-sheen-text">seamlessly</span> with</span>
-                            <span id="split-heading-bottom" class="block">your existing <span class="purple-sheen-text">system</span></span>
+                        <h2
+                            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 font-googleSans">
+                            <span id="split-heading-top" class="block">Works <span
+                                    class="purple-sheen-text">seamlessly</span> with</span>
+                            <span id="split-heading-bottom" class="block">your existing <span
+                                    class="purple-sheen-text">system</span></span>
                         </h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                             Integrate Retain with your current tools and workflows without disruption
@@ -586,7 +715,8 @@
                                 </div>
                                 <div class="space-y-4">
                                     <div class="flex items-center p-3 bg-green-900/30 rounded-lg">
-                                        <div class="w-8 h-8 bg-green-800/50 rounded-full flex items-center justify-center mr-3">
+                                        <div
+                                            class="w-8 h-8 bg-green-800/50 rounded-full flex items-center justify-center mr-3">
                                             <i class="fab fa-whatsapp text-green-400 text-sm"></i>
                                         </div>
                                         <div class="flex-1">
@@ -598,7 +728,8 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center p-3 bg-blue-900/30 rounded-lg">
-                                        <div class="w-8 h-8 bg-blue-800/50 rounded-full flex items-center justify-center mr-3">
+                                        <div
+                                            class="w-8 h-8 bg-blue-800/50 rounded-full flex items-center justify-center mr-3">
                                             <i class="fas fa-database text-blue-400 text-sm"></i>
                                         </div>
                                         <div class="flex-1">
@@ -610,7 +741,8 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center p-3 bg-purple-900/30 rounded-lg">
-                                        <div class="w-8 h-8 bg-purple-800/50 rounded-full flex items-center justify-center mr-3">
+                                        <div
+                                            class="w-8 h-8 bg-purple-800/50 rounded-full flex items-center justify-center mr-3">
                                             <i class="fas fa-bullhorn text-purple-400 text-sm"></i>
                                         </div>
                                         <div class="flex-1">
@@ -622,7 +754,8 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center p-3 bg-yellow-900/30 rounded-lg">
-                                        <div class="w-8 h-8 bg-yellow-800/50 rounded-full flex items-center justify-center mr-3">
+                                        <div
+                                            class="w-8 h-8 bg-yellow-800/50 rounded-full flex items-center justify-center mr-3">
                                             <i class="fas fa-flag text-yellow-400 text-sm"></i>
                                         </div>
                                         <div class="flex-1">
@@ -637,9 +770,11 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-4xl font-bold text-gray-900 mb-4">Turn your company system to a <span class="text-purple-600 font-rubik text-4xl">Customer Loyalty system</span></h3>
+                            <h3 class="text-4xl font-bold text-gray-900 mb-4">Turn your company system to a <span
+                                    class="text-purple-600 font-rubik text-4xl">Customer Loyalty system</span></h3>
                             <p class="text-gray-600 mb-6">
-                                Build lasting relationships with your customers through personalized interactions and intelligent automation. No more forgetting customer history or missing opportunities.
+                                Build lasting relationships with your customers through personalized interactions and
+                                intelligent automation. No more forgetting customer history or missing opportunities.
                             </p>
                             <ul class="space-y-3">
                                 <li class="flex items-start">
@@ -659,7 +794,8 @@
                     </div>
 
                     <div class="text-center mt-16">
-                        <a href="/integrations/" class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
+                        <a href="/integrations/"
+                            class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
                             View all integrations
                         </a>
                     </div>
@@ -667,10 +803,12 @@
             </div>
 
             <!-- Join us and deliver the Next Best Touchpoint section with smooth dropdown -->
-            <div id="dropdown-section" class="py-16 sm:py-24 px-4 lg:px-8 xl:px-16 2xl:px-24 bg-gradient-to-br from-gray-50 to-purple-50">
+            <div id="dropdown-section"
+                class="py-16 sm:py-24 px-4 lg:px-8 xl:px-16 2xl:px-24 bg-gradient-to-br from-gray-50 to-purple-50">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 font-googleSans">
+                        <h2
+                            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 font-googleSans">
                             <span class="block">Join us and deliver the</span>
                             <span class="block"><span class="purple-sheen-text">Next Best Touchpoint</span></span>
                         </h2>
@@ -684,86 +822,122 @@
                         <!-- Left side - Ultra smooth dropdown menu section (takes 7/12 of space) -->
                         <div class="md:col-span-7 space-y-4">
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
+                                <button
+                                    class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             <span class="text-white font-bold text-base">1</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-all duration-500">Understand what truly matters to your customers</span>
+                                        <span
+                                            class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-all duration-500">Understand
+                                            what truly matters to your customers</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
+                                    <i
+                                        class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                <div
+                                    class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
                                     <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
-                                        <p class="text-gray-700 text-base leading-relaxed">Use zero-party and first-party data to create experiences that feel tailored, not generic.</p>
+                                        <p class="text-gray-700 text-base leading-relaxed">Use zero-party and
+                                            first-party data to create experiences that feel tailored, not generic.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
+                                <button
+                                    class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             <span class="text-white font-bold text-base">2</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-all duration-500">Increase lifetime value</span>
+                                        <span
+                                            class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-all duration-500">Increase
+                                            lifetime value</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
+                                    <i
+                                        class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                <div
+                                    class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
                                     <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
-                                        <p class="text-gray-700 text-base leading-relaxed">Design touchpoints that turn a first-time buyer into a repeat spender — and then into a loyal advocate.</p>
+                                        <p class="text-gray-700 text-base leading-relaxed">Design touchpoints that turn
+                                            a first-time buyer into a repeat spender — and then into a loyal advocate.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
+                                <button
+                                    class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             <span class="text-white font-bold text-base">3</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-all duration-500">Stay top of mind</span>
+                                        <span
+                                            class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-all duration-500">Stay
+                                            top of mind</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
+                                    <i
+                                        class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                <div
+                                    class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
                                     <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
-                                        <p class="text-gray-700 text-base leading-relaxed">Reward ongoing engagement and ensure you are the brand they choose when it is time to buy.</p>
+                                        <p class="text-gray-700 text-base leading-relaxed">Reward ongoing engagement and
+                                            ensure you are the brand they choose when it is time to buy.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
+                                <button
+                                    class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             <span class="text-white font-bold text-base">4</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-all duration-500">Win without discounts</span>
+                                        <span
+                                            class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-all duration-500">Win
+                                            without discounts</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
+                                    <i
+                                        class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                <div
+                                    class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
                                     <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
-                                        <p class="text-gray-700 text-base leading-relaxed">Bring customers back for reasons that go deeper than price.</p>
+                                        <p class="text-gray-700 text-base leading-relaxed">Bring customers back for
+                                            reasons that go deeper than price.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                                <button class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
+                                <button
+                                    class="w-full text-left p-6 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-100 transition-all duration-700 font-bold flex justify-between items-center ultra-smooth-dropdown-btn group">
                                     <div class="flex items-center">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-500 to-rose-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-r from-rose-500 to-rose-600 flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                             <span class="text-white font-bold text-base">5</span>
                                         </div>
-                                        <span class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-rose-700 transition-all duration-500">Turn customers into advocates</span>
+                                        <span
+                                            class="text-lg md:text-xl font-bold text-gray-900 group-hover:text-rose-700 transition-all duration-500">Turn
+                                            customers into advocates</span>
                                     </div>
-                                    <i class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
+                                    <i
+                                        class="fas fa-chevron-down text-gray-500 transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform origin-center"></i>
                                 </button>
-                                <div class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
+                                <div
+                                    class="ultra-smooth-dropdown-content max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)]">
                                     <div class="p-6 bg-gradient-to-r from-gray-50 to-gray-100">
-                                        <p class="text-gray-700 text-base leading-relaxed">Your best advocates are your current customers. Incentivize referrals, reviews, and social sharing.</p>
+                                        <p class="text-gray-700 text-base leading-relaxed">Your best advocates are your
+                                            current customers. Incentivize referrals, reviews, and social sharing.</p>
                                     </div>
                                 </div>
                             </div>
@@ -771,8 +945,10 @@
 
                         <!-- Right side - Office demo video (takes 5/12 of space) -->
                         <div class="md:col-span-5 flex flex-col justify-center">
-                            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg h-full flex items-center justify-center">
-                                <video src="/officedemo.mp4" autoplay muted loop playsinline class="w-full h-full rounded-2xl object-cover">
+                            <div
+                                class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg h-full flex items-center justify-center">
+                                <video src="/officedemo.mp4" autoplay muted loop playsinline
+                                    class="w-full h-full rounded-2xl object-cover">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -784,7 +960,9 @@
             <div class="py-12 sm:py-20 px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-16">
-                        <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 font-rubik bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">What Our Clients Say</h2>
+                        <h2
+                            class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 font-rubik bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                            What Our Clients Say</h2>
                         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                             Real feedback from businesses that transformed their customer loyalty
                         </p>
@@ -792,7 +970,8 @@
 
                     <div class="grid md:grid-cols-3 gap-10">
                         <!-- Review 1 -->
-                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-200/50 group">
+                        <div
+                            class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-200/50 group">
                             <div class="flex items-center mb-6">
                                 <div class="flex text-yellow-400 mr-3">
                                     <i class="fas fa-star text-lg"></i>
@@ -803,18 +982,25 @@
                                 </div>
                                 <span class="ml-auto text-sm text-gray-500 font-medium">2 weeks ago</span>
                             </div>
-                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-purple-800 transition-colors duration-300">"Retain transformed our customer loyalty. We saw a significant increase in repeat business and customer satisfaction. Highly recommend!"</p>
+                            <p
+                                class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-purple-800 transition-colors duration-300">
+                                "Retain transformed our customer loyalty. We saw a significant increase in repeat
+                                business and customer satisfaction. Highly recommend!"</p>
                             <div class="flex items-center pt-4 border-t border-gray-100">
-                                <img src="/client-avatar-1.jpg" alt="Jane Doe" class="w-14 h-14 rounded-full object-cover border-2 border-purple-200 p-0.5 group-hover:border-purple-300 transition-colors duration-300">
+                                <img src="/client-avatar-1.jpg" alt="Jane Doe"
+                                    class="w-14 h-14 rounded-full object-cover border-2 border-purple-200 p-0.5 group-hover:border-purple-300 transition-colors duration-300">
                                 <div class="ml-4">
-                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-purple-700 transition-colors duration-300">Jane Doe</h4>
+                                    <h4
+                                        class="font-bold text-gray-900 text-lg group-hover:text-purple-700 transition-colors duration-300">
+                                        Jane Doe</h4>
                                     <p class="text-sm text-gray-600 font-medium">CEO, ExampleCorp</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Review 2 -->
-                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-200/50 group">
+                        <div
+                            class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-200/50 group">
                             <div class="flex items-center mb-6">
                                 <div class="flex text-yellow-400 mr-3">
                                     <i class="fas fa-star text-lg"></i>
@@ -825,18 +1011,25 @@
                                 </div>
                                 <span class="ml-auto text-sm text-gray-500 font-medium">1 month ago</span>
                             </div>
-                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-indigo-800 transition-colors duration-300">"Outstanding system! Our customer engagement has never been better. Retain truly understands loyalty."</p>
+                            <p
+                                class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-indigo-800 transition-colors duration-300">
+                                "Outstanding system! Our customer engagement has never been better. Retain truly
+                                understands loyalty."</p>
                             <div class="flex items-center pt-4 border-t border-gray-100">
-                                <img src="/client-avatar-2.jpg" alt="John Smith" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-200 p-0.5 group-hover:border-indigo-300 transition-colors duration-300">
+                                <img src="/client-avatar-2.jpg" alt="John Smith"
+                                    class="w-14 h-14 rounded-full object-cover border-2 border-indigo-200 p-0.5 group-hover:border-indigo-300 transition-colors duration-300">
                                 <div class="ml-4">
-                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-indigo-700 transition-colors duration-300">John Smith</h4>
+                                    <h4
+                                        class="font-bold text-gray-900 text-lg group-hover:text-indigo-700 transition-colors duration-300">
+                                        John Smith</h4>
                                     <p class="text-sm text-gray-600 font-medium">Marketing Director, InnovateX</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Review 3 -->
-                        <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-200/50 group">
+                        <div
+                            class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl p-8 border border-gray-100 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-pink-200/50 group">
                             <div class="flex items-center mb-6">
                                 <div class="flex text-yellow-400 mr-3">
                                     <i class="fas fa-star text-lg"></i>
@@ -847,11 +1040,17 @@
                                 </div>
                                 <span class="ml-auto text-sm text-gray-500 font-medium">3 weeks ago</span>
                             </div>
-                            <p class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-pink-800 transition-colors duration-300">"A game-changer for our business. The automated insights are incredibly powerful and easy to implement."</p>
+                            <p
+                                class="text-gray-700 mb-6 italic text-lg leading-relaxed group-hover:text-pink-800 transition-colors duration-300">
+                                "A game-changer for our business. The automated insights are incredibly powerful and
+                                easy to implement."</p>
                             <div class="flex items-center pt-4 border-t border-gray-100">
-                                <img src="/client-avatar-3.jpg" alt="Emily Chen" class="w-14 h-14 rounded-full object-cover border-2 border-pink-200 p-0.5 group-hover:border-pink-300 transition-colors duration-300">
+                                <img src="/client-avatar-3.jpg" alt="Emily Chen"
+                                    class="w-14 h-14 rounded-full object-cover border-2 border-pink-200 p-0.5 group-hover:border-pink-300 transition-colors duration-300">
                                 <div class="ml-4">
-                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-pink-700 transition-colors duration-300">Emily Chen</h4>
+                                    <h4
+                                        class="font-bold text-gray-900 text-lg group-hover:text-pink-700 transition-colors duration-300">
+                                        Emily Chen</h4>
                                     <p class="text-sm text-gray-600 font-medium">Founder, Growthify</p>
                                 </div>
                             </div>
@@ -880,7 +1079,9 @@
             <!-- Expert Consultation Section -->
             <div class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
                 <div class="max-w-7xl mx-auto">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center text-gray-900 mb-8 font-poppins leading-tight">Learn how Retain can help you succeed. Talk to one of our experts today!</h2>
+                    <h2
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center text-gray-900 mb-8 font-poppins leading-tight">
+                        Learn how Retain can help you succeed. Talk to one of our experts today!</h2>
                     <div class="grid md:grid-cols-12 gap-8 items-center">
                         <!-- Left side - Benefits content -->
                         <div class="md:col-span-5">
@@ -888,114 +1089,150 @@
                             <ul class="space-y-4">
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0 mt-1">
-                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
                                     </div>
-                                    <span class="ml-3 text-gray-700">Personalized assessment of your current customer retention strategy</span>
+                                    <span class="ml-3 text-gray-700">Personalized assessment of your current customer
+                                        retention strategy</span>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0 mt-1">
-                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
                                     </div>
-                                    <span class="ml-3 text-gray-700">Expert recommendations tailored to your specific business needs</span>
+                                    <span class="ml-3 text-gray-700">Expert recommendations tailored to your specific
+                                        business needs</span>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0 mt-1">
-                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
                                     </div>
-                                    <span class="ml-3 text-gray-700">Demonstration of our platform's key features and benefits</span>
+                                    <span class="ml-3 text-gray-700">Demonstration of our platform's key features and
+                                        benefits</span>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0 mt-1">
-                                        <div class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
-                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <svg class="w-3 h-3 text-indigo-600" fill="currentColor"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </div>
                                     </div>
-                                    <span class="ml-3 text-gray-700">Pricing options and implementation timeline discussion</span>
+                                    <span class="ml-3 text-gray-700">Pricing options and implementation timeline
+                                        discussion</span>
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <!-- Right side - Form-like box -->
                         <div class="md:col-span-7">
-                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl p-10 h-full border border-gray-700">
-                                
+                            <div
+                                class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl p-10 h-full border border-gray-700">
+
                                 <form class="space-y-7">
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
                                         <div>
-                                            <label class="block text-sm font-medium text-gray-300 mb-2">First Name *</label>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">First Name
+                                                *</label>
                                             <div class="relative">
-                                                <input type="text" placeholder="First Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                                <input type="text" placeholder="First Name"
+                                                    class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium text-gray-300 mb-2">Last Name *</label>
+                                            <label class="block text-sm font-medium text-gray-300 mb-2">Last Name
+                                                *</label>
                                             <div class="relative">
-                                                <input type="text" placeholder="Last Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                                <input type="text" placeholder="Last Name"
+                                                    class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-300 mb-2">Work Email *</label>
                                         <div class="relative">
-                                            <input type="email" placeholder="your.email@company.com" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                            <input type="email" placeholder="your.email@company.com"
+                                                class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                         </div>
                                     </div>
-                                    
+
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-300 mb-2">Company Name *</label>
+                                        <label class="block text-sm font-medium text-gray-300 mb-2">Company Name
+                                            *</label>
                                         <div class="relative">
-                                            <input type="text" placeholder="Company Name" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                            <input type="text" placeholder="Company Name"
+                                                class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                         </div>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-300 mb-2">Country *</label>
                                         <div class="relative">
-                                            <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 pr-10">
-                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                            <input type="text" id="country-input"
+                                                placeholder="Select or type a country..."
+                                                class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 pr-10">
+                                            <div
+                                                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                                                 <i class="fas fa-chevron-down text-gray-500"></i>
                                             </div>
-                                            <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
-                                                <div id="country-options" class="py-2">
+                                            <div id="country-dropdown"
+                                                class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
+                                                <div id="country-options" class="py-2 text-gray-900">
                                                     <!-- Options will be populated by JS -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
                                         <div class="flex space-x-2">
                                             <div class="w-1/4">
-                                                <div class="bg-gray-800 text-indigo-400 py-3.5 px-4 rounded-lg border border-gray-700 text-center font-medium" id="phone-code">+</div>
+                                                <div class="bg-gray-800 text-indigo-400 py-3.5 px-4 rounded-lg border border-gray-700 text-center font-medium"
+                                                    id="phone-code">+</div>
                                             </div>
                                             <div class="w-3/4">
-                                                <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
+                                                <input type="tel" placeholder="(555) 123-4567"
+                                                    class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200">
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
-                                        <textarea placeholder="Tell us about your business needs and goals" class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 h-32 resize-none"></textarea>
+                                        <textarea placeholder="Tell us about your business needs and goals"
+                                            class="w-full px-4 py-3.5 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 h-32 resize-none"></textarea>
                                     </div>
-                                    
-                                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02]">
+
+                                    <button type="submit"
+                                        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-[1.02]">
                                         Secure Consultation
                                     </button>
                                 </form>
@@ -1025,4 +1262,5 @@
     <script src="countrycode.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

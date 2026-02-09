@@ -205,40 +205,43 @@ let focusedIndex = -1; // Track focused item for keyboard navigation
 function populateCountryOptions(countries = countryData) {
   const countryOptionsContainer = document.getElementById('country-options');
   if (!countryOptionsContainer) return;
-  
+
   // Clear existing options
   countryOptionsContainer.innerHTML = '';
-  
+
   // Add countries to dropdown
   countries.forEach((country, index) => {
     const option = document.createElement('div');
     option.className = 'country-option px-4 py-2 cursor-pointer hover:bg-indigo-50 transition-colors duration-150 flex items-center';
     option.setAttribute('data-index', index);
     option.innerHTML = `${country.flag} <span class="ml-2">${country.name}</span>`;
-    
+
     option.addEventListener('click', () => {
       selectCountry(country);
     });
-    
+
     countryOptionsContainer.appendChild(option);
   });
 }
 
 // Function to select a country and update UI
-function selectCountry(country) {
+function selectCountry(country, closeDropdown = true) {
   const countryInput = document.getElementById('country-input');
   const phoneCodeSpan = document.getElementById('phone-code');
   const dropdown = document.getElementById('country-dropdown');
-  
+
   if (countryInput) {
     countryInput.value = country.name;
+    // Dispatch input event to ensure other listeners handle the change if needed, 
+    // but avoid infinite loop if called from handleInputSearch
+    // in this case we are just updating the value for casing.
   }
-  
+
   if (phoneCodeSpan) {
     phoneCodeSpan.textContent = country.code;
   }
-  
-  if (dropdown) {
+
+  if (dropdown && closeDropdown) {
     dropdown.classList.add('hidden');
     dropdown.classList.remove('opacity-100', 'scale-100');
     dropdown.classList.add('opacity-0', 'scale-95');
@@ -250,7 +253,7 @@ function selectCountry(country) {
 function toggleDropdown() {
   const dropdown = document.getElementById('country-dropdown');
   if (!dropdown) return;
-  
+
   if (isOpen) {
     dropdown.classList.add('hidden');
     dropdown.classList.remove('opacity-100', 'scale-100');
@@ -260,7 +263,7 @@ function toggleDropdown() {
     dropdown.classList.remove('opacity-0', 'scale-95');
     dropdown.classList.add('opacity-100', 'scale-100');
   }
-  
+
   isOpen = !isOpen;
 }
 
@@ -269,12 +272,12 @@ function filterCountries(searchTerm) {
   filteredCountries = countryData.filter(country =>
     country.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
+
   populateCountryOptions(filteredCountries);
-  
+
   // Reset focused index
   focusedIndex = -1;
-  
+
   // Show dropdown if not already visible
   if (!isOpen) {
     toggleDropdown();
@@ -285,27 +288,27 @@ function filterCountries(searchTerm) {
 function handleKeyboardNavigation(event) {
   const dropdown = document.getElementById('country-dropdown');
   const options = document.querySelectorAll('.country-option');
-  
+
   switch (event.key) {
     case 'ArrowDown':
       event.preventDefault();
       focusedIndex = Math.min(focusedIndex + 1, options.length - 1);
       updateFocusedOption(options);
       break;
-      
+
     case 'ArrowUp':
       event.preventDefault();
       focusedIndex = Math.max(focusedIndex - 1, -1);
       updateFocusedOption(options);
       break;
-      
+
     case 'Enter':
       event.preventDefault();
       if (focusedIndex >= 0 && filteredCountries[focusedIndex]) {
         selectCountry(filteredCountries[focusedIndex]);
       }
       break;
-      
+
     case 'Escape':
       if (isOpen) {
         dropdown.classList.add('hidden');
@@ -323,7 +326,7 @@ function updateFocusedOption(options) {
   options.forEach(option => {
     option.classList.remove('bg-indigo-100');
   });
-  
+
   // Highlight the focused option if it exists
   if (focusedIndex >= 0 && options[focusedIndex]) {
     options[focusedIndex].classList.add('bg-indigo-100');
@@ -335,22 +338,30 @@ function updateFocusedOption(options) {
 // Function to handle input for search
 function handleInputSearch(event) {
   const inputValue = event.target.value;
-  
+
   if (inputValue.trim() !== '') {
     filterCountries(inputValue);
+
+    // Check for exact match (case-insensitive)
+    const exactMatch = countryData.find(c => c.name.toLowerCase() === inputValue.trim().toLowerCase());
+    if (exactMatch) {
+      // Select the country but keep dropdown open so user can continue typing if needed
+      // (e.g. "Dominica" vs "Dominican Republic")
+      selectCountry(exactMatch, false);
+    }
   } else {
     populateCountryOptions(); // Show all countries if input is empty
   }
 }
 
 // Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
   const dropdown = document.getElementById('country-dropdown');
   const input = document.getElementById('country-input');
-  
-  if (isOpen && 
-      !dropdown.contains(event.target) && 
-      !input.contains(event.target)) {
+
+  if (isOpen &&
+    !dropdown.contains(event.target) &&
+    !input.contains(event.target)) {
     dropdown.classList.add('hidden');
     dropdown.classList.remove('opacity-100', 'scale-100');
     dropdown.classList.add('opacity-0', 'scale-95');
@@ -361,7 +372,7 @@ document.addEventListener('click', function(event) {
 // Form validation function
 function validateForm(event) {
   event.preventDefault(); // Prevent default form submission
-  
+
   // Get all required fields
   const firstName = document.querySelector('input[placeholder="First Name"]');
   const lastName = document.querySelector('input[placeholder="Last Name"]');
@@ -369,7 +380,7 @@ function validateForm(event) {
   const companyName = document.querySelector('input[placeholder="Company Name"]');
   const countryInput = document.getElementById('country-input');
   const submitButton = document.querySelector('button[type="submit"]');
-  
+
   // Reset previous error indicators
   const allInputs = document.querySelectorAll('input, textarea');
   allInputs.forEach(input => {
@@ -380,24 +391,24 @@ function validateForm(event) {
       existingError.remove();
     }
   });
-  
+
   let isValid = true;
   let errorMessage = '';
-  
+
   // Validate first name
   if (!firstName.value.trim()) {
     firstName.classList.add('border-red-500');
     showError(firstName, 'First name is required');
     isValid = false;
   }
-  
+
   // Validate last name
   if (!lastName.value.trim()) {
     lastName.classList.add('border-red-500');
     showError(lastName, 'Last name is required');
     isValid = false;
   }
-  
+
   // Validate email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!workEmail.value.trim()) {
@@ -409,21 +420,21 @@ function validateForm(event) {
     showError(workEmail, 'Please enter a valid email address');
     isValid = false;
   }
-  
+
   // Validate company name
   if (!companyName.value.trim()) {
     companyName.classList.add('border-red-500');
     showError(companyName, 'Company name is required');
     isValid = false;
   }
-  
+
   // Validate country
   if (!countryInput.value.trim() || countryInput.value.trim() === "Select or type a country...") {
     countryInput.classList.add('border-red-500');
     showError(countryInput, 'Country is required');
     isValid = false;
   }
-  
+
   // If form is valid, submit it
   if (isValid) {
     // Here you would typically submit the form data
@@ -446,16 +457,16 @@ function showError(field, message) {
   const errorDiv = document.createElement('div');
   errorDiv.className = 'error-message text-red-500 text-xs mt-1';
   errorDiv.textContent = message;
-  
+
   // Add error message after the field
   field.parentNode.appendChild(errorDiv);
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Populate the initial country options
   populateCountryOptions();
-  
+
   // Set up event listeners
   const countryInput = document.getElementById('country-input');
   if (countryInput) {
@@ -463,13 +474,13 @@ document.addEventListener('DOMContentLoaded', function() {
     countryInput.addEventListener('input', handleInputSearch);
     countryInput.addEventListener('keydown', handleKeyboardNavigation);
   }
-  
+
   // Add form submission listener
   const formElement = document.querySelector('form.space-y-7');
   if (formElement) {
     formElement.addEventListener('submit', validateForm);
   }
-  
+
   // Update phone code when a country is selected
   const phoneCodeSpan = document.getElementById('phone-code');
   if (phoneCodeSpan) {
