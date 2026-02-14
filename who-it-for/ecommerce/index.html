@@ -1464,8 +1464,7 @@
 </footer>
 
 <!-- Back to top -->
-<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-    <i class="fas fa-arrow-up text-sm"></i>
+<!-- back-to-top removed -->
 </button>
 
 <!-- Chat Widget -->
@@ -1524,7 +1523,7 @@
             </div>
         </div>
         <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none" style="background: #111827;">
-            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition" style="color:#f59e0b"></i>
+            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition" style="color:#ffffff"></i>
             <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
         </button>
     `;
@@ -1542,17 +1541,15 @@
             win.classList.remove('is-active');
             iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
             iconClose.classList.add('opacity-0','-rotate-90','scale-50');
-            btn.style.backgroundColor = '';
-            btn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
-            btn.style.color = '#ffffff';
+            btn.style.background = '#111827';
+            btn.style.color = '#f59e0b';
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
             iconMsg.classList.add('opacity-0','rotate-90','scale-50');
             iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.background = '';
-            btn.style.color = '#d97706';
+            btn.style.background = '#111827';
+            btn.style.color = '#ffffff';
             btn.classList.remove('ripple-active');
         }
     }
@@ -1816,7 +1813,7 @@ document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
     // Back to top
-    document.getElementById('backToTop').classList.toggle('show', window.scrollY > 600);
+    /* back-to-top removed */
 }, { passive: true });
 
 // 3D tilt
