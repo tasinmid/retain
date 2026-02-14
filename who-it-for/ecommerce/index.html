@@ -62,10 +62,13 @@
         .reveal-right { opacity:0; transform:translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity:1; transform:translate(0); }
 
+        .tab-btn { transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important; }
         .tab-btn.active { background:linear-gradient(135deg,#f59e0b,#d97706); color:white; box-shadow: 0 4px 15px rgba(245,158,11,0.4); }
-        .tab-content { transition: opacity 0.5s ease, transform 0.5s ease; }
-        .tab-content.tab-entering { animation: tabSlideIn 0.5s ease forwards; }
-        @keyframes tabSlideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+        .tab-content { transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .tab-content.slide-out-left { transform: translateX(-100%); }
+        .tab-content.slide-out-right { transform: translateX(100%); }
+        .tab-content.slide-in-from-right { transform: translateX(100%); }
+        .tab-content.slide-in-from-left { transform: translateX(-100%); }
 
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
         .float { animation: float 6s ease-in-out infinite; }
@@ -239,6 +242,26 @@
             border: 1px solid rgba(245,158,11,0.2);
         }
 
+        /* Rotating text animation */
+        .rotating-text-wrapper {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: baseline;
+            height: 1.2em;
+            position: relative;
+        }
+        .rotating-text-inner {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .rotating-word {
+            height: 1.2em;
+            display: flex;
+            align-items: baseline;
+            line-height: 1.2;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
             .reveal, .reveal-left, .reveal-right { opacity:1; transform:none; }
@@ -366,7 +389,7 @@
         <div class="reveal">
             <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-semibold mb-6 tracking-wide">YOUR LIFECYCLE GROWTH PARTNER</span>
             <h1 class="font-poppins text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-                Stop Starting From Zero <span class="gradient-text">Every Month</span>
+                Stop Starting From Zero <span class="gradient-text">Every</span> <span class="rotating-text-wrapper"><span class="rotating-text-inner"><span class="rotating-word">Month</span><span class="rotating-word">Year</span><span class="rotating-word">Day</span></span></span>
             </h1>
             <p class="text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">Most e-commerce brands burn cash acquiring customers who never come back. Retain builds you a complete retention ecosystem — so every customer becomes a long-term revenue asset, not a one-time transaction.</p>
             <div class="flex flex-wrap gap-4">
@@ -530,7 +553,7 @@
 
 <!-- Feature Deep-Dive (Tabs) — Scroll-Driven -->
 <div id="scrollTabsOuter" style="position:relative;">
-<section id="scrollTabsSection" class="bg-white relative overflow-hidden" style="position:sticky;top:0;min-height:100vh;display:flex;align-items:center;z-index:10;">
+<section id="scrollTabsSection" class="bg-white relative overflow-hidden" style="position:sticky;top:0;min-height:100vh;display:flex;align-items:flex-start;z-index:10;">
     <!-- Decorative dots -->
     <div class="absolute top-20 left-10 w-32 h-32 opacity-10" style="background-image:radial-gradient(#f59e0b 2px,transparent 2px);background-size:12px 12px;"></div>
     <div class="absolute bottom-20 right-10 w-32 h-32 opacity-10" style="background-image:radial-gradient(#ea580c 2px,transparent 2px);background-size:12px 12px;"></div>
@@ -549,13 +572,13 @@
         <!-- Progress indicator -->
         <div class="flex justify-center mb-10" id="tabProgressWrap">
             <div style="position:relative;width:200px;height:4px;background:#f3e8d0;border-radius:9999px;overflow:hidden;">
-                <div id="tabProgressBar" style="position:absolute;left:0;top:0;height:100%;width:25%;background:linear-gradient(90deg,#f59e0b,#d97706);border-radius:9999px;transition:left 0.5s cubic-bezier(.4,0,.2,1),width 0.5s cubic-bezier(.4,0,.2,1);"></div>
+                <div id="tabProgressBar" style="position:absolute;left:0;top:0;height:100%;width:25%;background:linear-gradient(90deg,#f59e0b,#d97706);border-radius:9999px;transition:width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
             </div>
             <style>#tabProgressWrap .dot{width:10px;height:10px;border-radius:50%;background:#e5d5b0;transition:background 0.4s,transform 0.4s;margin:0 6px;flex-shrink:0;}#tabProgressWrap .dot.active{background:linear-gradient(135deg,#f59e0b,#d97706);transform:scale(1.3);}</style>
         </div>
         <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div style="position:relative;min-height:320px;">
-                <div id="tab-omni" class="tab-content" style="position:relative;transition:opacity 0.5s ease,transform 0.5s ease;">
+            <div style="position:relative;min-height:320px;overflow:hidden;">
+                <div id="tab-omni" class="tab-content" style="position:relative;">
                     <h3 class="font-poppins text-2xl md:text-3xl font-bold text-gray-900 mb-5">One Inbox. Every Channel. <span class="gradient-text">Full Context.</span></h3>
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">Your customers message you on WhatsApp, comment on Instagram, DM on Messenger, and email your support team — all in the same day. Retain pulls every conversation into a single inbox with complete customer context.</p>
                     <ul class="space-y-4 text-gray-600">
@@ -564,7 +587,7 @@
                         <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-xs"></i></span>Automatic conversation summaries for instant context</li>
                     </ul>
                 </div>
-                <div id="tab-cart" class="tab-content hidden" style="position:absolute;top:0;left:0;right:0;transition:opacity 0.5s ease,transform 0.5s ease;">
+                <div id="tab-cart" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);visibility:hidden;">
                     <h3 class="font-poppins text-2xl md:text-3xl font-bold text-gray-900 mb-5">Recover Revenue <span class="gradient-text">While You Sleep</span></h3>
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">The moment a cart is abandoned, Retain triggers a behavior-driven recovery sequence — a WhatsApp message within minutes, a follow-up email, then a personalized incentive.</p>
                     <ul class="space-y-4 text-gray-600">
@@ -573,7 +596,7 @@
                         <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-xs"></i></span>Real-time behavior triggers — not batch emails</li>
                     </ul>
                 </div>
-                <div id="tab-profiles" class="tab-content hidden" style="position:absolute;top:0;left:0;right:0;transition:opacity 0.5s ease,transform 0.5s ease;">
+                <div id="tab-profiles" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);visibility:hidden;">
                     <h3 class="font-poppins text-2xl md:text-3xl font-bold text-gray-900 mb-5">AI That <span class="gradient-text">Remembers Everything</span></h3>
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">Retain's customer memory system builds living profiles — not static data fields. It stores conversation summaries, behavioral patterns, and cross-channel interaction history.</p>
                     <ul class="space-y-4 text-gray-600">
@@ -582,7 +605,7 @@
                         <li class="flex items-start gap-3"><span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-xs"></i></span>Cross-channel history follows the customer, not the channel</li>
                     </ul>
                 </div>
-                <div id="tab-analytics" class="tab-content hidden" style="position:absolute;top:0;left:0;right:0;transition:opacity 0.5s ease,transform 0.5s ease;">
+                <div id="tab-analytics" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);visibility:hidden;">
                     <h3 class="font-poppins text-2xl md:text-3xl font-bold text-gray-900 mb-5">Metrics That <span class="gradient-text">Predict Growth</span></h3>
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">Forget vanity metrics. See repeat purchase rates, customer lifetime value trends, campaign-level revenue attribution, and cohort retention curves.</p>
                     <ul class="space-y-4 text-gray-600">
@@ -595,11 +618,11 @@
             <div class="relative">
                 <!-- Decorative gradient behind image -->
                 <div class="absolute -inset-4 bg-gradient-to-br from-amber-100/50 to-orange-100/50 rounded-3xl -z-10"></div>
-                <div class="img-hover-container float">
-                    <img id="tab-img-omni" src="omnichannel_customer_journey_1771078873377.png" alt="Omnichannel CRM" class="tab-img w-full rounded-2xl shadow-xl">
-                    <img id="tab-img-cart" src="cart_recovery_illustration_1771075740291.png" alt="Cart Recovery" class="tab-img hidden w-full rounded-2xl shadow-xl">
-                    <img id="tab-img-profiles" src="unified_customer_profile_1771078936946.png" alt="Customer Memory System" class="tab-img hidden w-full rounded-2xl shadow-xl">
-                    <img id="tab-img-analytics" src="analytics_dashboard_mockup_1771075776456.png" alt="Retention Analytics" class="tab-img hidden w-full rounded-2xl shadow-xl">
+                <div class="img-hover-container float" style="position:relative;overflow:hidden;">
+                    <img id="tab-img-omni" src="omnichannel_customer_journey_1771078873377.png" alt="Omnichannel CRM" class="tab-img w-full rounded-2xl shadow-xl" style="position:relative;transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <img id="tab-img-cart" src="cart_recovery_illustration_1771075740291.png" alt="Cart Recovery" class="tab-img w-full rounded-2xl shadow-xl" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);visibility:hidden;">
+                    <img id="tab-img-profiles" src="unified_customer_profile_1771078936946.png" alt="Customer Memory System" class="tab-img w-full rounded-2xl shadow-xl" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);visibility:hidden;">
+                    <img id="tab-img-analytics" src="analytics_dashboard_mockup_1771075776456.png" alt="Retention Analytics" class="tab-img w-full rounded-2xl shadow-xl" style="position:absolute;top:0;left:0;right:0;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);visibility:hidden;">
                 </div>
             </div>
         </div>
@@ -964,90 +987,153 @@ const stepObserver = new IntersectionObserver((entries) => {
 const howSection = document.getElementById('howItWorks');
 if (howSection) stepObserver.observe(howSection);
 
-// Tabs — scroll-driven progression
+// Tabs — scroll-driven progression (smooth with dead zones)
 (function() {
     const TAB_IDS = ['tab-omni','tab-cart','tab-profiles','tab-analytics'];
     const TOTAL = TAB_IDS.length;
     let currentIdx = 0;
-    let cooldown = false;
-    const COOLDOWN_MS = 700;
     const outer = document.getElementById('scrollTabsOuter');
-    const section = document.getElementById('scrollTabsSection');
     const progressBar = document.getElementById('tabProgressBar');
     const allBtns = document.querySelectorAll('.tab-btn');
 
-    // Set outer height to create scroll space: viewport + (TOTAL-1) * viewport for each extra tab
+    // Dead zone: first 40% and last 8% of scroll are buffer (no tab switching)
+    const DEAD_TOP = 0.40;
+    const DEAD_BOTTOM = 0.08;
+    const ACTIVE_RANGE = 1 - DEAD_TOP - DEAD_BOTTOM;
+
+    const section = document.getElementById('scrollTabsSection');
+
+    // Dynamically set sticky top so entire section is visible (not cropped at bottom)
+    function adjustStickyTop() {
+        const sectionH = section.scrollHeight;
+        const viewportH = window.innerHeight;
+        if (sectionH > viewportH) {
+            // Negative top: section scrolls up just enough to reveal bottom content
+            section.style.top = -(sectionH - viewportH) + 'px';
+        } else {
+            section.style.top = '0px';
+        }
+    }
+
+    // More scroll space for breathing room (extra viewport for dead zones)
     function setOuterHeight() {
-        outer.style.height = (TOTAL) * window.innerHeight + 'px';
+        outer.style.height = (TOTAL + 2) * window.innerHeight + 'px';
+        adjustStickyTop();
     }
     setOuterHeight();
     window.addEventListener('resize', setOuterHeight);
+    // Recalculate after images load
+    window.addEventListener('load', adjustStickyTop);
 
     function switchToTab(idx, direction) {
         if (idx < 0 || idx >= TOTAL || idx === currentIdx) return false;
+        const prevIdx = currentIdx;
         currentIdx = idx;
+        const dir = direction || 'down';
+        const slideForward = dir === 'down'; // forward = slide left, backward = slide right
+
         // Update buttons
         allBtns.forEach(b => { b.classList.remove('active'); b.classList.add('text-gray-600'); });
         allBtns[idx].classList.add('active'); allBtns[idx].classList.remove('text-gray-600');
-        // Update content with animation
-        const dir = direction || 'down';
-        document.querySelectorAll('.tab-content').forEach(c => {
-            c.classList.add('hidden');
-            c.style.opacity = '0';
-            c.style.transform = 'translateX(0)';
-        });
-        document.querySelectorAll('.tab-img').forEach(i => i.classList.add('hidden'));
+
+        // Old content: slide out
+        const oldContent = document.getElementById(TAB_IDS[prevIdx]);
+        if (oldContent) {
+            oldContent.style.transform = slideForward ? 'translateX(-100%)' : 'translateX(100%)';
+            setTimeout(() => { oldContent.style.visibility = 'hidden'; }, 500);
+        }
+
+        // Old image: slide out
+        const oldImgKey = TAB_IDS[prevIdx].replace('tab-','');
+        const oldImg = document.getElementById('tab-img-' + oldImgKey);
+        if (oldImg) {
+            oldImg.style.transform = slideForward ? 'translateX(-100%)' : 'translateX(100%)';
+            setTimeout(() => { oldImg.style.visibility = 'hidden'; }, 500);
+        }
+
+        // New content: position off-screen, then slide in
         const content = document.getElementById(TAB_IDS[idx]);
-        content.classList.remove('hidden');
-        content.style.opacity = '0';
-        content.style.transform = dir === 'down' ? 'translateX(30px)' : 'translateX(-30px)';
+        content.style.transition = 'none';
+        content.style.transform = slideForward ? 'translateX(100%)' : 'translateX(-100%)';
+        content.style.visibility = 'visible';
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                content.style.opacity = '1';
+                content.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 content.style.transform = 'translateX(0)';
             });
         });
+
+        // New image: position off-screen, then slide in
         const imgKey = TAB_IDS[idx].replace('tab-','');
-        document.getElementById('tab-img-' + imgKey).classList.remove('hidden');
-        // Update progress bar
-        const pct = idx / (TOTAL - 1);
-        progressBar.style.left = (pct * 75) + '%';
-        progressBar.style.width = '25%';
+        const newImg = document.getElementById('tab-img-' + imgKey);
+        if (newImg) {
+            newImg.style.transition = 'none';
+            newImg.style.transform = slideForward ? 'translateX(100%)' : 'translateX(-100%)';
+            newImg.style.visibility = 'visible';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    newImg.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    newImg.style.transform = 'translateX(0)';
+                });
+            });
+        }
+
+        // Progress bar: fills proportionally (25%, 50%, 75%, 100%)
+        progressBar.style.width = ((idx + 1) / TOTAL * 100) + '%';
         return true;
     }
 
-    // Scroll-based: use scroll position within the outer container to determine which tab
+    // Scroll-based with dead zones
     function onScroll() {
         const rect = outer.getBoundingClientRect();
-        const scrolledInto = -rect.top; // how far we've scrolled past the top of outer
+        const scrolledInto = -rect.top;
         const maxScroll = outer.offsetHeight - window.innerHeight;
         if (scrolledInto < 0 || scrolledInto > maxScroll) return;
-        const progress = scrolledInto / maxScroll; // 0 to 1
-        const targetIdx = Math.min(TOTAL - 1, Math.floor(progress * TOTAL));
+
+        const rawProgress = scrolledInto / maxScroll; // 0 to 1
+
+        // Apply dead zones: remap so tabs only switch in the active range
+        let adjustedProgress;
+        if (rawProgress <= DEAD_TOP) {
+            adjustedProgress = 0;
+        } else if (rawProgress >= 1 - DEAD_BOTTOM) {
+            adjustedProgress = 1;
+        } else {
+            adjustedProgress = (rawProgress - DEAD_TOP) / ACTIVE_RANGE;
+        }
+        adjustedProgress = Math.max(0, Math.min(1, adjustedProgress));
+
+        const targetIdx = Math.min(TOTAL - 1, Math.floor(adjustedProgress * TOTAL));
         if (targetIdx !== currentIdx) {
             const dir = targetIdx > currentIdx ? 'down' : 'up';
             switchToTab(targetIdx, dir);
         }
-        // Update progress bar smoothly
-        progressBar.style.left = (progress * 75) + '%';
+
+        // Smooth progress bar width (based on current tab)
+        progressBar.style.width = ((currentIdx + 1) / TOTAL * 100) + '%';
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Also keep click handlers working
+    // Click handlers
     allBtns.forEach((btn, i) => {
         btn.addEventListener('click', () => {
             switchToTab(i, i > currentIdx ? 'down' : 'up');
-            // Scroll to appropriate position
             const outerTop = outer.getBoundingClientRect().top + window.scrollY;
             const maxScroll = outer.offsetHeight - window.innerHeight;
-            const targetScroll = outerTop + (i / (TOTAL - 1)) * maxScroll;
+            // Map tab index back to scroll position accounting for dead zones
+            const adjustedProgress = i / (TOTAL - 1);
+            const rawProgress = DEAD_TOP + adjustedProgress * ACTIVE_RANGE;
+            const targetScroll = outerTop + rawProgress * maxScroll;
             window.scrollTo({ top: targetScroll, behavior: 'smooth' });
         });
     });
 
-    // Initialize first tab visible
-    switchToTab(0, 'down');
+    // Initialize first tab visible (already positioned in HTML, just ensure state is correct)
+    document.getElementById(TAB_IDS[0]).style.visibility = 'visible';
+    document.getElementById(TAB_IDS[0]).style.transform = 'translateX(0)';
+    document.getElementById('tab-img-' + TAB_IDS[0].replace('tab-','')).style.visibility = 'visible';
+    document.getElementById('tab-img-' + TAB_IDS[0].replace('tab-','')).style.transform = 'translateX(0)';
 })();
 
 // Mobile menu toggle
@@ -1109,6 +1195,18 @@ window.addEventListener('scroll', () => {
         img.style.transform = `translateY(${offset}px)`;
     }
 }, { passive: true });
+
+// Rotating text animation
+(function() {
+    const inner = document.querySelector('.rotating-text-inner');
+    if (!inner) return;
+    const words = inner.querySelectorAll('.rotating-word');
+    let current = 0;
+    setInterval(() => {
+        current = (current + 1) % words.length;
+        inner.style.transform = 'translateY(-' + (current * 100 / words.length) + '%)';
+    }, 2500);
+})();
 </script>
 </body>
 </html>
