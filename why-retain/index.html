@@ -89,7 +89,24 @@
                     <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
                     <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
                     <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
-                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
+                            Who It's For
+                            <i class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
+                            <a href="/who-it-for/real-estate/"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                                <i class="fas fa-home mr-3 text-blue-500 bg-blue-50 p-1.5 rounded-lg"></i>
+                                Real Estate
+                            </a>
+                            <a href="/who-it-for/ecommerce/"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-amber-600 transition-colors">
+                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i>
+                                E-commerce & Retail
+                            </a>
+                        </div>
+                    </div>
                     <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Why Retain</a>
                     <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
                         Book a Call
@@ -112,7 +129,14 @@
                 <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
                 <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
                 <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
-                <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
+                <div class="pl-3 space-y-1">
+                    <p class="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Who It's For</p>
+                    <a href="/who-it-for/real-estate/"
+                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-blue-500 hover:bg-blue-50">Real
+                        Estate</a>
+                    <a href="/who-it-for/ecommerce/"
+                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-amber-500 hover:bg-amber-50">E-commerce & Retail</a>
+                </div>
                 <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Why Retain</a>
                 <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
             </div>

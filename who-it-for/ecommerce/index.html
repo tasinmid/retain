@@ -270,6 +270,246 @@
             .marquee-track { animation: none; }
             .flip-card:hover .flip-inner { transform: none; }
         }
+
+        /* === Feature Rows Styles === */
+        .ft-rows-section { position: relative; z-index: 5; }
+
+        /* Vertical progress line */
+        .ft-progress-track {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: rgba(245,158,11,0.08);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .ft-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, #f59e0b, #ea580c, #fbbf24, #f59e0b);
+            border-radius: 4px;
+            transition: height 0.1s linear;
+        }
+
+        /* Feature row */
+        .ft-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            transition: transform 0.4s cubic-bezier(.25,.46,.45,.94);
+            z-index: 2;
+        }
+        .ft-row:hover {
+            transform: translateX(6px);
+        }
+        .ft-row.ft-row-reverse {
+            flex-direction: row-reverse;
+        }
+        .ft-row.ft-row-reverse:hover {
+            transform: translateX(-6px);
+        }
+
+        /* Tinted background rows */
+        .ft-row-tinted {
+            background: linear-gradient(90deg, rgba(245,158,11,0.03) 0%, rgba(234,88,12,0.02) 50%, transparent 100%);
+            border-radius: 1.5rem;
+            margin: 0 -1.5rem;
+            padding: 2.5rem 1.5rem;
+        }
+        .ft-row-reverse.ft-row-tinted {
+            background: linear-gradient(270deg, rgba(245,158,11,0.03) 0%, rgba(234,88,12,0.02) 50%, transparent 100%);
+        }
+
+        /* Number/icon side */
+        .ft-num-side {
+            flex-shrink: 0;
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+        .ft-num {
+            width: 72px;
+            height: 72px;
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        .ft-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 2px solid rgba(245,158,11,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.4s;
+        }
+        .ft-row:hover .ft-icon-wrap {
+            transform: scale(1.12) rotate(-8deg);
+            box-shadow: 0 6px 20px rgba(245,158,11,0.2);
+        }
+
+        /* Accent bar */
+        .ft-accent-bar {
+            width: 4px;
+            height: 60px;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ft-accent-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 4px;
+            background: linear-gradient(180deg, var(--accent-from), var(--accent-to));
+            background-size: 100% 200%;
+            animation: accentShimmer 2.5s ease-in-out infinite;
+        }
+        @keyframes accentShimmer {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+        }
+        .ft-row:hover .ft-accent-bar::after {
+            box-shadow: 0 0 16px var(--accent-from);
+            filter: brightness(1.2);
+        }
+
+        /* Content side */
+        .ft-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Scroll reveal for rows */
+        .ft-row-reveal {
+            opacity: 0;
+            transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94);
+        }
+        .ft-row-reveal.from-left { transform: translateX(-50px); }
+        .ft-row-reveal.from-right { transform: translateX(50px); }
+        .ft-row-reveal.visible { opacity: 1; transform: translateX(0); }
+
+        /* Floating decorative elements */
+        .ft-float-dot {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes ftDotFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-12px) scale(1.1); }
+        }
+        .ft-float-dot { animation: ftDotFloat 5s ease-in-out infinite; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ft-row, .ft-row.ft-row-reverse {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .ft-row:hover, .ft-row.ft-row-reverse:hover {
+                transform: translateY(-4px);
+            }
+            .ft-num-side { width: auto; flex-direction: row; }
+            .ft-accent-bar { width: 60px; height: 4px; }
+            .ft-progress-track { display: none; }
+            .ft-row-tinted, .ft-row-reverse.ft-row-tinted {
+                background: rgba(245,158,11,0.03);
+            }
+        }
+
+        /* How It Works - Compact Zigzag Vertical Timeline */
+        .hiw-timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .hiw-timeline-line {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+            background: rgba(245,158,11,0.15); transform: translateX(-50%); border-radius: 4px;
+        }
+        .hiw-timeline-fill {
+            position: absolute; left: 0; top: 0; width: 100%; height: 0%;
+            background: linear-gradient(180deg, #f59e0b, #ea580c, #fbbf24);
+            border-radius: 4px; transition: height 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .hiw-timeline-dot {
+            position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%;
+            background: white; border: 3px solid rgba(245,158,11,0.3);
+            transform: translateX(-50%); z-index: 3;
+            transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+        }
+        .hiw-timeline-dot.active {
+            border-color: #f59e0b; background: #f59e0b;
+            box-shadow: 0 0 12px rgba(245,158,11,0.5);
+        }
+        .hiw-step { position: relative; z-index: 2; }
+        .hiw-step-left .hiw-step-card { margin-right: calc(50% + 28px); }
+        .hiw-step-right .hiw-step-card { margin-left: calc(50% + 28px); }
+
+        .hiw-step-card {
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(245,158,11,0.12); border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s, border-color 0.4s;
+        }
+        .hiw-step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(245,158,11,0.12);
+            border-color: rgba(245,158,11,0.25);
+        }
+
+        .hiw-num {
+            width: 56px; height: 56px; border-radius: 1rem; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.35rem; color: white;
+            flex-shrink: 0; z-index: 2;
+        }
+        .hiw-num::after {
+            content: ''; position: absolute; inset: -2px; border-radius: 1.1rem;
+            opacity: 0.35; z-index: -1; animation: hiwGlow 3s ease-in-out infinite;
+        }
+        @keyframes hiwGlow {
+            0%, 100% { filter: blur(6px); opacity: 0.25; transform: scale(1); }
+            50% { filter: blur(10px); opacity: 0.5; transform: scale(1.06); }
+        }
+        .hiw-num-1 { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+        .hiw-num-1::after { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+        .hiw-num-2 { background: linear-gradient(135deg, #ea580c, #dc2626); }
+        .hiw-num-2::after { background: linear-gradient(135deg, #ea580c, #dc2626); animation-delay: 1s; }
+        .hiw-num-3 { background: linear-gradient(135deg, #fbbf24, #10b981); }
+        .hiw-num-3::after { background: linear-gradient(135deg, #fbbf24, #10b981); animation-delay: 2s; }
+
+        .hiw-reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .hiw-reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .hiw-reveal-left.visible, .hiw-reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        @media (max-width: 767px) {
+            .hiw-timeline-line { left: 24px; }
+            .hiw-timeline-dot { left: 24px; }
+            .hiw-step-left .hiw-step-card,
+            .hiw-step-right .hiw-step-card { margin-left: 56px; margin-right: 0; }
+            .hiw-reveal-left, .hiw-reveal-right { transform: translateX(30px); }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 overflow-x-hidden">
@@ -315,7 +555,7 @@
                         <a href="/who-it-for/ecommerce/"
                             class="block px-4 py-3 text-sm text-amber-700 font-medium bg-amber-50 rounded-md transition-colors">
                             <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i>
-                            E-commerce
+                            E-commerce & Retail
                         </a>
                     </div>
                 </div>
@@ -358,7 +598,7 @@
                     class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-blue-500 hover:bg-blue-50">Real
                     Estate</a>
                 <a href="/who-it-for/ecommerce/"
-                    class="text-amber-700 font-semibold block px-3 py-2 rounded-md text-base pl-6 border-l-2 border-amber-500 bg-amber-50">E-commerce</a>
+                    class="text-amber-700 font-semibold block px-3 py-2 rounded-md text-base pl-6 border-l-2 border-amber-500 bg-amber-50">E-commerce & Retail</a>
             </div>
             <a href="/why-retain/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why
@@ -482,79 +722,166 @@
     </div>
 </section>
 
-<!-- Key Features — Creative Bento Grid -->
-<section class="py-28 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-    <div class="orb" style="width:350px;height:350px;background:radial-gradient(circle,#fcd34d,transparent);top:10%;right:-100px;animation-delay:1s;"></div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 reveal">
+<!-- Key Features — Interactive Hover-Reveal Grid -->
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" id="keyFeaturesSection">
+    <style>
+        .kf-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+        @media(max-width:1024px){ .kf-grid{grid-template-columns:repeat(2,1fr);} }
+        @media(max-width:640px){ .kf-grid{grid-template-columns:1fr;} }
+
+        .kf-tile {
+            position:relative; border-radius:1.25rem; padding:1.75rem 1.5rem; min-height:220px;
+            display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; text-align:left;
+            cursor:default; overflow:hidden; isolation:isolate;
+            border:1px solid rgba(255,255,255,0.2);
+            backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+            transition: transform 0.4s cubic-bezier(.25,.46,.45,.94), box-shadow 0.4s, border-color 0.4s, filter 0.4s;
+            opacity:0; transform:translateY(30px) scale(0.95);
+        }
+        .kf-tile.visible { opacity:1; transform:translateY(0) scale(1); }
+        .kf-tile:hover { transform:scale(1.05); z-index:2; filter:brightness(0.92); }
+
+        /* Shimmer overlay */
+        .kf-tile::before {
+            content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+            background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.15) 45%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0.15) 55%,transparent 60%);
+            background-size:400% 100%; animation:kfShimmer 10s linear infinite;
+        }
+        @keyframes kfShimmer { 0%{background-position:300% 0} 100%{background-position:-300% 0} }
+
+        /* Floating dot inside */
+        .kf-tile::after {
+            content:''; position:absolute; width:6px; height:6px; border-radius:50%;
+            background:rgba(255,255,255,0.3); z-index:1; pointer-events:none;
+            animation:kfDotFloat 4s ease-in-out infinite;
+        }
+        @keyframes kfDotFloat { 0%,100%{transform:translate(0,0);opacity:0.3} 50%{transform:translate(8px,-12px);opacity:0.6} }
+
+        .kf-tile-icon { font-size:2.25rem; color:white; z-index:2; transition:transform 0.4s cubic-bezier(.25,.46,.45,.94); }
+        .kf-tile:hover .kf-tile-icon { animation:kfIconBounce 0.6s ease; }
+        @keyframes kfIconBounce { 0%{transform:translateY(0)} 30%{transform:translateY(-8px)} 50%{transform:translateY(-3px)} 70%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+
+        .kf-tile-title {
+            font-family:'Poppins',sans-serif; font-weight:700; font-size:1rem; color:white;
+            margin-top:0.75rem; z-index:2; transition:text-shadow 0.3s;
+        }
+        .kf-tile:hover .kf-tile-title { text-shadow:0 0 20px rgba(255,255,255,0.4); }
+
+        .kf-tile-desc {
+            font-size:0.8rem; color:rgba(255,255,255,0.85); z-index:2; line-height:1.5;
+            margin-top:0.5rem; opacity:1; transform:none;
+            text-shadow:0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Per-tile gradients & glow */
+        .kf-t-amber { background:linear-gradient(135deg,#f59e0b,#d97706); }
+        .kf-t-amber:hover { box-shadow:0 8px 30px rgba(245,158,11,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-orange { background:linear-gradient(135deg,#ea580c,#c2410c); }
+        .kf-t-orange:hover { box-shadow:0 8px 30px rgba(234,88,12,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-red { background:linear-gradient(135deg,#ef4444,#dc2626); }
+        .kf-t-red:hover { box-shadow:0 8px 30px rgba(239,68,68,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-green { background:linear-gradient(135deg,#10b981,#059669); }
+        .kf-t-green:hover { box-shadow:0 8px 30px rgba(16,185,129,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-purple { background:linear-gradient(135deg,#8b5cf6,#7c3aed); }
+        .kf-t-purple:hover { box-shadow:0 8px 30px rgba(139,92,246,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-blue { background:linear-gradient(135deg,#3b82f6,#2563eb); }
+        .kf-t-blue:hover { box-shadow:0 8px 30px rgba(59,130,246,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-teal { background:linear-gradient(135deg,#14b8a6,#0d9488); }
+        .kf-t-teal:hover { box-shadow:0 8px 30px rgba(20,184,166,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+        .kf-t-rose { background:linear-gradient(135deg,#f43f5e,#e11d48); }
+        .kf-t-rose:hover { box-shadow:0 8px 30px rgba(244,63,94,0.4), inset 0 0 30px rgba(0,0,0,0.08); border-color:rgba(255,255,255,0.5); }
+
+        /* Stagger dot positions */
+        .kf-tile:nth-child(1)::after{top:15%;left:20%;animation-delay:0s}
+        .kf-tile:nth-child(2)::after{top:70%;right:15%;left:auto;animation-delay:0.5s}
+        .kf-tile:nth-child(3)::after{bottom:20%;left:25%;top:auto;animation-delay:1s}
+        .kf-tile:nth-child(4)::after{top:25%;right:20%;left:auto;animation-delay:1.5s}
+        .kf-tile:nth-child(5)::after{top:60%;left:15%;animation-delay:0.7s}
+        .kf-tile:nth-child(6)::after{bottom:15%;right:25%;left:auto;top:auto;animation-delay:1.2s}
+        .kf-tile:nth-child(7)::after{top:20%;left:60%;animation-delay:0.3s}
+        .kf-tile:nth-child(8)::after{top:40%;right:12%;left:auto;animation-delay:1.8s}
+
+        /* Shimmer delay stagger */
+        .kf-tile:nth-child(2)::before{animation-delay:0.8s}
+        .kf-tile:nth-child(3)::before{animation-delay:1.6s}
+        .kf-tile:nth-child(4)::before{animation-delay:2.4s}
+        .kf-tile:nth-child(5)::before{animation-delay:0.4s}
+        .kf-tile:nth-child(6)::before{animation-delay:1.2s}
+        .kf-tile:nth-child(7)::before{animation-delay:2s}
+        .kf-tile:nth-child(8)::before{animation-delay:2.8s}
+    </style>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-12 reveal">
             <span class="section-label text-amber-600 font-semibold text-sm tracking-wide">YOUR RETENTION ECOSYSTEM</span>
-            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4">The Complete System for <span class="gradient-text">Compounding Revenue</span></h2>
-            <p class="text-gray-500 mt-5 max-w-2xl mx-auto text-lg">Not another tool to learn. Retain is your entire retention infrastructure — automation, data intelligence, and creative engagement strategies working together.</p>
+            <h2 class="font-poppins text-4xl md:text-6xl font-extrabold text-gray-900 mt-4">The Complete System for <span class="gradient-text">Compounding Revenue</span></h2>
+            <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-base">Your entire retention infrastructure — automation, intelligence, and engagement in one ecosystem.</p>
         </div>
-        <div class="bento-grid">
-            <!-- Large card -->
-            <div class="bento-span-2 bento-row-2 group card-hover tilt-card rounded-2xl p-8 border border-amber-100 reveal accent-amber relative overflow-hidden" style="background:linear-gradient(135deg,#fffbeb,#fff7ed);transition-delay:0.05s">
-                <div class="absolute top-0 right-0 w-40 h-40 bg-amber-100/30 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                <div class="relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-amber-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"><i class="fas fa-layer-group text-amber-600 text-xl"></i></div>
-                    <h3 class="font-poppins font-bold text-gray-900 text-xl mb-3">Centralized Omnichannel CRM</h3>
-                    <p class="text-gray-500 mb-4">WhatsApp, Instagram DMs, Messenger, Email, and website chat — one inbox, full context. No more switching tabs or losing conversations.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="px-3 py-1 rounded-full bg-white/80 text-xs font-medium text-gray-600 border border-gray-100"><i class="fab fa-whatsapp text-green-500 mr-1"></i>WhatsApp</span>
-                        <span class="px-3 py-1 rounded-full bg-white/80 text-xs font-medium text-gray-600 border border-gray-100"><i class="fab fa-instagram text-pink-500 mr-1"></i>Instagram</span>
-                        <span class="px-3 py-1 rounded-full bg-white/80 text-xs font-medium text-gray-600 border border-gray-100"><i class="fab fa-facebook-messenger text-blue-500 mr-1"></i>Messenger</span>
-                        <span class="px-3 py-1 rounded-full bg-white/80 text-xs font-medium text-gray-600 border border-gray-100"><i class="fas fa-envelope text-gray-500 mr-1"></i>Email</span>
-                    </div>
-                </div>
+
+        <div class="kf-grid">
+            <div class="kf-tile kf-t-amber">
+                <i class="fas fa-layer-group kf-tile-icon"></i>
+                <div class="kf-tile-title">Centralized Omnichannel CRM</div>
+                <div class="kf-tile-desc">WhatsApp, Instagram, Messenger, Email — every conversation in one unified inbox. Never lose context or miss a follow-up again.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-orange-100 reveal accent-orange relative overflow-hidden" style="background:linear-gradient(135deg,#fff7ed,#fff);transition-delay:0.1s">
-                <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-cart-shopping text-orange-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">Cart Recovery</h3>
-                <p class="text-sm text-gray-500">Behavior-triggered WhatsApp and email sequences bring abandoned carts back — automatically.</p>
+            <div class="kf-tile kf-t-orange">
+                <i class="fas fa-cart-shopping kf-tile-icon"></i>
+                <div class="kf-tile-title">Cart Recovery</div>
+                <div class="kf-tile-desc">Automated multi-channel sequences that bring abandoned carts back to checkout. Recover revenue on autopilot via WhatsApp and email.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-yellow-100 reveal accent-yellow relative overflow-hidden" style="background:linear-gradient(135deg,#fefce8,#fff);transition-delay:0.15s">
-                <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-brain text-yellow-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">Customer Memory</h3>
-                <p class="text-sm text-gray-500">AI remembers every interaction — purchase history, preferences, behavioral patterns. Full context before hello.</p>
+            <div class="kf-tile kf-t-red">
+                <i class="fas fa-brain kf-tile-icon"></i>
+                <div class="kf-tile-title">Customer Memory</div>
+                <div class="kf-tile-desc">AI-powered memory that remembers every interaction, purchase, and preference. Your team has full context before saying hello.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-green-100 reveal accent-green relative overflow-hidden" style="background:linear-gradient(135deg,#f0fdf4,#fff);transition-delay:0.2s">
-                <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-route text-green-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">Journey Automation</h3>
-                <p class="text-sm text-gray-500">Welcome sequences to win-back campaigns — every lifecycle stage runs on autopilot with AI-powered messaging.</p>
+            <div class="kf-tile kf-t-green">
+                <i class="fas fa-route kf-tile-icon"></i>
+                <div class="kf-tile-title">Journey Automation</div>
+                <div class="kf-tile-desc">Pre-built retention flows from welcome series to win-back campaigns. Every lifecycle stage runs on autopilot with AI-powered timing.</div>
             </div>
-            <!-- Large card -->
-            <div class="bento-span-2 group card-hover tilt-card rounded-2xl p-8 border border-purple-100 reveal accent-purple relative overflow-hidden" style="background:linear-gradient(135deg,#faf5ff,#fff);transition-delay:0.25s">
-                <div class="absolute bottom-0 right-0 w-32 h-32 bg-purple-100/20 rounded-full translate-y-1/2 translate-x-1/4"></div>
-                <div class="flex items-start gap-6 relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"><i class="fas fa-gift text-purple-600 text-xl"></i></div>
-                    <div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg mb-2">Loyalty, Referral & Rewards</h3>
-                        <p class="text-gray-500">Points programs, referral tracking, tiered rewards, and loyalty challenges that turn satisfied buyers into active brand advocates.</p>
-                    </div>
-                </div>
+            <div class="kf-tile kf-t-purple">
+                <i class="fas fa-gift kf-tile-icon"></i>
+                <div class="kf-tile-title">Loyalty & Rewards</div>
+                <div class="kf-tile-desc">Points programs, referral tracking, tiered rewards, and challenges that transform satisfied buyers into passionate brand advocates.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-blue-100 reveal accent-blue relative overflow-hidden" style="background:linear-gradient(135deg,#eff6ff,#fff);transition-delay:0.3s">
-                <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-id-card text-blue-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">360° Profiles</h3>
-                <p class="text-sm text-gray-500">Unified rich profiles that make personalization effortless and conversations feel human.</p>
+            <div class="kf-tile kf-t-blue">
+                <i class="fas fa-id-card kf-tile-icon"></i>
+                <div class="kf-tile-title">360° Customer Profiles</div>
+                <div class="kf-tile-desc">Every purchase, conversation, and preference unified in one rich profile. Personalization becomes effortless when you truly know your customer.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-teal-100 reveal accent-teal relative overflow-hidden" style="background:linear-gradient(135deg,#f0fdfa,#fff);transition-delay:0.35s">
-                <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-chart-pie text-teal-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">Retention Analytics</h3>
-                <p class="text-sm text-gray-500">Repeat purchase rates, LTV, campaign ROI, cohort retention — metrics that predict growth.</p>
+            <div class="kf-tile kf-t-teal">
+                <i class="fas fa-chart-pie kf-tile-icon"></i>
+                <div class="kf-tile-title">Retention Analytics</div>
+                <div class="kf-tile-desc">Track repeat purchase rates, LTV, campaign ROI, and cohort retention. The metrics that actually predict sustainable revenue growth.</div>
             </div>
-            <div class="group card-hover tilt-card rounded-2xl p-6 border border-rose-100 reveal accent-rose relative overflow-hidden" style="background:linear-gradient(135deg,#fff1f2,#fff);transition-delay:0.4s">
-                <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-star text-rose-600"></i></div>
-                <h3 class="font-poppins font-bold text-gray-900 mb-2">Review Engine</h3>
-                <p class="text-sm text-gray-500">Automated review collection, testimonials, and advocacy programs that build social proof on autopilot.</p>
+            <div class="kf-tile kf-t-rose">
+                <i class="fas fa-star kf-tile-icon"></i>
+                <div class="kf-tile-title">Review Engine</div>
+                <div class="kf-tile-desc">Automated review collection and testimonial requests triggered at the perfect moment. Build social proof while you sleep.</div>
             </div>
         </div>
     </div>
 </section>
+<script>
+(function(){
+    var tiles = document.querySelectorAll('.kf-tile');
+    var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if(e.isIntersecting){
+                // Staggered reveal
+                var idx = Array.prototype.indexOf.call(tiles, e.target);
+                setTimeout(function(){ e.target.classList.add('visible'); }, idx * 80);
+                obs.unobserve(e.target);
+            }
+        });
+    }, {threshold:0.1});
+    tiles.forEach(function(el){ obs.observe(el); });
+})();
+</script>
 
 <!-- Feature Deep-Dive (Tabs) — Scroll-Driven -->
-<div id="scrollTabsOuter" style="position:relative;">
-<section id="scrollTabsSection" class="bg-white relative overflow-hidden" style="position:sticky;top:0;min-height:100vh;display:flex;align-items:flex-start;z-index:10;">
+<div id="scrollTabsOuter" style="position:relative;z-index:2;">
+<section id="scrollTabsSection" class="bg-white relative overflow-hidden" style="position:sticky;top:0;min-height:100vh;display:flex;align-items:flex-start;z-index:2;">
     <!-- Decorative dots -->
     <div class="absolute top-20 left-10 w-32 h-32 opacity-10" style="background-image:radial-gradient(#f59e0b 2px,transparent 2px);background-size:12px 12px;"></div>
     <div class="absolute bottom-20 right-10 w-32 h-32 opacity-10" style="background-image:radial-gradient(#ea580c 2px,transparent 2px);background-size:12px 12px;"></div>
@@ -632,78 +959,6 @@
 </div>
 
 <!-- How It Works -->
-<style>
-    /* How It Works - Compact Zigzag Vertical Timeline */
-    .hiw-timeline { position: relative; max-width: 900px; margin: 0 auto; }
-    .hiw-timeline-line {
-        position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
-        background: rgba(245,158,11,0.15); transform: translateX(-50%); border-radius: 4px;
-    }
-    .hiw-timeline-fill {
-        position: absolute; left: 0; top: 0; width: 100%; height: 0%;
-        background: linear-gradient(180deg, #f59e0b, #ea580c, #fbbf24);
-        border-radius: 4px; transition: height 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-    .hiw-timeline-dot {
-        position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%;
-        background: white; border: 3px solid rgba(245,158,11,0.3);
-        transform: translateX(-50%); z-index: 3;
-        transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
-    }
-    .hiw-timeline-dot.active {
-        border-color: #f59e0b; background: #f59e0b;
-        box-shadow: 0 0 12px rgba(245,158,11,0.5);
-    }
-    .hiw-step { position: relative; z-index: 2; }
-    .hiw-step-left .hiw-step-card { margin-right: calc(50% + 28px); }
-    .hiw-step-right .hiw-step-card { margin-left: calc(50% + 28px); }
-
-    .hiw-step-card {
-        background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
-        border: 1px solid rgba(245,158,11,0.12); border-radius: 1rem;
-        padding: 1rem 1.25rem;
-        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s, border-color 0.4s;
-    }
-    .hiw-step-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(245,158,11,0.12);
-        border-color: rgba(245,158,11,0.25);
-    }
-
-    .hiw-num {
-        width: 56px; height: 56px; border-radius: 1rem; position: relative;
-        display: flex; align-items: center; justify-content: center;
-        font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.35rem; color: white;
-        flex-shrink: 0; z-index: 2;
-    }
-    .hiw-num::after {
-        content: ''; position: absolute; inset: -2px; border-radius: 1.1rem;
-        opacity: 0.35; z-index: -1; animation: hiwGlow 3s ease-in-out infinite;
-    }
-    @keyframes hiwGlow {
-        0%, 100% { filter: blur(6px); opacity: 0.25; transform: scale(1); }
-        50% { filter: blur(10px); opacity: 0.5; transform: scale(1.06); }
-    }
-    .hiw-num-1 { background: linear-gradient(135deg, #f59e0b, #ea580c); }
-    .hiw-num-1::after { background: linear-gradient(135deg, #f59e0b, #ea580c); }
-    .hiw-num-2 { background: linear-gradient(135deg, #ea580c, #dc2626); }
-    .hiw-num-2::after { background: linear-gradient(135deg, #ea580c, #dc2626); animation-delay: 1s; }
-    .hiw-num-3 { background: linear-gradient(135deg, #fbbf24, #10b981); }
-    .hiw-num-3::after { background: linear-gradient(135deg, #fbbf24, #10b981); animation-delay: 2s; }
-
-    .hiw-reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .hiw-reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .hiw-reveal-left.visible, .hiw-reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-    @media (max-width: 767px) {
-        .hiw-timeline-line { left: 24px; }
-        .hiw-timeline-dot { left: 24px; }
-        .hiw-step-left .hiw-step-card,
-        .hiw-step-right .hiw-step-card { margin-left: 56px; margin-right: 0; }
-        .hiw-reveal-left, .hiw-reveal-right { transform: translateX(30px); }
-    }
-</style>
-
 <section class="py-20 bg-gradient-to-b from-white via-amber-50/30 to-white relative overflow-hidden" id="howItWorks">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
         <div class="text-center mb-14 reveal">
@@ -817,39 +1072,89 @@
 })();
 </script>
 <!-- Stats Section -->
-<section class="py-24 mesh-bg relative overflow-hidden" id="statsSection">
-    <div class="cursor-glow hidden lg:block" id="statsGlow"></div>
+<section class="relative overflow-hidden py-12" id="statsSection">
+    <style>
+        @keyframes statsBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #statsSection {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: statsBg 20s ease infinite;
+        }
+        @keyframes sparklePulse {
+            0%,100% { opacity:0; transform:scale(0.5); }
+            50% { opacity:0.8; transform:scale(1.2); }
+        }
+        #statsSection .star {
+            position:absolute; pointer-events:none; z-index:2;
+            color: rgba(245,158,11,0.4);
+            animation: sparklePulse var(--dur, 3s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+        .counter-glow {
+            text-shadow: 0 0 20px rgba(245,158,11,0.5), 0 0 40px rgba(245,158,11,0.25);
+            transition: text-shadow 0.6s ease;
+        }
+    </style>
+
     <!-- Sparkles -->
-    <div class="sparkle absolute text-amber-300 text-xs" style="top:15%;left:8%;animation-delay:0s">✦</div>
-    <div class="sparkle absolute text-amber-200 text-sm" style="top:30%;right:12%;animation-delay:0.7s">✦</div>
-    <div class="sparkle absolute text-amber-400 text-xs" style="bottom:20%;left:20%;animation-delay:1.4s">✦</div>
-    <div class="sparkle absolute text-amber-200 text-xs" style="top:60%;right:25%;animation-delay:2.1s">✦</div>
-    <div class="sparkle absolute text-amber-300 text-sm" style="bottom:15%;right:8%;animation-delay:0.5s">✦</div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-14 reveal">
-            <span class="section-label text-amber-400 font-semibold text-sm tracking-wide" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.2);">PROVEN RESULTS</span>
-            <p class="text-gray-400 mt-4 text-lg">Average results across Retain-powered e-commerce brands</p>
+    <div class="star" style="top:10%;left:8%;font-size:8px;--dur:2.5s;--delay:0s">✦</div>
+    <div class="star" style="top:15%;right:12%;font-size:10px;--dur:3.5s;--delay:0.8s">✦</div>
+    <div class="star" style="top:50%;left:4%;font-size:6px;--dur:4s;--delay:1.5s">✦</div>
+    <div class="star" style="bottom:20%;right:6%;font-size:9px;--dur:3s;--delay:0.4s">✦</div>
+    <div class="star" style="bottom:15%;left:35%;font-size:7px;--dur:3.8s;--delay:2s">✦</div>
+    <div class="star" style="top:8%;left:55%;font-size:5px;--dur:2.8s;--delay:1.2s">✦</div>
+
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
+        <!-- Heading -->
+        <div class="text-center mb-8 reveal">
+            <span class="inline-block px-4 py-1.5 rounded-full text-amber-400 font-semibold text-sm tracking-wide mb-4" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15);">PROVEN RESULTS</span>
+            <h2 class="font-poppins text-3xl md:text-5xl font-extrabold text-white" style="line-height:1.1;">
+                Results That <span style="background:linear-gradient(135deg,#f59e0b,#ea580c,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Compound</span>
+            </h2>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-card p-8 text-center reveal" style="transition-delay:0.05s">
-                <div class="font-poppins text-5xl md:text-6xl font-extrabold text-amber-400 mb-3 counter" data-target="3.5" data-suffix="×">0×</div>
-                <p class="text-gray-400 text-sm font-medium">More Repeat Purchases<br>Within 90 Days</p>
+
+        <!-- 4 stats in a row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="reveal">
+                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="3.5" data-suffix="×" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0×</div>
+                <p class="text-gray-300 text-sm font-medium mt-2">Repeat Purchases</p>
+                <p class="text-gray-500 text-xs mt-1">Within 90 days</p>
             </div>
-            <div class="glass-card p-8 text-center reveal" style="transition-delay:0.15s">
-                <div class="font-poppins text-5xl md:text-6xl font-extrabold text-amber-400 mb-3 counter" data-target="38" data-suffix="%">0%</div>
-                <p class="text-gray-400 text-sm font-medium">Abandoned Carts Recovered<br>via WhatsApp & Email</p>
+            <div class="reveal">
+                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="38" data-suffix="%" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0%</div>
+                <p class="text-gray-300 text-sm font-medium mt-2">Carts Recovered</p>
+                <p class="text-gray-500 text-xs mt-1">Avg: 8–12%</p>
             </div>
-            <div class="glass-card p-8 text-center reveal" style="transition-delay:0.25s">
-                <div class="font-poppins text-5xl md:text-6xl font-extrabold text-amber-400 mb-3 counter" data-target="67" data-suffix="%">0%</div>
-                <p class="text-gray-400 text-sm font-medium">Higher Customer LTV<br>After 6 Months</p>
+            <div class="reveal">
+                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="67" data-suffix="%" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0%</div>
+                <p class="text-gray-300 text-sm font-medium mt-2">Higher LTV</p>
+                <p class="text-gray-500 text-xs mt-1">After 6 months</p>
             </div>
-            <div class="glass-card p-8 text-center reveal" style="transition-delay:0.35s">
-                <div class="font-poppins text-5xl md:text-6xl font-extrabold text-amber-400 mb-3 counter" data-target="4.8" data-suffix="/5">0/5</div>
-                <p class="text-gray-400 text-sm font-medium">Average Brand<br>Satisfaction Rating</p>
+            <div class="reveal">
+                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="4.8" data-suffix="/5" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0/5</div>
+                <p class="text-gray-300 text-sm font-medium mt-2">Satisfaction Rating</p>
+                <p class="text-gray-500 text-xs mt-1">200+ brand surveys</p>
             </div>
         </div>
     </div>
 </section>
+<script>
+(function(){
+    var statsCounterObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if(!e.isIntersecting) return;
+            var el = e.target;
+            setTimeout(function(){ el.classList.add('counter-glow'); }, 2200);
+            statsCounterObs.unobserve(el);
+        });
+    }, {threshold:0.5});
+    document.querySelectorAll('#statsSection .counter').forEach(function(el){ statsCounterObs.observe(el); });
+})();
+</script>
 
 <!-- Why Retain for Retail -->
 <section class="py-28 bg-white relative overflow-hidden">
@@ -1002,27 +1307,111 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-28 cta-animated-bg relative overflow-hidden">
-    <!-- Floating shapes -->
-    <div class="absolute top-10 left-[10%] w-20 h-20 border-2 border-white/10 rounded-full float-shape-1"></div>
-    <div class="absolute bottom-16 right-[15%] w-16 h-16 border-2 border-white/10 rotate-45 float-shape-2"></div>
-    <div class="absolute top-1/2 left-[5%] w-10 h-10 border-2 border-white/10 rounded-lg float-shape-2" style="animation-delay:2s"></div>
-    <div class="absolute top-[20%] right-[8%] w-24 h-24 border border-white/5 rounded-full float-shape-1" style="animation-delay:3s"></div>
-    <div class="absolute bottom-[30%] left-[40%] w-8 h-8 bg-white/5 rounded-full float-shape-1" style="animation-delay:1.5s"></div>
-    <!-- Hexagon -->
-    <div class="absolute top-[60%] right-[30%] float-shape-2" style="animation-delay:4s">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><polygon points="20,2 37,11 37,29 20,38 3,29 3,11" stroke="rgba(255,255,255,0.08)" stroke-width="2"/></svg>
-    </div>
-
-    <div class="orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.1),transparent);top:-80px;right:-80px;"></div>
-    <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <div class="reveal">
-            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">Ready to Make Every Customer a <span style="text-shadow: 0 0 30px rgba(255,255,255,0.3);">Revenue Asset?</span></h2>
-            <p class="text-amber-100 text-lg md:text-xl mb-12 max-w-xl mx-auto leading-relaxed">Stop renting customers through ads. Start building relationships that compound. Let's design your retention ecosystem together.</p>
-            <div class="flex flex-wrap justify-center gap-5">
-                <a href="/contact/" id="magneticCta" class="magnetic-btn px-10 py-4 rounded-full bg-white text-amber-700 font-bold shadow-2xl hover:shadow-xl transition-all text-lg">See It In Action <i class="fas fa-arrow-right ml-2"></i></a>
-                <a href="/solutions/" class="magnetic-btn px-10 py-4 rounded-full border-2 border-white text-white font-semibold hover:bg-white/10 transition-all text-lg">Talk to Our Team</a>
+<!-- Contact Form Section -->
+<section class="py-24 bg-gradient-to-br from-white via-amber-50/30 to-white relative overflow-hidden" id="contactForm">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Side -->
+            <div class="reveal-left">
+                <span class="section-label text-amber-600 font-semibold text-sm tracking-wide mb-4 inline-block">GET STARTED</span>
+                <h2 class="font-poppins text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">Let's Build Your <span class="gradient-text">Retention Ecosystem</span></h2>
+                <p class="text-gray-500 text-lg mb-8">Book a free consultation with our team</p>
+                <div class="space-y-5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-search text-amber-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Personalized retention audit</h4>
+                            <p class="text-sm text-gray-500">We analyze your current customer lifecycle and identify quick wins</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-map text-orange-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Custom ecosystem roadmap</h4>
+                            <p class="text-sm text-gray-500">A tailored plan for your brand's retention infrastructure</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-chart-line text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">ROI projection for your business</h4>
+                            <p class="text-sm text-gray-500">See the revenue impact before you commit</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-handshake text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">No commitment required</h4>
+                            <p class="text-sm text-gray-500">Zero pressure — just an honest conversation about your growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Side — Form -->
+            <div class="reveal-right">
+                <div class="bg-gray-900 rounded-2xl p-8 md:p-10 shadow-2xl border border-gray-800">
+                    <h3 class="font-poppins text-xl font-bold text-white mb-6">Book Your Free Consultation</h3>
+                    <form action="/contact/" method="GET" class="space-y-5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">First Name</label>
+                                <input type="text" placeholder="John" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Last Name</label>
+                                <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Work Email</label>
+                            <input type="email" placeholder="john@company.com" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Company Name</label>
+                            <input type="text" placeholder="Your Company" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Country *</label>
+                            <div class="relative">
+                                <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all pr-10">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-500"></i>
+                                </div>
+                                <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
+                                    <div id="country-options" class="py-2 text-gray-900">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Phone Number</label>
+                            <div class="flex space-x-2">
+                                <div class="w-1/4">
+                                    <div class="bg-gray-800 text-amber-400 py-3 px-4 rounded-lg border border-gray-700 text-center font-medium" id="phone-code">+</div>
+                                </div>
+                                <div class="w-3/4">
+                                    <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Message</label>
+                            <textarea rows="4" placeholder="Tell us about your retention goals..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-lg text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">
+                            Book Your Free Consultation <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4 text-center">We'll respond within 24 hours. No spam, ever.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1376,5 +1765,6 @@ window.addEventListener('scroll', () => {
     }, 2500);
 })();
 </script>
+<script src="countrycode.js"></script>
 </body>
 </html>
