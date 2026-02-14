@@ -633,52 +633,50 @@
 
 <!-- How It Works -->
 <style>
-    /* How It Works - Compact Zigzag Vertical Timeline */
-    .hiw-timeline { position: relative; max-width: 900px; margin: 0 auto; }
-    .hiw-timeline-line {
-        position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
-        background: rgba(245,158,11,0.15); transform: translateX(-50%); border-radius: 4px;
+    /* How It Works - Compact Horizontal */
+    .hiw-card {
+        position: relative;
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(245,158,11,0.12);
+        border-radius: 1.25rem;
+        padding: 1.5rem;
+        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease, border-color 0.4s ease;
+        overflow: hidden;
     }
-    .hiw-timeline-fill {
-        position: absolute; left: 0; top: 0; width: 100%; height: 0%;
-        background: linear-gradient(180deg, #f59e0b, #ea580c, #fbbf24);
-        border-radius: 4px; transition: height 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    .hiw-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 1.25rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
     }
-    .hiw-timeline-dot {
-        position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%;
-        background: white; border: 3px solid rgba(245,158,11,0.3);
-        transform: translateX(-50%); z-index: 3;
-        transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
-    }
-    .hiw-timeline-dot.active {
-        border-color: #f59e0b; background: #f59e0b;
-        box-shadow: 0 0 12px rgba(245,158,11,0.5);
-    }
-    .hiw-step { position: relative; z-index: 2; }
-    .hiw-step-left .hiw-step-card { margin-right: calc(50% + 28px); }
-    .hiw-step-right .hiw-step-card { margin-left: calc(50% + 28px); }
-
-    .hiw-step-card {
-        background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
-        border: 1px solid rgba(245,158,11,0.12); border-radius: 1rem;
-        padding: 1rem 1.25rem;
-        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s, border-color 0.4s;
-    }
-    .hiw-step-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(245,158,11,0.12);
+    .hiw-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 40px rgba(245,158,11,0.12), 0 0 30px rgba(245,158,11,0.05);
         border-color: rgba(245,158,11,0.25);
     }
+    .hiw-card:hover::before { opacity: 1; }
+    .hiw-card-1::before { background: linear-gradient(135deg, rgba(245,158,11,0.03), rgba(234,88,12,0.03)); }
+    .hiw-card-2::before { background: linear-gradient(135deg, rgba(234,88,12,0.03), rgba(251,191,36,0.03)); }
+    .hiw-card-3::before { background: linear-gradient(135deg, rgba(251,191,36,0.03), rgba(16,185,129,0.03)); }
 
     .hiw-num {
-        width: 56px; height: 56px; border-radius: 1rem; position: relative;
+        width: 48px; height: 48px; border-radius: 0.875rem; position: relative;
         display: flex; align-items: center; justify-content: center;
-        font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.35rem; color: white;
+        font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.25rem; color: white;
         flex-shrink: 0; z-index: 2;
     }
     .hiw-num::after {
-        content: ''; position: absolute; inset: -2px; border-radius: 1.1rem;
-        opacity: 0.35; z-index: -1; animation: hiwGlow 3s ease-in-out infinite;
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 1rem;
+        opacity: 0.35;
+        z-index: -1;
+        animation: hiwGlow 3s ease-in-out infinite;
     }
     @keyframes hiwGlow {
         0%, 100% { filter: blur(6px); opacity: 0.25; transform: scale(1); }
@@ -691,89 +689,137 @@
     .hiw-num-3 { background: linear-gradient(135deg, #fbbf24, #10b981); }
     .hiw-num-3::after { background: linear-gradient(135deg, #fbbf24, #10b981); animation-delay: 2s; }
 
-    .hiw-reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .hiw-reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .hiw-reveal-left.visible, .hiw-reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .hiw-connector {
+        position: relative;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(245,158,11,0.15), rgba(245,158,11,0.15));
+        border-radius: 4px;
+    }
+    .hiw-connector-fill {
+        position: absolute;
+        left: 0; top: 0;
+        height: 100%; width: 0%;
+        background: linear-gradient(90deg, #f59e0b, #ea580c, #fbbf24);
+        border-radius: 4px;
+        transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .hiw-connector-dot {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: white;
+        border: 2px solid rgba(245,158,11,0.3);
+        transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .hiw-connector-dot.active {
+        border-color: #f59e0b;
+        box-shadow: 0 0 10px rgba(245,158,11,0.4);
+    }
+    .hiw-connector-dot.cdt-l { left: -5px; }
+    .hiw-connector-dot.cdt-r { right: -5px; }
+
+    .hiw-reveal-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .hiw-reveal-up.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 767px) {
-        .hiw-timeline-line { left: 24px; }
-        .hiw-timeline-dot { left: 24px; }
-        .hiw-step-left .hiw-step-card,
-        .hiw-step-right .hiw-step-card { margin-left: 56px; margin-right: 0; }
-        .hiw-reveal-left, .hiw-reveal-right { transform: translateX(30px); }
+        .hiw-grid { flex-direction: column !important; gap: 1rem !important; }
+        .hiw-conn-desk { display: none !important; }
+        .hiw-arrow-mob { display: flex !important; }
+    }
+    @media (min-width: 768px) {
+        .hiw-arrow-mob { display: none !important; }
     }
 </style>
 
-<section class="py-20 bg-gradient-to-b from-white via-amber-50/30 to-white relative overflow-hidden" id="howItWorks">
+<section class="py-16 bg-gradient-to-b from-white via-amber-50/30 to-white relative overflow-hidden" id="howItWorks">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-14 reveal">
+        <div class="text-center mb-10 reveal">
             <span class="section-label text-amber-600 font-semibold text-sm tracking-wide">HOW IT WORKS</span>
-            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4">Your Retention Ecosystem, <span class="gradient-text">Live in Days</span></h2>
-            <p class="text-gray-500 mt-4 max-w-xl mx-auto text-base">Three steps to transform one-time buyers into lifelong customers</p>
+            <h2 class="font-poppins text-3xl md:text-4xl font-bold text-gray-900 mt-3">Your Retention Ecosystem, <span class="gradient-text">Live in Days</span></h2>
+            <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm">Three steps to transform one-time buyers into lifelong customers</p>
         </div>
 
-        <div class="hiw-timeline" id="hiwTimeline">
-            <!-- Central line -->
-            <div class="hiw-timeline-line">
-                <div class="hiw-timeline-fill" id="hiwTimelineFill"></div>
-            </div>
-
-            <!-- Dot 1 -->
-            <div class="hiw-timeline-dot" id="hiwDot1" style="top: 28px;"></div>
-            <!-- Step 1 — Left -->
-            <div class="hiw-step hiw-step-left mb-10">
-                <div class="hiw-step-card hiw-reveal-left" style="transition-delay:0.1s">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="hiw-num hiw-num-1">1</div>
-                        <div>
-                            <h3 class="font-poppins font-bold text-gray-900 text-xl">Connect Your Channels</h3>
-                            <div class="flex flex-wrap gap-1 mt-1">
-                                <span class="px-2 py-0.5 rounded-full bg-amber-50 text-xs font-medium text-amber-700 border border-amber-100">WhatsApp</span>
-                                <span class="px-2 py-0.5 rounded-full bg-pink-50 text-xs font-medium text-pink-700 border border-pink-100">Instagram</span>
-                                <span class="px-2 py-0.5 rounded-full bg-blue-50 text-xs font-medium text-blue-700 border border-blue-100">Messenger</span>
+        <div class="hiw-grid flex items-stretch gap-0" id="hiwGrid">
+            <!-- Step 1 -->
+            <div class="flex-1 hiw-reveal-up" style="transition-delay:0.1s">
+                <div class="hiw-card hiw-card-1 h-full">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="hiw-num hiw-num-1">1</div>
+                            <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600">
+                                <i class="fas fa-plug-circle-bolt text-sm"></i>
                             </div>
                         </div>
+                        <h3 class="font-poppins font-bold text-gray-900 text-lg mb-2">Connect Your Channels</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Link WhatsApp, Instagram, Messenger, email, and your store. No coding — just plug in and go.</p>
                     </div>
-                    <p class="text-gray-500 text-base leading-relaxed">Link WhatsApp, Instagram, Messenger, email, and your store. No coding — just plug in and go.</p>
                 </div>
             </div>
 
-            <!-- Dot 2 -->
-            <div class="hiw-timeline-dot" id="hiwDot2" style="top: calc(33.3% + 28px);"></div>
-            <!-- Step 2 — Right -->
-            <div class="hiw-step hiw-step-right mb-10">
-                <div class="hiw-step-card hiw-reveal-right" style="transition-delay:0.25s">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="hiw-num hiw-num-2">2</div>
-                        <div>
-                            <h3 class="font-poppins font-bold text-gray-900 text-xl">Activate Lifecycle Journeys</h3>
-                            <div class="flex flex-wrap gap-1 mt-1">
-                                <span class="px-2 py-0.5 rounded-full bg-orange-50 text-xs font-medium text-orange-700 border border-orange-100">Cart Recovery</span>
-                                <span class="px-2 py-0.5 rounded-full bg-red-50 text-xs font-medium text-red-700 border border-red-100">Win-back</span>
-                                <span class="px-2 py-0.5 rounded-full bg-purple-50 text-xs font-medium text-purple-700 border border-purple-100">Loyalty</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-500 text-base leading-relaxed">Choose from pre-built retention journeys — cart recovery, nurture, re-engagement, loyalty — or build your own.</p>
+            <!-- Connector 1-2 -->
+            <div class="hiw-conn-desk hidden md:flex items-center" style="width:40px;flex-shrink:0;">
+                <div class="hiw-connector w-full" id="hiwConn1">
+                    <div class="hiw-connector-fill" id="hiwConnFill1"></div>
+                    <div class="hiw-connector-dot cdt-l" id="hiwDot1"></div>
+                    <div class="hiw-connector-dot cdt-r" id="hiwDot2"></div>
+                </div>
+            </div>
+            <div class="hiw-arrow-mob justify-center py-1" style="display:none;">
+                <div class="flex flex-col items-center text-amber-400">
+                    <div class="w-0.5 h-5 bg-gradient-to-b from-amber-300 to-amber-500"></div>
+                    <i class="fas fa-chevron-down text-xs"></i>
                 </div>
             </div>
 
-            <!-- Dot 3 -->
-            <div class="hiw-timeline-dot" id="hiwDot3" style="top: calc(66.6% + 28px);"></div>
-            <!-- Step 3 — Left -->
-            <div class="hiw-step hiw-step-left">
-                <div class="hiw-step-card hiw-reveal-left" style="transition-delay:0.4s">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="hiw-num hiw-num-3">3</div>
-                        <div>
-                            <h3 class="font-poppins font-bold text-gray-900 text-xl">Watch Revenue Compound</h3>
-                            <div class="flex flex-wrap gap-1 mt-1">
-                                <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-xs font-medium text-emerald-700 border border-emerald-100">24/7 Auto</span>
-                                <span class="px-2 py-0.5 rounded-full bg-amber-50 text-xs font-medium text-amber-700 border border-amber-100">AI-Powered</span>
+            <!-- Step 2 -->
+            <div class="flex-1 hiw-reveal-up" style="transition-delay:0.25s">
+                <div class="hiw-card hiw-card-2 h-full">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="hiw-num hiw-num-2">2</div>
+                            <div class="w-9 h-9 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
+                                <i class="fas fa-wand-magic-sparkles text-sm"></i>
                             </div>
                         </div>
+                        <h3 class="font-poppins font-bold text-gray-900 text-lg mb-2">Activate Lifecycle Journeys</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Choose from pre-built retention journeys — cart recovery, nurture, re-engagement, loyalty — or build your own.</p>
                     </div>
-                    <p class="text-gray-500 text-base leading-relaxed">Retain works 24/7 — nurturing relationships, triggering outreach, and driving repeat purchases while you focus on growth.</p>
+                </div>
+            </div>
+
+            <!-- Connector 2-3 -->
+            <div class="hiw-conn-desk hidden md:flex items-center" style="width:40px;flex-shrink:0;">
+                <div class="hiw-connector w-full" id="hiwConn2">
+                    <div class="hiw-connector-fill" id="hiwConnFill2"></div>
+                    <div class="hiw-connector-dot cdt-l" id="hiwDot3"></div>
+                    <div class="hiw-connector-dot cdt-r" id="hiwDot4"></div>
+                </div>
+            </div>
+            <div class="hiw-arrow-mob justify-center py-1" style="display:none;">
+                <div class="flex flex-col items-center text-amber-400">
+                    <div class="w-0.5 h-5 bg-gradient-to-b from-amber-400 to-emerald-500"></div>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex-1 hiw-reveal-up" style="transition-delay:0.4s">
+                <div class="hiw-card hiw-card-3 h-full">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="hiw-num hiw-num-3">3</div>
+                            <div class="w-9 h-9 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+                                <i class="fas fa-chart-line text-sm"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-poppins font-bold text-gray-900 text-lg mb-2">Watch Revenue Compound</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Retain works 24/7 — nurturing relationships, triggering outreach, and driving repeat purchases while you focus on growth.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -781,11 +827,11 @@
 </section>
 
 <script>
-// How It Works - Zigzag timeline reveal + line animation
+// How It Works - Compact horizontal reveal + connector animation
 (function() {
-    var timeline = document.getElementById('hiwTimeline');
-    if (!timeline) return;
-    var cards = timeline.querySelectorAll('.hiw-reveal-left, .hiw-reveal-right');
+    var grid = document.getElementById('hiwGrid');
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.hiw-reveal-up');
     var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
             if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
@@ -794,26 +840,24 @@
     cards.forEach(function(el) { obs.observe(el); });
 
     var section = document.getElementById('howItWorks');
-    var lineObs = new IntersectionObserver(function(entries) {
+    var connObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
             if (e.isIntersecting) {
-                var fill = document.getElementById('hiwTimelineFill');
-                if (fill) {
-                    setTimeout(function() { fill.style.height = '40%'; }, 200);
-                    setTimeout(function() { fill.style.height = '70%'; }, 700);
-                    setTimeout(function() { fill.style.height = '100%'; }, 1200);
-                }
-                ['hiwDot1','hiwDot2','hiwDot3'].forEach(function(id, i) {
+                setTimeout(function() {
+                    var f1 = document.getElementById('hiwConnFill1');
+                    if (f1) f1.style.width = '100%';
+                    ['hiwDot1','hiwDot2'].forEach(function(id) { var d = document.getElementById(id); if(d) d.classList.add('active'); });
                     setTimeout(function() {
-                        var d = document.getElementById(id);
-                        if (d) d.classList.add('active');
-                    }, 300 + i * 500);
-                });
-                lineObs.unobserve(e.target);
+                        var f2 = document.getElementById('hiwConnFill2');
+                        if (f2) f2.style.width = '100%';
+                        ['hiwDot3','hiwDot4'].forEach(function(id) { var d = document.getElementById(id); if(d) d.classList.add('active'); });
+                    }, 400);
+                }, 600);
+                connObs.unobserve(e.target);
             }
         });
     }, { threshold: 0.3 });
-    lineObs.observe(section);
+    connObs.observe(section);
 })();
 </script>
 <!-- Stats Section -->
