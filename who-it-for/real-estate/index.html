@@ -1,280 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate AI Solutions - Retain</title>
-    <link rel="icon" type="image/png" href="/darkFavicon.png">
+    <title>Retain for Real Estate — Customer Lifecycle Growth Partner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+
+        .nav-link { position: relative; padding-bottom: 2px; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .green-gradient { background: linear-gradient(135deg, #10b981, #059669); }
+        .green-gradient-text {
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #065f46, #047857);
+        }
+
+        .step-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #10b981, #d1fae5);
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.2s ease;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+        @keyframes countUp { from { opacity: 0; } to { opacity: 1; } }
+
+        .use-case-card { transition: all 0.3s ease; border: 2px solid transparent; }
+        .use-case-card:hover { border-color: #10b981; }
+
+        .cta-section {
+            background: linear-gradient(135deg, #065f46 0%, #047857 40%, #059669 100%);
+        }
+
+        .testimonial-card {
+            border-left: 4px solid #10b981;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* === STAGGER DELAYS === */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+        .stagger-7 { transition-delay: 0.7s; }
+        .stagger-8 { transition-delay: 0.8s; }
+
+        /* === GRADIENT TEXT for key headings === */
+        .gradient-headline {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* === FLOATING ORBS === */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.12;
+            filter: blur(1px);
+        }
+        @keyframes floatA {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(15px, -20px) scale(1.05); }
+            66% { transform: translate(-10px, 10px) scale(0.95); }
+        }
+        @keyframes floatB {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -15px); }
+        }
+        .float-a { animation: floatA 8s ease-in-out infinite; }
+        .float-b { animation: floatB 10s ease-in-out infinite; }
+
+        /* === ICON BOUNCE === */
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+        .icon-bounce.visible {
+            animation: iconBounce 0.6s ease 0.3s;
+        }
+
+        /* === SHIMMER on CTA buttons === */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .cta-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        /* === GLASS CARD === */
+        .glass-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* === DOT GRID PATTERN === */
+        .dot-grid-bg {
+            background-image: radial-gradient(circle, rgba(16,185,129,0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* === BORDER GRADIENT on feature cards === */
+        .feature-card {
+            position: relative;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(16,185,129,0), rgba(16,185,129,0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: background 0.4s ease;
+        }
+        .feature-card:hover::before {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        /* === USE CASE card hover enhancement === */
+        .use-case-card {
+            transition: all 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .use-case-card:hover {
+            border-color: #10b981;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(16,185,129,0.12);
+        }
+
+        /* === TESTIMONIAL card hover === */
+        .testimonial-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        /* === STAT CARD enhanced === */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -30%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* === SMOOTH TRANSITIONS on all interactive === */
+        a, button {
+            transition: all 0.3s ease;
+        }
+
+        /* === CTA section floating shapes === */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        rubik: ['Rubik', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#1f2937',
-                        secondary: '#6b7280',
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <style>
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-
-        .sheen-button {
-            background: linear-gradient(115deg, #4f00bc 0%, #6f00e6 30%, #9b4dff 50%, #6f00e6 70%, #4f00bc 100%);
-            background-size: 300% auto;
-            animation: shine 7s linear infinite;
-            color: white;
-            transition: background-position 0.3s ease;
-        }
-
-        @keyframes shine {
-            0% {
-                background-position: -300% center;
-            }
-
-            100% {
-                background-position: 300% center;
-            }
-        }
-    </style>
 </head>
+<body class="bg-white text-gray-800">
 
-<body class="bg-gray-50 text-gray-900 font-sans">
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <div class="flex items-baseline">
-                        <a href="/home/" class="flex items-baseline">
-                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
-                            <span class="text-2xl font-bold text-gray-900">Retain</span>
-                        </a>
-                        <a href="https://solven.app/"
-                            class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank"
-                            rel="noopener noreferrer">by Solven</a>
-                    </div>
+                    <a href="/home/" class="flex items-center">
+                        <img src="/darkLogo.png" alt="Retain" class="h-8 w-auto">
+                        <span class="text-2xl font-bold text-gray-900">Retain</span>
+                    </a>
+                    <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="/home/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
-                    <a href="/about/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                    <a href="/how-it-works/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It
-                        Works</a>
-                    <a href="/solutions/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
-                    <div class="relative group">
-                        <button
-                            class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/home/" class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium">Home</a>
+                    <a href="/about/" class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium">About</a>
+                    <a href="/how-it-works/" class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium">How It Works</a>
+                    <a href="/solutions/" class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium">Solutions</a>
+
+                    <!-- Who It's For Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium flex items-center">
                             Who It's For
-                            <i
-                                class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                            <i class="fas fa-chevron-down text-xs ml-1"></i>
                         </button>
-                        <div
-                            class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
-                            <a href="/who-it-for/real-estate/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                                <i class="fas fa-home mr-3 text-blue-500 bg-blue-50 p-1.5 rounded-lg"></i> Real Estate
+                        <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                            <a href="/who-it-for/real-estate/" class="block px-4 py-2.5 text-sm font-medium text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition-colors">
+                                <i class="fas fa-building mr-2"></i>Real Estate
                             </a>
-                            <a href="/who-it-for/ecommerce/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-amber-600 transition-colors">
-                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i>
-                                E-commerce & Retail
+                            <a href="/who-it-for/ecommerce/" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i>E-commerce & Retail
                             </a>
                         </div>
                     </div>
-                    <a href="/why-retain/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/"
-                        class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
-                        Book a Call
-                    </a>
+
+                    <a href="/why-retain/" class="nav-link text-gray-700 hover:text-gray-900 text-sm font-medium">Why Retain</a>
+                    <a href="/book-a-call/" class="green-gradient text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-emerald-200">Book a Call</a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-gray-900 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
 
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/home/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/about/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="/how-it-works/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It
-                    Works</a>
-                <a href="/solutions/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
-                <div class="pl-3 space-y-1">
-                    <p class="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Who It's For</p>
-                    <a href="/who-it-for/real-estate/"
-                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-blue-500 hover:bg-blue-50 bg-blue-50">Real
-                        Estate</a>
-                    <a href="/who-it-for/ecommerce/"
-                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-amber-500 hover:bg-amber-50">E-commerce & Retail</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="/home/" class="block text-gray-700 hover:text-emerald-600 text-sm font-medium py-2">Home</a>
+                <a href="/about/" class="block text-gray-700 hover:text-emerald-600 text-sm font-medium py-2">About</a>
+                <a href="/how-it-works/" class="block text-gray-700 hover:text-emerald-600 text-sm font-medium py-2">How It Works</a>
+                <a href="/solutions/" class="block text-gray-700 hover:text-emerald-600 text-sm font-medium py-2">Solutions</a>
+                <div class="py-2">
+                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Who It's For</p>
+                    <a href="/who-it-for/real-estate/" class="block text-emerald-600 font-medium text-sm py-1.5 pl-3 border-l-2 border-emerald-500">Real Estate</a>
+                    <a href="/who-it-for/ecommerce/" class="block text-gray-700 hover:text-emerald-600 text-sm py-1.5 pl-3">E-commerce & Retail</a>
                 </div>
-                <a href="/why-retain/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why
-                    Retain</a>
-                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a
-                    Call</a>
+                <a href="/why-retain/" class="block text-gray-700 hover:text-emerald-600 text-sm font-medium py-2">Why Retain</a>
+                <a href="/book-a-call/" class="block green-gradient text-white text-center px-5 py-2.5 rounded-full text-sm font-semibold mt-3">Book a Call</a>
             </div>
         </div>
     </nav>
 
-
     <!-- Hero Section -->
-    <section class="relative py-20 lg:py-32 overflow-hidden hero-gradient">
+    <section class="hero-bg pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
+        <div class="floating-orb float-a bg-emerald-400" style="width:120px;height:120px;top:10%;right:8%;"></div>
+        <div class="floating-orb float-b bg-emerald-500" style="width:80px;height:80px;bottom:15%;left:5%;"></div>
+        <div class="floating-orb float-a bg-emerald-300" style="width:60px;height:60px;top:60%;right:25%;"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-4xl mx-auto">
-                <div
-                    class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-800 text-sm font-semibold mb-6">
-                    <i class="fas fa-home mr-2"></i> Real Estate Solutions
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-up">
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                        <i class="fas fa-building mr-1"></i> Retain for Real Estate
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                        Every Client You Close
+                        <span class="green-gradient-text"> Should Bring You</span> the Next One.
+                    </h1>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl">
+                        Stop starting from zero every month. Retain is your lifecycle growth partner — an intelligent retention ecosystem that turns client relationships into long-term revenue assets through customer memory, not cold outreach.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="/book-a-call/" class="green-gradient text-white px-8 py-3.5 rounded-full font-semibold text-center hover:opacity-90 transition-opacity shadow-lg shadow-emerald-200 cta-shimmer">
+                            Build Your Retention Ecosystem <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="/how-it-works/" class="bg-white text-emerald-700 border-2 border-emerald-200 px-8 py-3.5 rounded-full font-semibold text-center hover:border-emerald-400 transition-colors">
+                            See How It Works
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 font-rubik leading-tight">
-                    Automate Your <br> <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Real Estate
-                        Leads</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                    Never miss a property inquiry again. Qualify leads, book viewings, and answer questions 24/7 with
-                    Retain's AI agents.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/contact/"
-                        class="sheen-button px-8 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all">
-                        Get Started
-                    </a>
-                    <a href="#features"
-                        class="bg-white text-gray-900 border border-gray-300 px-8 py-4 rounded-xl text-lg font-medium hover:bg-gray-50 transition-all">
-                        Learn More
-                    </a>
+                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <img src="https://picsum.photos/seed/realestate1/800/600" alt="Real estate professional" class="rounded-2xl shadow-2xl w-full object-cover">
+                    <div class="absolute -bottom-6 -left-6 glass-card rounded-xl shadow-lg p-4 hidden lg:block">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 green-gradient rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-line text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900">3.2×</p>
+                                <p class="text-sm text-gray-500">More referrals generated</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Decoration -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-blue-200/30 rounded-full blur-3xl"></div>
-            <div class="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-indigo-200/30 rounded-full blur-3xl"></div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-white">
+    <!-- The Problem Section -->
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-rubik">Built for Top Producers</h2>
-                <p class="text-lg text-gray-600">Everything you need to scale your agency without adding headcount.</p>
+                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">The Problem</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">Real Estate Has a <span class="gradient-headline">Relationship Memory</span> Problem</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Most agents start from zero every single month. Without customer memory, leads go cold, past clients forget your name, and the referrals that should be compounding never materialize.</p>
             </div>
-
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition-all">
-                    <div
-                        class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600 text-2xl">
-                        <i class="fas fa-filter"></i>
+                <div class="bg-red-50 rounded-2xl p-8 border border-red-100">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-user-slash text-red-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Instant Lead Qualification</h3>
-                    <p class="text-gray-600">Our AI engages leads instantly, asking the right questions to separate hot
-                        buyers from window shoppers.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Prospects Go Cold</h3>
+                    <p class="text-gray-600 leading-relaxed">78% of real estate leads never get a meaningful second touch. Without intelligent nurturing, warm prospects drift to competitors who simply stayed in touch.</p>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition-all">
-                    <div
-                        class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6 text-indigo-600 text-2xl">
-                        <i class="fas fa-calendar-check"></i>
+                <div class="bg-orange-50 rounded-2xl p-8 border border-orange-100">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-clock text-orange-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Automated Showings</h3>
-                    <p class="text-gray-600">Let the AI schedule property viewings directly into your calendar, syncing
-                        with your availability in real-time.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Relationships End at Closing</h3>
+                    <p class="text-gray-600 leading-relaxed">You close a deal, celebrate, and move on. Eighteen months later, that client invests again — with someone else. Without customer memory, every closing is a goodbye instead of a beginning.</p>
                 </div>
-
-                <!-- Feature 3 -->
-                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition-all">
-                    <div
-                        class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600 text-2xl">
-                        <i class="fas fa-comments"></i>
+                <div class="bg-yellow-50 rounded-2xl p-8 border border-yellow-100">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-5">
+                        <i class="fas fa-puzzle-piece text-yellow-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">24/7 Property Info</h3>
-                    <p class="text-gray-600">Answer specific questions about square footage, HOA fees, and amenities
-                        instantly, day or night.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Zero Client Memory</h3>
+                    <p class="text-gray-600 leading-relaxed">Spreadsheets, notes apps, email threads, WhatsApp messages — your client intelligence is scattered across a dozen places. No unified memory means no compounding relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="py-20 bg-gray-50 dot-grid-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Your Retention Ecosystem</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">An Intelligent Retention System <span class="gradient-headline">Built Around Relationships</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Retain builds your customer memory — the AI-powered foundation that remembers every client interaction and turns it into compounding revenue.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-seedling text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Intelligent Lead Nurturing</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Prospects never go cold. Context-aware nurture flows keep every lead warm with relevant market insights until they're ready to move.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-address-book text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Unified Customer Memory</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">From first inquiry to fifth referral — every interaction, preference, and milestone lives in one intelligent memory that grows with the relationship.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Lifecycle Touchpoints</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Move-in anniversaries, birthday greetings, market updates — thoughtfully timed touchpoints that feel personal because they are.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-home text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Property Lifecycle Matching</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Customer memory knows each client's budget, location, and lifestyle preferences — surfacing perfect matches the moment listings drop.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Referral Generation Engine</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Referrals aren't luck — they're a retention outcome. Structured workflows turn delighted clients into your most reliable source of new business.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Post-Close Relationship Building</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Closing day is where the real relationship begins. Homeowner tips, local recommendations, and value-added updates keep you top-of-mind for life.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-bar text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Stay Top-of-Mind Updates</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Automated neighborhood insights and market intelligence delivered to the right clients — positioning you as the trusted local authority, not just another agent.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 green-gradient rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-bullseye text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Client Re-Engagement</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Past clients aren't lost — they're dormant assets. Intelligent re-engagement surfaces them at exactly the right moment for their next purchase or investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">How It Works</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">From Transactional to <span class="gradient-headline">Compounding</span> in Three Steps</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Your retention ecosystem goes live in days, not months — and revenue starts compounding from day one.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <div class="text-center relative">
+                    <div class="w-20 h-20 green-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-200">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Build Your Customer Memory</h3>
+                    <p class="text-gray-600 leading-relaxed">Import your contacts, connect your channels, and Retain instantly builds a unified customer memory — every interaction, every preference, every relationship detail in one place.</p>
+                    <img src="https://picsum.photos/seed/property2/400/250" alt="Connect" class="rounded-xl mt-6 w-full object-cover shadow-md">
+                </div>
+                <div class="text-center relative">
+                    <div class="w-20 h-20 green-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-200">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Activate the Retention Ecosystem</h3>
+                    <p class="text-gray-600 leading-relaxed">Lifecycle triggers, nurture flows, and post-close engagement sequences — all calibrated to how real estate relationships actually work.</p>
+                    <img src="https://picsum.photos/seed/workflow3/400/250" alt="Automate" class="rounded-xl mt-6 w-full object-cover shadow-md">
+                </div>
+                <div class="text-center relative">
+                    <div class="w-20 h-20 green-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-200">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Revenue Compounds Itself</h3>
+                    <p class="text-gray-600 leading-relaxed">Referrals flow in, past clients return for their next investment, and your pipeline fills itself — month after month, without ever starting from zero again.</p>
+                    <img src="https://picsum.photos/seed/growth4/400/250" alt="Grow" class="rounded-xl mt-6 w-full object-cover shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-20 bg-emerald-50 dot-grid-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Use Cases</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">One Retention Ecosystem, Every Type of Real Estate</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-8">
+                <div class="use-case-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-city text-emerald-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">New Developments</h3>
+                            <p class="text-gray-600 leading-relaxed">Build anticipation that converts. Customer memory tracks every waitlist lead's preferences, delivering construction milestones and pricing updates that feel curated — not blasted. Pre-launch interest becomes compounding demand.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="use-case-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-key text-emerald-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Property Management</h3>
+                            <p class="text-gray-600 leading-relaxed">Tenant retention is property revenue. Proactive maintenance updates, timely renewal engagement, and community touchpoints make tenants feel valued — driving renewals up and vacancy costs down.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="use-case-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-tie text-emerald-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Broker Teams</h3>
+                            <p class="text-gray-600 leading-relaxed">When an agent leaves, the relationship shouldn't leave with them. Shared customer memory means seamless handoffs, coordinated outreach, and client relationships that belong to the brokerage — not individual agents.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="use-case-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-gem text-emerald-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Luxury Real Estate</h3>
+                            <p class="text-gray-600 leading-relaxed">High-net-worth clients expect a relationship, not a transaction. Customer memory captures every preference, milestone, and personal detail — so your service feels bespoke long after the keys are handed over.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="stat-card rounded-3xl p-12 lg:p-16 text-white">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-3">What Compounding Revenue Looks Like</h2>
+                    <p class="text-emerald-200 text-lg">Real outcomes from real estate professionals who partnered with Retain.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <p class="text-5xl font-bold mb-2" data-target="340">340%</p>
+                        <p class="text-emerald-200">Growth in referral-driven deals</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl font-bold mb-2" data-target="67">67%</p>
+                        <p class="text-emerald-200">Faster lead re-engagement</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl font-bold mb-2" data-target="89">89%</p>
+                        <p class="text-emerald-200">Post-close client retention</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl font-bold mb-2" data-target="4.2">4.2×</p>
+                        <p class="text-emerald-200">Revenue ROI within 12 months</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">From Our Partners</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">Real Estate Professionals Who Stopped Starting From Zero</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-6 italic">"Before Retain, every closing felt like an ending. Now, every client I close brings me the next one. 40% of my deals come from past client referrals — my revenue actually compounds instead of resetting every quarter."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://picsum.photos/seed/agent5/80/80" alt="Sarah M." class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">Sarah Mitchell</p>
+                            <p class="text-sm text-gray-500">Senior Agent, Prestige Realty Group</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                        <i class="fas fa-star text-yellow-400 ml-1"></i>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-6 italic">"We manage 200+ units and used to lose tenants we could have kept. Retain built us a real retention ecosystem — renewals are up 30%, and our tenants feel like we actually remember who they are. Because now, we do."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://picsum.photos/seed/manager6/80/80" alt="James R." class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">James Rodriguez</p>
+                            <p class="text-sm text-gray-500">Director, Urban Living Properties</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-24 bg-gray-900 text-white relative overflow-hidden">
-        <div
-            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] opacity-10 bg-cover bg-center">
-        </div>
-        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 font-rubik">Ready to Close More Deals?</h2>
-            <p class="text-xl text-gray-300 mb-12">Join forward-thinking agencies using AI to dominate their local
-                market.</p>
-            <a href="/contact/"
-                class="inline-block bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors">
-                Book a Demo Today
-            </a>
+    <section class="cta-section py-20">
+        <div class="floating-orb float-b" style="width:150px;height:150px;top:10%;left:5%;background:rgba(255,255,255,0.06);"></div>
+        <div class="floating-orb float-a" style="width:100px;height:100px;bottom:10%;right:8%;background:rgba(255,255,255,0.05);"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Your Next Client Is Already in Your Network.</h2>
+            <p class="text-emerald-100 text-lg mb-10 max-w-2xl mx-auto">Stop starting from zero. Join the real estate professionals who've turned client relationships into long-term revenue assets with an intelligent retention ecosystem built for how you actually work.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/book-a-call/" class="bg-white text-emerald-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-colors shadow-xl cta-shimmer">
+                    Start Your Growth Partnership <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="/how-it-works/" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-emerald-700 transition-all">
+                    Explore the Ecosystem
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-500">© 2026 Retain. All rights reserved.</p>
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl font-bold text-white">Retain</span>
+                        <a href="https://solven.app/" class="text-gray-500 text-sm ml-2 hover:text-gray-300" target="_blank">by Solven</a>
+                    </div>
+                    <p class="text-sm leading-relaxed">Your customer lifecycle growth partner. Turning one-time transactions into compounding revenue — for real estate and beyond.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/how-it-works/" class="hover:text-emerald-400 transition-colors">How It Works</a></li>
+                        <li><a href="/solutions/" class="hover:text-emerald-400 transition-colors">Solutions</a></li>
+                        <li><a href="/why-retain/" class="hover:text-emerald-400 transition-colors">Why Retain</a></li>
+                        <li><a href="/book-a-call/" class="hover:text-emerald-400 transition-colors">Book a Call</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Industries</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/who-it-for/real-estate/" class="text-emerald-400">Real Estate</a></li>
+                        <li><a href="/who-it-for/ecommerce/" class="hover:text-emerald-400 transition-colors">E-commerce & Retail</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/about/" class="hover:text-emerald-400 transition-colors">About</a></li>
+                        <li><a href="https://solven.app/" class="hover:text-emerald-400 transition-colors" target="_blank">Solven</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm">&copy; 2025 Retain by Solven. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-emerald-400 transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
         // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('shadow-md', window.scrollY > 20);
+        });
+
+        // === SCROLL REVEAL with stagger ===
+        (function() {
+            // Add reveal classes to elements
+            const revealSelectors = [
+                { sel: '.feature-card', stagger: true },
+                { sel: '.use-case-card', stagger: true },
+                { sel: '.testimonial-card', stagger: true },
+                { sel: 'section > div > .text-center:first-child', stagger: false },
+                { sel: '.hero-bg .grid > div', stagger: true },
+            ];
+
+            // Mark problem cards
+            document.querySelectorAll('section.bg-white .bg-red-50, section.bg-white .bg-orange-50, section.bg-white .bg-yellow-50').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + (i + 1));
+            });
+
+            // Mark feature cards with stagger
+            document.querySelectorAll('.feature-card').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + ((i % 4) + 1));
+            });
+
+            // Mark use-case cards
+            document.querySelectorAll('.use-case-card').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + (i + 1));
+            });
+
+            // Mark testimonial cards
+            document.querySelectorAll('.testimonial-card').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + (i + 1));
+            });
+
+            // Mark how-it-works steps
+            document.querySelectorAll('section.bg-white .grid.md\\:grid-cols-3 > .text-center').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + (i + 1));
+            });
+
+            // Mark section headers
+            document.querySelectorAll('section:not(.hero-bg) > div > .text-center.mb-16').forEach(el => {
+                el.classList.add('reveal');
+            });
+
+            // Mark stat card
+            document.querySelectorAll('.stat-card').forEach(el => el.classList.add('reveal'));
+
+            // Mark CTA content
+            document.querySelectorAll('.cta-section h2, .cta-section p, .cta-section .flex').forEach((el, i) => {
+                el.classList.add('reveal', 'stagger-' + (i + 1));
+            });
+
+            // Icon bounce on feature card icons
+            document.querySelectorAll('.feature-card .green-gradient.rounded-xl').forEach(el => {
+                el.classList.add('icon-bounce');
+            });
+
+            // Observe all reveal elements
+            const revealObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Don't unobserve - one-time reveal
+                        revealObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.reveal, .reveal-left, .icon-bounce').forEach(el => {
+                revealObs.observe(el);
+            });
+        })();
+
+        // === COUNTER ANIMATION ===
+        (function() {
+            const statEls = document.querySelectorAll('[data-target]');
+            let counted = false;
+
+            const counterObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counted) {
+                        counted = true;
+                        statEls.forEach(el => {
+                            const target = el.getAttribute('data-target');
+                            const text = el.textContent.trim();
+                            const suffix = text.replace(/[\d.]/g, ''); // %, ×, etc.
+                            const isFloat = target.includes('.');
+                            const end = parseFloat(target);
+                            const duration = 1800;
+                            const start = performance.now();
+
+                            function tick(now) {
+                                const elapsed = now - start;
+                                const progress = Math.min(elapsed / duration, 1);
+                                // ease out cubic
+                                const ease = 1 - Math.pow(1 - progress, 3);
+                                const current = ease * end;
+                                el.textContent = (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
+                                if (progress < 1) requestAnimationFrame(tick);
+                            }
+                            requestAnimationFrame(tick);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const statCard = document.querySelector('.stat-card');
+            if (statCard) counterObs.observe(statCard);
+        })();
     </script>
-
-
 </body>
-
 </html>
