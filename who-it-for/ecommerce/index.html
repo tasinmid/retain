@@ -466,7 +466,7 @@
         .hiw-timeline-fill {
             position: absolute; left: 0; top: 0; width: 100%; height: 0%;
             background: linear-gradient(180deg, #f59e0b, #ea580c, #fbbf24);
-            border-radius: 4px; transition: height 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
+            border-radius: 4px; transition: height 0.15s linear;
         }
         .hiw-timeline-dot {
             position: absolute; left: 50%; width: 14px; height: 14px; border-radius: 50%;
@@ -515,8 +515,8 @@
         .hiw-num-3 { background: linear-gradient(135deg, #fbbf24, #10b981); }
         .hiw-num-3::after { background: linear-gradient(135deg, #fbbf24, #10b981); animation-delay: 2s; }
 
-        .hiw-reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .hiw-reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .hiw-reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94); }
+        .hiw-reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s cubic-bezier(.25,.46,.45,.94), transform 0.7s cubic-bezier(.25,.46,.45,.94); }
         .hiw-reveal-left.visible, .hiw-reveal-right.visible { opacity: 1; transform: translateX(0); }
 
         @media (max-width: 767px) {
@@ -1091,39 +1091,55 @@
 </section>
 
 <script>
-// How It Works - Zigzag timeline reveal + line animation
+// How It Works - Scroll-dependent timeline animation
 (function() {
-    var timeline = document.getElementById('hiwTimeline');
-    if (!timeline) return;
-    var cards = timeline.querySelectorAll('.hiw-reveal-left, .hiw-reveal-right');
-    var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-        });
-    }, { threshold: 0.2 });
-    cards.forEach(function(el) { obs.observe(el); });
-
     var section = document.getElementById('howItWorks');
-    var lineObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-            if (e.isIntersecting) {
-                var fill = document.getElementById('hiwTimelineFill');
-                if (fill) {
-                    setTimeout(function() { fill.style.height = '40%'; }, 200);
-                    setTimeout(function() { fill.style.height = '70%'; }, 700);
-                    setTimeout(function() { fill.style.height = '100%'; }, 1200);
-                }
-                ['hiwDot1','hiwDot2','hiwDot3'].forEach(function(id, i) {
-                    setTimeout(function() {
-                        var d = document.getElementById(id);
-                        if (d) d.classList.add('active');
-                    }, 300 + i * 500);
-                });
-                lineObs.unobserve(e.target);
+    var timeline = document.getElementById('hiwTimeline');
+    if (!section || !timeline) return;
+
+    var fill = document.getElementById('hiwTimelineFill');
+    var dots = [document.getElementById('hiwDot1'), document.getElementById('hiwDot2'), document.getElementById('hiwDot3')];
+    var cards = timeline.querySelectorAll('.hiw-reveal-left, .hiw-reveal-right');
+    var cardThresholds = [0.15, 0.45, 0.7];
+    var dotThresholds = [0.05, 0.35, 0.65];
+
+    function onScroll() {
+        var rect = section.getBoundingClientRect();
+        var winH = window.innerHeight;
+        // progress: 0 when section top hits bottom of viewport, 1 when section bottom hits top
+        var total = rect.height + winH;
+        var scrolled = winH - rect.top;
+        var progress = Math.max(0, Math.min(1, scrolled / total));
+
+        // Scale progress to be more useful (section visible range)
+        // Remap so progress spans ~0-1 while section is in view
+        var p = Math.max(0, Math.min(1, (scrolled - winH * 0.3) / (rect.height)));
+
+        // Line fill
+        if (fill) fill.style.height = Math.min(100, p * 100) + '%';
+
+        // Dots
+        dots.forEach(function(dot, i) {
+            if (!dot) return;
+            if (p >= dotThresholds[i]) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
             }
         });
-    }, { threshold: 0.3 });
-    lineObs.observe(section);
+
+        // Cards
+        cards.forEach(function(card, i) {
+            if (p >= cardThresholds[i]) {
+                card.classList.add('visible');
+            }
+        });
+    }
+
+    // Use passive scroll listener for performance
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    onScroll(); // initial check
 })();
 </script>
 <!-- Stats Section -->
@@ -1153,6 +1169,150 @@
             text-shadow: 0 0 20px rgba(245,158,11,0.5), 0 0 40px rgba(245,158,11,0.25);
             transition: text-shadow 0.6s ease;
         }
+
+        /* Floating Quotes — Redesigned */
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+        @keyframes gentleFloat2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .quotes-section {
+            background: linear-gradient(180deg, #030712 0%, #0a0e1a 50%, #111827 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .quotes-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+        .quotes-glow-1 {
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+            top: -100px; left: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .quotes-glow-2 {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(251,191,36,0.06), transparent 70%);
+            bottom: -80px; right: -60px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .quotes-masonry {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .quotes-masonry { grid-template-columns: 1fr; }
+        }
+        .qcard {
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.5s ease;
+        }
+        .qcard::before {
+            content: '\u201C';
+            font-family: Georgia, 'Times New Roman', serif;
+            position: absolute;
+            font-size: 10rem;
+            line-height: 1;
+            top: -0.3rem;
+            left: 1rem;
+            opacity: 0.06;
+            pointer-events: none;
+            color: #f59e0b;
+        }
+        .qcard:hover {
+            transform: perspective(800px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-4px);
+        }
+        /* Dark card */
+        .qcard-dark {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid rgba(245,158,11,0.12);
+            border-left: 3px solid #f59e0b;
+        }
+        .qcard-dark:hover {
+            box-shadow: 0 0 40px rgba(245,158,11,0.12), 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .qcard-dark .qcard-text { color: #e5e7eb; }
+        .qcard-dark .qcard-author-name { color: #fbbf24; }
+        .qcard-dark .qcard-author-title { color: #9ca3af; }
+        /* Light card */
+        .qcard-light {
+            background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+            border: 1px solid rgba(245,158,11,0.15);
+            border-left: 3px solid #f59e0b;
+        }
+        .qcard-light:hover {
+            box-shadow: 0 0 40px rgba(245,158,11,0.1), 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .qcard-light .qcard-text { color: #1f2937; }
+        .qcard-light .qcard-author-name { color: #92400e; }
+        .qcard-light .qcard-author-title { color: #6b7280; }
+        /* Featured */
+        .qcard-featured {
+            grid-row: span 2;
+            padding: 3rem;
+        }
+        .qcard-featured .qcard-text {
+            font-size: 1.45rem;
+            line-height: 1.8;
+        }
+        .qcard-featured::before {
+            font-size: 14rem;
+            opacity: 0.08;
+        }
+        @media (max-width: 768px) {
+            .qcard-featured { grid-row: span 1; }
+            .qcard-featured .qcard-text { font-size: 1.2rem; }
+        }
+        .qcard-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            position: relative;
+            z-index: 1;
+        }
+        .qcard-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .qcard-avatar {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(245,158,11,0.3);
+        }
+        .qcard-author-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .qcard-author-title {
+            font-size: 0.8rem;
+        }
+        .float-1 { animation: gentleFloat 7s ease-in-out infinite; }
+        .float-2 { animation: gentleFloat2 6s ease-in-out infinite; animation-delay: 1s; }
+        .float-3 { animation: gentleFloat 8s ease-in-out infinite; animation-delay: 2s; }
+        .float-4 { animation: gentleFloat2 7.5s ease-in-out infinite; animation-delay: 0.5s; }
     </style>
 
     <!-- Sparkles -->
@@ -1212,62 +1372,164 @@
 </script>
 
 <!-- Why Retain for Retail -->
-<section class="py-28 bg-white relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
+<style>
+    /* WHY RETAIN section effects */
+    #whyRetainSection { position: relative; }
+    #whyRetainSection .wr-bg-gradient {
+        position: absolute; inset: 0; z-index: 0;
+        background: linear-gradient(135deg, rgba(255,251,235,0.4), rgba(255,255,255,0.2), rgba(254,243,199,0.3), rgba(255,255,255,0.2));
+        background-size: 400% 400%;
+        animation: wrBgShift 12s ease-in-out infinite;
+    }
+    @keyframes wrBgShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    .wr-orb {
+        position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+        filter: blur(60px); opacity: 0.15;
+    }
+    .wr-orb-1 { width:300px; height:300px; background:radial-gradient(circle,#fbbf24,transparent); top:10%; left:-5%; animation: wrOrbFloat1 10s ease-in-out infinite; }
+    .wr-orb-2 { width:250px; height:250px; background:radial-gradient(circle,#f59e0b,transparent); bottom:5%; right:-3%; animation: wrOrbFloat2 12s ease-in-out infinite; }
+    .wr-orb-3 { width:180px; height:180px; background:radial-gradient(circle,#ea580c,transparent); top:50%; left:50%; transform:translate(-50%,-50%); animation: wrOrbFloat3 8s ease-in-out infinite; }
+    @keyframes wrOrbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-20px)} }
+    @keyframes wrOrbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-25px,15px)} }
+    @keyframes wrOrbFloat3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+
+    /* WHY RETAIN label glow */
+    .wr-label-glow { animation: wrLabelPulse 3s ease-in-out infinite; }
+    @keyframes wrLabelPulse { 0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,0)} 50%{box-shadow:0 0 20px 4px rgba(245,158,11,0.15)} }
+
+    /* Growth Partner gradient animation */
+    .wr-gradient-text-animated {
+        background: linear-gradient(135deg, #f59e0b, #ea580c, #fbbf24, #ef4444, #f59e0b, #d97706);
+        background-size: 500% 100%;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        animation: wrGradientShift 6s ease-in-out infinite;
+    }
+    @keyframes wrGradientShift { 0%{background-position:0% 50%} 25%{background-position:50% 50%} 50%{background-position:100% 50%} 75%{background-position:50% 50%} 100%{background-position:0% 50%} }
+
+    /* Without Retain card hover */
+    .wr-card-dark {
+        transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.5s !important;
+    }
+    .wr-card-dark:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 30px rgba(239,68,68,0.15) !important;
+    }
+
+    /* With Retain card hover + shimmer */
+    .wr-card-amber {
+        transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.5s !important;
+    }
+    .wr-card-amber:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 20px 50px rgba(245,158,11,0.2), 0 0 30px rgba(245,158,11,0.15) !important;
+    }
+    .wr-card-amber::after {
+        content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: 1.5rem;
+        background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%);
+        background-size: 300% 100%;
+        animation: wrShimmerSweep 4s ease-in-out infinite;
+    }
+    @keyframes wrShimmerSweep { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* X icon shake on reveal */
+    .wr-x-shake { display: inline-flex; }
+    .wr-x-shake.animate { animation: wrShake 0.5s ease-in-out; }
+    @keyframes wrShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-3px)} 40%{transform:translateX(3px)} 60%{transform:translateX(-2px)} 80%{transform:translateX(2px)} }
+
+    /* Staggered list items */
+    .wr-list-item {
+        opacity: 0; transform: translateX(-20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .wr-list-item.visible { opacity: 1; transform: translateX(0); }
+
+    /* Check/X circle scale-in */
+    .wr-icon-circle {
+        transform: scale(0); transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+    }
+    .wr-icon-circle.visible { transform: scale(1); }
+
+    /* Header icon bounce */
+    .wr-header-icon { transform: scale(0); transition: transform 0.5s cubic-bezier(.34,1.56,.64,1); }
+    .wr-header-icon.visible { transform: scale(1); animation: wrIconBounce 0.6s ease 0.5s; }
+    @keyframes wrIconBounce { 0%{transform:scale(1)} 30%{transform:scale(1.2)} 50%{transform:scale(0.9)} 70%{transform:scale(1.1)} 100%{transform:scale(1)} }
+
+    /* VS badge */
+    .wr-vs-badge {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+        width: 48px; height: 48px; border-radius: 50%; z-index: 10;
+        background: linear-gradient(135deg, #1f2937, #374151);
+        display: flex; align-items: center; justify-content: center;
+        font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 0.75rem;
+        color: #f59e0b; letter-spacing: 0.05em;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 15px rgba(245,158,11,0.2);
+        animation: wrVsPulse 3s ease-in-out infinite;
+    }
+    @keyframes wrVsPulse { 0%,100%{box-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 15px rgba(245,158,11,0.2)} 50%{box-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 25px rgba(245,158,11,0.4)} }
+    @media(max-width:767px){ .wr-vs-badge{display:none;} }
+</style>
+<section id="whyRetainSection" class="py-28 bg-white relative overflow-hidden">
+    <div class="wr-bg-gradient"></div>
+    <div class="wr-orb wr-orb-1"></div>
+    <div class="wr-orb wr-orb-2"></div>
+    <div class="wr-orb wr-orb-3"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
         <!-- Header -->
         <div class="text-center mb-16 reveal">
-            <span class="section-label text-amber-600 font-semibold text-sm tracking-wide">WHY RETAIN</span>
-            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-4">Not Another Tool. <span class="gradient-text">A Growth Partner.</span></h2>
+            <span class="section-label wr-label-glow text-amber-600 font-semibold text-sm tracking-wide">WHY RETAIN</span>
+            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-4">Not Another Tool. <span class="wr-gradient-text-animated">A Growth Partner.</span></h2>
             <p class="text-gray-600 text-lg max-w-2xl mx-auto">Most platforms give you a dashboard and wish you luck. Retain builds you a complete retention ecosystem.</p>
         </div>
 
         <!-- With vs Without -->
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div class="rounded-3xl p-8 md:p-10 bg-gray-900 text-white reveal" style="transition-delay:0.1s">
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto relative">
+            <div class="wr-vs-badge">VS</div>
+            <div class="rounded-3xl p-8 md:p-10 bg-gray-900 text-white reveal wr-card-dark" style="transition-delay:0.1s">
                 <div class="flex items-center gap-3 mb-8">
-                    <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center"><i class="fas fa-heart-broken text-red-400 text-lg"></i></div>
+                    <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center wr-header-icon"><i class="fas fa-heart-broken text-red-400 text-lg"></i></div>
                     <p class="text-base font-bold text-red-400 tracking-widest uppercase">Without Retain</p>
                 </div>
                 <ul class="space-y-5">
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.1s">
+                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
                         <div><p class="text-white font-semibold">Scattered channels</p><p class="text-gray-400 text-sm mt-1">Data spread across 5+ disconnected tools</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.2s">
+                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
                         <div><p class="text-white font-semibold">Lost conversations</p><p class="text-gray-400 text-sm mt-1">No memory of past interactions or context</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.3s">
+                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
                         <div><p class="text-white font-semibold">Rising acquisition costs</p><p class="text-gray-400 text-sm mt-1">Starting from zero every single month</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.4s">
+                        <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
                         <div><p class="text-white font-semibold">One-time buyers</p><p class="text-gray-400 text-sm mt-1">No system to bring them back again</p></div>
                     </li>
                 </ul>
             </div>
-            <div class="rounded-3xl p-8 md:p-10 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 border-2 border-amber-200 reveal relative overflow-hidden" style="transition-delay:0.2s">
+            <div class="rounded-3xl p-8 md:p-10 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 border-2 border-amber-200 reveal relative overflow-hidden wr-card-amber" style="transition-delay:0.2s">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-200/30 to-transparent rounded-bl-full"></div>
                 <div class="flex items-center gap-3 mb-8 relative z-10">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center"><i class="fas fa-heart text-amber-600 text-lg"></i></div>
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center wr-header-icon"><i class="fas fa-heart text-amber-600 text-lg"></i></div>
                     <p class="text-base font-bold text-amber-600 tracking-widest uppercase">With Retain</p>
                 </div>
                 <ul class="space-y-5 relative z-10">
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.15s">
+                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle"><i class="fas fa-check text-amber-600 text-sm"></i></span>
                         <div><p class="text-gray-900 font-semibold">Unified customer memory</p><p class="text-gray-500 text-sm mt-1">Every interaction stored & accessible instantly</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.25s">
+                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle"><i class="fas fa-check text-amber-600 text-sm"></i></span>
                         <div><p class="text-gray-900 font-semibold">AI-powered context</p><p class="text-gray-500 text-sm mt-1">Smart replies & actions based on full history</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.35s">
+                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle"><i class="fas fa-check text-amber-600 text-sm"></i></span>
                         <div><p class="text-gray-900 font-semibold">Compounding LTV</p><p class="text-gray-500 text-sm mt-1">Revenue grows with every returning customer</p></div>
                     </li>
-                    <li class="flex items-start gap-4">
-                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-amber-600 text-sm"></i></span>
+                    <li class="flex items-start gap-4 wr-list-item" style="transition-delay:0.45s">
+                        <span class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 wr-icon-circle"><i class="fas fa-check text-amber-600 text-sm"></i></span>
                         <div><p class="text-gray-900 font-semibold">Loyal advocates</p><p class="text-gray-500 text-sm mt-1">Customers who sell for you organically</p></div>
                     </li>
                 </ul>
@@ -1276,91 +1538,150 @@
     </div>
 </section>
 
-<!-- Use Cases — Flip Cards -->
-<section class="py-28 bg-gradient-to-b from-amber-50/30 to-white relative overflow-hidden">
-    <div class="orb" style="width:280px;height:280px;background:radial-gradient(circle,#f59e0b,transparent);bottom:-80px;left:-60px;animation-delay:3s;"></div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- What Leaders Say — Frosted Glass Asymmetric Quotes -->
+<style>
+    @keyframes quoteFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes quoteFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes quoteFloat3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes quoteFloat4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes blobDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
+
+    .quotes-glass-section {
+        background: linear-gradient(135deg, rgba(255,251,235,0.3) 0%, #ffffff 50%, rgba(255,247,237,0.3) 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .quotes-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: blobDrift 20s ease-in-out infinite;
+        pointer-events: none;
+    }
+    .quotes-dot-pattern {
+        position: absolute;
+        bottom: 0; right: 0;
+        width: 200px; height: 200px;
+        background-image: radial-gradient(circle, rgba(245,158,11,0.12) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+    }
+    .quotes-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+    .glass-quote {
+        background: rgba(255,255,255,0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(245,158,11,0.15);
+        border-radius: 1.5rem;
+        padding: 2rem 2.25rem;
+        box-shadow: 0 4px 20px rgba(245,158,11,0.08), 0 12px 40px rgba(245,158,11,0.12);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 0;
+        transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    .glass-quote:hover {
+        box-shadow: 0 8px 30px rgba(245,158,11,0.18), 0 20px 60px rgba(245,158,11,0.15);
+        transform: translateY(-4px);
+    }
+    .glass-quote.featured {
+        grid-row: 1 / -1;
+        padding: 2.5rem;
+        animation: quoteFloat1 4s ease-in-out infinite;
+    }
+    .glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
+    .glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
+    .glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
+
+    @media (max-width: 768px) {
+        .quotes-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+        .glass-quote.featured {
+            grid-row: span 1;
+        }
+    }
+</style>
+<section class="py-28 quotes-glass-section">
+    <!-- Decorative blobs -->
+    <div class="quotes-blob" style="width:400px;height:400px;background:rgba(245,158,11,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
+    <div class="quotes-blob" style="width:350px;height:350px;background:rgba(249,115,22,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
+    <div class="quotes-blob" style="width:250px;height:250px;background:rgba(253,224,71,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
+    <div class="quotes-dot-pattern"></div>
+
+    <div class="max-w-5xl mx-auto px-6 relative z-10">
         <div class="text-center mb-16 reveal">
-            <span class="section-label text-amber-600 font-semibold text-sm tracking-wide">USE CASES</span>
-            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4">Real Retention Strategies, <span class="gradient-text">Running on Autopilot</span></h2>
+            <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100/80 text-amber-700 text-xs font-bold tracking-widest uppercase">💡 INDUSTRY LEADERS</span>
+            <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-5">Why the Best Brands <span class="gradient-text">Obsess Over Retention</span></h2>
+            <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">Hear it from the people who built the world's most customer-centric companies.</p>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="flip-card reveal" style="transition-delay:0.05s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #f59e0b;">
-                        <div class="text-4xl mb-4 icon-bounce">🎯</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Seasonal Campaigns</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-amber-500 to-orange-600 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Seasonal & Campaign Activations</h3>
-                        <p class="text-sm text-amber-100">Launch Eid, Puja, Black Friday, or anniversary campaigns across WhatsApp and Instagram — with personalized offers based on purchase history.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card reveal" style="transition-delay:0.1s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #ea580c;">
-                        <div class="text-4xl mb-4 icon-bounce" style="animation-delay:0.3s">📣</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Referral Programs</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-orange-500 to-red-600 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Referral & Advocacy Programs</h3>
-                        <p class="text-sm text-orange-100">Automated referral tracking, dual-sided rewards, and share-ready links that spread through WhatsApp groups organically.</p>
+
+        <div class="quotes-grid">
+            <!-- Featured quote — Gitomer -->
+            <div class="glass-quote featured reveal" style="text-align:center;align-items:center;justify-content:center;">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-quote-left text-amber-400 text-lg mb-5 block"></i>
+                    <p class="text-gray-700 text-2xl md:text-4xl italic leading-relaxed font-medium">"Customer satisfaction is worthless. Customer loyalty is <span class="gradient-text">priceless.</span>"</p>
+                    <div class="flex items-center gap-4 mt-8 pt-6 border-t border-amber-100/60">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center"><i class="fas fa-crown text-amber-500 text-xs"></i></div>
+                            <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><i class="fas fa-gem text-orange-500 text-xs"></i></div>
+                            <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center"><i class="fas fa-trophy text-yellow-500 text-xs"></i></div>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-snug">Loyalty over satisfaction —<br>the foundation of compounding revenue</p>
                     </div>
                 </div>
-            </div>
-            <div class="flip-card reveal" style="transition-delay:0.15s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #fbbf24;">
-                        <div class="text-4xl mb-4 icon-bounce" style="animation-delay:0.6s">⭐</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Review Collection</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-yellow-500 to-amber-600 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Review & Testimonial Collection</h3>
-                        <p class="text-sm text-yellow-100">Automatically request reviews after delivery, collect photo testimonials via WhatsApp, and build social proof that converts.</p>
-                    </div>
+                <div class="mt-6 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full text-sm">Jeffrey Gitomer</span>
+                    <span class="text-gray-400 text-xs ml-1">Author & Sales Expert</span>
                 </div>
             </div>
-            <div class="flip-card reveal" style="transition-delay:0.2s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #8b5cf6;">
-                        <div class="text-4xl mb-4 icon-bounce" style="animation-delay:0.9s">🏆</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Loyalty Tiers</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Loyalty Tier & Rewards</h3>
-                        <p class="text-sm text-purple-100">Create VIP tiers, points systems, and exclusive perks that reward your best customers — all managed within Retain.</p>
-                    </div>
+
+            <!-- Quote 2 — Bezos (long) -->
+            <div class="glass-quote reveal">
+                <div>
+                    <i class="fas fa-quote-left text-amber-400 text-base mb-4 block"></i>
+                    <p class="text-gray-700 text-base italic leading-relaxed">"We see our customers as invited guests to a party, and we are the hosts. It's our job every day to make every important aspect of the customer experience a little better."</p>
+                </div>
+                <div class="mt-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full text-sm">Jeff Bezos</span>
+                    <span class="text-gray-400 text-xs ml-1">Founder of Amazon</span>
                 </div>
             </div>
-            <div class="flip-card reveal" style="transition-delay:0.25s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #10b981;">
-                        <div class="text-4xl mb-4 icon-bounce" style="animation-delay:1.2s">🔄</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Lifecycle Promotions</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Lifecycle Promotions</h3>
-                        <p class="text-sm text-emerald-100">Post-purchase thank yous, replenishment reminders, birthday surprises, win-back offers — the right message at the right time.</p>
-                    </div>
+
+            <!-- Quote 3 — Bezos (short) -->
+            <div class="glass-quote reveal">
+                <div>
+                    <i class="fas fa-quote-left text-amber-400 text-base mb-4 block"></i>
+                    <p class="text-gray-700 text-base italic leading-relaxed">"If you do build a great experience, customers tell each other about that. Word of mouth is very powerful."</p>
+                </div>
+                <div class="mt-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full text-sm">Jeff Bezos</span>
+                    <span class="text-gray-400 text-xs ml-1">Founder of Amazon</span>
                 </div>
             </div>
-            <div class="flip-card reveal" style="transition-delay:0.3s">
-                <div class="flip-inner">
-                    <div class="flip-front bg-white border border-gray-100 flex flex-col justify-center items-center text-center" style="border-top:4px solid #3b82f6;">
-                        <div class="text-4xl mb-4 icon-bounce" style="animation-delay:1.5s">🤝</div>
-                        <h3 class="font-poppins font-bold text-gray-900 text-lg">Community Building</h3>
-                        <p class="text-xs text-gray-400 mt-2">Hover to learn more →</p>
-                    </div>
-                    <div class="flip-back bg-gradient-to-br from-blue-500 to-blue-700 text-white flex flex-col justify-center px-6">
-                        <h3 class="font-poppins font-bold text-lg mb-3">Community Building</h3>
-                        <p class="text-sm text-blue-100">Build engaged customer communities through exclusive groups, early access drops, and insider content — emotional loyalty ads can't buy.</p>
-                    </div>
+
+            <!-- Quote 4 — Shiv Singh -->
+            <div class="glass-quote reveal">
+                <div>
+                    <i class="fas fa-quote-left text-amber-400 text-base mb-4 block"></i>
+                    <p class="text-gray-700 text-base italic leading-relaxed">"The purpose of a business is to create a customer who creates customers."</p>
+                </div>
+                <div class="mt-6 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="font-bold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full text-sm">Shiv Singh</span>
+                    <span class="text-gray-400 text-xs ml-1">Marketing Executive & Author</span>
                 </div>
             </div>
         </div>
@@ -1990,5 +2311,46 @@ window.addEventListener('scroll', () => {
 })();
 </script>
 <script src="countrycode.js"></script>
+<script>
+// WHY RETAIN section scroll-triggered animations
+(function(){
+    const section = document.getElementById('whyRetainSection');
+    if(!section) return;
+    const items = section.querySelectorAll('.wr-list-item');
+    const icons = section.querySelectorAll('.wr-icon-circle');
+    const headerIcons = section.querySelectorAll('.wr-header-icon');
+    const xShakes = section.querySelectorAll('.wr-x-shake');
+    let animated = false;
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if(e.isIntersecting && !animated){
+                animated = true;
+                // Stagger list items
+                items.forEach((item, i) => {
+                    const delay = parseFloat(item.style.transitionDelay) * 1000 || i * 120;
+                    setTimeout(() => item.classList.add('visible'), delay);
+                });
+                // Scale in icon circles
+                icons.forEach((ic, i) => {
+                    setTimeout(() => ic.classList.add('visible'), 200 + i * 100);
+                });
+                // Bounce header icons
+                headerIcons.forEach((hi, i) => {
+                    setTimeout(() => hi.classList.add('visible'), 100 + i * 200);
+                });
+                // Shake X icons
+                xShakes.forEach((x, i) => {
+                    setTimeout(() => {
+                        x.classList.add('animate');
+                        setTimeout(() => x.classList.remove('animate'), 600);
+                    }, 400 + i * 150);
+                });
+            }
+        });
+    }, { threshold: 0.2 });
+    obs.observe(section);
+})();
+</script>
 </body>
 </html>
