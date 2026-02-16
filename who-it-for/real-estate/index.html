@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retain for Real Estate — Customer Lifecycle Growth Partner</title>
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        html, body { overflow-x: hidden; }
         * { font-family: 'Inter', sans-serif; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
 
@@ -26,9 +28,16 @@
 
         .green-gradient { background: linear-gradient(135deg, #10b981, #059669); }
         .green-gradient-text {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(90deg, #10b981 0%, #059669 40%, #34d399 50%, #059669 60%, #10b981 100%);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s ease-in-out infinite;
+        }
+        @keyframes textShimmer {
+            0% { background-position: 100% center; }
+            100% { background-position: -100% center; }
         }
 
         .hero-bg {
@@ -125,10 +134,12 @@
 
         /* === GRADIENT TEXT for key headings === */
         .gradient-headline {
-            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            background: linear-gradient(90deg, #10b981 0%, #059669 35%, #34d399 50%, #059669 65%, #047857 100%);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: textShimmer 4.5s ease-in-out infinite;
         }
 
         /* === FLOATING ORBS === */
@@ -600,8 +611,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <div class="flex items-center">
-                    <a href="/home/" class="flex items-center">
+                <div class="flex items-baseline">
+                    <a href="/home/" class="flex items-baseline">
                         <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
                         <span class="text-2xl font-bold text-gray-900">Retain</span>
                     </a>
@@ -896,45 +907,35 @@
         }
         .process-step-card {
             width: 44%;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(16,185,129,0.12);
-            border-radius: 1.25rem;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+            border-radius: 1rem;
             padding: 1.75rem 2rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8);
-            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
+            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease, background 0.4s ease;
             position: relative;
             overflow: hidden;
         }
-        .process-step-card::before {
+        .process-step-card::after {
             content: '';
             position: absolute;
-            top: 12px;
-            left: 0;
-            bottom: 12px;
-            width: 3px;
-            background: linear-gradient(180deg, #059669, #34d399);
-            border-radius: 3px;
+            bottom: 0;
+            left: 1.5rem;
+            right: 1.5rem;
+            height: 2px;
+            background: linear-gradient(90deg, #059669, #34d399);
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: scaleY(0);
-            transform-origin: top;
+            transform: scaleX(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
         }
-        .process-step:nth-child(even) .process-step-card::before {
-            left: auto;
-            right: 0;
-        }
-        .step-visible .process-step-card::before {
+        .step-visible .process-step-card::after {
             opacity: 1;
-            transform: scaleY(1);
-        }
-        .step-visible .process-step-card {
-            border-color: rgba(16,185,129,0.25);
+            transform: scaleX(1);
         }
         .process-step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(16,185,129,0.12), 0 4px 12px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.9);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(16,185,129,0.1), 0 2px 8px rgba(0,0,0,0.04);
+            background: #fafffe;
         }
         .process-step-number {
             position: absolute;
@@ -961,32 +962,42 @@
             transform: translateX(-50%) scale(1);
             box-shadow: 0 0 20px rgba(16,185,129,0.5), 0 4px 16px rgba(16,185,129,0.3);
         }
+        .process-step.step-visible .process-step-number::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
         .process-step-spacer { width: 12%; }
         .process-step-card .step-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
             background: linear-gradient(135deg, #ecfdf5, #d1fae5);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(16,185,129,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 0.85rem;
         }
-        .process-step-card:hover .step-icon {
-            transform: scale(1.08);
-            box-shadow: 0 4px 16px rgba(16,185,129,0.25);
-        }
-        .process-step-card .step-icon i { color: #059669; font-size: 1.2rem; }
-        .process-step-card h3 { font-size: 1.15rem; font-weight: 700; color: #111827; margin-bottom: 0.4rem; letter-spacing: -0.01em; }
-        .process-step-card p { color: #6b7280; line-height: 1.65; margin: 0; font-size: 0.925rem; }
+        .process-step-card .step-icon i { color: #059669; font-size: 1.1rem; }
+        .process-step-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
+        .process-step-card p { color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.88rem; }
         @media (max-width: 768px) {
             .process-timeline-progress { left: 28px; }
             .process-step, .process-step:nth-child(even) { flex-direction: row !important; }
             .process-step-number { left: 28px !important; transform: translateX(-50%); }
             .process-step-spacer { display: none; }
             .process-step-card { width: 100%; margin-left: 72px; }
+        }
+        .wave-divider { position: relative; }
+        .wave-divider::before {
+            content:''; position:absolute; top:-60px; left:0; right:0; height:60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%230f172a' d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,35 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
         }
     </style>
     <section class="py-16 bg-white">
@@ -1119,72 +1130,161 @@
         </div>
     </section>
 
-    <!-- 4. HOW IT WORKS (3 Steps) -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <span class="text-emerald-600 font-semibold text-sm uppercase tracking-widest">How It Works</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-4 mb-5">From Transactional to <span class="gradient-headline">Compounding</span> in Three Steps</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Your retention ecosystem goes live in days, not months — and revenue starts compounding from day one.</p>
+    <!-- 5. QUOTES -->
+    <style>
+    .re-quotes-glass {
+        background: linear-gradient(135deg, rgba(236,253,245,0.3) 0%, #ffffff 50%, rgba(209,250,229,0.3) 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .re-quotes-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: reBlobDrift 20s ease-in-out infinite;
+        pointer-events: none;
+    }
+    @keyframes reBlobDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
+    .re-quotes-dots {
+        position: absolute;
+        bottom: 0; right: 0;
+        width: 200px; height: 200px;
+        background-image: radial-gradient(circle, rgba(16,185,129,0.12) 1px, transparent 1px);
+        background-size: 20px 20px;
+        pointer-events: none;
+    }
+    .re-quotes-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+    .re-glass-quote {
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(16,185,129,0.1);
+        border-radius: 1.5rem;
+        padding: 2rem 2.25rem;
+        box-shadow: 0 0 20px rgba(16,185,129,0.12), 0 8px 32px rgba(16,185,129,0.15), 0 2px 8px rgba(16,185,129,0.06);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 0;
+        transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    .re-glass-quote:hover {
+        box-shadow: 0 0 40px rgba(16,185,129,0.2), 0 16px 50px rgba(16,185,129,0.22), 0 4px 12px rgba(16,185,129,0.1);
+        transform: translateY(-4px);
+    }
+    .re-glass-quote.featured {
+        grid-row: 1 / -1;
+        padding: 2.5rem;
+        animation: quoteFloat1 4s ease-in-out infinite;
+    }
+    .re-glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
+    .re-glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
+    .re-glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
+    @keyframes quoteFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes quoteFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes quoteFloat3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes quoteFloat4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @media (max-width: 768px) {
+        .re-quotes-grid {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+        }
+        .re-glass-quote.featured {
+            grid-row: auto;
+        }
+    }
+    </style>
+    <section class="py-28 re-quotes-glass">
+        <div class="re-quotes-blob" style="width:400px;height:400px;background:rgba(16,185,129,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
+        <div class="re-quotes-blob" style="width:350px;height:350px;background:rgba(5,150,105,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
+        <div class="re-quotes-blob" style="width:250px;height:250px;background:rgba(52,211,153,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
+        <div class="re-quotes-dots"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-emerald-100/80 text-emerald-700 text-xs font-bold tracking-widest uppercase">🎙️ FROM THE TOP</span>
+                <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-5">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
+                <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">The biggest names in real estate agree — retention wins.</p>
             </div>
-            <div class="re-steps-wrapper reveal">
-                <div class="re-steps-line"></div>
-                <div class="grid md:grid-cols-3 gap-12 relative">
-                    <div class="re-step-card text-center reveal stagger-1">
-                        <div class="re-step-number">01</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 mt-6">Build Your Customer Memory</h3>
-                        <p class="text-gray-600 leading-relaxed">Import contacts, connect channels — Retain instantly builds a unified customer memory with every interaction, preference, and detail in one place.</p>
+
+            <div class="re-quotes-grid">
+                <!-- Featured quote — Contos -->
+                <div class="re-glass-quote featured reveal" style="text-align:center;align-items:center;justify-content:center;">
+                    <div class="flex flex-col items-center">
+                        <i class="fas fa-quote-left text-emerald-400 text-lg mb-5 block"></i>
+                        <p class="text-gray-700 text-2xl md:text-3xl italic leading-relaxed font-medium">"The most important asset you can own in your business is the <span class="gradient-headline">attention of your customer.</span> If you don't own it, someone else does."</p>
+                        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-emerald-100/60">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center"><i class="fas fa-crown text-emerald-500 text-xs"></i></div>
+                                <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center"><i class="fas fa-gem text-teal-500 text-xs"></i></div>
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><i class="fas fa-trophy text-green-500 text-xs"></i></div>
+                            </div>
+                            <p class="text-xs text-gray-400 leading-snug">Customer attention is everything —<br>own it or lose it</p>
+                        </div>
                     </div>
-                    <div class="re-step-card text-center reveal stagger-2">
-                        <div class="re-step-number">02</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 mt-6">Activate the Ecosystem</h3>
-                        <p class="text-gray-600 leading-relaxed">Lifecycle triggers, nurture flows, and post-close sequences — all calibrated to how real estate relationships actually work.</p>
+                    <div class="mt-6 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                        <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full text-sm">Adam Contos</span>
+                        <span class="text-gray-400 text-xs ml-1">Former CEO, RE/MAX Holdings</span>
                     </div>
-                    <div class="re-step-card text-center reveal stagger-3">
-                        <div class="re-step-number">03</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 mt-6">Revenue Compounds Itself</h3>
-                        <p class="text-gray-600 leading-relaxed">Referrals flow in, past clients return, and your pipeline fills itself — month after month, without ever starting from zero.</p>
+                </div>
+
+                <!-- Quote 2 — Miedler -->
+                <div class="re-glass-quote reveal">
+                    <div>
+                        <i class="fas fa-quote-left text-emerald-400 text-base mb-4 block"></i>
+                        <p class="text-gray-700 text-base italic leading-relaxed">"Success in real estate comes down to two factors: taking care of and valuing the customer."</p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                        <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full text-sm">Michael Miedler</span>
+                        <span class="text-gray-400 text-xs ml-1">President & CEO, Century 21</span>
+                    </div>
+                </div>
+
+                <!-- Quote 3 — Hitt -->
+                <div class="re-glass-quote reveal">
+                    <div>
+                        <i class="fas fa-quote-left text-emerald-400 text-base mb-4 block"></i>
+                        <p class="text-gray-700 text-base italic leading-relaxed">"To be successful in real estate, you must always and consistently put your clients' best interests first."</p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                        <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full text-sm">Anthony Hitt</span>
+                        <span class="text-gray-400 text-xs ml-1">CEO, Engel & Völkers Americas</span>
+                    </div>
+                </div>
+
+                <!-- Quote 4 — Goldstein -->
+                <div class="re-glass-quote reveal">
+                    <div>
+                        <i class="fas fa-quote-left text-emerald-400 text-base mb-4 block"></i>
+                        <p class="text-gray-700 text-base italic leading-relaxed">"A call to a past client is not a sales call. It's a relationship call. And there's a world of difference."</p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+                        <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full text-sm">Allan Goldstein</span>
+                        <span class="text-gray-400 text-xs ml-1">Real Estate Thought Leader</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. FLOATING QUOTES -->
-    <section class="re-quotes-section py-24 relative overflow-hidden">
-        <div class="re-quotes-glow-1"></div>
-        <div class="re-quotes-glow-2"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="text-emerald-400 font-semibold text-sm uppercase tracking-widest">Wisdom</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4">Words That <span class="gradient-headline">Drive Us</span></h2>
-            </div>
-            <div class="re-quotes-masonry">
-                <div class="re-qcard re-qcard-featured re-qcard-dark re-float-1 reveal stagger-1">
-                    <p class="re-qcard-text">"In real estate, you're not just selling a property — you're building a relationship that compounds over a lifetime."</p>
-                    <div class="re-qcard-author mt-6">
-                        <span class="re-qcard-author-name">Industry Wisdom</span>
-                    </div>
-                </div>
-                <div class="re-qcard re-qcard-light re-float-2 reveal stagger-2">
-                    <p class="re-qcard-text">"The fortune is in the follow-up."</p>
-                    <div class="re-qcard-author mt-5">
-                        <span class="re-qcard-author-name">Jim Rohn</span>
-                    </div>
-                </div>
-                <div class="re-qcard re-qcard-dark re-float-3 reveal stagger-3">
-                    <p class="re-qcard-text">"Your network is your net worth."</p>
-                    <div class="re-qcard-author mt-5">
-                        <span class="re-qcard-author-name">Porter Gale</span>
-                    </div>
-                </div>
-                <div class="re-qcard re-qcard-light re-float-1 reveal stagger-4" style="grid-column: 1 / -1; max-width: 600px; justify-self: center;">
-                    <p class="re-qcard-text">"People don't care how much you know until they know how much you care."</p>
-                    <div class="re-qcard-author mt-5">
-                        <span class="re-qcard-author-name">Zig Ziglar</span>
-                    </div>
-                </div>
-            </div>
+    <!-- BIG GREEN TEXT -->
+    <section class="py-28 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
+                <span class="green-gradient-text">Your Next Client Is Already in Your Network.</span>
+                <br>
+                <span class="text-gray-300 text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 block">But you don't see it.</span>
+            </h2>
         </div>
     </section>
 
@@ -1254,34 +1354,123 @@
         </div>
     </section>
 
-    <!-- 8. CTA SECTION -->
-    <section class="re-cta-section py-24 relative overflow-hidden">
-        <div class="floating-orb float-b" style="width:200px;height:200px;top:5%;left:3%;background:rgba(255,255,255,0.04);"></div>
-        <div class="floating-orb float-a" style="width:150px;height:150px;bottom:8%;right:5%;background:rgba(255,255,255,0.05);"></div>
-        <div class="floating-orb float-a" style="width:80px;height:80px;top:40%;right:20%;background:rgba(255,255,255,0.03);"></div>
-        <div class="absolute top-0 left-0 w-full h-full" style="background: radial-gradient(ellipse at 20% 50%, rgba(16,185,129,0.15), transparent 60%); pointer-events:none;"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 reveal">Your Next Client Is Already in Your Network.</h2>
-            <p class="text-emerald-100 text-lg mb-10 max-w-2xl mx-auto reveal stagger-1">Stop starting from zero. Join the real estate professionals who've turned client relationships into long-term revenue assets with an intelligent retention ecosystem.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal stagger-2">
-                <a href="/book-a-call/" class="bg-white text-emerald-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-50 transition-colors shadow-xl cta-shimmer">
-                    Start Your Growth Partnership <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-                <a href="/how-it-works/" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-emerald-700 transition-all">
-                    Explore the Ecosystem
-                </a>
+    <!-- 9. CONTACT FORM -->
+<section class="py-24 bg-gradient-to-br from-white via-emerald-50/30 to-white relative overflow-hidden" id="contactForm">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Side -->
+            <div class="reveal">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide mb-4 inline-block uppercase">GET STARTED</span>
+                <h2 class="font-poppins text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">Let's Build Your <span class="green-gradient-text">Retention Ecosystem</span></h2>
+                <p class="text-gray-500 text-lg mb-8">Book a free consultation with our team</p>
+                <div class="space-y-5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-search text-emerald-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Personalized retention audit</h4>
+                            <p class="text-sm text-gray-500">We analyze your current customer lifecycle and identify quick wins</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-map text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Custom ecosystem roadmap</h4>
+                            <p class="text-sm text-gray-500">A tailored plan for your brand's retention infrastructure</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-chart-line text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">ROI projection for your business</h4>
+                            <p class="text-sm text-gray-500">See the revenue impact before you commit</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="fas fa-handshake text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">No commitment required</h4>
+                            <p class="text-sm text-gray-500">Zero pressure — just an honest conversation about your growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Side — Form -->
+            <div class="reveal">
+                <div class="bg-gray-900 rounded-2xl p-8 md:p-10 shadow-2xl border border-gray-800">
+                    <h3 class="font-poppins text-xl font-bold text-white mb-6">Book Your Free Consultation</h3>
+                    <form action="/contact/" method="GET" class="space-y-5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">First Name</label>
+                                <input type="text" placeholder="John" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Last Name</label>
+                                <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Work Email</label>
+                            <input type="email" placeholder="john@company.com" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Company Name</label>
+                            <input type="text" placeholder="Your Company" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Country *</label>
+                            <div class="relative">
+                                <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all pr-10">
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-500"></i>
+                                </div>
+                                <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
+                                    <div id="country-options" class="py-2 text-gray-900"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Phone Number</label>
+                            <div class="flex space-x-2">
+                                <div class="w-1/4">
+                                    <div class="bg-gray-800 text-emerald-400 py-3 px-4 rounded-lg border border-gray-700 text-center font-medium" id="phone-code">+</div>
+                                </div>
+                                <div class="w-3/4">
+                                    <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Message</label>
+                            <textarea rows="4" placeholder="Tell us about your retention goals..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-lg text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] cta-shimmer" style="background: linear-gradient(135deg, #059669, #10b981);">
+                            Book Your Free Consultation <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4 text-center">We'll respond within 24 hours. No spam, ever.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 relative wave-divider">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <span class="text-2xl font-bold text-white">Retain</span>
-                        <a href="https://solven.app/" class="text-gray-500 text-sm ml-2 hover:text-gray-300" target="_blank">by Solven</a>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="/lightFavicon.png" alt="Retain" class="h-7 w-7">
+                        <span class="font-poppins font-bold text-white text-lg">Retain</span>
                     </div>
                     <p class="text-sm leading-relaxed">Your customer lifecycle growth partner. Turning one-time transactions into compounding revenue — for real estate and beyond.</p>
                 </div>
@@ -1363,6 +1552,16 @@
                     }
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            // Quote glass reveal
+            document.querySelectorAll('.re-glass-quote').forEach((card, i) => {
+                new IntersectionObserver((entries, obs) => {
+                    if (entries[0].isIntersecting) {
+                        card.classList.add('visible');
+                        obs.disconnect();
+                    }
+                }, { threshold: 0.1 }).observe(card);
+            });
 
             document.querySelectorAll('.reveal, .reveal-left, .icon-bounce').forEach(el => {
                 revealObs.observe(el);
@@ -1504,5 +1703,6 @@
         onScroll();
     })();
     </script>
+    <script src="countrycode.js"></script>
 </body>
 </html>
