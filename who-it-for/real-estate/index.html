@@ -81,6 +81,17 @@
         .mobile-menu { display: none; }
         .mobile-menu.active { display: block; }
 
+        /* Typewriter */
+        .typewriter {
+            display: inline-block;
+            border-right: 3px solid #10b981;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typewrite 3.5s steps(40, end) forwards, blinkCaret 0.75s step-end 6, hideCaret 0s forwards 4.5s;
+        }
+        @keyframes typewrite { from { width: 0; } to { width: 100%; } }
+        @keyframes blinkCaret { from, to { border-color: transparent; } 50% { border-color: #10b981; } }
+        @keyframes hideCaret { to { border-right-color: transparent; border-right-width: 0; } }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -653,6 +664,11 @@
                             <i class="fas fa-plane mr-3 text-sky-500 bg-sky-50 p-1.5 rounded-lg"></i>
                             Travel & Hospitality
                         </a>
+                        <a href="/who-it-for/food-beverage/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
+                            <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i>
+                            Food & Beverage
+                        </a>
                     </div>
                 </div>
                 <a href="/why-retain/"
@@ -695,6 +711,8 @@
                     class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-amber-500 hover:bg-amber-50">E-commerce & Retail</a>
                     <a href="/who-it-for/travel-hospitality/"
                         class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-sky-500 hover:bg-sky-50">Travel & Hospitality</a>
+                    <a href="/who-it-for/food-beverage/"
+                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-rose-500 hover:bg-rose-50">Food & Beverage</a>
             </div>
             <a href="/why-retain/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
@@ -1462,7 +1480,7 @@
     <section class="re-stats-banner py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14 reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">What Compounding Revenue Looks Like</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3"><span class="typewriter">What Compounding Revenue Looks Like</span></h2>
                 <p class="text-emerald-100 text-lg">Real outcomes from real estate professionals who partnered with Retain.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 re-stats-grid">
@@ -1751,6 +1769,7 @@
                         <li><a href="/who-it-for/real-estate/" class="text-emerald-400">Real Estate</a></li>
                         <li><a href="/who-it-for/ecommerce/" class="hover:text-emerald-400 transition-colors">E-commerce & Retail</a></li>
                         <li><a href="/who-it-for/travel-hospitality/" class="hover:text-emerald-400 transition-colors">Travel & Hospitality</a></li>
+                        <li><a href="/who-it-for/food-beverage/" class="hover:text-emerald-400 transition-colors">Food & Beverage</a></li>
                     </ul>
                 </div>
                 <div>
