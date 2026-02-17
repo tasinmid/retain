@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retain for Agencies — Turn One-Off Projects Into Lifetime Retainers</title>
+    <meta name="description" content="Retain is the client retention growth partner for agencies of all types. Stop losing clients after project delivery — build a retention ecosystem that turns one-off projects into recurring revenue.">
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html, body { overflow-x: hidden; }
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+
+        .nav-link { position: relative; padding-bottom: 2px; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #8b5cf6, #9333ea);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .violet-gradient { background: linear-gradient(135deg, #8b5cf6, #9333ea); }
+        .violet-gradient-text {
+            background: linear-gradient(90deg, #8b5cf6 0%, #9333ea 40%, #a78bfa 50%, #9333ea 60%, #8b5cf6 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s ease-in-out infinite;
+        }
+        @keyframes textShimmer {
+            0% { background-position: 100% center; }
+            100% { background-position: -100% center; }
+        }
+
+        .gradient-headline {
+            background: linear-gradient(90deg, #8b5cf6 0%, #9333ea 35%, #a78bfa 50%, #9333ea 65%, #8b5cf6 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4.5s ease-in-out infinite;
+        }
+
+        /* Gradient Mesh Hero */
+        .hero-mesh {
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(237,233,254,0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(221,214,254,0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(243,232,255,0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 30%, rgba(237,233,254,0.4) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 70%, rgba(245,243,255,0.7) 0%, transparent 50%),
+                linear-gradient(135deg, #f5f3ff 0%, #ffffff 40%, #faf5ff 70%, #f5f3ff 100%);
+        }
+
+        /* Floating orbs */
+        @keyframes floatA { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(15px, -20px) scale(1.05); } 66% { transform: translate(-10px, 10px) scale(0.95); } }
+        @keyframes floatB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, -15px); } }
+        .floating-orb { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0.12; filter: blur(1px); }
+        .float-a { animation: floatA 8s ease-in-out infinite; }
+        .float-b { animation: floatB 10s ease-in-out infinite; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+        /* Shimmer CTA */
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .cta-shimmer { position: relative; overflow: hidden; }
+        .cta-shimmer::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; pointer-events: none; border-radius: inherit; }
+
+        /* Glass card */
+        .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+
+        /* Scroll reveals */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        html { scroll-behavior: smooth; }
+        a, button { transition: all 0.3s ease; }
+
+        /* Hero text cycling - yo-yo */
+        .hero-cycle-wrapper { display: block; position: relative; overflow: hidden; height: 1.2em; line-height: 1.2; }
+        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .hero-cycle-item { height: 1.2em; display: flex; align-items: center; white-space: nowrap; }
+        @keyframes heroCycle {
+            0%, 10% { transform: translateY(0); }
+            20%, 30% { transform: translateY(-25%); }
+            40%, 50% { transform: translateY(-50%); }
+            60%, 70% { transform: translateY(-75%); }
+            80%, 95% { transform: translateY(-100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* ======= MARQUEE TICKER ======= */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 35s linear infinite;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ======= ANIMATED GRADIENT BORDER CARDS ======= */
+        .gradient-border-card {
+            position: relative;
+            border-radius: 1.25rem;
+            padding: 3px;
+            background: conic-gradient(from var(--angle, 0deg), #8b5cf6, #9333ea, #a78bfa, #c084fc, #8b5cf6);
+            animation: rotateBorder 4s linear infinite;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .gradient-border-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(139,92,246,0.2);
+        }
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+        @keyframes rotateBorder {
+            to { --angle: 360deg; }
+        }
+        .gradient-border-card-inner {
+            background: white;
+            border-radius: calc(1.25rem - 3px);
+            padding: 2rem;
+            height: 100%;
+        }
+
+        /* ======= ACCORDION ======= */
+        .accordion-item { border: 1px solid rgba(139,92,246,0.1); border-radius: 1rem; overflow: hidden; transition: all 0.3s ease; }
+        .accordion-item:hover { border-color: rgba(139,92,246,0.25); }
+        .accordion-item.active { border-color: rgba(139,92,246,0.3); box-shadow: 0 4px 20px rgba(139,92,246,0.1); }
+        .accordion-header { cursor: pointer; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; background: white; transition: background 0.3s; }
+        .accordion-item.active .accordion-header { background: #f5f3ff; }
+        .accordion-header i.fa-chevron-down { transition: transform 0.3s ease; }
+        .accordion-item.active .accordion-header i.fa-chevron-down { transform: rotate(180deg); }
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .accordion-body-inner { padding: 0 2rem 1.5rem; }
+
+        /* ======= PROCESS TIMELINE ======= */
+        .process-timeline { position: relative; padding: 1rem 0; }
+        .process-timeline-progress {
+            position: absolute; left: 50%; top: 0; width: 3px; height: 0;
+            background: linear-gradient(180deg, #8b5cf6, #9333ea, #a78bfa);
+            transform: translateX(-50%); z-index: 0; will-change: height;
+            transition: height 0.15s linear; border-radius: 0 0 3px 3px;
+        }
+        .process-step {
+            display: flex; align-items: center; margin-bottom: 2rem; position: relative;
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .process-step.step-visible { opacity: 1; transform: translateY(0); }
+        .process-step:last-child { margin-bottom: 0; }
+        .process-step:nth-child(odd) { flex-direction: row; }
+        .process-step:nth-child(even) { flex-direction: row-reverse; }
+        .process-step-card {
+            width: 44%; background: #ffffff; border: 1px solid #f0f0f0; border-radius: 1rem;
+            padding: 1.75rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .process-step-card::after {
+            content: ''; position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem; height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #9333ea);
+            opacity: 0; transform: scaleX(0);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .step-visible .process-step-card::after { opacity: 1; transform: scaleX(1); }
+        .process-step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(139,92,246,0.1);
+            background: #f5f3ff;
+        }
+        .process-step-number {
+            position: absolute; left: 50%; transform: translateX(-50%) scale(0.5);
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #9333ea);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 800; font-size: 1.1rem; z-index: 2;
+            box-shadow: 0 4px 16px rgba(139,92,246,0.3);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .process-step.step-visible .process-step-number {
+            opacity: 1; transform: translateX(-50%) scale(1);
+            box-shadow: 0 0 20px rgba(139,92,246,0.5), 0 4px 16px rgba(139,92,246,0.3);
+        }
+        .process-step.step-visible .process-step-number::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
+            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite;
+        }
+        .process-step-spacer { width: 12%; }
+        .process-step-card .step-icon {
+            width: 42px; height: 42px; border-radius: 10px;
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem;
+        }
+        .process-step-card .step-icon i { color: #8b5cf6; font-size: 1.1rem; }
+        .process-step-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
+        .process-step-card p { color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.88rem; }
+        @media (max-width: 768px) {
+            .process-timeline-progress { left: 28px; }
+            .process-step, .process-step:nth-child(even) { flex-direction: row !important; }
+            .process-step-number { left: 28px !important; transform: translateX(-50%); }
+            .process-step-spacer { display: none; }
+            .process-step-card { width: 100%; margin-left: 72px; }
+        }
+
+        /* ======= TABS ======= */
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; background: white; color: #6b7280; }
+        .tab-btn:hover { color: #8b5cf6; border-color: rgba(139,92,246,0.2); }
+        .tab-btn.active { background: linear-gradient(135deg, #8b5cf6, #9333ea); color: white; border-color: transparent; box-shadow: 0 4px 16px rgba(139,92,246,0.3); }
+        .tab-content { display: none; animation: fadeInUp 0.4s ease; }
+        .tab-content.active { display: block; }
+
+        /* ======= SHOWCASE BENTO ======= */
+        .showcase-card {
+            position: relative; border-radius: 1.5rem; overflow: hidden; background: #fff;
+            box-shadow: 0 0 24px rgba(139,92,246,0.08), 0 4px 16px rgba(0,0,0,0.04);
+            transition: box-shadow 0.5s ease, transform 0.4s ease;
+            opacity: 0; transform: translateY(30px);
+        }
+        .showcase-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s ease; }
+        .showcase-card:hover { box-shadow: 0 0 40px rgba(139,92,246,0.18), 0 12px 40px rgba(139,92,246,0.12); transform: translateY(-5px); }
+        .showcase-card.visible:hover { transform: translateY(-5px); }
+        .showcase-card .showcase-media { overflow: hidden; position: relative; }
+        .showcase-card .showcase-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .showcase-card:hover .showcase-media img { transform: scale(1.05); }
+        .showcase-card .showcase-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 2rem 1.75rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); color: white;
+        }
+        .showcase-card .showcase-overlay h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem; }
+        .showcase-card .showcase-overlay p { font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.55; }
+        .showcase-card .showcase-badge {
+            position: absolute; top: 1rem; left: 1rem; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px); padding: 0.4rem 1rem; border-radius: 999px;
+            font-size: 0.72rem; font-weight: 700; color: #7c3aed; text-transform: uppercase;
+            letter-spacing: 0.06em; z-index: 2; box-shadow: 0 2px 12px rgba(139,92,246,0.15);
+        }
+        .showcase-grid {
+            display: grid; grid-template-columns: 1.2fr 0.8fr; grid-template-rows: 280px 280px; gap: 1.25rem;
+        }
+        .showcase-card.showcase-featured { grid-row: 1 / -1; }
+        .showcase-card.showcase-featured .showcase-media { height: 100%; }
+        .showcase-card:not(.showcase-featured) .showcase-media { height: 100%; }
+        @media (max-width: 768px) {
+            .showcase-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .showcase-card.showcase-featured { grid-row: auto; }
+            .showcase-card .showcase-media { height: 250px !important; }
+        }
+
+        /* ======= QUOTES ======= */
+        .quotes-glass {
+            background: linear-gradient(135deg, rgba(245,243,255,0.3) 0%, #ffffff 50%, rgba(237,233,254,0.3) 100%);
+            position: relative; overflow: hidden;
+        }
+        .quotes-blob {
+            position: absolute; border-radius: 50%; filter: blur(80px);
+            animation: blobDrift 20s ease-in-out infinite; pointer-events: none;
+        }
+        @keyframes blobDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
+        .quotes-dots {
+            position: absolute; bottom: 0; right: 0; width: 200px; height: 200px;
+            background-image: radial-gradient(circle, rgba(139,92,246,0.12) 1px, transparent 1px);
+            background-size: 20px 20px; pointer-events: none;
+        }
+        .quotes-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: 1fr 1fr 1fr; gap: 1.5rem; align-items: stretch; }
+        .glass-quote {
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(139,92,246,0.1); border-radius: 1.5rem; padding: 2rem 2.25rem;
+            box-shadow: 0 0 20px rgba(139,92,246,0.12), 0 8px 32px rgba(139,92,246,0.08);
+            display: flex; flex-direction: column; justify-content: space-between;
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
+        .glass-quote:hover { box-shadow: 0 0 40px rgba(139,92,246,0.2), 0 16px 50px rgba(139,92,246,0.22); transform: translateY(-4px); }
+        .glass-quote.featured { grid-row: 1 / -1; padding: 2.5rem; animation: quoteFloat1 4s ease-in-out infinite; }
+        .glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
+        .glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
+        .glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
+        @keyframes quoteFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        @keyframes quoteFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes quoteFloat3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes quoteFloat4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+        @media (max-width: 768px) { .quotes-grid { grid-template-columns: 1fr; grid-template-rows: auto; } .glass-quote.featured { grid-row: auto; } }
+
+        /* ======= STATS WITH PROGRESS RINGS ======= */
+        .stats-dark {
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #1a1035, #2a1040, #0f172a);
+            background-size: 400% 400%;
+            animation: meshGradient 15s ease infinite;
+            position: relative; overflow: hidden;
+        }
+        @keyframes meshGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .stats-dark::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(139,92,246,0.08), transparent 70%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1);
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* ======= OFFSET TESTIMONIALS ======= */
+        .testi-card {
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(139,92,246,0.1); border-radius: 1.5rem; padding: 2.5rem;
+            position: relative; box-shadow: 0 0 24px rgba(139,92,246,0.08), 0 4px 16px rgba(0,0,0,0.03);
+            transition: box-shadow 0.4s ease, transform 0.4s ease; overflow: hidden;
+        }
+        .testi-card:hover { box-shadow: 0 0 40px rgba(139,92,246,0.15), 0 12px 36px rgba(139,92,246,0.1); transform: translateY(-4px); }
+        .testi-card::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 1.5rem; right: 2rem; font-size: 3.5rem; color: rgba(139,92,246,0.06); pointer-events: none; }
+        @media (min-width: 768px) { .testi-offset { margin-top: 40px; } }
+
+        /* Wave divider */
+        .wave-divider { position: relative; }
+        .wave-divider::before {
+            content:''; position:absolute; top:-60px; left:0; right:0; height:60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%230f172a' d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,35 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex items-baseline">
+                        <a href="/home/" class="flex items-baseline">
+                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
+                            <span class="text-2xl font-bold text-gray-900">Retain</span>
+                        </a>
+                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
+                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
+                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
+                            Who It's For
+                            <i class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
+                            <a href="/who-it-for/real-estate/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                                <i class="fas fa-building mr-3 text-emerald-500 bg-emerald-50 p-1.5 rounded-lg"></i> Real Estate
+                            </a>
+                            <a href="/who-it-for/ecommerce/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i> E-commerce & Retail
+                            </a>
+                            <a href="/who-it-for/travel-hospitality/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                                <i class="fas fa-plane mr-3 text-sky-500 bg-sky-50 p-1.5 rounded-lg"></i> Travel & Hospitality
+                            </a>
+                            <a href="/who-it-for/food-beverage/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                                <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i> Food & Beverage
+                            </a>
+                            <a href="/who-it-for/agencies/" class="block px-4 py-3 text-sm text-violet-700 font-medium bg-violet-50 rounded-md transition-colors">
+                                <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i> Agencies
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
+                    <a href="/contact/" class="text-white px-5 py-2 rounded-lg hover:shadow-lg transition-all font-medium whitespace-nowrap" style="background: linear-gradient(135deg, #8b5cf6, #9333ea);">
+                        Book a Call
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-500">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
+                <a href="/who-it-for/real-estate/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Real Estate</a>
+                <a href="/who-it-for/ecommerce/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">E-commerce & Retail</a>
+                <a href="/who-it-for/travel-hospitality/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Travel & Hospitality</a>
+                <a href="/who-it-for/food-beverage/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Food & Beverage</a>
+                <a href="/who-it-for/agencies/" class="text-violet-600 font-semibold block px-3 py-2 rounded-md text-base">Agencies</a>
+                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
+                <a href="/contact/" class="text-white block px-3 py-2 rounded-md text-base font-medium" style="background: linear-gradient(135deg, #8b5cf6, #9333ea);">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO -->
+    <section class="hero-mesh pt-32 pb-28 lg:pt-44 lg:pb-40 relative overflow-hidden min-h-[90vh] flex items-center">
+        <div class="floating-orb float-a bg-violet-400" style="width:120px;height:120px;top:10%;right:8%;"></div>
+        <div class="floating-orb float-b bg-purple-500" style="width:80px;height:80px;bottom:15%;left:5%;"></div>
+        <div class="floating-orb float-a bg-violet-300" style="width:60px;height:60px;top:60%;right:25%;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-up">
+                    <span class="inline-block bg-violet-100 text-violet-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                        <i class="fas fa-briefcase mr-1"></i> Retain for Agencies
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                        Your Agency Doesn't Need More Clients. It Needs
+                        <span class="hero-cycle-wrapper"><span class="hero-cycle-list"><span class="hero-cycle-item violet-gradient-text">Retainers</span><span class="hero-cycle-item violet-gradient-text">Recurring Revenue</span><span class="hero-cycle-item violet-gradient-text">Client Memory</span><span class="hero-cycle-item violet-gradient-text">Lifetime Value</span><span class="hero-cycle-item violet-gradient-text">Retainers</span></span></span>
+                    </h1>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl">
+                        The project ships. The invoice clears. Then silence. No follow-up, no upsell, no reason for them to come back. Retain is your client retention growth partner — for every type of agency, from digital marketing to dev shops to freelance consultants.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contactForm" class="violet-gradient text-white px-8 py-3.5 rounded-full font-semibold text-center hover:opacity-90 transition-opacity shadow-lg shadow-violet-200 cta-shimmer">
+                            Build Your Retention Engine <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="/solutions/" class="bg-white text-violet-700 border-2 border-violet-200 px-8 py-3.5 rounded-full font-semibold text-center hover:border-violet-400 transition-colors">
+                            Explore Solutions
+                        </a>
+                    </div>
+                </div>
+                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <img src="https://picsum.photos/seed/agency-hero/600/500" alt="Agency team collaborating" class="rounded-2xl shadow-2xl w-full object-cover">
+                    <div class="absolute -bottom-6 -left-6 glass-card rounded-xl shadow-lg p-4 hidden lg:block">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 violet-gradient rounded-full flex items-center justify-center">
+                                <i class="fas fa-redo text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-gray-900">4.2×</p>
+                                <p class="text-sm text-gray-500">More repeat projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -right-4 glass-card rounded-xl shadow-lg p-3 hidden lg:block">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-violet-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-line text-violet-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-lg font-bold text-gray-900">+63%</p>
+                                <p class="text-xs text-gray-500">Client retention rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. AGENCY TYPE TICKER -->
+    <section class="py-5 overflow-hidden" style="background: #0f172a;">
+        <div class="marquee-track">
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">DIGITAL MARKETING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">APP DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">COPYWRITING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">CREATIVE DESIGN&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">PR &amp; COMMS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">WEB DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SEO&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BRANDING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SOCIAL MEDIA&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">FREELANCE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <!-- duplicate for seamless loop -->
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">DIGITAL MARKETING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">APP DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">COPYWRITING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">CREATIVE DESIGN&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">PR &amp; COMMS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">WEB DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SEO&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BRANDING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SOCIAL MEDIA&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">FREELANCE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        </div>
+    </section>
+
+    <!-- 3. PAIN POINTS — Animated Gradient Border Cards -->
+    <section class="py-24 bg-white relative overflow-hidden" id="pain-points">
+        <div class="absolute top-[-5%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(139,92,246,0.07),transparent 70%);filter:blur(80px);"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> The Problem
+                </span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1] max-w-4xl mx-auto">
+                    Why Do Clients <span class="violet-gradient-text">Disappear After Delivery?</span>
+                </h2>
+                <p class="text-gray-400 max-w-lg mx-auto text-base">The project ends. The relationship shouldn't.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gradient-border-card reveal stagger-1">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-ghost text-violet-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Clients Ghost After Delivery</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">You deliver incredible work. They say "thanks!" Then you never hear from them again. No follow-up system means relationships die at the finish line.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-card reveal stagger-2">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line-down text-purple-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Feast-or-Famine Revenue</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">One month you're drowning in work. Next month, crickets. Without a retention engine, you're always starting from zero.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-card reveal stagger-3">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-handshake-slash text-violet-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">No Post-Project Engagement</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Invoice paid, Slack archived, done. There's no touchpoint between "project complete" and "hey, need anything else?" — and that gap is where clients are lost.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-card reveal stagger-1">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Competing on Price</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Without deep client relationships, you're just another proposal in the inbox. Clients shop around because they have no reason to stay loyal.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-card reveal stagger-2">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-violet-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">No Client Memory</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">A past client reaches out 8 months later. You scramble to remember their brand, preferences, and history. No system = no context = cold restart every time.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-card reveal stagger-3">
+                    <div class="gradient-border-card-inner">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-user-slash text-purple-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Client Churn After Projects</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">You've worked with 200+ clients over the years. How many are still active? Most agencies retain less than 15% of their client base year over year.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WHICH AGENCIES USE RETAIN? — Accordion -->
+    <section class="py-24 bg-gradient-to-b from-violet-50/50 to-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Every Agency Type
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    Which Agencies Use <span class="violet-gradient-text">Retain?</span>
+                </h2>
+                <p class="text-gray-400 max-w-lg mx-auto text-base">Every agency that wants clients to come back. Here's how.</p>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-bullhorn text-violet-600"></i></div>
+                            <span class="font-bold text-gray-900">Digital Marketing Agencies</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automate post-campaign check-ins so clients don't drift to competitors</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Surface upsell opportunities based on past campaign performance data</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Turn one-off ad campaigns into ongoing retainer relationships</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a client memory that remembers KPIs, preferences, and seasonal patterns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-code text-purple-600"></i></div>
+                            <span class="font-bold text-gray-900">App & Web Dev Shops</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Nurture clients post-launch into maintenance and support retainers</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automatically reach out at key intervals — 3 months, 6 months, 12 months post-delivery</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Track client tech stacks and project histories for contextualized follow-ups</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Convert project-based billing into recurring SaaS-style partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-palette text-violet-600"></i></div>
+                            <span class="font-bold text-gray-900">Creative & Design Studios</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Remember brand guidelines, tone, and visual preferences across every engagement</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Trigger seasonal design refresh proposals automatically</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a creative portfolio of past work per client for instant context</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-newspaper text-purple-600"></i></div>
+                            <span class="font-bold text-gray-900">PR & Communications</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Track media cycles and proactively re-engage clients before their next launch</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Maintain journalist relationships and media contact databases per client</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automate quarterly PR performance reviews to keep clients engaged</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-pen-nib text-violet-600"></i></div>
+                            <span class="font-bold text-gray-900">Content & Copywriting Agencies</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Remember each client's voice, tone, and content strategy across all projects</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automatically propose content refreshes when existing pieces go stale</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Turn one-off blog posts into ongoing content retainers with smart follow-ups</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-user-tie text-purple-600"></i></div>
+                            <span class="font-bold text-gray-900">Freelancers & Solo Consultants</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-violet-400"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="accordion-body-inner">
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Run a one-person retention machine — automated follow-ups, no manual CRM work</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Keep every client relationship warm even when you're heads-down on delivery</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a personal brand that clients remember and return to without cold outreach</li>
+                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Scale your solo practice without scaling your workload — retention runs itself</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PROCESS TIMELINE -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> How It Works
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    <span class="process-slide-left">From Project Delivery to</span> <span class="process-slide-right violet-gradient-text">Lifetime Client</span>
+                </h2>
+            </div>
+
+            <div class="process-timeline relative">
+                <div class="absolute left-1/2 top-0 bottom-0 w-[3px] bg-gray-100 -translate-x-1/2 rounded-full"></div>
+                <div class="process-timeline-progress"></div>
+
+                <div class="process-step">
+                    <div class="process-step-card">
+                        <div class="step-icon"><i class="fas fa-plug"></i></div>
+                        <h3>Connect Your Client Data</h3>
+                        <p>Import your client list from your CRM, project management tool, or spreadsheet. Retain builds a living profile for every client relationship.</p>
+                    </div>
+                    <div class="process-step-spacer"></div>
+                    <div class="process-step-number">1</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-card">
+                        <div class="step-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Build Client Memory</h3>
+                        <p>Retain learns each client's preferences, project history, communication style, and engagement patterns. Context that compounds over time.</p>
+                    </div>
+                    <div class="process-step-spacer"></div>
+                    <div class="process-step-number">2</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-card">
+                        <div class="step-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Automate Post-Project Nurture</h3>
+                        <p>Smart sequences trigger after project delivery — check-ins, value adds, and re-engagement flows that keep your agency top of mind.</p>
+                    </div>
+                    <div class="process-step-spacer"></div>
+                    <div class="process-step-number">3</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-card">
+                        <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Surface Upsell Opportunities</h3>
+                        <p>Retain identifies when clients are ready for their next project — based on timing, engagement signals, and historical patterns.</p>
+                    </div>
+                    <div class="process-step-spacer"></div>
+                    <div class="process-step-number">4</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-card">
+                        <div class="step-icon"><i class="fas fa-infinity"></i></div>
+                        <h3>Turn Projects Into Retainers</h3>
+                        <p>One-off projects become ongoing relationships. Clients see you as a long-term partner, not a vendor. Revenue compounds instead of restarting.</p>
+                    </div>
+                    <div class="process-step-spacer"></div>
+                    <div class="process-step-number">5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TABBED USE CASES -->
+    <section class="py-24 bg-gradient-to-b from-white to-violet-50/30 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Use Cases
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    See Retain in <span class="violet-gradient-text">Your Agency</span>
+                </h2>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button class="tab-btn active" data-tab="tab-marketing">Digital Marketing</button>
+                <button class="tab-btn" data-tab="tab-dev">Dev Agency</button>
+                <button class="tab-btn" data-tab="tab-creative">Creative Studio</button>
+                <button class="tab-btn" data-tab="tab-freelance">Freelancer</button>
+            </div>
+
+            <div class="reveal">
+                <div id="tab-marketing" class="tab-content active">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img src="https://picsum.photos/seed/marketing-tab/560/380" alt="Digital marketing dashboard" class="rounded-2xl shadow-lg w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Turn Campaign Clients Into Growth Partners</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">A client hires you for a Facebook ads campaign. It goes well. But 3 months later, they're running Google Ads with someone else — not because you weren't good, but because you didn't follow up.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Automated 30/60/90-day check-ins after every campaign wraps</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">AI-powered suggestions for next services based on past performance</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Seasonal campaign proposals triggered automatically</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-dev" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img src="https://picsum.photos/seed/dev-tab/560/380" alt="Development workspace" class="rounded-2xl shadow-lg w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">From Launch Day to Long-Term Partnership</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">You build a stunning app. Client loves it. Six months later, they need a redesign — but they hired another shop because you vanished after deployment.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Post-launch nurture sequences: "How's the app performing?"</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Maintenance contract proposals at the right time</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Tech stack evolution alerts — proactive upgrade recommendations</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-creative" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img src="https://picsum.photos/seed/creative-tab/560/380" alt="Creative studio workspace" class="rounded-2xl shadow-lg w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Design Once, Retain Forever</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">You nail their rebrand. They post it everywhere. A year later, their brand feels stale — but they forgot your name because the relationship ended at the invoice.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Brand refresh reminders at 6 and 12-month marks</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Full brand guideline memory — never ask "what font was that?" again</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Seasonal creative proposals based on industry trends</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-freelance" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img src="https://picsum.photos/seed/freelance-tab/560/380" alt="Freelancer working" class="rounded-2xl shadow-lg w-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Solo Practice, Enterprise Retention</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">You're one person juggling delivery, sales, and admin. Following up with past clients always falls to the bottom of the list — until Retain handles it for you.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Set it and forget it — automated nurture runs while you deliver</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Personal CRM that remembers every client detail</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Referral prompts at peak satisfaction moments</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. VISUAL SHOWCASE (BENTO GRID) -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Platform Preview
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    What Retain Looks Like <span class="violet-gradient-text">Inside</span>
+                </h2>
+            </div>
+
+            <div class="showcase-grid">
+                <div class="showcase-card showcase-featured">
+                    <div class="showcase-media">
+                        <img src="https://picsum.photos/seed/agency-showcase1/700/600" alt="Retain client dashboard">
+                    </div>
+                    <span class="showcase-badge">Client Dashboard</span>
+                    <div class="showcase-overlay">
+                        <h4>Complete Client Intelligence</h4>
+                        <p>Every project, every preference, every conversation — one living profile per client that grows smarter with every interaction.</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-media">
+                        <img src="https://picsum.photos/seed/agency-showcase2/500/280" alt="Retain automation flows">
+                    </div>
+                    <span class="showcase-badge">Automation</span>
+                    <div class="showcase-overlay">
+                        <h4>Smart Nurture Sequences</h4>
+                        <p>Post-project follow-ups that feel personal but run on autopilot.</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-media">
+                        <img src="https://picsum.photos/seed/agency-showcase3/500/280" alt="Retain analytics">
+                    </div>
+                    <span class="showcase-badge">Analytics</span>
+                    <div class="showcase-overlay">
+                        <h4>Retention Analytics</h4>
+                        <p>See which clients are at risk, who's ready for upsell, and your retention health score.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. INDUSTRY QUOTES -->
+    <section class="quotes-glass py-24 relative overflow-hidden">
+        <div class="quotes-blob bg-violet-300/20" style="width:400px;height:400px;top:-10%;left:-5%;"></div>
+        <div class="quotes-blob bg-purple-300/15" style="width:300px;height:300px;bottom:-5%;right:-3%;animation-delay:3s;"></div>
+        <div class="quotes-dots"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Words of Wisdom
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    What Leaders Say About <span class="violet-gradient-text">Client Retention</span>
+                </h2>
+            </div>
+
+            <div class="quotes-grid reveal">
+                <div class="glass-quote featured">
+                    <div>
+                        <i class="fas fa-quote-left text-violet-300 text-3xl mb-4"></i>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">"The cost of acquiring a new customer is five to twenty-five times more expensive than retaining an existing one. For agencies, every lost client is a marketing budget burned."</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-auto">
+                        <div class="w-12 h-12 violet-gradient rounded-full flex items-center justify-center text-white font-bold">HBR</div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Harvard Business Review</p>
+                            <p class="text-gray-400 text-xs">Research on Customer Retention</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-quote">
+                    <div>
+                        <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
+                        <p class="text-gray-700 text-sm leading-relaxed">"The best customer is the one you already have. Don't find customers for your products, find products for your customers."</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <div class="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center"><i class="fas fa-user text-violet-600 text-sm"></i></div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Seth Godin</p>
+                            <p class="text-gray-400 text-xs">Author, This Is Marketing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-quote">
+                    <div>
+                        <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
+                        <p class="text-gray-700 text-sm leading-relaxed">"Increasing customer retention rates by 5% increases profits by 25% to 95%. For project-based businesses, this is the unlock."</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"><i class="fas fa-chart-bar text-purple-600 text-sm"></i></div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Bain & Company</p>
+                            <p class="text-gray-400 text-xs">Management Consulting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-quote">
+                    <div>
+                        <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
+                        <p class="text-gray-700 text-sm leading-relaxed">"People don't buy what you do; they buy why you do it. And the agencies that keep showing up with purpose are the ones clients never leave."</p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4">
+                        <div class="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center"><i class="fas fa-pen text-violet-600 text-sm"></i></div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Simon Sinek</p>
+                            <p class="text-gray-400 text-xs">Author, Start With Why</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. BIG TEXT + IMAGE -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] mb-8">
+                        Stop Treating Clients Like
+                        <span class="violet-gradient-text">Transactions.</span>
+                    </h2>
+                    <p class="text-xl text-gray-500 leading-relaxed mb-8">
+                        Every client you've ever worked with is a relationship waiting to be reignited. Not with cold emails. Not with generic newsletters. With memory — the kind that remembers their goals, their challenges, and exactly when to show up again.
+                    </p>
+                    <a href="#contactForm" class="inline-flex items-center gap-2 violet-gradient text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-violet-200 cta-shimmer">
+                        Start Retaining Clients <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="reveal-right">
+                    <img src="https://picsum.photos/seed/agency-bigtext/600/500" alt="Agency team success" class="rounded-2xl shadow-2xl w-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. STATS WITH PROGRESS RINGS -->
+    <section class="stats-dark py-24 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-4">The Numbers Don't Lie</h2>
+                <p class="text-gray-400 max-w-lg mx-auto">Agencies using retention systems see transformative results.</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="relative inline-block mb-4">
+                        <svg class="w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
+                            <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad1)" stroke-width="8" stroke-linecap="round"
+                                stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.67"/>
+                            <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#9333ea"/></linearGradient></defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-white stat-counter" data-target="67" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Higher client lifetime value</p>
+                </div>
+                <div class="text-center">
+                    <div class="relative inline-block mb-4">
+                        <svg class="w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
+                            <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad2)" stroke-width="8" stroke-linecap="round"
+                                stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.42"/>
+                            <defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#a78bfa"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-white stat-counter" data-target="4.2" data-suffix="×">0×</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">More repeat engagements</p>
+                </div>
+                <div class="text-center">
+                    <div class="relative inline-block mb-4">
+                        <svg class="w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
+                            <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad3)" stroke-width="8" stroke-linecap="round"
+                                stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.83"/>
+                            <defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#c084fc"/></linearGradient></defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-white stat-counter" data-target="83" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Client retention rate</p>
+                </div>
+                <div class="text-center">
+                    <div class="relative inline-block mb-4">
+                        <svg class="w-32 h-32" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
+                            <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad4)" stroke-width="8" stroke-linecap="round"
+                                stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.38"/>
+                            <defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#9333ea"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-white stat-counter" data-target="38" data-suffix="%">0%</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Revenue from past clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. TESTIMONIALS — Offset Grid -->
+    <section class="py-24 bg-gradient-to-b from-white to-violet-50/30 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Client Stories
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
+                    Agencies That <span class="violet-gradient-text">Stopped Losing Clients</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="testi-card reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"We used to lose 70% of clients after project delivery. With Retain, we turned our client base into a recurring revenue engine. Last quarter, 60% of our revenue came from returning clients."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=MR&background=8b5cf6&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Marcus Reynolds</p>
+                            <p class="text-gray-400 text-xs">Founder, Pixel & Code Agency</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">+60% recurring revenue</span>
+                    </div>
+                </div>
+                <div class="testi-card testi-offset reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"As a freelance designer, following up with past clients always fell through the cracks. Retain does it for me. I've re-engaged 12 dormant clients in 3 months — without sending a single cold email."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=SK&background=9333ea&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Sarah Kim</p>
+                            <p class="text-gray-400 text-xs">Freelance Brand Designer</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">12 clients re-engaged</span>
+                    </div>
+                </div>
+                <div class="testi-card reveal">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"Our digital marketing agency went from 15% client retention to 72% in under 6 months. The automated post-campaign check-ins alone paid for themselves ten times over."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=JT&background=7c3aed&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">James Torres</p>
+                            <p class="text-gray-400 text-xs">CEO, Amplitude Digital</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">15% → 72% retention</span>
+                    </div>
+                </div>
+                <div class="testi-card testi-offset reveal lg:block">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"The client memory feature is a game-changer. When a client calls after 8 months, we know their entire history instantly. It makes us look brilliant — and keeps them coming back."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=LP&background=a78bfa&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Lisa Park</p>
+                            <p class="text-gray-400 text-xs">COO, BrightHive Creative</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">4.5× client LTV increase</span>
+                    </div>
+                </div>
+                <div class="testi-card reveal lg:block">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star-half-alt text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"We're a PR firm and client relationships are everything. Retain helps us stay in touch between campaigns — proactively, not reactively. Our renewal rate jumped from 40% to 78%."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=DC&background=6d28d9&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">David Chen</p>
+                            <p class="text-gray-400 text-xs">Managing Director, Echo PR</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">78% renewal rate</span>
+                    </div>
+                </div>
+                <div class="testi-card testi-offset reveal lg:block">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"Running an SEO agency means results take months. Retain keeps clients engaged during the waiting period with smart check-ins and progress updates. Churn dropped by half."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://ui-avatars.com/api/?name=AN&background=8b5cf6&color=fff" class="w-10 h-10 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Anika Nguyen</p>
+                            <p class="text-gray-400 text-xs">Founder, RankFlow SEO</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
+                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
+                        <span class="text-violet-700 text-xs font-bold">50% less churn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. CONTACT FORM -->
+    <section class="py-24 bg-white relative overflow-hidden" id="contactForm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Get Started
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-[1.1]">
+                        Ready to Stop <span class="violet-gradient-text">Losing Clients?</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Whether you're a 2-person freelance duo or a 200-person agency, Retain builds the retention engine your business is missing. Let's talk about turning your past clients into your best revenue stream.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 violet-gradient rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xs"></i></div>
+                            <span class="text-gray-700">Free retention audit for your agency</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 violet-gradient rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xs"></i></div>
+                            <span class="text-gray-700">Custom onboarding for your agency type</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 violet-gradient rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-white text-xs"></i></div>
+                            <span class="text-gray-700">See results within 30 days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right">
+                    <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-6">Book Your Free Strategy Call</h3>
+                        <form class="space-y-4" id="contact-form">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-gray-400 text-sm mb-1 block">First Name</label>
+                                    <input type="text" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent" placeholder="John" required>
+                                </div>
+                                <div>
+                                    <label class="text-gray-400 text-sm mb-1 block">Last Name</label>
+                                    <input type="text" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-1 block">Work Email</label>
+                                <input type="email" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent" placeholder="john@agency.com" required>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-1 block">Country *</label>
+                                <div class="relative">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent pr-10" required>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-gray-500"></i>
+                                    </div>
+                                    <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
+                                        <div id="country-options" class="py-2 text-gray-900"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-1 block">Phone</label>
+                                <div class="flex gap-2">
+                                    <div class="w-1/4">
+                                        <div class="bg-slate-800 text-violet-400 py-3 px-4 rounded-xl border border-slate-700 text-center font-medium text-sm" id="phone-code">+</div>
+                                    </div>
+                                    <div class="w-3/4">
+                                        <input type="tel" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent" placeholder="555 123 4567">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-1 block">Agency Type</label>
+                                <select class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500">
+                                    <option value="">Select your agency type</option>
+                                    <option>Digital Marketing</option>
+                                    <option>Web / App Development</option>
+                                    <option>Creative & Design</option>
+                                    <option>PR & Communications</option>
+                                    <option>Content & Copywriting</option>
+                                    <option>SEO</option>
+                                    <option>Social Media</option>
+                                    <option>Branding</option>
+                                    <option>Freelancer / Solo Consultant</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm mb-1 block">Message (Optional)</label>
+                                <textarea class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none" rows="3" placeholder="Tell us about your agency..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full violet-gradient text-white py-4 rounded-xl font-semibold text-base hover:opacity-90 transition-opacity shadow-lg shadow-violet-500/30 cta-shimmer">
+                                Book My Free Call <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                            <p class="text-gray-500 text-xs text-center">No commitment. No credit card. Just a conversation.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. FOOTER -->
+    <footer class="bg-slate-900 text-gray-400 pt-20 pb-8 wave-divider relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-baseline mb-4">
+                        <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2">
+                        <span class="text-xl font-bold text-white">Retain</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">The client retention growth partner for agencies that want recurring revenue, not one-off projects.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/solutions/" class="hover:text-violet-400 transition-colors">Solutions</a></li>
+                        <li><a href="/how-it-works/" class="hover:text-violet-400 transition-colors">How It Works</a></li>
+                        <li><a href="/why-retain/" class="hover:text-violet-400 transition-colors">Why Retain</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Industries</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/who-it-for/real-estate/" class="hover:text-violet-400 transition-colors">Real Estate</a></li>
+                        <li><a href="/who-it-for/ecommerce/" class="hover:text-violet-400 transition-colors">E-commerce & Retail</a></li>
+                        <li><a href="/who-it-for/travel-hospitality/" class="hover:text-violet-400 transition-colors">Travel & Hospitality</a></li>
+                        <li><a href="/who-it-for/food-beverage/" class="hover:text-violet-400 transition-colors">Food & Beverage</a></li>
+                        <li><a href="/who-it-for/agencies/" class="text-violet-400">Agencies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="/about/" class="hover:text-violet-400 transition-colors">About</a></li>
+                        <li><a href="https://solven.app/" class="hover:text-violet-400 transition-colors" target="_blank">Solven</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm">&copy; 2025 Retain by Solven. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-500 hover:text-violet-400 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-violet-400 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-violet-400 transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <script>
+    (function() {
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+            .ripple-active::after { content: ""; position: absolute; inset: 0; background: rgba(139, 92, 246, 0.4); border-radius: 9999px; z-index: -1; animation: ripple 2s infinite; }
+            .no-scrollbar::-webkit-scrollbar { display: none; }
+            .chat-message { transform: translateY(20px); opacity: 0; transition: all 0.3s ease; display: inline-block; word-break: break-word; }
+            .chat-message.show { transform: translateY(0); opacity: 1; }
+            .typing-dots { display: inline-flex; gap: 3px; align-items: center; justify-content: center; }
+            .typing-dots span { width: 6px; height: 6px; background-color: black; border-radius: 50%; animation: blink 1.4s infinite both; }
+            .typing-dots span:nth-child(1) { animation-delay: 0s; }
+            .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+            .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+            @keyframes blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
+            .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+            #chatbot-window { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(0.8) translateY(40px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); transform-origin: bottom right; }
+            #chatbot-window.is-active { opacity: 1; visibility: visible; pointer-events: auto; transform: scale(1) translateY(0); }
+        `;
+        document.head.appendChild(style);
+
+        let session_id = sessionStorage.getItem('chatwidget_session_id');
+        if (!session_id) { session_id = crypto.randomUUID(); sessionStorage.setItem('chatwidget_session_id', session_id); }
+
+        const container = document.createElement('div');
+        container.id = 'chatbot-container';
+        container.className = 'fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans';
+        container.innerHTML = `
+            <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
+                <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-400 to-purple-400"></div>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <img src="https://ui-avatars.com/api/?name=AI&background=8b5cf6&color=fff" class="w-12 h-12 rounded-full border-2 border-violet-500/30 shadow-lg">
+                            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-violet-400 border-2 border-slate-900 rounded-full"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg leading-none">Aria</h4>
+                            <span class="text-xs text-violet-300 font-medium tracking-wide uppercase">AI Strategist</span>
+                        </div>
+                    </div>
+                    <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
+                </div>
+                <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
+                    <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
+                </div>
+                <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
+                    <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
+                        <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
+                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <button type="submit" class="text-violet-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
+                    </form>
+                </div>
+            </div>
+            <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none" style="background: #111827;">
+                <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition" style="color:#ffffff"></i>
+                <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50" style="color:#8b5cf6"></i>
+            </button>
+        `;
+        document.body.appendChild(container);
+
+        const btn = document.getElementById('chatbot-toggle');
+        const win = document.getElementById('chatbot-window');
+        const iconMsg = document.getElementById('icon-msg');
+        const iconClose = document.getElementById('icon-close');
+        const closeBtn = document.getElementById('chatbot-close');
+
+        function toggleChat() {
+            const isActive = win.classList.contains('is-active');
+            if (isActive) {
+                win.classList.remove('is-active');
+                iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
+                iconClose.classList.add('opacity-0','-rotate-90','scale-50');
+                btn.style.background = '#111827';
+                btn.classList.add('ripple-active');
+            } else {
+                win.classList.add('is-active');
+                iconMsg.classList.add('opacity-0','rotate-90','scale-50');
+                iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
+                btn.style.background = '#111827';
+                btn.classList.remove('ripple-active');
+            }
+        }
+
+        btn.addEventListener('click', toggleChat);
+        closeBtn.addEventListener('click', toggleChat);
+
+        const form = document.getElementById('chatbot-form');
+        const input = document.getElementById('chatbot-input');
+        const messages = document.getElementById('chatbot-messages');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
+            userMsg.style.maxWidth = '80%';
+            userMsg.innerText = text;
+            messages.appendChild(userMsg);
+            requestAnimationFrame(() => userMsg.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.value = '';
+
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
+            typingBubble.style.maxWidth = '80%';
+            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+            messages.appendChild(typingBubble);
+            requestAnimationFrame(() => typingBubble.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+
+            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_msg: text, session_id })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const aiText = data.reply || '';
+                typingBubble.innerHTML = aiText;
+                messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            });
+        });
+    })();
+    </script>
+
+    <!-- Scripts -->
+    <script src="countrycode.js"></script>
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('shadow-md', window.scrollY > 20); });
+
+        // Scroll reveal
+        (function() {
+            const revealObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObs.unobserve(entry.target); }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+        })();
+
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const body = item.querySelector('.accordion-body');
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.accordion-item').forEach(ai => {
+                    ai.classList.remove('active');
+                    ai.querySelector('.accordion-body').style.maxHeight = null;
+                });
+
+                // Open clicked (if wasn't active)
+                if (!isActive) {
+                    item.classList.add('active');
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Counter animation
+        (function() {
+            const counters = document.querySelectorAll('.stat-counter');
+            let counted = false;
+            const counterObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counted) {
+                        counted = true;
+                        counters.forEach(el => {
+                            const end = parseFloat(el.getAttribute('data-target'));
+                            const suffix = el.getAttribute('data-suffix') || '';
+                            const isFloat = el.getAttribute('data-target').includes('.');
+                            const duration = 1800;
+                            const start = performance.now();
+                            function tick(now) {
+                                const elapsed = now - start;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const c1 = 1.70158;
+                                const c3 = c1 + 1;
+                                const ease = 1 + c3 * Math.pow(progress - 1, 3) + c1 * Math.pow(progress - 1, 2);
+                                const current = ease * end;
+                                el.textContent = (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
+                                if (progress < 1) requestAnimationFrame(tick);
+                            }
+                            requestAnimationFrame(tick);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            const statsSection = document.querySelector('.stats-dark');
+            if (statsSection) counterObs.observe(statsSection);
+        })();
+
+        // SVG Progress Ring animation
+        (function() {
+            const rings = document.querySelectorAll('.progress-ring-circle[data-target]');
+            let animated = false;
+            const ringObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        rings.forEach(ring => {
+                            const circumference = 339.292;
+                            const target = parseFloat(ring.getAttribute('data-target'));
+                            const offset = circumference * (1 - target);
+                            ring.style.strokeDashoffset = offset;
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            const statsSection = document.querySelector('.stats-dark');
+            if (statsSection) ringObs.observe(statsSection);
+        })();
+
+        // Scroll-dependent process timeline
+        (function() {
+            const timeline = document.querySelector('.process-timeline');
+            const progressLine = document.querySelector('.process-timeline-progress');
+            const steps = document.querySelectorAll('.process-step');
+            const slideLeft = document.querySelector('.process-slide-left');
+            const slideRight = document.querySelector('.process-slide-right');
+            const headlineSection = slideLeft ? slideLeft.closest('.text-center') : null;
+            if (!timeline || !progressLine) return;
+
+            let ticking = false;
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    ticking = false;
+                    const wh = window.innerHeight;
+                    const tRect = timeline.getBoundingClientRect();
+                    const tTop = tRect.top;
+                    const tHeight = tRect.height;
+                    const scrollInto = wh * 0.65 - tTop;
+                    const progress = Math.max(0, Math.min(1, scrollInto / tHeight));
+                    const lineHeight = progress * tHeight;
+                    progressLine.style.height = lineHeight + 'px';
+
+                    steps.forEach(step => {
+                        const numberEl = step.querySelector('.process-step-number');
+                        if (!numberEl) return;
+                        const numberRect = numberEl.getBoundingClientRect();
+                        const numberMid = numberRect.top + numberRect.height / 2;
+                        const numberRelative = numberMid - tRect.top;
+                        if (lineHeight >= numberRelative - 10) {
+                            step.classList.add('step-visible');
+                        } else {
+                            step.classList.remove('step-visible');
+                        }
+                    });
+
+                    if (headlineSection) {
+                        const hRect = headlineSection.getBoundingClientRect();
+                        const rawProgress = (wh - hRect.top) / (wh * 0.5);
+                        const hp = Math.max(0, rawProgress);
+                        const alpha = Math.min(1, hp * 1.2);
+                        const leftX = -80 + hp * 80;
+                        const rightX = 80 - hp * 80;
+                        if (slideLeft) { slideLeft.style.opacity = alpha; slideLeft.style.transform = 'translateX(' + leftX.toFixed(1) + 'px)'; }
+                        if (slideRight) { slideRight.style.opacity = alpha; slideRight.style.transform = 'translateX(' + rightX.toFixed(1) + 'px)'; }
+                    }
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+
+        // Showcase card reveal
+        const showcaseObs = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 150);
+                    showcaseObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el));
+    </script>
+</body>
+</html>

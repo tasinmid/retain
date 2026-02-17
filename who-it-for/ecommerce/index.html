@@ -550,9 +550,6 @@
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
                 <a href="/about/"
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                <a href="/how-it-works/"
-                    class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It
-                    Works</a>
                 <a href="/solutions/"
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
                 <div class="relative group">
@@ -582,6 +579,11 @@
                             class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
                             <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i>
                             Food & Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                            <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
+                            Agencies
                         </a>
                     </div>
                 </div>
@@ -613,9 +615,6 @@
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
             <a href="/about/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-            <a href="/how-it-works/"
-                class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It
-                Works</a>
             <a href="/solutions/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
             <div class="pl-3 space-y-1">
@@ -629,6 +628,8 @@
                         class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-sky-500 hover:bg-sky-50">Travel & Hospitality</a>
                     <a href="/who-it-for/food-beverage/"
                         class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-rose-500 hover:bg-rose-50">Food & Beverage</a>
+                    <a href="/who-it-for/agencies/"
+                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-violet-500 hover:bg-violet-50">Agencies</a>
             </div>
             <a href="/why-retain/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why
@@ -1157,244 +1158,215 @@
 })();
 </script>
 <!-- Stats Section -->
-<section class="relative overflow-hidden py-12" id="statsSection">
-    <style>
-        @keyframes statsBg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        #statsSection {
-            background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
-            background-size: 400% 400%;
-            animation: statsBg 20s ease infinite;
-        }
-        /* Typewriter */
-        .typewriter {
-            display: inline-block;
-            border-right: 3px solid #f59e0b;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typewrite 3.5s steps(40, end) forwards, blinkCaret 0.75s step-end 6, hideCaret 0s forwards 4.5s;
-        }
-        @keyframes typewrite { from { width: 0; } to { width: 100%; } }
-        @keyframes blinkCaret { from, to { border-color: transparent; } 50% { border-color: #f59e0b; } }
-        @keyframes hideCaret { to { border-right-color: transparent; border-right-width: 0; } }
-        @keyframes sparklePulse {
-            0%,100% { opacity:0; transform:scale(0.5); }
-            50% { opacity:0.8; transform:scale(1.2); }
-        }
-        #statsSection .star {
-            position:absolute; pointer-events:none; z-index:2;
-            color: rgba(245,158,11,0.4);
-            animation: sparklePulse var(--dur, 3s) ease-in-out infinite;
-            animation-delay: var(--delay, 0s);
-        }
-        .counter-glow {
-            text-shadow: 0 0 20px rgba(245,158,11,0.5), 0 0 40px rgba(245,158,11,0.25);
-            transition: text-shadow 0.6s ease;
-        }
-
-        /* Floating Quotes — Redesigned */
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
-        }
-        @keyframes gentleFloat2 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        .quotes-section {
-            background: linear-gradient(180deg, #030712 0%, #0a0e1a 50%, #111827 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .quotes-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-        }
-        .quotes-glow-1 {
-            position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
-            top: -100px; left: -100px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .quotes-glow-2 {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(251,191,36,0.06), transparent 70%);
-            bottom: -80px; right: -60px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .quotes-masonry {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            grid-template-rows: auto auto;
-            gap: 1.5rem;
-        }
-        @media (max-width: 768px) {
-            .quotes-masonry { grid-template-columns: 1fr; }
-        }
-        .qcard {
-            border-radius: 20px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.5s ease;
-        }
-        .qcard::before {
-            content: '\u201C';
-            font-family: Georgia, 'Times New Roman', serif;
-            position: absolute;
-            font-size: 10rem;
-            line-height: 1;
-            top: -0.3rem;
-            left: 1rem;
-            opacity: 0.06;
-            pointer-events: none;
-            color: #f59e0b;
-        }
-        .qcard:hover {
-            transform: perspective(800px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-4px);
-        }
-        /* Dark card */
-        .qcard-dark {
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-            border: 1px solid rgba(245,158,11,0.12);
-            border-left: 3px solid #f59e0b;
-        }
-        .qcard-dark:hover {
-            box-shadow: 0 0 40px rgba(245,158,11,0.12), 0 20px 60px rgba(0,0,0,0.4);
-        }
-        .qcard-dark .qcard-text { color: #e5e7eb; }
-        .qcard-dark .qcard-author-name { color: #fbbf24; }
-        .qcard-dark .qcard-author-title { color: #9ca3af; }
-        /* Light card */
-        .qcard-light {
-            background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
-            border: 1px solid rgba(245,158,11,0.15);
-            border-left: 3px solid #f59e0b;
-        }
-        .qcard-light:hover {
-            box-shadow: 0 0 40px rgba(245,158,11,0.1), 0 20px 60px rgba(0,0,0,0.15);
-        }
-        .qcard-light .qcard-text { color: #1f2937; }
-        .qcard-light .qcard-author-name { color: #92400e; }
-        .qcard-light .qcard-author-title { color: #6b7280; }
-        /* Featured */
-        .qcard-featured {
-            grid-row: span 2;
-            padding: 3rem;
-        }
-        .qcard-featured .qcard-text {
-            font-size: 1.45rem;
-            line-height: 1.8;
-        }
-        .qcard-featured::before {
-            font-size: 14rem;
-            opacity: 0.08;
-        }
-        @media (max-width: 768px) {
-            .qcard-featured { grid-row: span 1; }
-            .qcard-featured .qcard-text { font-size: 1.2rem; }
-        }
-        .qcard-text {
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.75;
-            position: relative;
-            z-index: 1;
-        }
-        .qcard-author {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        .qcard-avatar {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(245,158,11,0.3);
-        }
-        .qcard-author-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        .qcard-author-title {
-            font-size: 0.8rem;
-        }
-        .float-1 { animation: gentleFloat 7s ease-in-out infinite; }
-        .float-2 { animation: gentleFloat2 6s ease-in-out infinite; animation-delay: 1s; }
-        .float-3 { animation: gentleFloat 8s ease-in-out infinite; animation-delay: 2s; }
-        .float-4 { animation: gentleFloat2 7.5s ease-in-out infinite; animation-delay: 0.5s; }
-    </style>
-
-    <!-- Sparkles -->
-    <div class="star" style="top:10%;left:8%;font-size:8px;--dur:2.5s;--delay:0s">✦</div>
-    <div class="star" style="top:15%;right:12%;font-size:10px;--dur:3.5s;--delay:0.8s">✦</div>
-    <div class="star" style="top:50%;left:4%;font-size:6px;--dur:4s;--delay:1.5s">✦</div>
-    <div class="star" style="bottom:20%;right:6%;font-size:9px;--dur:3s;--delay:0.4s">✦</div>
-    <div class="star" style="bottom:15%;left:35%;font-size:7px;--dur:3.8s;--delay:2s">✦</div>
-    <div class="star" style="top:8%;left:55%;font-size:5px;--dur:2.8s;--delay:1.2s">✦</div>
-
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
-        <!-- Heading -->
-        <div class="text-center mb-8 reveal">
-            <span class="inline-block px-4 py-1.5 rounded-full text-amber-400 font-semibold text-sm tracking-wide mb-4" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15);">PROVEN RESULTS</span>
-            <h2 class="font-poppins text-3xl md:text-5xl font-extrabold text-white" style="line-height:1.1;">
-                <span class="typewriter">Results That <span style="background:linear-gradient(135deg,#f59e0b,#ea580c,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Compound</span></span>
+<style>
+    .ec-stats-banner {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #2a1f0a, #1a1028, #0f172a);
+        background-size: 400% 400%;
+        animation: ecStatsBg 15s ease infinite;
+        position: relative; overflow: hidden;
+    }
+    @keyframes ecStatsBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    .ec-stats-banner::before {
+        content: ''; position: absolute; top: -50%; right: -20%;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+        border-radius: 50%; pointer-events: none;
+    }
+    .ec-stat-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 1.5rem;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .ec-stat-card:nth-child(odd) { transform: rotate(-2deg); }
+    .ec-stat-card:nth-child(even) { transform: rotate(2deg); }
+    .ec-stat-card:hover { transform: rotate(0deg) translateY(-8px) !important; box-shadow: 0 20px 50px rgba(245,158,11,0.2); }
+</style>
+<section class="ec-stats-banner py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 reveal">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">
+                <span class="typewriter">Results That Compound</span>
             </h2>
+            <p class="text-amber-200 text-lg">Average results across e-commerce brands partnering with Retain.</p>
         </div>
-
-        <!-- 4 stats in a row -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="reveal">
-                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="3.5" data-suffix="×" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0×</div>
-                <p class="text-gray-300 text-sm font-medium mt-2">Repeat Purchases</p>
-                <p class="text-gray-500 text-xs mt-1">Within 90 days</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="ec-stat-card p-8 text-center reveal stagger-1">
+                <p class="text-5xl lg:text-6xl font-bold text-white mb-2 counter" data-target="4.2" data-suffix="×">0×</p>
+                <p class="text-amber-200 font-medium">More Repeat Purchases</p>
             </div>
-            <div class="reveal">
-                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="38" data-suffix="%" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0%</div>
-                <p class="text-gray-300 text-sm font-medium mt-2">Carts Recovered</p>
-                <p class="text-gray-500 text-xs mt-1">Avg: 8–12%</p>
+            <div class="ec-stat-card p-8 text-center reveal stagger-2">
+                <p class="text-5xl lg:text-6xl font-bold text-white mb-2 counter" data-target="52" data-suffix="%">0%</p>
+                <p class="text-amber-200 font-medium">Revenue Per Customer Growth</p>
             </div>
-            <div class="reveal">
-                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="67" data-suffix="%" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0%</div>
-                <p class="text-gray-300 text-sm font-medium mt-2">Higher LTV</p>
-                <p class="text-gray-500 text-xs mt-1">After 6 months</p>
+            <div class="ec-stat-card p-8 text-center reveal stagger-3">
+                <p class="text-5xl lg:text-6xl font-bold text-white mb-2 counter" data-target="68" data-suffix="%">0%</p>
+                <p class="text-amber-200 font-medium">Fewer Cart Abandonments</p>
             </div>
-            <div class="reveal">
-                <div class="font-poppins text-4xl md:text-5xl font-extrabold text-amber-400 counter" data-target="4.8" data-suffix="/5" style="line-height:1;text-shadow:0 0 15px rgba(245,158,11,0.3);">0/5</div>
-                <p class="text-gray-300 text-sm font-medium mt-2">Satisfaction Rating</p>
-                <p class="text-gray-500 text-xs mt-1">200+ brand surveys</p>
+            <div class="ec-stat-card p-8 text-center reveal stagger-4">
+                <p class="text-5xl lg:text-6xl font-bold text-white mb-2 counter" data-target="91" data-suffix="%">0%</p>
+                <p class="text-amber-200 font-medium">Customer Satisfaction</p>
             </div>
         </div>
     </div>
 </section>
-<script>
-(function(){
-    var statsCounterObs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-            if(!e.isIntersecting) return;
-            var el = e.target;
-            setTimeout(function(){ el.classList.add('counter-glow'); }, 2200);
-            statsCounterObs.unobserve(el);
-        });
-    }, {threshold:0.5});
-    document.querySelectorAll('#statsSection .counter').forEach(function(el){ statsCounterObs.observe(el); });
-})();
-</script>
+<style>
+    /* Typewriter */
+    .typewriter {
+        display: inline-block;
+        border-right: 3px solid #f59e0b;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typewrite 3.5s steps(40, end) forwards, blinkCaret 0.75s step-end 6, hideCaret 0s forwards 4.5s;
+    }
+    @keyframes typewrite { from { width: 0; } to { width: 100%; } }
+    @keyframes blinkCaret { from, to { border-color: transparent; } 50% { border-color: #f59e0b; } }
+    @keyframes hideCaret { to { border-right-color: transparent; border-right-width: 0; } }
+
+    /* Floating Quotes */
+    @keyframes gentleFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-7px); }
+    }
+    @keyframes gentleFloat2 {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    .quotes-section {
+        background: linear-gradient(180deg, #030712 0%, #0a0e1a 50%, #111827 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    .quotes-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+    }
+    .quotes-glow-1 {
+        position: absolute;
+        width: 500px; height: 500px;
+        background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+        top: -100px; left: -100px;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .quotes-glow-2 {
+        position: absolute;
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, rgba(251,191,36,0.06), transparent 70%);
+        bottom: -80px; right: -60px;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .quotes-masonry {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-rows: auto auto;
+        gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+        .quotes-masonry { grid-template-columns: 1fr; }
+    }
+    .qcard {
+        border-radius: 20px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s cubic-bezier(.25,.46,.45,.94), box-shadow 0.5s ease;
+    }
+    .qcard::before {
+        content: '\201C';
+        font-family: Georgia, 'Times New Roman', serif;
+        position: absolute;
+        font-size: 10rem;
+        line-height: 1;
+        top: -0.3rem;
+        left: 1rem;
+        opacity: 0.06;
+        pointer-events: none;
+        color: #f59e0b;
+    }
+    .qcard:hover {
+        transform: perspective(800px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-4px);
+    }
+    .qcard-dark {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        border: 1px solid rgba(245,158,11,0.12);
+        border-left: 3px solid #f59e0b;
+    }
+    .qcard-dark:hover {
+        box-shadow: 0 0 40px rgba(245,158,11,0.12), 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .qcard-dark .qcard-text { color: #e5e7eb; }
+    .qcard-dark .qcard-author-name { color: #fbbf24; }
+    .qcard-dark .qcard-author-title { color: #9ca3af; }
+    .qcard-light {
+        background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+        border: 1px solid rgba(245,158,11,0.15);
+        border-left: 3px solid #f59e0b;
+    }
+    .qcard-light:hover {
+        box-shadow: 0 0 40px rgba(245,158,11,0.1), 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .qcard-light .qcard-text { color: #1f2937; }
+    .qcard-light .qcard-author-name { color: #92400e; }
+    .qcard-light .qcard-author-title { color: #6b7280; }
+    .qcard-featured {
+        grid-row: span 2;
+        padding: 3rem;
+    }
+    .qcard-featured .qcard-text {
+        font-size: 1.45rem;
+        line-height: 1.8;
+    }
+    .qcard-featured::before {
+        font-size: 14rem;
+        opacity: 0.08;
+    }
+    @media (max-width: 768px) {
+        .qcard-featured { grid-row: span 1; }
+        .qcard-featured .qcard-text { font-size: 1.2rem; }
+    }
+    .qcard-text {
+        font-style: italic;
+        font-size: 1.1rem;
+        line-height: 1.75;
+        position: relative;
+        z-index: 1;
+    }
+    .qcard-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+    .qcard-avatar {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(245,158,11,0.3);
+    }
+    .qcard-author-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+    }
+    .qcard-author-title {
+        font-size: 0.8rem;
+    }
+    .float-1 { animation: gentleFloat 7s ease-in-out infinite; }
+    .float-2 { animation: gentleFloat2 6s ease-in-out infinite; animation-delay: 1s; }
+    .float-3 { animation: gentleFloat 8s ease-in-out infinite; animation-delay: 2s; }
+    .float-4 { animation: gentleFloat2 7.5s ease-in-out infinite; animation-delay: 0.5s; }
+</style>
+
 
 <!-- Why Retain for Retail -->
 <style>
@@ -1855,6 +1827,7 @@
                     <li><a href="/who-it-for/real-estate/" class="hover:text-amber-400 transition-colors">Real Estate</a></li>
                     <li><a href="/who-it-for/travel-hospitality/" class="hover:text-amber-400 transition-colors">Travel & Hospitality</a></li>
                     <li><a href="/who-it-for/food-beverage/" class="hover:text-amber-400 transition-colors">Food & Beverage</a></li>
+                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a></li>
                 </ul>
             </div>
             <div>

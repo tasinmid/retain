@@ -587,15 +587,29 @@
 
         /* === STATS BANNER === */
         .re-stats-banner {
-            background: linear-gradient(135deg, #065f46 0%, #047857 40%, #059669 70%, #10b981 100%);
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #0a2a1f, #1a1028, #0f172a);
+            background-size: 400% 400%;
+            animation: reStatsBg 15s ease infinite;
             position: relative; overflow: hidden;
         }
+        @keyframes reStatsBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .re-stats-banner::before {
             content: ''; position: absolute; top: -50%; right: -20%;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
+            background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%);
             border-radius: 50%; pointer-events: none;
         }
+        .re-stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 1.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .re-stat-card:nth-child(odd) { transform: rotate(-2deg); }
+        .re-stat-card:nth-child(even) { transform: rotate(2deg); }
+        .re-stat-card:hover { transform: rotate(0deg) translateY(-8px) !important; box-shadow: 0 20px 50px rgba(16,185,129,0.2); }
 
         /* === CTA SECTION (new) === */
         .re-cta-section {
@@ -637,8 +651,6 @@
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
                 <a href="/about/"
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                <a href="/how-it-works/"
-                    class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
                 <a href="/solutions/"
                     class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
                 <div class="relative group">
@@ -668,6 +680,11 @@
                             class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
                             <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i>
                             Food & Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
+                            <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
+                            Agencies
                         </a>
                     </div>
                 </div>
@@ -699,8 +716,6 @@
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
             <a href="/about/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-            <a href="/how-it-works/"
-                class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
             <a href="/solutions/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
             <div class="pl-3 space-y-1">
@@ -713,6 +728,8 @@
                         class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-sky-500 hover:bg-sky-50">Travel & Hospitality</a>
                     <a href="/who-it-for/food-beverage/"
                         class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-rose-500 hover:bg-rose-50">Food & Beverage</a>
+                    <a href="/who-it-for/agencies/"
+                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-violet-500 hover:bg-violet-50">Agencies</a>
             </div>
             <a href="/why-retain/"
                 class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
@@ -1473,6 +1490,11 @@
                 <br>
                 <span class="text-gray-300 text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 block">But you don't see it.</span>
             </h2>
+            <div class="mt-14 max-w-5xl mx-auto reveal">
+                <div class="rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 0 40px rgba(16,185,129,0.15), 0 8px 32px rgba(0,0,0,0.1);">
+                    <img src="re-network-workflow.png" alt="Retain network workflow" class="w-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1480,25 +1502,27 @@
     <section class="re-stats-banner py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14 reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3"><span class="typewriter">What Compounding Revenue Looks Like</span></h2>
-                <p class="text-emerald-100 text-lg">Real outcomes from real estate professionals who partnered with Retain.</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">
+                    <span class="typewriter">What Compounding Revenue Looks Like</span>
+                </h2>
+                <p class="text-emerald-200 text-lg">Real outcomes from real estate professionals who partnered with Retain.</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 re-stats-grid">
-                <div class="text-center reveal stagger-1">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="re-stat-card p-8 text-center reveal stagger-1">
                     <p class="text-5xl lg:text-6xl font-bold text-white mb-2 re-counter" data-target="3.2" data-suffix="×">0×</p>
-                    <p class="text-emerald-100 font-medium">More Referrals</p>
+                    <p class="text-emerald-200 font-medium">More Referrals</p>
                 </div>
-                <div class="text-center reveal stagger-2">
+                <div class="re-stat-card p-8 text-center reveal stagger-2">
                     <p class="text-5xl lg:text-6xl font-bold text-white mb-2 re-counter" data-target="47" data-suffix="%">0%</p>
-                    <p class="text-emerald-100 font-medium">Higher Retention</p>
+                    <p class="text-emerald-200 font-medium">Higher Retention</p>
                 </div>
-                <div class="text-center reveal stagger-3">
+                <div class="re-stat-card p-8 text-center reveal stagger-3">
                     <p class="text-5xl lg:text-6xl font-bold text-white mb-2 re-counter" data-target="60" data-suffix="%">0%</p>
-                    <p class="text-emerald-100 font-medium">Faster Follow-ups</p>
+                    <p class="text-emerald-200 font-medium">Faster Follow-ups</p>
                 </div>
-                <div class="text-center reveal stagger-4">
+                <div class="re-stat-card p-8 text-center reveal stagger-4">
                     <p class="text-5xl lg:text-6xl font-bold text-white mb-2 re-counter" data-target="89" data-suffix="%">0%</p>
-                    <p class="text-emerald-100 font-medium">Client Satisfaction</p>
+                    <p class="text-emerald-200 font-medium">Client Satisfaction</p>
                 </div>
             </div>
         </div>
@@ -1770,6 +1794,7 @@
                         <li><a href="/who-it-for/ecommerce/" class="hover:text-emerald-400 transition-colors">E-commerce & Retail</a></li>
                         <li><a href="/who-it-for/travel-hospitality/" class="hover:text-emerald-400 transition-colors">Travel & Hospitality</a></li>
                         <li><a href="/who-it-for/food-beverage/" class="hover:text-emerald-400 transition-colors">Food & Beverage</a></li>
+                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a></li>
                     </ul>
                 </div>
                 <div>
