@@ -1735,31 +1735,31 @@
             </div>
             <!-- Right Side — Form -->
             <div class="reveal-right">
-                <div class="bg-gray-900 rounded-2xl p-8 md:p-10 shadow-2xl border border-gray-800">
+                <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl">
                     <h3 class="font-poppins text-xl font-bold text-white mb-6">Book Your Free Consultation</h3>
-                    <form action="/contact/" method="GET" class="space-y-5">
+                    <form action="/contact/" method="GET" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-400 mb-1.5">First Name</label>
-                                <input type="text" placeholder="John" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                                <label class="text-gray-400 text-sm mb-1 block">First Name</label>
+                                <input type="text" placeholder="John" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Last Name</label>
-                                <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                                <label class="text-gray-400 text-sm mb-1 block">Last Name</label>
+                                <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Work Email</label>
-                            <input type="email" placeholder="john@company.com" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                            <label class="text-gray-400 text-sm mb-1 block">Work Email</label>
+                            <input type="email" placeholder="john@company.com" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Company Name</label>
-                            <input type="text" placeholder="Your Company" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                            <label class="text-gray-400 text-sm mb-1 block">Company Name</label>
+                            <input type="text" placeholder="Your Company" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Country *</label>
+                            <label class="text-gray-400 text-sm mb-1 block">Country *</label>
                             <div class="relative">
-                                <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all pr-10">
+                                <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent pr-10">
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                                     <i class="fas fa-chevron-down text-gray-500"></i>
                                 </div>
@@ -1770,25 +1770,55 @@
                             </div>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Phone Number</label>
-                            <div class="flex space-x-2">
+                            <label class="text-gray-400 text-sm mb-1 block">Phone Number</label>
+                            <div class="flex gap-2">
                                 <div class="w-1/4">
-                                    <div class="bg-gray-800 text-amber-400 py-3 px-4 rounded-lg border border-gray-700 text-center font-medium" id="phone-code">+</div>
+                                    <div class="bg-slate-800 text-amber-400 py-3 px-4 rounded-xl border border-slate-700 text-center font-medium" id="phone-code">+</div>
                                 </div>
                                 <div class="w-3/4">
-                                    <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all">
+                                    <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
                                 </div>
                             </div>
                         </div>
+                        <div class="relative">
+                            <label class="text-gray-400 text-sm mb-1 block">Business Category</label>
+                            <div class="relative">
+                                <select id="businessCategory" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 pr-10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 appearance-none cursor-pointer transition-all duration-200 hover:border-slate-600 hover:bg-slate-750" style="background-image: none;">
+                                    <option value="" class="bg-slate-800">Select your category</option>
+                                    <option class="bg-slate-800">🛍️  Fashion & Apparel</option>
+                                    <option class="bg-slate-800">💄  Beauty & Cosmetics</option>
+                                    <option class="bg-slate-800">💊  Health & Wellness</option>
+                                    <option class="bg-slate-800">💻  Electronics & Tech</option>
+                                    <option class="bg-slate-800">🏠  Home & Furniture</option>
+                                    <option class="bg-slate-800">🥑  Food & Grocery</option>
+                                    <option class="bg-slate-800">⚽  Sports & Outdoors</option>
+                                    <option class="bg-slate-800">📚  Books & Education</option>
+                                    <option class="bg-slate-800">💎  Jewelry & Accessories</option>
+                                    <option class="bg-slate-800">🐾  Pet Supplies</option>
+                                    <option class="bg-slate-800">👶  Baby & Kids</option>
+                                    <option class="bg-slate-800">🎨  Arts & Crafts</option>
+                                    <option class="bg-slate-800">🚗  Automotive</option>
+                                    <option class="bg-slate-800">📦  Subscription Box</option>
+                                    <option class="bg-slate-800">🏬  Marketplace / Multi-vendor</option>
+                                    <option class="bg-slate-800">🏪  Shopping Mall / Department Store</option>
+                                    <option class="bg-slate-800">✨  Luxury & Premium</option>
+                                    <option class="bg-slate-800">📊  Wholesale / B2B</option>
+                                    <option class="bg-slate-800">📝  Other</option>
+                                </select>
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                                    <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                            </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-400 mb-1.5">Message</label>
-                            <textarea rows="4" placeholder="Tell us about your retention goals..." class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all resize-none"></textarea>
+                            <label class="text-gray-400 text-sm mb-1 block">Message (Optional)</label>
+                            <textarea rows="4" placeholder="Tell us about your retention goals..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"></textarea>
                         </div>
-                        <button type="submit" class="w-full py-3.5 rounded-lg text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">
+                        <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, #f59e0b, #ea580c);">
                             Book Your Free Consultation <i class="fas fa-arrow-right ml-2"></i>
                         </button>
                     </form>
-                    <p class="text-xs text-gray-500 mt-4 text-center">We'll respond within 24 hours. No spam, ever.</p>
+                    <p class="text-gray-500 text-xs text-center mt-3">We'll respond within 24 hours. No spam, ever.</p>
                 </div>
             </div>
         </div>

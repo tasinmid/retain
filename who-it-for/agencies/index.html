@@ -96,15 +96,15 @@
 
         /* Hero text cycling - yo-yo */
         .hero-cycle-wrapper { display: block; position: relative; overflow: hidden; height: 1.2em; line-height: 1.2; }
-        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 10s cubic-bezier(0.4,0,0.2,1) infinite; }
         .hero-cycle-item { height: 1.2em; display: flex; align-items: center; white-space: nowrap; }
         @keyframes heroCycle {
-            0%, 10% { transform: translateY(0); }
-            20%, 30% { transform: translateY(-25%); }
-            40%, 50% { transform: translateY(-50%); }
-            60%, 70% { transform: translateY(-75%); }
-            80%, 95% { transform: translateY(-100%); }
-            100% { transform: translateY(-100%); }
+            0%, 8%    { transform: translateY(0); }
+            20%, 28%  { transform: translateY(-20%); }
+            40%, 48%  { transform: translateY(-40%); }
+            60%, 68%  { transform: translateY(-60%); }
+            80%, 96%  { transform: translateY(-80%); }
+            100%      { transform: translateY(-80%); }
         }
 
         /* ======= MARQUEE TICKER ======= */
@@ -116,6 +116,31 @@
         @keyframes marqueeScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+
+        /* ======= BENTO PAIN GRID ======= */
+        .bento-pain-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 768px) {
+            .bento-pain-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bento-featured {
+                grid-column: 1 / -1;
+            }
+        }
+        @media (min-width: 1024px) {
+            .bento-pain-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto auto;
+            }
+            .bento-featured {
+                grid-column: 1 / 3;
+                grid-row: 1 / 2;
+            }
         }
 
         /* ======= ANIMATED GRADIENT BORDER CARDS ======= */
@@ -142,20 +167,85 @@
         .gradient-border-card-inner {
             background: white;
             border-radius: calc(1.25rem - 3px);
-            padding: 2rem;
+            padding: 2.25rem;
             height: 100%;
         }
 
-        /* ======= ACCORDION ======= */
-        .accordion-item { border: 1px solid rgba(139,92,246,0.1); border-radius: 1rem; overflow: hidden; transition: all 0.3s ease; }
-        .accordion-item:hover { border-color: rgba(139,92,246,0.25); }
-        .accordion-item.active { border-color: rgba(139,92,246,0.3); box-shadow: 0 4px 20px rgba(139,92,246,0.1); }
-        .accordion-header { cursor: pointer; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; background: white; transition: background 0.3s; }
-        .accordion-item.active .accordion-header { background: #f5f3ff; }
-        .accordion-header i.fa-chevron-down { transition: transform 0.3s ease; }
-        .accordion-item.active .accordion-header i.fa-chevron-down { transform: rotate(180deg); }
-        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
-        .accordion-body-inner { padding: 0 2rem 1.5rem; }
+        /* ======= AGENCY CARD GRID ======= */
+        .agency-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            align-items: stretch;
+        }
+        @media (max-width: 1024px) {
+            .agency-card-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .agency-card-grid { grid-template-columns: 1fr; }
+        }
+        .agency-card {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8ff 100%);
+            border: 1px solid rgba(139,92,246,0.1);
+            border-radius: 1.5rem;
+            padding: 2.25rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .agency-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #9333ea, #c084fc, #8b5cf6);
+            background-size: 200% 100%;
+            animation: shimmerBorder 3s ease infinite;
+        }
+        @keyframes shimmerBorder {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .agency-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top right, rgba(139,92,246,0.06), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .agency-card:hover::after { opacity: 1; }
+        .agency-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(139,92,246,0.18), 0 0 0 1px rgba(139,92,246,0.15);
+            border-color: rgba(139,92,246,0.25);
+        }
+        .agency-card-icon {
+            width: 60px; height: 60px;
+            border-radius: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.25rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 12px rgba(139,92,246,0.1);
+            font-size: 1.35rem;
+        }
+        .agency-card:hover .agency-card-icon {
+            transform: scale(1.1) rotate(-3deg);
+            box-shadow: 0 8px 24px rgba(139,92,246,0.2);
+        }
+        .agency-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
+        .agency-card .agency-tagline { font-size: 0.85rem; color: #9ca3af; margin-bottom: 1rem; font-style: italic; }
+        .agency-card ul { list-style: none; padding: 0; margin: 0; margin-top: auto; }
+        .agency-card ul li {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            font-size: 0.85rem; color: #6b7280; line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .agency-card ul li i { color: #8b5cf6; margin-top: 0.2rem; font-size: 0.65rem; }
 
         /* ======= PROCESS TIMELINE ======= */
         .process-timeline { position: relative; padding: 1rem 0; }
@@ -296,7 +386,8 @@
             transition: box-shadow 0.4s ease, transform 0.4s ease;
         }
         .glass-quote:hover { box-shadow: 0 0 40px rgba(139,92,246,0.2), 0 16px 50px rgba(139,92,246,0.22); transform: translateY(-4px); }
-        .glass-quote.featured { grid-row: 1 / -1; padding: 2.5rem; animation: quoteFloat1 4s ease-in-out infinite; }
+        .glass-quote.featured { grid-row: 1 / -1; padding: 2.5rem; animation: quoteFloat1 4s ease-in-out infinite; display: flex; flex-direction: column; }
+        .glass-quote.featured > div:first-child { display: flex; flex-direction: column; flex-grow: 1; }
         .glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
         .glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
         .glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
@@ -441,11 +532,11 @@
                         <i class="fas fa-briefcase mr-1"></i> Retain for Agencies
                     </span>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                        Your Agency Doesn't Need More Clients. It Needs
-                        <span class="hero-cycle-wrapper"><span class="hero-cycle-list"><span class="hero-cycle-item violet-gradient-text">Retainers</span><span class="hero-cycle-item violet-gradient-text">Recurring Revenue</span><span class="hero-cycle-item violet-gradient-text">Client Memory</span><span class="hero-cycle-item violet-gradient-text">Lifetime Value</span><span class="hero-cycle-item violet-gradient-text">Retainers</span></span></span>
+                        Every Great Agency Runs On
+                        <span class="hero-cycle-wrapper"><span class="hero-cycle-list"><span class="hero-cycle-item violet-gradient-text">Loyal Clients</span><span class="hero-cycle-item violet-gradient-text">Repeat Business</span><span class="hero-cycle-item violet-gradient-text">Warm Referrals</span><span class="hero-cycle-item violet-gradient-text">Retained Revenue</span><span class="hero-cycle-item violet-gradient-text">Loyal Clients</span></span></span>
                     </h1>
                     <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl">
-                        The project ships. The invoice clears. Then silence. No follow-up, no upsell, no reason for them to come back. Retain is your client retention growth partner — for every type of agency, from digital marketing to dev shops to freelance consultants.
+                        Most tools kick in after the sale. Retain starts way earlier — from the first lead interaction. Every lead and client gets a living profile that remembers everything, so whether you're nurturing a cold prospect or upselling a past client, you never go in blind. Your retention growth partner for every type of agency.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#contactForm" class="violet-gradient text-white px-8 py-3.5 rounded-full font-semibold text-center hover:opacity-90 transition-opacity shadow-lg shadow-violet-200 cta-shimmer">
@@ -457,7 +548,7 @@
                     </div>
                 </div>
                 <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <img src="https://picsum.photos/seed/agency-hero/600/500" alt="Agency team collaborating" class="rounded-2xl shadow-2xl w-full object-cover">
+                    <video autoplay muted loop playsinline class="rounded-2xl shadow-2xl w-full object-cover"><source src="ag-hero-video.mp4" type="video/mp4"></video>
                     <div class="absolute -bottom-6 -left-6 glass-card rounded-xl shadow-lg p-4 hidden lg:block">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 violet-gradient rounded-full flex items-center justify-center">
@@ -492,7 +583,7 @@
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">APP DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">COPYWRITING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">CREATIVE DESIGN&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">PR &amp; COMMS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BUSINESS CONSULTANCY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">WEB DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SEO&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BRANDING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -503,7 +594,7 @@
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">APP DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">COPYWRITING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">CREATIVE DESIGN&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">PR &amp; COMMS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BUSINESS CONSULTANCY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">WEB DEVELOPMENT&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">SEO&nbsp;&nbsp;•&nbsp;&nbsp;</span>
             <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap violet-gradient-text">BRANDING&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -523,71 +614,87 @@
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1] max-w-4xl mx-auto">
                     Why Do Clients <span class="violet-gradient-text">Disappear After Delivery?</span>
                 </h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-base">The project ends. The relationship shouldn't.</p>
+                <p class="text-gray-500 max-w-lg mx-auto text-lg">The project ends. The relationship shouldn't.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="gradient-border-card reveal stagger-1">
-                    <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-ghost text-violet-500 text-xl"></i>
+            <div class="bento-pain-grid">
+                <!-- Card 1: Featured (2-col span) -->
+                <div class="gradient-border-card reveal stagger-1 bento-featured">
+                    <div class="gradient-border-card-inner flex flex-col justify-center">
+                        <div class="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center mb-5 shadow-sm">
+                            <i class="fas fa-ghost text-violet-500 text-3xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Clients Ghost After Delivery</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">You deliver incredible work. They say "thanks!" Then you never hear from them again. No follow-up system means relationships die at the finish line.</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Clients Ghost After Delivery</h3>
+                        <p class="text-gray-600 text-[1.05rem] leading-[1.8] max-w-md">You deliver incredible work. They say "thanks!" Then you never hear from them again. No follow-up system means relationships die at the finish line.</p>
                     </div>
                 </div>
+                <!-- Card 2 -->
                 <div class="gradient-border-card reveal stagger-2">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
-                            <i class="fas fa-chart-line-down text-purple-500 text-xl"></i>
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
+                            <i class="fas fa-chart-line text-purple-500 text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Feast-or-Famine Revenue</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">One month you're drowning in work. Next month, crickets. Without a retention engine, you're always starting from zero.</p>
+                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Feast-or-Famine Revenue</h3>
+                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">One month you're drowning in work. Next month, crickets. You're doing cold outreach but have no idea when to follow up — or if that lead from 3 months ago is even still interested. Without a system tracking leads and clients, you're always starting from zero.</p>
                     </div>
                 </div>
+                <!-- Card 3 -->
                 <div class="gradient-border-card reveal stagger-3">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                             <i class="fas fa-handshake-slash text-violet-600 text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">No Post-Project Engagement</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Invoice paid, Slack archived, done. There's no touchpoint between "project complete" and "hey, need anything else?" — and that gap is where clients are lost.</p>
+                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">No Post-Project Engagement</h3>
+                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">Invoice paid, Slack archived, done. There's no touchpoint between "project complete" and "hey, need anything else?" — and that gap is where clients are lost.</p>
                     </div>
                 </div>
+                <!-- Card 4 -->
                 <div class="gradient-border-card reveal stagger-1">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                             <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Competing on Price</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Without deep client relationships, you're just another proposal in the inbox. Clients shop around because they have no reason to stay loyal.</p>
+                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Competing on Price</h3>
+                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">Without deep client relationships, you're just another proposal in the inbox. Clients shop around because they have no reason to stay loyal.</p>
                     </div>
                 </div>
+                <!-- Card 5 -->
                 <div class="gradient-border-card reveal stagger-2">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4">
+                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                             <i class="fas fa-brain text-violet-500 text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">No Client Memory</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">A past client reaches out 8 months later. You scramble to remember their brand, preferences, and history. No system = no context = cold restart every time.</p>
+                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">No Client or Lead Memory</h3>
+                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">A past client reaches out 8 months later — or a lead you pitched last quarter resurfaces. You scramble to remember their brand, what was discussed, and how the last meeting went. No system = no context = cold restart every time.</p>
                     </div>
                 </div>
+                <!-- Card 6 -->
                 <div class="gradient-border-card reveal stagger-3">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                             <i class="fas fa-user-slash text-purple-500 text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Client Churn After Projects</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">You've worked with 200+ clients over the years. How many are still active? Most agencies retain less than 15% of their client base year over year.</p>
+                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Client Churn After Projects</h3>
+                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">You've worked with 200+ clients over the years. How many are still active? Most agencies retain less than 15% of their client base year over year.</p>
+                    </div>
+                </div>
+                <!-- Pain banner image -->
+                <div class="reveal stagger-1 bento-pain-image rounded-2xl overflow-hidden relative cursor-pointer group" style="grid-column: span 2; transition: transform 0.4s ease, box-shadow 0.4s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(139,92,246,0.2)'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <img src="ag-pain-banner.png" alt="Agency client retention challenges" class="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" style="min-height: 200px;">
+                    <div class="absolute inset-0 rounded-2xl" style="background: linear-gradient(135deg, rgba(15,23,42,0.75) 0%, rgba(88,28,135,0.6) 50%, rgba(15,23,42,0.8) 100%);"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                        <p class="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-2">Average Agency Client Retention Rate</p>
+                        <p class="text-white text-6xl sm:text-7xl font-extrabold leading-none" style="font-family: 'Poppins', sans-serif;">15%</p>
+                        <p class="text-white/60 text-sm mt-3 max-w-xs">Most agencies lose 85% of their client base year over year</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. WHICH AGENCIES USE RETAIN? — Accordion -->
+    <!-- 4. WHICH AGENCIES USE RETAIN? — Icon Card Grid -->
     <section class="py-24 bg-gradient-to-b from-violet-50/50 to-white relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
                 <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
                     <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Every Agency Type
@@ -598,117 +705,83 @@
                 <p class="text-gray-400 max-w-lg mx-auto text-base">Every agency that wants clients to come back. Here's how.</p>
             </div>
 
-            <div class="space-y-4 reveal">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-bullhorn text-violet-600"></i></div>
-                            <span class="font-bold text-gray-900">Digital Marketing Agencies</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+            <div class="agency-card-grid reveal">
+                <!-- 1. Digital Marketing -->
+                <div class="agency-card stagger-1">
+                    <div class="agency-card-icon" style="background: #f5f3ff;">
+                        <i class="fas fa-bullhorn text-violet-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automate post-campaign check-ins so clients don't drift to competitors</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Surface upsell opportunities based on past campaign performance data</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Turn one-off ad campaigns into ongoing retainer relationships</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a client memory that remembers KPIs, preferences, and seasonal patterns</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p class="agency-tagline">Campaigns end. Relationships don't have to.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Auto check-ins after every campaign</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Upsell based on past performance</li>
+                    </ul>
                 </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-code text-purple-600"></i></div>
-                            <span class="font-bold text-gray-900">App & Web Dev Shops</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+
+                <!-- 2. Dev Shops -->
+                <div class="agency-card stagger-2">
+                    <div class="agency-card-icon" style="background: #faf5ff;">
+                        <i class="fas fa-code text-purple-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Nurture clients post-launch into maintenance and support retainers</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automatically reach out at key intervals — 3 months, 6 months, 12 months post-delivery</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Track client tech stacks and project histories for contextualized follow-ups</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Convert project-based billing into recurring SaaS-style partnerships</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>Dev & Tech Agencies</h3>
+                    <p class="agency-tagline">Launch day is just the beginning.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Nurture into support retainers</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Timed follow-ups at 3, 6, 12 months</li>
+                    </ul>
                 </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-palette text-violet-600"></i></div>
-                            <span class="font-bold text-gray-900">Creative & Design Studios</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+
+                <!-- 3. Creative & Design -->
+                <div class="agency-card stagger-3">
+                    <div class="agency-card-icon" style="background: #f5f3ff;">
+                        <i class="fas fa-palette text-violet-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Remember brand guidelines, tone, and visual preferences across every engagement</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Trigger seasonal design refresh proposals automatically</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a creative portfolio of past work per client for instant context</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>Creative Studios</h3>
+                    <p class="agency-tagline">Design once, retain forever.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Remembers brand preferences per client</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Auto-propose seasonal refreshes</li>
+                    </ul>
                 </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-newspaper text-purple-600"></i></div>
-                            <span class="font-bold text-gray-900">PR & Communications</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+
+                <!-- 4. PR & Communications -->
+                <div class="agency-card stagger-1">
+                    <div class="agency-card-icon" style="background: #faf5ff;">
+                        <i class="fas fa-newspaper text-purple-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Track media cycles and proactively re-engage clients before their next launch</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Maintain journalist relationships and media contact databases per client</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automate quarterly PR performance reviews to keep clients engaged</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>PR & Comms</h3>
+                    <p class="agency-tagline">Stay top of mind between headlines.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Re-engage clients before their next launch</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Automated quarterly reviews</li>
+                    </ul>
                 </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center"><i class="fas fa-pen-nib text-violet-600"></i></div>
-                            <span class="font-bold text-gray-900">Content & Copywriting Agencies</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+
+                <!-- 5. Content & Copywriting -->
+                <div class="agency-card stagger-2">
+                    <div class="agency-card-icon" style="background: #f5f3ff;">
+                        <i class="fas fa-pen-nib text-violet-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Remember each client's voice, tone, and content strategy across all projects</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Automatically propose content refreshes when existing pieces go stale</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Turn one-off blog posts into ongoing content retainers with smart follow-ups</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>Content & Copy</h3>
+                    <p class="agency-tagline">Words that keep working after delivery.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Stores voice, tone & strategy per client</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Smart content refresh proposals</li>
+                    </ul>
                 </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center"><i class="fas fa-user-tie text-purple-600"></i></div>
-                            <span class="font-bold text-gray-900">Freelancers & Solo Consultants</span>
-                        </div>
-                        <i class="fas fa-chevron-down text-violet-400"></i>
+
+                <!-- 6. Business Consultancy -->
+                <div class="agency-card stagger-3">
+                    <div class="agency-card-icon" style="background: #faf5ff;">
+                        <i class="fas fa-briefcase text-purple-600 text-xl"></i>
                     </div>
-                    <div class="accordion-body">
-                        <div class="accordion-body-inner">
-                            <ul class="space-y-2 text-sm text-gray-600">
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Run a one-person retention machine — automated follow-ups, no manual CRM work</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Keep every client relationship warm even when you're heads-down on delivery</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Build a personal brand that clients remember and return to without cold outreach</li>
-                                <li class="flex items-start gap-2"><i class="fas fa-check text-violet-500 mt-1"></i> Scale your solo practice without scaling your workload — retention runs itself</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>Consultancy</h3>
+                    <p class="agency-tagline">Advice that compounds over time.</p>
+                    <ul>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Auto touchpoints between sessions</li>
+                        <li><i class="fas fa-check text-violet-500 mt-0.5 text-xs"></i> Turn one-off gigs into retainers</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -722,7 +795,7 @@
                     <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> How It Works
                 </span>
                 <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1]">
-                    <span class="process-slide-left">From Project Delivery to</span> <span class="process-slide-right violet-gradient-text">Lifetime Client</span>
+                    <span class="process-slide-left">From First Lead to</span> <span class="process-slide-right violet-gradient-text">Lifetime Client</span>
                 </h2>
             </div>
 
@@ -733,8 +806,8 @@
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-plug"></i></div>
-                        <h3>Connect Your Client Data</h3>
-                        <p>Import your client list from your CRM, project management tool, or spreadsheet. Retain builds a living profile for every client relationship.</p>
+                        <h3>Connect Your Leads & Client Data</h3>
+                        <p>Import your leads and clients from your CRM, project management tool, or spreadsheet. Retain builds a living profile for every relationship — starting from the very first touchpoint, before they even become a client.</p>
                     </div>
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">1</div>
@@ -742,8 +815,8 @@
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-brain"></i></div>
-                        <h3>Build Client Memory</h3>
-                        <p>Retain learns each client's preferences, project history, communication style, and engagement patterns. Context that compounds over time.</p>
+                        <h3>Build Lead & Client Memory</h3>
+                        <p>Retain learns each person's preferences, interaction history, meeting notes, and sentiment — whether they're a fresh lead or a 3-year client. If the first call didn't go well, Retain remembers the context so the next touchpoint is smarter.</p>
                     </div>
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">2</div>
@@ -751,8 +824,8 @@
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-robot"></i></div>
-                        <h3>Automate Post-Project Nurture</h3>
-                        <p>Smart sequences trigger after project delivery — check-ins, value adds, and re-engagement flows that keep your agency top of mind.</p>
+                        <h3>Automate Nurture — Pre-Sale & Post-Project</h3>
+                        <p>Smart sequences trigger at every stage — follow-up reminders for leads who went quiet, check-ins after project delivery, and re-engagement flows that keep your agency top of mind from first meeting to long-term retainer.</p>
                     </div>
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">3</div>
@@ -795,14 +868,14 @@
                 <button class="tab-btn active" data-tab="tab-marketing">Digital Marketing</button>
                 <button class="tab-btn" data-tab="tab-dev">Dev Agency</button>
                 <button class="tab-btn" data-tab="tab-creative">Creative Studio</button>
-                <button class="tab-btn" data-tab="tab-freelance">Freelancer</button>
+                <button class="tab-btn" data-tab="tab-pr">Business Consultancy</button>
             </div>
 
             <div class="reveal">
                 <div id="tab-marketing" class="tab-content active">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <img src="https://picsum.photos/seed/marketing-tab/560/380" alt="Digital marketing dashboard" class="rounded-2xl shadow-lg w-full object-cover">
+                            <img src="ag-tab-marketing.png" alt="Digital marketing dashboard" class="rounded-2xl shadow-lg w-full object-cover">
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Turn Campaign Clients Into Growth Partners</h3>
@@ -819,7 +892,7 @@
                 <div id="tab-dev" class="tab-content">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <img src="https://picsum.photos/seed/dev-tab/560/380" alt="Development workspace" class="rounded-2xl shadow-lg w-full object-cover">
+                            <img src="ag-tab-dev.png" alt="Development workspace" class="rounded-2xl shadow-lg w-full object-cover">
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">From Launch Day to Long-Term Partnership</h3>
@@ -836,7 +909,7 @@
                 <div id="tab-creative" class="tab-content">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <img src="https://picsum.photos/seed/creative-tab/560/380" alt="Creative studio workspace" class="rounded-2xl shadow-lg w-full object-cover">
+                            <img src="ag-tab-creative.png" alt="Creative studio workspace" class="rounded-2xl shadow-lg w-full object-cover">
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Design Once, Retain Forever</h3>
@@ -850,18 +923,18 @@
                     </div>
                 </div>
 
-                <div id="tab-freelance" class="tab-content">
+                <div id="tab-pr" class="tab-content">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <img src="https://picsum.photos/seed/freelance-tab/560/380" alt="Freelancer working" class="rounded-2xl shadow-lg w-full object-cover">
+                            <img src="ag-tab-consultancy.png" alt="Business consultancy" class="rounded-2xl shadow-lg w-full object-cover">
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Solo Practice, Enterprise Retention</h3>
-                            <p class="text-gray-600 mb-6 leading-relaxed">You're one person juggling delivery, sales, and admin. Following up with past clients always falls to the bottom of the list — until Retain handles it for you.</p>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Your Advice Compounds Over Time</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">Consulting is built on trust. Retain tracks every engagement, recommendation, and outcome — so you never lose context and clients keep coming back for more.</p>
                             <ul class="space-y-3">
-                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Set it and forget it — automated nurture runs while you deliver</span></li>
-                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Personal CRM that remembers every client detail</span></li>
-                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Referral prompts at peak satisfaction moments</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Full client history — past goals, strategies, and results in one place</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Automated follow-ups between advisory sessions</span></li>
+                                <li class="flex items-start gap-3"><div class="w-6 h-6 violet-gradient rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-check text-white text-xs"></i></div><span class="text-gray-700 text-sm">Turn one-off engagements into long-term retainers</span></li>
                             </ul>
                         </div>
                     </div>
@@ -885,17 +958,17 @@
             <div class="showcase-grid">
                 <div class="showcase-card showcase-featured">
                     <div class="showcase-media">
-                        <img src="https://picsum.photos/seed/agency-showcase1/700/600" alt="Retain client dashboard">
+                        <img src="ag-showcase-dashboard.png" alt="Retain client intelligence dashboard" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <span class="showcase-badge">Client Dashboard</span>
                     <div class="showcase-overlay">
-                        <h4>Complete Client Intelligence</h4>
-                        <p>Every project, every preference, every conversation — one living profile per client that grows smarter with every interaction.</p>
+                        <h4>Complete Lead & Client Intelligence</h4>
+                        <p>Every interaction, every meeting note, every preference — one living profile per lead and client that grows smarter from the very first conversation. This is pre-sale retention: building loyalty before the purchase even happens.</p>
                     </div>
                 </div>
                 <div class="showcase-card">
                     <div class="showcase-media">
-                        <img src="https://picsum.photos/seed/agency-showcase2/500/280" alt="Retain automation flows">
+                        <img src="ag-showcase-analytics.png" alt="Retain automation flows">
                     </div>
                     <span class="showcase-badge">Automation</span>
                     <div class="showcase-overlay">
@@ -905,7 +978,7 @@
                 </div>
                 <div class="showcase-card">
                     <div class="showcase-media">
-                        <img src="https://picsum.photos/seed/agency-showcase3/500/280" alt="Retain analytics">
+                        <img src="ag-showcase-automation.png" alt="Retain analytics">
                     </div>
                     <span class="showcase-badge">Analytics</span>
                     <div class="showcase-overlay">
@@ -936,15 +1009,13 @@
             <div class="quotes-grid reveal">
                 <div class="glass-quote featured">
                     <div>
-                        <i class="fas fa-quote-left text-violet-300 text-3xl mb-4"></i>
-                        <p class="text-gray-700 text-lg leading-relaxed mb-6">"The cost of acquiring a new customer is five to twenty-five times more expensive than retaining an existing one. For agencies, every lost client is a marketing budget burned."</p>
+                        <i class="fas fa-quote-left text-violet-300 text-4xl mb-5"></i>
+                        <p class="text-gray-800 text-xl lg:text-2xl leading-[1.7] font-medium mb-6">"Acquiring a new customer costs <span class="violet-gradient-text font-bold">5× to 25× more</span> than retaining one. For agencies, every lost client is a marketing budget burned."</p>
+                        <img src="ag-quote-image.png" alt="Agency team collaboration" class="w-full rounded-xl object-cover shadow-lg flex-grow" style="min-height: 160px;">
                     </div>
-                    <div class="flex items-center gap-3 mt-auto">
-                        <div class="w-12 h-12 violet-gradient rounded-full flex items-center justify-center text-white font-bold">HBR</div>
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Harvard Business Review</p>
-                            <p class="text-gray-400 text-xs">Research on Customer Retention</p>
-                        </div>
+                    <div class="mt-auto pt-4 border-t border-violet-100">
+                        <p class="font-bold text-gray-900 text-sm">Harvard Business Review</p>
+                        <p class="text-violet-400 text-xs font-medium tracking-wide uppercase">Research on Customer Retention</p>
                     </div>
                 </div>
                 <div class="glass-quote">
@@ -952,12 +1023,9 @@
                         <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
                         <p class="text-gray-700 text-sm leading-relaxed">"The best customer is the one you already have. Don't find customers for your products, find products for your customers."</p>
                     </div>
-                    <div class="flex items-center gap-3 mt-4">
-                        <div class="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center"><i class="fas fa-user text-violet-600 text-sm"></i></div>
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Seth Godin</p>
-                            <p class="text-gray-400 text-xs">Author, This Is Marketing</p>
-                        </div>
+                    <div class="mt-4 pt-3 border-t border-violet-100">
+                        <p class="font-bold text-gray-900 text-sm">Seth Godin</p>
+                        <p class="text-violet-400 text-xs font-medium tracking-wide uppercase">Author, This Is Marketing</p>
                     </div>
                 </div>
                 <div class="glass-quote">
@@ -965,12 +1033,9 @@
                         <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
                         <p class="text-gray-700 text-sm leading-relaxed">"Increasing customer retention rates by 5% increases profits by 25% to 95%. For project-based businesses, this is the unlock."</p>
                     </div>
-                    <div class="flex items-center gap-3 mt-4">
-                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"><i class="fas fa-chart-bar text-purple-600 text-sm"></i></div>
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Bain & Company</p>
-                            <p class="text-gray-400 text-xs">Management Consulting</p>
-                        </div>
+                    <div class="mt-4 pt-3 border-t border-violet-100">
+                        <p class="font-bold text-gray-900 text-sm">Bain & Company</p>
+                        <p class="text-violet-400 text-xs font-medium tracking-wide uppercase">Management Consulting</p>
                     </div>
                 </div>
                 <div class="glass-quote">
@@ -978,12 +1043,9 @@
                         <i class="fas fa-quote-left text-violet-200 text-xl mb-3"></i>
                         <p class="text-gray-700 text-sm leading-relaxed">"People don't buy what you do; they buy why you do it. And the agencies that keep showing up with purpose are the ones clients never leave."</p>
                     </div>
-                    <div class="flex items-center gap-3 mt-4">
-                        <div class="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center"><i class="fas fa-pen text-violet-600 text-sm"></i></div>
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Simon Sinek</p>
-                            <p class="text-gray-400 text-xs">Author, Start With Why</p>
-                        </div>
+                    <div class="mt-4 pt-3 border-t border-violet-100">
+                        <p class="font-bold text-gray-900 text-sm">Simon Sinek</p>
+                        <p class="text-violet-400 text-xs font-medium tracking-wide uppercase">Author, Start With Why</p>
                     </div>
                 </div>
             </div>
@@ -1007,7 +1069,7 @@
                     </a>
                 </div>
                 <div class="reveal-right">
-                    <img src="https://picsum.photos/seed/agency-bigtext/600/500" alt="Agency team success" class="rounded-2xl shadow-2xl w-full object-cover">
+                    <video autoplay muted loop playsinline class="rounded-2xl shadow-2xl w-full object-cover"><source src="ag-bigtext-video.mp4" type="video/mp4"></video>
                 </div>
             </div>
         </div>
@@ -1115,23 +1177,6 @@
                     <div class="flex gap-1 mb-4">
                         <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
                     </div>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"As a freelance designer, following up with past clients always fell through the cracks. Retain does it for me. I've re-engaged 12 dormant clients in 3 months — without sending a single cold email."</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://ui-avatars.com/api/?name=SK&background=9333ea&color=fff" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Sarah Kim</p>
-                            <p class="text-gray-400 text-xs">Freelance Brand Designer</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
-                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
-                        <span class="text-violet-700 text-xs font-bold">12 clients re-engaged</span>
-                    </div>
-                </div>
-                <div class="testi-card reveal">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
-                    </div>
                     <p class="text-gray-700 text-sm leading-relaxed mb-6">"Our digital marketing agency went from 15% client retention to 72% in under 6 months. The automated post-campaign check-ins alone paid for themselves ten times over."</p>
                     <div class="flex items-center gap-3">
                         <img src="https://ui-avatars.com/api/?name=JT&background=7c3aed&color=fff" class="w-10 h-10 rounded-full">
@@ -1145,7 +1190,7 @@
                         <span class="text-violet-700 text-xs font-bold">15% → 72% retention</span>
                     </div>
                 </div>
-                <div class="testi-card testi-offset reveal lg:block">
+                <div class="testi-card reveal">
                     <div class="flex gap-1 mb-4">
                         <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
                     </div>
@@ -1160,40 +1205,6 @@
                     <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
                         <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
                         <span class="text-violet-700 text-xs font-bold">4.5× client LTV increase</span>
-                    </div>
-                </div>
-                <div class="testi-card reveal lg:block">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star-half-alt text-amber-400"></i>
-                    </div>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"We're a PR firm and client relationships are everything. Retain helps us stay in touch between campaigns — proactively, not reactively. Our renewal rate jumped from 40% to 78%."</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://ui-avatars.com/api/?name=DC&background=6d28d9&color=fff" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">David Chen</p>
-                            <p class="text-gray-400 text-xs">Managing Director, Echo PR</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
-                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
-                        <span class="text-violet-700 text-xs font-bold">78% renewal rate</span>
-                    </div>
-                </div>
-                <div class="testi-card testi-offset reveal lg:block">
-                    <div class="flex gap-1 mb-4">
-                        <i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i><i class="fas fa-star text-amber-400"></i>
-                    </div>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-6">"Running an SEO agency means results take months. Retain keeps clients engaged during the waiting period with smart check-ins and progress updates. Churn dropped by half."</p>
-                    <div class="flex items-center gap-3">
-                        <img src="https://ui-avatars.com/api/?name=AN&background=8b5cf6&color=fff" class="w-10 h-10 rounded-full">
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">Anika Nguyen</p>
-                            <p class="text-gray-400 text-xs">Founder, RankFlow SEO</p>
-                        </div>
-                    </div>
-                    <div class="mt-4 inline-flex items-center gap-2 bg-violet-50 px-3 py-1.5 rounded-full">
-                        <i class="fas fa-arrow-up text-violet-600 text-xs"></i>
-                        <span class="text-violet-700 text-xs font-bold">50% less churn</span>
                     </div>
                 </div>
             </div>
@@ -1500,27 +1511,6 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
             document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
         })();
-
-        // Accordion
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const body = item.querySelector('.accordion-body');
-                const isActive = item.classList.contains('active');
-
-                // Close all
-                document.querySelectorAll('.accordion-item').forEach(ai => {
-                    ai.classList.remove('active');
-                    ai.querySelector('.accordion-body').style.maxHeight = null;
-                });
-
-                // Open clicked (if wasn't active)
-                if (!isActive) {
-                    item.classList.add('active');
-                    body.style.maxHeight = body.scrollHeight + 'px';
-                }
-            });
-        });
 
         // Tab switching
         document.querySelectorAll('.tab-btn').forEach(btn => {
