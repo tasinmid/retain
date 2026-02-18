@@ -117,6 +117,18 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+        @media (max-width: 768px) {
+            .marquee-track span { padding-left: 1rem; padding-right: 1rem; letter-spacing: 0.1em; font-size: 0.7rem; }
+            /* Fix 1: Pain points mobile layout */
+            .bento-pain-grid { grid-template-columns: 1fr !important; }
+            .bento-featured { grid-column: 1 !important; }
+            .bento-pain-image { grid-column: 1 / -1 !important; }
+            /* Fix 2: Tab button mobile tappability */
+            .tab-btn { cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; position: relative; z-index: 2; }
+            /* Fix 3: Tab images on mobile */
+            .tab-content img { max-height: 250px; width: 100%; object-fit: cover; }
+            .tab-content .grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+        }
 
         /* ======= BENTO PAIN GRID ======= */
         .bento-pain-grid {
@@ -311,15 +323,23 @@
         .process-step-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
         .process-step-card p { color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.88rem; }
         @media (max-width: 768px) {
-            .process-timeline-progress { left: 28px; }
+            .process-timeline-bg { display: none; }
+            .process-timeline-progress { display: none; }
             .process-step, .process-step:nth-child(even) { flex-direction: row !important; }
-            .process-step-number { left: 28px !important; transform: translateX(-50%); }
+            .process-step-number { position: relative !important; left: auto !important; transform: none !important; flex-shrink: 0; margin-right: 1rem; }
+            .process-step.step-visible .process-step-number { transform: none !important; }
             .process-step-spacer { display: none; }
-            .process-step-card { width: 100%; margin-left: 72px; }
+            .process-step-card { width: 100%; margin-left: 0; }
+            .process-step { transition: opacity 0.15s ease, transform 0.15s ease; }
         }
 
         /* ======= TABS ======= */
-        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; background: white; color: #6b7280; }
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; background: white; color: #6b7280; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+        @media (max-width: 768px) {
+            .tab-btn { padding: 0.6rem 1rem; font-size: 0.8rem; white-space: nowrap; flex-shrink: 0; }
+            .tab-scroll-wrapper { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0.5rem; padding-bottom: 0.5rem; flex-wrap: nowrap; justify-content: flex-start; }
+            .tab-scroll-wrapper::-webkit-scrollbar { display: none; }
+        }
         .tab-btn:hover { color: #8b5cf6; border-color: rgba(139,92,246,0.2); }
         .tab-btn.active { background: linear-gradient(135deg, #8b5cf6, #9333ea); color: white; border-color: transparent; box-shadow: 0 4px 16px rgba(139,92,246,0.3); }
         .tab-content { display: none; animation: fadeInUp 0.4s ease; }
@@ -489,6 +509,11 @@
                             <a href="/who-it-for/agencies/" class="block px-4 py-3 text-sm text-violet-700 font-medium bg-violet-50 rounded-md transition-colors">
                                 <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i> Agencies
                             </a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
+                            <i class="fas fa-graduation-cap mr-3 text-teal-500 bg-teal-50 p-1.5 rounded-lg"></i>
+                            Study Abroad
+                        </a>
                         </div>
                     </div>
                     <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
@@ -621,71 +646,51 @@
                 <!-- Card 1: Featured (2-col span) -->
                 <div class="gradient-border-card reveal stagger-1 bento-featured">
                     <div class="gradient-border-card-inner flex flex-col justify-center">
-                        <div class="w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center mb-5 shadow-sm">
-                            <i class="fas fa-ghost text-violet-500 text-3xl"></i>
+                        <div class="w-14 h-14 bg-violet-50 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                            <i class="fas fa-ghost text-violet-500 text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Clients Ghost After Delivery</h3>
-                        <p class="text-gray-600 text-[1.05rem] leading-[1.8] max-w-md">You deliver incredible work. They say "thanks!" Then you never hear from them again. No follow-up system means relationships die at the finish line.</p>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Clients Ghost After Delivery</h3>
+                        <p class="text-gray-600 text-[0.92rem] leading-[1.7]">Great work delivered. "Thanks!" And then silence. No follow-up system = dead relationships.</p>
                     </div>
                 </div>
                 <!-- Card 2 -->
                 <div class="gradient-border-card reveal stagger-2">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                            <i class="fas fa-chart-line text-purple-500 text-xl"></i>
+                        <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                            <i class="fas fa-chart-line text-purple-500 text-lg"></i>
                         </div>
-                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Feast-or-Famine Revenue</h3>
-                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">One month you're drowning in work. Next month, crickets. You're doing cold outreach but have no idea when to follow up — or if that lead from 3 months ago is even still interested. Without a system tracking leads and clients, you're always starting from zero.</p>
+                        <h3 class="text-[1.05rem] font-bold text-gray-900 mb-1.5">Feast-or-Famine Revenue</h3>
+                        <p class="text-gray-600 text-[0.85rem] leading-[1.7]">Busy one month, crickets the next. No pipeline, no follow-ups — always starting from zero.</p>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="gradient-border-card reveal stagger-3">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                            <i class="fas fa-handshake-slash text-violet-600 text-xl"></i>
+                        <div class="w-11 h-11 bg-violet-50 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                            <i class="fas fa-brain text-violet-500 text-lg"></i>
                         </div>
-                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">No Post-Project Engagement</h3>
-                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">Invoice paid, Slack archived, done. There's no touchpoint between "project complete" and "hey, need anything else?" — and that gap is where clients are lost.</p>
+                        <h3 class="text-[1.05rem] font-bold text-gray-900 mb-1.5">No Client Memory</h3>
+                        <p class="text-gray-600 text-[0.85rem] leading-[1.7]">Past client returns after 6 months. You scramble to remember their brand and what you discussed.</p>
                     </div>
                 </div>
                 <!-- Card 4 -->
                 <div class="gradient-border-card reveal stagger-1">
                     <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                            <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                        <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                            <i class="fas fa-dollar-sign text-purple-600 text-lg"></i>
                         </div>
-                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Competing on Price</h3>
-                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">Without deep client relationships, you're just another proposal in the inbox. Clients shop around because they have no reason to stay loyal.</p>
+                        <h3 class="text-[1.05rem] font-bold text-gray-900 mb-1.5">Competing on Price</h3>
+                        <p class="text-gray-600 text-[0.85rem] leading-[1.7]">No deep relationships = just another proposal in the inbox. Clients shop around by default.</p>
                     </div>
                 </div>
-                <!-- Card 5 -->
-                <div class="gradient-border-card reveal stagger-2">
-                    <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                            <i class="fas fa-brain text-violet-500 text-xl"></i>
-                        </div>
-                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">No Client or Lead Memory</h3>
-                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">A past client reaches out 8 months later — or a lead you pitched last quarter resurfaces. You scramble to remember their brand, what was discussed, and how the last meeting went. No system = no context = cold restart every time.</p>
-                    </div>
-                </div>
-                <!-- Card 6 -->
-                <div class="gradient-border-card reveal stagger-3">
-                    <div class="gradient-border-card-inner">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 shadow-sm">
-                            <i class="fas fa-user-slash text-purple-500 text-xl"></i>
-                        </div>
-                        <h3 class="text-[1.15rem] font-bold text-gray-900 mb-2">Client Churn After Projects</h3>
-                        <p class="text-gray-600 text-[0.9rem] leading-[1.75]">You've worked with 200+ clients over the years. How many are still active? Most agencies retain less than 15% of their client base year over year.</p>
-                    </div>
-                </div>
-                <!-- Pain banner image -->
-                <div class="reveal stagger-1 bento-pain-image rounded-2xl overflow-hidden relative cursor-pointer group" style="grid-column: span 2; transition: transform 0.4s ease, box-shadow 0.4s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(139,92,246,0.2)'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-                    <img src="ag-pain-banner.png" alt="Agency client retention challenges" class="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" style="min-height: 200px;">
+                <!-- Pain banner image — fills remaining grid slot -->
+                <div class="reveal stagger-2 rounded-2xl overflow-hidden relative cursor-pointer group" style="transition: transform 0.4s ease, box-shadow 0.4s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(139,92,246,0.2)'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+                    <img src="ag-pain-banner.png" alt="Agency client retention challenges" class="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" style="min-height: 100%;">
                     <div class="absolute inset-0 rounded-2xl" style="background: linear-gradient(135deg, rgba(15,23,42,0.75) 0%, rgba(88,28,135,0.6) 50%, rgba(15,23,42,0.8) 100%);"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                        <p class="text-white/70 text-sm font-semibold uppercase tracking-[0.2em] mb-2">Average Agency Client Retention Rate</p>
-                        <p class="text-white text-6xl sm:text-7xl font-extrabold leading-none" style="font-family: 'Poppins', sans-serif;">15%</p>
-                        <p class="text-white/60 text-sm mt-3 max-w-xs">Most agencies lose 85% of their client base year over year</p>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                        <p class="text-white/70 text-xs font-semibold uppercase tracking-[0.15em] mb-1">Agency Retention Rate</p>
+                        <p class="text-white text-5xl font-extrabold leading-none" style="font-family: 'Poppins', sans-serif;">15%</p>
+                        <p class="text-white/60 text-xs mt-2">85% of clients lost yearly</p>
                     </div>
                 </div>
             </div>
@@ -800,7 +805,7 @@
             </div>
 
             <div class="process-timeline relative">
-                <div class="absolute left-1/2 top-0 bottom-0 w-[3px] bg-gray-100 -translate-x-1/2 rounded-full"></div>
+                <div class="absolute left-1/2 top-0 bottom-0 w-[3px] bg-gray-100 -translate-x-1/2 rounded-full process-timeline-bg"></div>
                 <div class="process-timeline-progress"></div>
 
                 <div class="process-step">
@@ -852,8 +857,108 @@
         </div>
     </section>
 
+    <!-- 5.5 WITH VS WITHOUT RETAIN -->
+    <style>
+        .ag-wr-bg-gradient { position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(237,233,254,0.25),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(243,232,255,0.2),transparent 60%);pointer-events:none; }
+        .ag-wr-orb { position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:floatA 8s ease-in-out infinite; }
+        .ag-wr-card-dark { transition:transform 0.5s ease,box-shadow 0.5s ease; }
+        .ag-wr-card-dark:hover { transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+        .ag-wr-card-violet { transition:transform 0.5s ease,box-shadow 0.5s ease; }
+        .ag-wr-card-violet:hover { transform:translateY(-4px);box-shadow:0 20px 50px rgba(139,92,246,0.15); }
+        .ag-wr-list-item { opacity:0;transform:translateX(-15px);transition:opacity 0.4s ease,transform 0.4s ease; }
+        .ag-wr-list-item.visible { opacity:1;transform:translateX(0); }
+        .ag-wr-icon-circle { transition:transform 0.3s ease; }
+        .ag-wr-icon-circle:hover { transform:scale(1.15); }
+        .ag-wr-x-shake { animation:wrXShake 3s ease-in-out infinite; }
+        @keyframes wrXShake { 0%,100%{transform:rotate(0)} 20%{transform:rotate(-8deg)} 40%{transform:rotate(8deg)} 60%{transform:rotate(-4deg)} 80%{transform:rotate(4deg)} }
+        .ag-wr-header-icon { transform:scale(0);transition:transform 0.5s cubic-bezier(.34,1.56,.64,1); }
+        .ag-wr-header-icon.visible { transform:scale(1);animation:wrIconBounce 0.6s ease 0.5s; }
+        @keyframes wrIconBounce { 0%{transform:scale(1)} 30%{transform:scale(1.2)} 50%{transform:scale(0.9)} 70%{transform:scale(1.1)} 100%{transform:scale(1)} }
+        .ag-wr-vs-badge {
+            position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+            width:48px;height:48px;border-radius:50%;z-index:10;
+            background:linear-gradient(135deg,#1f2937,#374151);
+            display:flex;align-items:center;justify-content:center;
+            font-family:'Poppins',sans-serif;font-weight:800;font-size:0.75rem;
+            color:#8b5cf6;letter-spacing:0.05em;
+            box-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 15px rgba(139,92,246,0.2);
+            animation:agVsPulse 3s ease-in-out infinite;
+        }
+        @keyframes agVsPulse { 0%,100%{box-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 15px rgba(139,92,246,0.2)} 50%{box-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 25px rgba(139,92,246,0.4)} }
+        @media(max-width:767px){ .ag-wr-vs-badge{display:none;} }
+    </style>
+    <section class="py-28 bg-white relative overflow-hidden">
+        <div class="ag-wr-bg-gradient"></div>
+        <div class="ag-wr-orb" style="width:200px;height:200px;top:-5%;left:10%;background:rgba(139,92,246,0.08);"></div>
+        <div class="ag-wr-orb" style="width:150px;height:150px;bottom:10%;right:5%;background:rgba(147,51,234,0.06);animation-delay:2s;"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span> Why Retain
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-4" style="font-family:'Poppins',sans-serif;">Not Another CRM. <span class="violet-gradient-text">A Retention Ecosystem.</span></h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Most tools help you manage projects. Retain helps you keep the clients — from first lead to closed deal to lifetime retainer.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto relative">
+                <div class="ag-wr-vs-badge">VS</div>
+                <!-- Without Retain -->
+                <div class="rounded-3xl p-8 md:p-10 bg-gray-900 text-white reveal ag-wr-card-dark" style="transition-delay:0.1s">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center ag-wr-header-icon"><i class="fas fa-heart-broken text-red-400 text-lg"></i></div>
+                        <p class="text-base font-bold text-red-400 tracking-widest uppercase">Without Retain</p>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.1s">
+                            <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle ag-wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                            <div><p class="text-white font-semibold">Leads go cold in your inbox</p><p class="text-gray-400 text-sm mt-1">Prospects inquire, you reply once, then forget. No follow-up system, no pipeline visibility.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.2s">
+                            <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle ag-wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                            <div><p class="text-white font-semibold">Deals close but clients vanish</p><p class="text-gray-400 text-sm mt-1">Project delivered, invoice paid, relationship over. No system to turn projects into retainers.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.3s">
+                            <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle ag-wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                            <div><p class="text-white font-semibold">No memory of past clients</p><p class="text-gray-400 text-sm mt-1">A client returns after 6 months and you scramble to remember their brand, goals, and history.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.4s">
+                            <span class="w-8 h-8 rounded-full bg-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle ag-wr-x-shake"><i class="fas fa-times text-red-400 text-sm"></i></span>
+                            <div><p class="text-white font-semibold">Always hunting new business</p><p class="text-gray-400 text-sm mt-1">Every month starts from zero. Cold outreach, proposals, pitches — repeat forever.</p></div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- With Retain -->
+                <div class="rounded-3xl p-8 md:p-10 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 border-2 border-violet-200 reveal relative overflow-hidden ag-wr-card-violet" style="transition-delay:0.2s">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-violet-200/30 to-transparent rounded-bl-full"></div>
+                    <div class="flex items-center gap-3 mb-8 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center ag-wr-header-icon"><i class="fas fa-heart text-violet-600 text-lg"></i></div>
+                        <p class="text-base font-bold text-violet-600 tracking-widest uppercase">With Retain</p>
+                    </div>
+                    <ul class="space-y-5 relative z-10">
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.15s">
+                            <span class="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle"><i class="fas fa-check text-violet-600 text-sm"></i></span>
+                            <div><p class="text-gray-900 font-semibold">Leads nurtured automatically</p><p class="text-gray-500 text-sm mt-1">Every inquiry gets smart follow-ups. Warm leads stay warm until they're ready to close.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.25s">
+                            <span class="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle"><i class="fas fa-check text-violet-600 text-sm"></i></span>
+                            <div><p class="text-gray-900 font-semibold">Deals close and relationships grow</p><p class="text-gray-500 text-sm mt-1">Post-project engagement kicks in automatically — upsells, check-ins, and retainer offers at the right time.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.35s">
+                            <span class="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle"><i class="fas fa-check text-violet-600 text-sm"></i></span>
+                            <div><p class="text-gray-900 font-semibold">Full client memory, always</p><p class="text-gray-500 text-sm mt-1">Every conversation, project, and preference stored. Pick up right where you left off, every time.</p></div>
+                        </li>
+                        <li class="flex items-start gap-4 ag-wr-list-item" style="transition-delay:0.45s">
+                            <span class="w-8 h-8 rounded-full bg-violet-500/20 flex items-center justify-center flex-shrink-0 mt-0.5 ag-wr-icon-circle"><i class="fas fa-check text-violet-600 text-sm"></i></span>
+                            <div><p class="text-gray-900 font-semibold">Revenue compounds on its own</p><p class="text-gray-500 text-sm mt-1">Past clients come back, refer others, and your pipeline fills without cold outreach.</p></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 6. TABBED USE CASES -->
-    <section class="py-24 bg-gradient-to-b from-white to-violet-50/30 relative overflow-hidden">
+    <section class="py-24 bg-gradient-to-b from-white to-violet-50/30 relative overflow-hidden hidden md:block">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
                 <span class="inline-flex items-center gap-2 bg-violet-100/80 backdrop-blur text-violet-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-violet-200/60 shadow-sm">
@@ -864,7 +969,7 @@
                 </h2>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+            <div class="flex justify-center gap-3 mb-12 reveal tab-scroll-wrapper" style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;">
                 <button class="tab-btn active" data-tab="tab-marketing">Digital Marketing</button>
                 <button class="tab-btn" data-tab="tab-dev">Dev Agency</button>
                 <button class="tab-btn" data-tab="tab-creative">Creative Studio</button>
@@ -1339,7 +1444,9 @@
                         <li><a href="/who-it-for/ecommerce/" class="hover:text-violet-400 transition-colors">E-commerce & Retail</a></li>
                         <li><a href="/who-it-for/travel-hospitality/" class="hover:text-violet-400 transition-colors">Travel & Hospitality</a></li>
                         <li><a href="/who-it-for/food-beverage/" class="hover:text-violet-400 transition-colors">Food & Beverage</a></li>
-                        <li><a href="/who-it-for/agencies/" class="text-violet-400">Agencies</a></li>
+                        <li><a href="/who-it-for/agencies/" class="text-violet-400">Agencies</a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-teal-500 hover:bg-teal-50">Study Abroad</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1510,17 +1617,91 @@
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
             document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+            // With/Without list items & header icons
+            const wrListObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); wrListObs.unobserve(entry.target); }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.ag-wr-list-item, .ag-wr-header-icon').forEach(el => wrListObs.observe(el));
         })();
 
         // Tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.tab).classList.add('active');
+        (function() {
+            var tabs = ['tab-marketing', 'tab-dev', 'tab-creative', 'tab-pr'];
+            var currentTab = 0;
+
+            function showTab(index) {
+                if (index < 0) index = 0;
+                if (index >= tabs.length) index = tabs.length - 1;
+                currentTab = index;
+                document.querySelectorAll('.tab-btn').forEach(function(b, i) {
+                    b.classList.toggle('active', i === index);
+                });
+                document.querySelectorAll('.tab-content').forEach(function(c) {
+                    c.classList.remove('active');
+                    c.style.display = 'none';
+                });
+                var target = document.getElementById(tabs[index]);
+                if (target) { target.classList.add('active'); target.style.display = 'block'; }
+            }
+
+            // Tab button clicks
+            document.querySelectorAll('.tab-btn').forEach(function(btn, i) {
+                btn.addEventListener('click', function() { showTab(i); });
             });
-        });
+
+            // Touch swipe on tab content area
+            var startX = 0, startY = 0, swiping = false;
+            var tabSection = document.querySelectorAll('.tab-content')[0].parentElement;
+
+            tabSection.addEventListener('touchstart', function(e) {
+                var t = e.touches[0];
+                startX = t.clientX;
+                startY = t.clientY;
+                swiping = true;
+            }, { passive: true });
+
+            tabSection.addEventListener('touchmove', function(e) {
+                if (!swiping) return;
+                var t = e.touches[0];
+                var dx = t.clientX - startX;
+                var dy = t.clientY - startY;
+                // If horizontal swipe is dominant, prevent vertical scroll
+                if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            tabSection.addEventListener('touchend', function(e) {
+                if (!swiping) return;
+                swiping = false;
+                var t = e.changedTouches[0];
+                var distX = t.clientX - startX;
+                var distY = t.clientY - startY;
+                // Swipe if horizontal > 30px and more horizontal than vertical
+                if (Math.abs(distX) > 30 && Math.abs(distX) > Math.abs(distY) * 1.2) {
+                    if (distX < 0) {
+                        showTab(currentTab + 1);
+                    } else {
+                        showTab(currentTab - 1);
+                    }
+                }
+            }, { passive: true });
+
+            // Auto-scroll tab button into view when switching
+            function scrollActiveTabBtn() {
+                var activeBtn = document.querySelector('.tab-btn.active');
+                if (activeBtn) {
+                    activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }
+            var origShowTab = showTab;
+            showTab = function(index) {
+                origShowTab(index);
+                scrollActiveTabBtn();
+            };
+        })();
 
         // Counter animation
         (function() {

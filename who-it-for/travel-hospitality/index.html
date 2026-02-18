@@ -183,6 +183,7 @@
             .process-step-number { left: 28px !important; transform: translateX(-50%); }
             .process-step-spacer { display: none; }
             .process-step-card { width: 100%; margin-left: 72px; }
+            .process-step { transition: opacity 0.15s ease, transform 0.15s ease; }
         }
 
         /* VS badge */
@@ -326,14 +327,15 @@
         .wave-divider { position: relative; }
         /* Hero text cycling */
         .hero-cycle-wrapper { display: block; position: relative; overflow: hidden; height: 1.2em; line-height: 1.2; }
-        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 12s cubic-bezier(0.4,0,0.2,1) infinite; }
+        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 10s cubic-bezier(0.4,0,0.2,1) infinite; }
         .hero-cycle-item { height: 1.2em; display: flex; align-items: center; white-space: nowrap; }
         @keyframes heroCycle {
-            0%, 18% { transform: translateY(0); }
-            25%, 43% { transform: translateY(-20%); }
-            50%, 68% { transform: translateY(-40%); }
-            75%, 93% { transform: translateY(-60%); }
-            100% { transform: translateY(-80%); }
+            0%, 8%    { transform: translateY(0); }
+            20%, 28%  { transform: translateY(-20%); }
+            40%, 48%  { transform: translateY(-40%); }
+            60%, 68%  { transform: translateY(-60%); }
+            80%, 96%  { transform: translateY(-80%); }
+            100%      { transform: translateY(-80%); }
         }
 
         .wave-divider::before {
@@ -398,6 +400,11 @@
                             class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
                             <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
                             Agencies
+                        </a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
+                            <i class="fas fa-graduation-cap mr-3 text-teal-500 bg-teal-50 p-1.5 rounded-lg"></i>
+                            Study Abroad
                         </a>
                         </div>
                     </div>
@@ -1058,7 +1065,9 @@
                         <li><a href="/who-it-for/ecommerce/" class="hover:text-sky-400 transition-colors">E-commerce & Retail</a></li>
                         <li><a href="/who-it-for/travel-hospitality/" class="text-sky-400">Travel & Hospitality</a></li>
                         <li><a href="/who-it-for/food-beverage/" class="hover:text-sky-400 transition-colors">Food & Beverage</a></li>
-                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a></li>
+                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-teal-500 hover:bg-teal-50">Study Abroad</a></li>
                     </ul>
                 </div>
                 <div>

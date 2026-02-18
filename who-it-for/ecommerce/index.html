@@ -76,9 +76,139 @@
         }
         
         /* Tab panel styling */
-                @media (max-width: 1023px) {
+        @media (max-width: 1023px) {
             #tabContainer { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
             #tabContainer::-webkit-scrollbar { display: none; }
+        }
+
+        /* === DEEP DIVE MOBILE OVERRIDES === */
+        /* Desktop: show desktop, hide mobile swiper */
+        @media (min-width: 768px) {
+            #scrollTabsOuter { display: block !important; }
+            .mobile-swiper-wrap { display: none !important; }
+        }
+        /* Mobile: hide entire desktop deep dive, show mobile swiper */
+        @media (max-width: 767px) {
+            #scrollTabsOuter { display: none !important; }
+
+        }
+
+        /* === Mobile Swiper Styles (layout always defined, section hidden on desktop) === */
+        .mobile-swiper-wrap {
+            display: none;
+        }
+        .mobile-swiper-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 0 1rem 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+        .mobile-swiper-tabs::-webkit-scrollbar { display: none; }
+        .mobile-swiper-tab {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 2px solid #fde68a;
+            background: white;
+            color: #6b7280;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .mobile-swiper-tab.active {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .mobile-swiper-track-wrap {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .mobile-swiper-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        .mobile-swiper-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 0;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+        .mobile-swiper-slide img {
+            width: 100%;
+            border-radius: 1rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .mobile-swiper-slide h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #111827;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        .mobile-swiper-slide p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .mobile-swiper-slide ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .mobile-swiper-slide li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.625rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        .mobile-swiper-check {
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .mobile-swiper-check i {
+            font-size: 0.55rem;
+            color: #d97706;
+        }
+        .mobile-swiper-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .mobile-swiper-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .mobile-swiper-dot.active {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            width: 24px;
+            border-radius: 4px;
         }
         .tab-content { transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), scale 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
         .tab-content.slide-out-left { transform: translateY(-70px); opacity: 0; scale: 0.97; }
@@ -585,6 +715,11 @@
                             <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
                             Agencies
                         </a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
+                            <i class="fas fa-graduation-cap mr-3 text-teal-500 bg-teal-50 p-1.5 rounded-lg"></i>
+                            Study Abroad
+                        </a>
                     </div>
                 </div>
                 <a href="/why-retain/"
@@ -922,7 +1057,7 @@
             <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-4">See the Retention Ecosystem <span class="gradient-text">in Action</span></h2>
         </div>
         <!-- Layout: timeline tabs left | content + image right -->
-        <div class="grid lg:grid-cols-[280px_1fr] gap-6 items-start" style="margin-left:-2rem;">
+        <div id="deepDiveDesktop" class="grid lg:grid-cols-[280px_1fr] gap-6 items-start" style="margin-left:-2rem;">
             
             <!-- Left: Timeline tabs with vertical progress -->
             <div class="reveal" id="tabContainer">
@@ -1024,9 +1159,76 @@
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 </div>
+
+<!-- Mobile Deep Dive Swiper (sits outside #scrollTabsOuter so it's independent) -->
+<section class="mobile-swiper-wrap py-12 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-8">
+            <span class="section-label text-amber-600 font-semibold text-sm tracking-wide">DEEP DIVE</span>
+            <h2 class="font-poppins text-2xl font-bold text-gray-900 mt-4">See the Retention Ecosystem <span class="gradient-text">in Action</span></h2>
+        </div>
+        <div class="mobile-swiper-tabs" id="mobileSwipeTabs">
+            <div class="mobile-swiper-tab active" data-slide="0">🔗 Omnichannel CRM</div>
+            <div class="mobile-swiper-tab" data-slide="1">🛒 Cart Recovery</div>
+            <div class="mobile-swiper-tab" data-slide="2">🧠 Customer Memory</div>
+            <div class="mobile-swiper-tab" data-slide="3">📊 Analytics</div>
+        </div>
+        <div class="mobile-swiper-track-wrap">
+            <div class="mobile-swiper-track" id="mobileSwipeTrack">
+                <div class="mobile-swiper-slide">
+                    <img src="customer_engagement_visual_1771075759066.png" alt="Omnichannel CRM">
+                    <h3>One Inbox. Every Channel. <span class="gradient-text">Full Context.</span></h3>
+                    <p>Every conversation — WhatsApp, Instagram, email — in one inbox with full customer context.</p>
+                    <ul>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>All channels in one place</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>AI-suggested replies from history</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Auto conversation summaries</li>
+                    </ul>
+                </div>
+                <div class="mobile-swiper-slide">
+                    <img src="cart_recovery_illustration_1771075740291.png" alt="Cart Recovery">
+                    <h3>Recover Revenue <span class="gradient-text">While You Sleep</span></h3>
+                    <p>Abandoned cart? Retain fires a recovery sequence instantly — WhatsApp, email, then a personalized incentive.</p>
+                    <ul>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Multi-step WhatsApp + email flows</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Smart incentive escalation</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Real-time behavior triggers</li>
+                    </ul>
+                </div>
+                <div class="mobile-swiper-slide">
+                    <img src="unified_customer_profile_1771078936946.png" alt="Customer Memory">
+                    <h3>AI That <span class="gradient-text">Remembers Everything</span></h3>
+                    <p>Living customer profiles that grow with every interaction — not static data fields.</p>
+                    <ul>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>AI-generated conversation summaries</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Browsing and purchase insights</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Cross-channel unified history</li>
+                    </ul>
+                </div>
+                <div class="mobile-swiper-slide">
+                    <img src="analytics_dashboard_mockup_1771075776456.png" alt="Retention Analytics">
+                    <h3>Metrics That <span class="gradient-text">Predict Growth</span></h3>
+                    <p>Skip vanity metrics. See LTV trends, cohort retention, and campaign-level revenue attribution.</p>
+                    <ul>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Cohort retention and LTV tracking</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Per-campaign revenue attribution</li>
+                        <li><span class="mobile-swiper-check"><i class="fas fa-check"></i></span>Predictive customer health scores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-swiper-dots" id="mobileSwipeDots">
+            <div class="mobile-swiper-dot active"></div>
+            <div class="mobile-swiper-dot"></div>
+            <div class="mobile-swiper-dot"></div>
+            <div class="mobile-swiper-dot"></div>
+        </div>
+    </div>
+</section>
 
 <!-- How It Works -->
 <section class="py-20 bg-gradient-to-b from-white via-amber-50/30 to-white relative overflow-hidden" id="howItWorks">
@@ -1121,13 +1323,9 @@
     function onScroll() {
         var rect = section.getBoundingClientRect();
         var winH = window.innerHeight;
-        // progress: 0 when section top hits bottom of viewport, 1 when section bottom hits top
         var total = rect.height + winH;
         var scrolled = winH - rect.top;
         var progress = Math.max(0, Math.min(1, scrolled / total));
-
-        // Scale progress to be more useful (section visible range)
-        // Remap so progress spans ~0-1 while section is in view
         var p = Math.max(0, Math.min(1, (scrolled - winH * 0.3) / (rect.height)));
 
         // Line fill
@@ -1857,7 +2055,9 @@
                     <li><a href="/who-it-for/real-estate/" class="hover:text-amber-400 transition-colors">Real Estate</a></li>
                     <li><a href="/who-it-for/travel-hospitality/" class="hover:text-amber-400 transition-colors">Travel & Hospitality</a></li>
                     <li><a href="/who-it-for/food-beverage/" class="hover:text-amber-400 transition-colors">Food & Beverage</a></li>
-                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a></li>
+                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a>
+                        <a href="/who-it-for/study-abroad/"
+                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-teal-500 hover:bg-teal-50">Study Abroad</a></li>
                 </ul>
             </div>
             <div>
@@ -2075,9 +2275,9 @@ if (howSection) stepObserver.observe(howSection);
     const progressBar = document.getElementById('tabProgressBar');
     const allBtns = document.querySelectorAll('.tab-btn');
 
-    // Dead zone: first 40% and last 8% of scroll are buffer (no tab switching)
-    const DEAD_TOP = 0.40;
-    const DEAD_BOTTOM = 0.08;
+    // Dead zone: first 20% and last 5% of scroll are buffer (no tab switching)
+    const DEAD_TOP = 0.20;
+    const DEAD_BOTTOM = 0.05;
     const ACTIVE_RANGE = 1 - DEAD_TOP - DEAD_BOTTOM;
 
     const section = document.getElementById('scrollTabsSection');
@@ -2095,8 +2295,14 @@ if (howSection) stepObserver.observe(howSection);
     }
 
     // More scroll space for breathing room (extra viewport for dead zones)
+    function isMobile() { return window.matchMedia('(max-width: 767px)').matches; }
+
     function setOuterHeight() {
-        outer.style.height = (TOTAL + 2) * window.innerHeight + 'px';
+        if (isMobile()) {
+            outer.style.height = 'auto';
+            return;
+        }
+        outer.style.height = (TOTAL + 4) * window.innerHeight + 'px';
         adjustStickyTop();
     }
     setOuterHeight();
@@ -2201,6 +2407,7 @@ if (howSection) stepObserver.observe(howSection);
 
     // Scroll-based with dead zones
     function onScroll() {
+        if (isMobile()) return;
         const rect = outer.getBoundingClientRect();
         const scrolledInto = -rect.top;
         const maxScroll = outer.offsetHeight - window.innerHeight;
@@ -2252,6 +2459,83 @@ if (howSection) stepObserver.observe(howSection);
     document.getElementById(TAB_IDS[0]).style.transform = 'translateY(0)';
     document.getElementById('tab-img-' + TAB_IDS[0].replace('tab-','')).style.visibility = 'visible';
     document.getElementById('tab-img-' + TAB_IDS[0].replace('tab-','')).style.transform = 'translateY(0)';
+
+})();
+
+// === MOBILE SWIPE CAROUSEL ===
+(function() {
+    const track = document.getElementById('mobileSwipeTrack');
+    const tabsWrap = document.getElementById('mobileSwipeTabs');
+    const dotsWrap = document.getElementById('mobileSwipeDots');
+    if (!track || !tabsWrap || !dotsWrap) return;
+
+    const slides = track.querySelectorAll('.mobile-swiper-slide');
+    const tabs = tabsWrap.querySelectorAll('.mobile-swiper-tab');
+    const dots = dotsWrap.querySelectorAll('.mobile-swiper-dot');
+    const total = slides.length;
+    let current = 0;
+    let startX = 0, currentX = 0, isDragging = false, dragDelta = 0;
+
+    function goTo(idx, smooth) {
+        if (idx < 0 || idx >= total) return;
+        current = idx;
+        track.style.transition = smooth !== false ? 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        // Update tabs
+        tabs.forEach((t, i) => t.classList.toggle('active', i === current));
+        // Update dots
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        // Scroll active tab into view
+        const activeTab = tabs[current];
+        if (activeTab) {
+            activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }
+
+    // Tab clicks
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const i = parseInt(tab.dataset.slide);
+            if (!isNaN(i)) goTo(i);
+        });
+    });
+
+    // Touch events
+    track.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+        dragDelta = 0;
+        track.style.transition = 'none';
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        dragDelta = currentX - startX;
+        const base = -(current * 100);
+        const trackWidth = track.offsetWidth / total;
+        const pctDelta = (dragDelta / (trackWidth || 1)) * 100;
+        track.style.transform = 'translateX(' + (base + pctDelta) + '%)';
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        const threshold = 50;
+        if (dragDelta < -threshold && current < total - 1) {
+            goTo(current + 1);
+        } else if (dragDelta > threshold && current > 0) {
+            goTo(current - 1);
+        } else {
+            goTo(current); // snap back
+        }
+    });
+
+    // Dot clicks
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goTo(i));
+    });
 })();
 
 // Mobile menu toggle
