@@ -156,10 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { el: document.getElementById('chat-bubble-5'), startX: -40, startY: 20, endX: 0, endY: 0 }
         ];
 
-        let targetProgress = 0;
-        let currentProgress = 0;
-        const lerpFactor = 0.15;
-
         function setBubblesToFinalState() {
             chatBubbles.forEach(bubble => {
                 if (bubble.el) {
@@ -169,39 +165,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        function applyProgress(progress) {
+            chatBubbles.forEach(bubble => {
+                if (bubble.el) {
+                    const currentX = bubble.startX * (1 - progress);
+                    const currentY = bubble.startY * (1 - progress);
+                    bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
+                    bubble.el.style.opacity = progress;
+                }
+            });
+        }
+
         let isMobileView = window.innerWidth < 768;
 
         if (isMobileView) {
             setBubblesToFinalState();
         } else {
-            function update() {
-                currentProgress += (targetProgress - currentProgress) * lerpFactor;
-                
-                chatBubbles.forEach(bubble => {
-                    if (bubble.el) {
-                        const currentX = bubble.startX * (1 - currentProgress);
-                        const currentY = bubble.startY * (1 - currentProgress);
-                        bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
-                        bubble.el.style.opacity = currentProgress;
-                    }
-                });
-
-                requestAnimationFrame(update);
-            }
-
             function onScroll() {
-                const sectionTop = soundFamiliarSection.offsetTop;
-                const sectionHeight = soundFamiliarSection.offsetHeight;
-                const scrollY = window.scrollY;
+                const rect = soundFamiliarSection.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
-
-                let progress = (scrollY - sectionTop + windowHeight / 2) / (sectionHeight / 2);
-                targetProgress = Math.max(0, Math.min(1, progress));
+                // progress 0 = section top enters bottom of viewport
+                // progress 1 = section top reaches 40% from top of viewport
+                let progress = (windowHeight - rect.top) / (windowHeight * 0.6);
+                progress = Math.max(0, Math.min(1, progress));
+                applyProgress(progress);
             }
 
-            window.addEventListener('scroll', onScroll);
+            window.addEventListener('scroll', onScroll, { passive: true });
             onScroll();
-            update();
         }
 
         window.addEventListener('resize', () => {

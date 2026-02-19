@@ -6,503 +6,125 @@
     <title>Retain for Food & Beverage — Turn Walk-Ins Into Regulars</title>
     <meta name="description" content="Retain is the guest retention growth partner for restaurants and F&B brands. Stop losing guests to delivery apps and discount addiction — build a retention ecosystem that turns one-time diners into lifelong regulars.">
     <link rel="icon" type="image/png" href="/darkFavicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        html, body { overflow-x: hidden; }
-        * { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-
-        .nav-link { position: relative; padding-bottom: 2px; }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #f43f5e, #dc2626);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        .rose-gradient { background: linear-gradient(135deg, #f43f5e, #dc2626); }
-        .rose-gradient-text {
-            background: linear-gradient(90deg, #f43f5e 0%, #dc2626 40%, #fb7185 50%, #dc2626 60%, #f43f5e 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 4s ease-in-out infinite;
-        }
-        @keyframes textShimmer {
-            0% { background-position: 100% center; }
-            100% { background-position: -100% center; }
-        }
-
-        .gradient-headline {
-            background: linear-gradient(90deg, #f43f5e 0%, #dc2626 35%, #fb7185 50%, #dc2626 65%, #f43f5e 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 4.5s ease-in-out infinite;
-        }
-
-        /* Gradient Mesh Hero */
-        .hero-mesh {
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(255,228,230,0.8) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(254,205,211,0.6) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(255,237,213,0.5) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 30%, rgba(254,226,226,0.4) 0%, transparent 40%),
-                radial-gradient(ellipse at 90% 70%, rgba(255,241,242,0.7) 0%, transparent 50%),
-                linear-gradient(135deg, #fff5f5 0%, #ffffff 40%, #fff1f2 70%, #fffbeb 100%);
-        }
-
-        /* Floating orbs */
-        @keyframes floatA { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(15px, -20px) scale(1.05); } 66% { transform: translate(-10px, 10px) scale(0.95); } }
-        @keyframes floatB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, -15px); } }
-        .floating-orb { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0.12; filter: blur(1px); }
-        .float-a { animation: floatA 8s ease-in-out infinite; }
-        .float-b { animation: floatB 10s ease-in-out infinite; }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-
-        /* Shimmer CTA */
-        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-        .cta-shimmer { position: relative; overflow: hidden; }
-        .cta-shimmer::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; pointer-events: none; border-radius: inherit; }
-
-        /* Glass card */
-        .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-
-        /* Scroll reveals */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal-left.visible { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal-right.visible { opacity: 1; transform: translateX(0); }
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
-        .stagger-4 { transition-delay: 0.4s; }
-
-        html { scroll-behavior: smooth; }
-        a, button { transition: all 0.3s ease; }
-
-        /* Hero text cycling - yo-yo */
-        .hero-cycle-wrapper { display: block; position: relative; overflow: hidden; height: 1.2em; line-height: 1.2; }
-        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 10s cubic-bezier(0.4,0,0.2,1) infinite; }
-        .hero-cycle-item { height: 1.2em; display: flex; align-items: center; white-space: nowrap; }
-        @keyframes heroCycle {
-            0%, 8%    { transform: translateY(0); }
-            20%, 28%  { transform: translateY(-20%); }
-            40%, 48%  { transform: translateY(-40%); }
-            60%, 68%  { transform: translateY(-60%); }
-            80%, 96%  { transform: translateY(-80%); }
-            100%      { transform: translateY(-80%); }
-        }
-
-        /* ======= MARQUEE TICKER ======= */
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marqueeScroll 30s linear infinite;
-        }
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ======= HORIZONTAL SCROLL CARDS ======= */
-        .pain-scroll {
-            display: flex;
-            gap: 1.5rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 1rem;
-        }
-        .pain-scroll::-webkit-scrollbar { height: 6px; }
-        .pain-scroll::-webkit-scrollbar-track { background: rgba(244,63,94,0.08); border-radius: 3px; }
-        .pain-scroll::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #f43f5e, #dc2626); border-radius: 3px; }
-        .pain-card {
-            min-width: 320px;
-            max-width: 360px;
-            scroll-snap-align: start;
-            flex-shrink: 0;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(244,63,94,0.12);
-            box-shadow: 0 8px 32px rgba(244,63,94,0.06);
-            transition: all 0.4s ease;
-        }
-        .pain-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(244,63,94,0.15); }
-
-        /* ======= PROCESS TIMELINE ======= */
-        .process-timeline { position: relative; padding: 1rem 0; }
-        .process-timeline-progress {
-            position: absolute; left: 50%; top: 0; width: 3px; height: 0;
-            background: linear-gradient(180deg, #f43f5e, #dc2626, #fb7185);
-            transform: translateX(-50%); z-index: 0; will-change: height;
-            transition: height 0.15s linear; border-radius: 0 0 3px 3px;
-        }
-        .process-step {
-            display: flex; align-items: center; margin-bottom: 2rem; position: relative;
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-            will-change: opacity, transform;
-        }
-        .process-step.step-visible { opacity: 1; transform: translateY(0); }
-        .process-step:last-child { margin-bottom: 0; }
-        .process-step:nth-child(odd) { flex-direction: row; }
-        .process-step:nth-child(even) { flex-direction: row-reverse; }
-        .process-step-card {
-            width: 44%; background: #ffffff; border: 1px solid #f0f0f0; border-radius: 1rem;
-            padding: 1.75rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
-            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease, background 0.4s ease;
-            position: relative; overflow: hidden;
-        }
-        .process-step-card::after {
-            content: ''; position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem; height: 2px;
-            background: linear-gradient(90deg, #f43f5e, #dc2626);
-            opacity: 0; transform: scaleX(0);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-        }
-        .step-visible .process-step-card::after { opacity: 1; transform: scaleX(1); }
-        .process-step-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(244,63,94,0.1), 0 2px 8px rgba(0,0,0,0.04);
-            background: #fff5f5;
-        }
-        .process-step-number {
-            position: absolute; left: 50%; transform: translateX(-50%) scale(0.5);
-            width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #f43f5e, #dc2626);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 800; font-size: 1.1rem; z-index: 2;
-            box-shadow: 0 4px 16px rgba(244,63,94,0.3);
-            opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.6s ease;
-            will-change: opacity, transform;
-        }
-        .process-step.step-visible .process-step-number {
-            opacity: 1; transform: translateX(-50%) scale(1);
-            box-shadow: 0 0 20px rgba(244,63,94,0.5), 0 4px 16px rgba(244,63,94,0.3);
-        }
-        .process-step.step-visible .process-step-number::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
-            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-            background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; pointer-events: none;
-        }
-        .process-step-spacer { width: 12%; }
-        .process-step-card .step-icon {
-            width: 42px; height: 42px; border-radius: 10px;
-            background: linear-gradient(135deg, #fff1f2, #ffe4e6);
-            display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem;
-        }
-        .process-step-card .step-icon i { color: #f43f5e; font-size: 1.1rem; }
-        .process-step-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
-        .process-step-card p { color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.88rem; }
-        .process-slide-left, .process-slide-right { display: inline-block; will-change: transform, opacity; }
-        @media (max-width: 768px) {
-            .process-timeline-progress { left: 28px; }
-            .process-step, .process-step:nth-child(even) { flex-direction: row !important; }
-            .process-step-number { left: 28px !important; transform: translateX(-50%); }
-            .process-step-spacer { display: none; }
-            .process-step-card { width: 100%; margin-left: 72px; }
-            .process-step { transition: opacity 0.15s ease, transform 0.15s ease; }
-        }
-
-        /* ======= SPLIT SCREEN ======= */
-        .split-left {
-            clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
-        }
-        .split-right {
-            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
-        }
-        @media (max-width: 768px) {
-            .split-left, .split-right { clip-path: none; }
-        }
-
-        /* ======= STACKED CARDS (not used in final, split-screen used instead) ======= */
-
-        /* ======= ANIMATED COUNTER CARDS ======= */
-        .stat-float-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 1.5rem;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .stat-float-card:nth-child(odd) { transform: rotate(-2deg); }
-        .stat-float-card:nth-child(even) { transform: rotate(2deg); }
-        .stat-float-card:hover { transform: rotate(0deg) translateY(-8px) !important; box-shadow: 0 20px 50px rgba(244,63,94,0.2); }
-
-        /* ======= TYPEWRITER ======= */
-        .typewriter {
-            display: inline-block;
-            border-right: 3px solid #f43f5e;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typewrite 3.5s steps(40, end) forwards, blinkCaret 0.75s step-end 6, hideCaret 0s forwards 4.5s;
-        }
-        @keyframes typewrite { from { width: 0; } to { width: 100%; } }
-        @keyframes blinkCaret { from, to { border-color: transparent; } 50% { border-color: #f43f5e; } }
-        @keyframes hideCaret { to { border-right-color: transparent; border-right-width: 0; } }
-
-        /* Showcase - Bento Grid */
-        .showcase-card {
-            position: relative; border-radius: 1.5rem; overflow: hidden; background: #fff;
-            box-shadow: 0 0 24px rgba(244,63,94,0.08), 0 4px 16px rgba(0,0,0,0.04);
-            transition: box-shadow 0.5s ease, transform 0.4s ease;
-            opacity: 0; transform: translateY(30px);
-        }
-        .showcase-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s ease; }
-        .showcase-card:hover { box-shadow: 0 0 40px rgba(244,63,94,0.18), 0 12px 40px rgba(244,63,94,0.12); transform: translateY(-5px); }
-        .showcase-card.visible:hover { transform: translateY(-5px); }
-        .showcase-card .showcase-media { overflow: hidden; position: relative; }
-        .showcase-card .showcase-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-        .showcase-card:hover .showcase-media img { transform: scale(1.05); }
-        .showcase-card .showcase-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 2rem 1.75rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); color: white;
-        }
-        .showcase-card .showcase-overlay h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem; }
-        .showcase-card .showcase-overlay p { font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.55; }
-        .showcase-card .showcase-badge {
-            position: absolute; top: 1rem; left: 1rem; background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            padding: 0.4rem 1rem; border-radius: 999px;
-            font-size: 0.72rem; font-weight: 700; color: #e11d48; text-transform: uppercase;
-            letter-spacing: 0.06em; z-index: 2; box-shadow: 0 2px 12px rgba(244,63,94,0.15);
-            transition: transform 0.3s ease;
-        }
-        .showcase-card:hover .showcase-badge { transform: translateY(-2px); }
-        .showcase-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; grid-template-rows: 280px 280px; gap: 1.25rem;
-        }
-        .showcase-card.showcase-featured { grid-row: 1 / -1; }
-        .showcase-card.showcase-featured .showcase-media { height: 100%; }
-        .showcase-card:not(.showcase-featured) .showcase-media { height: 100%; }
-        @media (max-width: 768px) {
-            .showcase-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .showcase-card.showcase-featured { grid-row: auto; }
-            .showcase-card .showcase-media { height: 250px !important; }
-        }
-
-        /* Quotes */
-        .fb-quotes-glass {
-            background: linear-gradient(135deg, rgba(255,241,242,0.3) 0%, #ffffff 50%, rgba(254,205,211,0.3) 100%);
-            position: relative; overflow: hidden;
-        }
-        .fb-quotes-blob {
-            position: absolute; border-radius: 50%; filter: blur(80px);
-            animation: blobDrift 20s ease-in-out infinite; pointer-events: none;
-        }
-        @keyframes blobDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
-        .fb-quotes-dots {
-            position: absolute; bottom: 0; right: 0; width: 200px; height: 200px;
-            background-image: radial-gradient(circle, rgba(244,63,94,0.12) 1px, transparent 1px);
-            background-size: 20px 20px; pointer-events: none;
-        }
-        .fb-quotes-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: 1fr 1fr 1fr; gap: 1.5rem; align-items: stretch; }
-        .fb-glass-quote {
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(244,63,94,0.1); border-radius: 1.5rem; padding: 2rem 2.25rem;
-            box-shadow: 0 0 20px rgba(244,63,94,0.12), 0 8px 32px rgba(244,63,94,0.08);
-            display: flex; flex-direction: column; justify-content: space-between; min-height: 0;
-            transition: box-shadow 0.4s ease, transform 0.4s ease;
-        }
-        .fb-glass-quote:hover { box-shadow: 0 0 40px rgba(244,63,94,0.2), 0 16px 50px rgba(244,63,94,0.22); transform: translateY(-4px); }
-        .fb-glass-quote.featured { grid-row: 1 / -1; padding: 2.5rem; animation: quoteFloat1 4s ease-in-out infinite; }
-        .fb-glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
-        .fb-glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
-        .fb-glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
-        @keyframes quoteFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @keyframes quoteFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-        @keyframes quoteFloat3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes quoteFloat4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-        @media (max-width: 768px) { .fb-quotes-grid { grid-template-columns: 1fr; grid-template-rows: auto; } .fb-glass-quote.featured { grid-row: auto; } }
-
-        /* Stats banner */
-        .fb-stats-banner {
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #2a1525, #1a1028, #0f172a);
-            background-size: 400% 400%;
-            animation: meshGradient 15s ease infinite;
-            position: relative; overflow: hidden;
-        }
-        @keyframes meshGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .fb-stats-banner::before {
-            content: ''; position: absolute; top: -50%; right: -20%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(244,63,94,0.08), transparent 70%);
-            border-radius: 50%; pointer-events: none;
-        }
-
-        /* Testimonials */
-        .testi-card {
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(244,63,94,0.1); border-radius: 1.5rem; padding: 2.5rem;
-            position: relative; box-shadow: 0 0 24px rgba(244,63,94,0.08), 0 4px 16px rgba(0,0,0,0.03);
-            transition: box-shadow 0.4s ease, transform 0.4s ease; overflow: hidden;
-        }
-        .testi-card:hover { box-shadow: 0 0 40px rgba(244,63,94,0.15), 0 12px 36px rgba(244,63,94,0.1); transform: translateY(-4px); }
-        .testi-card::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 1.5rem; right: 2rem; font-size: 3.5rem; color: rgba(244,63,94,0.06); pointer-events: none; }
-
-        /* Wave divider */
-        .wave-divider { position: relative; }
-        .wave-divider::before {
-            content:''; position:absolute; top:-60px; left:0; right:0; height:60px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%230f172a' d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,35 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat bottom;
-            background-size: cover;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white text-gray-800">
+<body>
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex items-baseline">
-                        <a href="/home/" class="flex items-baseline">
-                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
-                            <span class="text-2xl font-bold text-gray-900">Retain</span>
-                        </a>
-                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
-                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
-                    <div class="relative group">
-                        <button class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
-                            Who It's For
-                            <i class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
-                        </button>
-                        <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
-                            <a href="/who-it-for/real-estate/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
-                                <i class="fas fa-building mr-3 text-emerald-500 bg-emerald-50 p-1.5 rounded-lg"></i> Real Estate
-                            </a>
-                            <a href="/who-it-for/ecommerce/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
-                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i> E-commerce & Retail
-                            </a>
-                            <a href="/who-it-for/travel-hospitality/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
-                                <i class="fas fa-plane mr-3 text-sky-500 bg-sky-50 p-1.5 rounded-lg"></i> Travel & Hospitality
-                            </a>
-                            <a href="/who-it-for/food-beverage/" class="block px-4 py-3 text-sm text-rose-700 font-medium bg-rose-50 rounded-md transition-colors">
-                                <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i> Food & Beverage
-                            </a>
-                        <a href="/who-it-for/agencies/"
-                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
-                            <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
-                            Agencies
-                        </a>
-                        <a href="/who-it-for/study-abroad/"
-                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                            <i class="fas fa-graduation-cap mr-3 text-teal-500 bg-teal-50 p-1.5 rounded-lg"></i>
-                            Study Abroad
-                        </a>
-                        </div>
-                    </div>
-                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/" class="text-white px-5 py-2 rounded-lg hover:shadow-lg transition-all font-medium whitespace-nowrap" style="background: linear-gradient(135deg, #f43f5e, #dc2626);">
-                        Book a Call
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="flex items-center">
+                <div class="navbar-brand">
+                    <a href="/home/" class="navbar-brand flex items-center" style="text-decoration:none;">
+                        <img src="/lightFavicon.png" alt="Retain Logo">
+                        <span class="navbar-brand-name">Retain</span>
                     </a>
+                    <a href="https://solven.app/" class="navbar-brand-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </div>
+            <div class="nav-links">
+                <a href="/home/" class="nav-link">Home</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/solutions/" class="nav-link">Solutions</a>
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn nav-link">
+                        Who It's For
+                        <i class="fas fa-chevron-down"></i>
                     </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="/who-it-for/real-estate/" class="nav-dropdown-item">
+                            <i class="fas fa-building icon-emerald"></i> Real Estate
+                        </a>
+                        <a href="/who-it-for/ecommerce/" class="nav-dropdown-item">
+                            <i class="fas fa-shopping-bag icon-amber"></i> E-commerce & Retail
+                        </a>
+                        <a href="/who-it-for/travel-hospitality/" class="nav-dropdown-item">
+                            <i class="fas fa-plane icon-sky"></i> Travel & Hospitality
+                        </a>
+                        <a href="/who-it-for/food-beverage/" class="nav-dropdown-item active">
+                            <i class="fas fa-utensils icon-rose"></i> Food & Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/" class="nav-dropdown-item">
+                            <i class="fas fa-briefcase icon-violet"></i> Agencies
+                        </a>
+                        <a href="/who-it-for/study-abroad/" class="nav-dropdown-item">
+                            <i class="fas fa-graduation-cap icon-teal"></i> Study Abroad
+                        </a>
+                    </div>
                 </div>
+                <a href="/why-retain/" class="nav-link">Why Retain</a>
+                <a href="/contact/" class="nav-cta">Book a Call</a>
+            </div>
+            <div>
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </div>
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
-                <a href="/who-it-for/real-estate/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Real Estate</a>
-                <a href="/who-it-for/ecommerce/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">E-commerce & Retail</a>
-                <a href="/who-it-for/travel-hospitality/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Travel & Hospitality</a>
-                <a href="/who-it-for/food-beverage/" class="text-rose-600 font-semibold block px-3 py-2 rounded-md text-base">Food & Beverage</a>
-                <a href="/who-it-for/agencies/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Agencies</a>
-                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
-                <a href="/contact/" class="text-white block px-3 py-2 rounded-md text-base font-medium" style="background: linear-gradient(135deg, #f43f5e, #dc2626);">Book a Call</a>
-            </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="/home/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/solutions/">Solutions</a>
+            <a href="/who-it-for/real-estate/">Real Estate</a>
+            <a href="/who-it-for/ecommerce/">E-commerce & Retail</a>
+            <a href="/who-it-for/travel-hospitality/">Travel & Hospitality</a>
+            <a href="/who-it-for/food-beverage/" class="mobile-active">Food & Beverage</a>
+            <a href="/who-it-for/agencies/">Agencies</a>
+            <a href="/why-retain/">Why Retain</a>
+            <a href="/contact/" class="mobile-cta">Book a Call</a>
         </div>
     </nav>
 
-    <!-- 1. HERO — Gradient Mesh -->
-    <section class="hero-mesh pt-32 pb-28 lg:pt-44 lg:pb-40 relative overflow-hidden min-h-[90vh] flex items-center">
-        <div class="floating-orb float-a bg-rose-400" style="width:120px;height:120px;top:10%;right:8%;"></div>
-        <div class="floating-orb float-b bg-red-500" style="width:80px;height:80px;bottom:15%;left:5%;"></div>
-        <div class="floating-orb float-a bg-rose-300" style="width:60px;height:60px;top:60%;right:25%;"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <!-- 1. HERO -->
+    <section class="hero-mesh">
+        <div class="floating-orb float-a" style="width:120px;height:120px;top:10%;right:8%;background:#fb7185;"></div>
+        <div class="floating-orb float-b" style="width:80px;height:80px;bottom:15%;left:5%;background:#ef4444;"></div>
+        <div class="floating-orb float-a" style="width:60px;height:60px;top:60%;right:25%;background:#fda4af;"></div>
+        <div class="container" style="position:relative;z-index:10;">
+            <div class="hero-grid">
                 <div class="animate-fade-in-up">
-                    <span class="inline-block bg-rose-100 text-rose-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-                        <i class="fas fa-utensils mr-1"></i> Retain for Food & Beverage
+                    <span class="hero-badge">
+                        <i class="fas fa-utensils"></i> Retain for Food & Beverage
                     </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    <h1 class="hero-title">
                         The Best Restaurants Are Built On
                         <span class="hero-cycle-wrapper"><span class="hero-cycle-list"><span class="hero-cycle-item rose-gradient-text">Regulars</span><span class="hero-cycle-item rose-gradient-text">Repeat Visits</span><span class="hero-cycle-item rose-gradient-text">Full Tables</span><span class="hero-cycle-item rose-gradient-text">Guest Memory</span><span class="hero-cycle-item rose-gradient-text">Regulars</span></span></span>
                     </h1>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl">
+                    <p class="hero-desc">
                         They loved the meal. Left a 5-star review. Then never came back — because nobody reminded them to. Retain is your guest retention growth partner — a customer memory system that turns walk-ins into regulars and one-time covers into compounding revenue.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contactForm" class="rose-gradient text-white px-8 py-3.5 rounded-full font-semibold text-center hover:opacity-90 transition-opacity shadow-lg shadow-rose-200 cta-shimmer">
-                            Build Your Retention Ecosystem <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="hero-actions">
+                        <a href="#contactForm" class="btn-primary cta-shimmer">
+                            Build Your Retention Ecosystem <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="/how-it-works/" class="bg-white text-rose-700 border-2 border-rose-200 px-8 py-3.5 rounded-full font-semibold text-center hover:border-rose-400 transition-colors">
+                        <a href="/how-it-works/" class="btn-secondary">
                             See How It Works
                         </a>
                     </div>
                 </div>
-                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <video src="fb-hero-video.mp4" autoplay loop muted playsinline poster="fb-hero-restaurant.png" class="rounded-2xl shadow-2xl w-full object-cover"></video>
-                    <div class="absolute -bottom-6 -left-6 glass-card rounded-xl shadow-lg p-4 hidden lg:block">
+                <div class="hero-video-wrap animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <video src="fb-hero-video.mp4" autoplay loop muted playsinline poster="fb-hero-restaurant.png"></video>
+                    <div class="hero-stat-card hero-stat-bottom glass-card">
                         <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rose-gradient rounded-full flex items-center justify-center">
-                                <i class="fas fa-redo text-white text-lg"></i>
+                            <div class="hero-stat-icon rose-gradient" style="display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-redo" style="color:#fff;font-size:1.125rem;"></i>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold text-gray-900">3.8×</p>
-                                <p class="text-sm text-gray-500">More repeat visits</p>
+                                <p class="hero-stat-value">3.8×</p>
+                                <p class="hero-stat-label">More repeat visits</p>
                             </div>
                         </div>
                     </div>
-                    <div class="absolute -top-4 -right-4 glass-card rounded-xl shadow-lg p-3 hidden lg:block">
+                    <div class="hero-stat-card hero-stat-top glass-card">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-chart-line text-rose-600 text-sm"></i>
+                            <div class="hero-stat-icon-sm">
+                                <i class="fas fa-chart-line"></i>
                             </div>
                             <div>
-                                <p class="text-lg font-bold text-gray-900">+47%</p>
-                                <p class="text-xs text-gray-500">Revenue per guest</p>
+                                <p class="hero-stat-value-sm">+47%</p>
+                                <p class="hero-stat-label-sm">Revenue per guest</p>
                             </div>
                         </div>
                     </div>
@@ -512,182 +134,96 @@
     </section>
 
     <!-- 2. MARQUEE TICKER -->
-    <section class="py-5 overflow-hidden" style="background: #0f172a;">
+    <section class="marquee-section">
         <div class="marquee-track">
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">STOP STARTING FROM ZERO EVERY MONTH&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">YOUR REGULARS ARE YOUR REVENUE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">30% TO DELIVERY APPS IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">BUILD CUSTOMER MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">STOP STARTING FROM ZERO EVERY MONTH&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">YOUR REGULARS ARE YOUR REVENUE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">30% TO DELIVERY APPS IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap rose-gradient-text">BUILD CUSTOMER MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">STOP STARTING FROM ZERO EVERY MONTH&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">YOUR REGULARS ARE YOUR REVENUE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">30% TO DELIVERY APPS IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">BUILD CUSTOMER MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">STOP STARTING FROM ZERO EVERY MONTH&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">YOUR REGULARS ARE YOUR REVENUE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">30% TO DELIVERY APPS IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item rose-gradient-text">BUILD CUSTOMER MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
         </div>
     </section>
 
     <!-- 3. PAIN POINTS -->
-    <style>
-        .pain-bento {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-        .pain-bento-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(244,63,94,0.08);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        .pain-bento-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(244,63,94,0.2);
-            box-shadow: 0 0 30px rgba(244,63,94,0.1), 0 12px 32px rgba(244,63,94,0.08);
-        }
-        .pain-bento-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #f43f5e, #dc2626);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .pain-bento-card:hover::after {
-            transform: scaleX(1);
-        }
-        .pain-bento-featured {
-            grid-column: span 2;
-            background: linear-gradient(135deg, rgba(255,241,242,0.8), rgba(255,255,255,0.9));
-            padding: 2.5rem;
-        }
-        .pain-bento-featured .pain-icon-wrap {
-            width: 64px;
-            height: 64px;
-        }
-        .pain-bento-featured .pain-icon-wrap i {
-            font-size: 1.5rem;
-        }
-        .pain-bento-featured h3 {
-            font-size: 1.35rem;
-        }
-        .pain-icon-wrap {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 4px 16px rgba(244,63,94,0.1);
-            border: 1px solid rgba(244,63,94,0.08);
-        }
-        .pain-icon-wrap i {
-            font-size: 1.15rem;
-        }
-        .pain-bento-num {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 3rem;
-            font-weight: 800;
-            color: rgba(244,63,94,0.04);
-            line-height: 1;
-            font-family: 'Poppins', sans-serif;
-            pointer-events: none;
-        }
-        @media (max-width: 768px) {
-            .pain-bento {
-                grid-template-columns: 1fr;
-            }
-            .pain-bento-featured {
-                grid-column: span 1;
-            }
-        }
-    </style>
-    <section class="py-24 bg-white relative overflow-hidden" id="pain-points">
-        <div class="absolute top-[-5%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(244,63,94,0.07),transparent 70%);filter:blur(80px);"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-flex items-center gap-2 bg-rose-100/80 backdrop-blur text-rose-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-rose-200/60 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> The Problem
-                </span>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1] max-w-4xl mx-auto">
-                    Why Do 80% of Diners <span class="rose-gradient-text">Never Come Back?</span>
-                </h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-base">They loved the food. But you have zero way to reach them again.</p>
+    <section class="pain-section" id="pain-points">
+        <div class="pain-blob"></div>
+        <div class="container-md" style="position:relative;z-index:10;">
+            <div class="text-center" style="margin-bottom:4rem;">
+                <div class="reveal">
+                    <span class="section-badge">
+                        <span class="pulse-dot"></span> The Problem
+                    </span>
+                    <h2 class="section-title">
+                        Why Do 80% of Diners <span class="rose-gradient-text">Never Come Back?</span>
+                    </h2>
+                    <p class="section-subtitle">They loved the food. But you have zero way to reach them again.</p>
+                </div>
             </div>
 
-            <div class="mb-14 rounded-2xl overflow-hidden reveal" style="box-shadow: 0 0 30px rgba(244,63,94,0.08), 0 4px 16px rgba(0,0,0,0.04);">
-                <video src="fb-pain-video.mp4" autoplay loop muted playsinline class="w-full h-72 object-cover"></video>
+            <div class="pain-video-wrap reveal">
+                <video src="fb-pain-video.mp4" autoplay loop muted playsinline></video>
             </div>
 
             <div class="pain-bento">
-                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay: 0ms;">
+                <div class="pain-bento-card pain-bento-featured reveal">
                     <span class="pain-bento-num">01</span>
                     <div class="pain-icon-wrap"><i class="fas fa-ghost text-rose-500"></i></div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Walk-In = Zero Data</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">A guest walks in, has an incredible meal, pays — and walks out as a complete stranger. No email. No phone number. No way to ever reach them again. That's not a customer, that's a ghost.</p>
+                    <h3>Walk-In = Zero Data</h3>
+                    <p>A guest walks in, has an incredible meal, pays — and walks out as a complete stranger. No email. No phone number. No way to ever reach them again. That's not a customer, that's a ghost.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 100ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:100ms;">
                     <span class="pain-bento-num">02</span>
                     <div class="pain-icon-wrap"><i class="fas fa-tags text-red-500"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Discount Addiction</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Groupon, Yelp Deals, 50% off. You train guests to come only for deals — they vanish when the discount ends.</p>
+                    <h3>Discount Addiction</h3>
+                    <p>Groupon, Yelp Deals, 50% off. You train guests to come only for deals — they vanish when the discount ends.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 200ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:200ms;">
                     <span class="pain-bento-num">03</span>
                     <div class="pain-icon-wrap"><i class="fas fa-door-open text-rose-600"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">No Post-Visit Engagement</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Check paid. Then… nothing. No follow-up, no "come back soon," no reason to think of you next Friday night.</p>
+                    <h3>No Post-Visit Engagement</h3>
+                    <p>Check paid. Then… nothing. No follow-up, no "come back soon," no reason to think of you next Friday night.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 300ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:300ms;">
                     <span class="pain-bento-num">04</span>
                     <div class="pain-icon-wrap"><i class="fas fa-motorcycle text-red-600"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Delivery App Dependency</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">UberEats, DoorDash, Grubhub — 30% of every order. Your food, your kitchen, your staff… their customer.</p>
+                    <h3>Delivery App Dependency</h3>
+                    <p>UberEats, DoorDash, Grubhub — 30% of every order. Your food, your kitchen, your staff… their customer.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 400ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:400ms;">
                     <span class="pain-bento-num">05</span>
                     <div class="pain-icon-wrap"><i class="fas fa-calendar-times text-rose-500"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Seasonal Revenue Dips</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">January empties. Summer clears the room. No system to pull guests back when foot traffic drops.</p>
+                    <h3>Seasonal Revenue Dips</h3>
+                    <p>January empties. Summer clears the room. No system to pull guests back when foot traffic drops.</p>
                 </div>
-                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay: 500ms;">
+                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay:500ms;">
                     <span class="pain-bento-num">06</span>
                     <div class="pain-icon-wrap"><i class="fas fa-user-secret text-red-500"></i></div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Can't Identify Regulars</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Your best guest has been in 12 times. Your host doesn't recognize them. No preferences saved. No special treatment. Just another table number. That's not hospitality — that's amnesia.</p>
+                    <h3>Can't Identify Regulars</h3>
+                    <p>Your best guest has been in 12 times. Your host doesn't recognize them. No preferences saved. No special treatment. Just another table number. That's not hospitality — that's amnesia.</p>
                 </div>
             </div>
 
-            <div class="text-center mt-14 reveal">
-                <p class="text-gray-700 font-semibold text-lg">You're spending more acquiring new diners than keeping the ones who already loved you.</p>
+            <div class="text-center reveal" style="margin-top:3.5rem;">
+                <p class="pain-bottom-text">You're spending more acquiring new diners than keeping the ones who already loved you.</p>
             </div>
         </div>
     </section>
 
     <!-- 4. PROCESS TIMELINE -->
-    <section class="py-16 bg-white" id="process">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 reveal">
-                <span class="inline-flex items-center gap-2 bg-rose-100/80 backdrop-blur text-rose-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-rose-200/60 shadow-sm">
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom:3rem;">
+                <span class="section-badge">
                     <i class="fas fa-cogs text-rose-500"></i> Our Process
                 </span>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.15] max-w-4xl mx-auto"><span class="process-slide-left">Kill Discount Dependency.</span> <span class="process-slide-right rose-gradient-text">Build Lifelong Regulars.</span></h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-base">How we turn a great meal into a lifecycle relationship — so you stop starting from zero every month.</p>
+                <h2 class="section-title"><span class="process-slide-left">Kill Discount Dependency.</span> <span class="process-slide-right rose-gradient-text">Build Lifelong Regulars.</span></h2>
+                <p class="section-subtitle">How we turn a great meal into a lifecycle relationship — so you stop starting from zero every month.</p>
             </div>
             <div class="process-timeline">
                 <div class="process-timeline-progress"></div>
-                <!-- Step 1 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-wifi"></i></div>
@@ -697,7 +233,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">01</div>
                 </div>
-                <!-- Step 2 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-brain"></i></div>
@@ -707,7 +242,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">02</div>
                 </div>
-                <!-- Step 3 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-clock"></i></div>
@@ -717,7 +251,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">03</div>
                 </div>
-                <!-- Step 4 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-magic"></i></div>
@@ -727,7 +260,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">04</div>
                 </div>
-                <!-- Step 5 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-utensils"></i></div>
@@ -742,71 +274,71 @@
     </section>
 
     <!-- 5. WITH vs WITHOUT -->
-    <section class="py-20 bg-white relative overflow-hidden" id="comparison">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <span class="inline-flex items-center gap-2 bg-rose-100/80 backdrop-blur text-rose-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-rose-200/60 shadow-sm">
+    <section class="comparison-section" id="comparison">
+        <div class="container-md">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <span class="section-badge">
                     <i class="fas fa-exchange-alt text-rose-500"></i> Why Retain
                 </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2 mb-5 leading-tight">Not Another Tool. <span class="gradient-headline">A Growth Partner.</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Most platforms hand you software and wish you luck. Retain builds your entire guest retention ecosystem — so your revenue compounds instead of resets.</p>
+                <h2 class="section-title-md">Not Another Tool. <span class="gradient-headline">A Growth Partner.</span></h2>
+                <p class="section-subtitle-lg">Most platforms hand you software and wish you luck. Retain builds your entire guest retention ecosystem — so your revenue compounds instead of resets.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="comparison-grid">
                 <!-- Without -->
-                <div class="bg-gray-50 rounded-2xl p-8 lg:p-10 reveal" style="box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center"><i class="fas fa-times text-red-500"></i></div>
-                        <h3 class="text-lg font-bold text-gray-900">Without Retain</h3>
+                <div class="comparison-card comparison-card-without reveal">
+                    <div class="comparison-header">
+                        <div class="comparison-icon comparison-icon-red"><i class="fas fa-times"></i></div>
+                        <h3>Without Retain</h3>
                     </div>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Walk-ins are invisible</p><p class="text-gray-400 text-sm mt-0.5">Great meal, no data — they walk out as strangers</p></div>
+                    <ul class="comparison-list">
+                        <li class="comparison-item">
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p>Walk-ins are invisible</p><p class="item-desc">Great meal, no data — they walk out as strangers</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">30% goes to delivery apps</p><p class="text-gray-400 text-sm mt-0.5">UberEats owns the relationship, you own the labor</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p>30% goes to delivery apps</p><p class="item-desc">UberEats owns the relationship, you own the labor</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Discount-driven traffic only</p><p class="text-gray-400 text-sm mt-0.5">Guests come for deals, not food — margins shrink monthly</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p>Discount-driven traffic only</p><p class="item-desc">Guests come for deals, not food — margins shrink monthly</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Regulars feel like strangers</p><p class="text-gray-400 text-sm mt-0.5">50th visit, zero recognition, no preferences remembered</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p>Regulars feel like strangers</p><p class="item-desc">50th visit, zero recognition, no preferences remembered</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Empty seats during slow seasons</p><p class="text-gray-400 text-sm mt-0.5">No system to bring guests back when traffic dips</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p>Empty seats during slow seasons</p><p class="item-desc">No system to bring guests back when traffic dips</p></div>
                         </li>
                     </ul>
                 </div>
                 <!-- With -->
-                <div class="bg-white rounded-2xl p-8 lg:p-10 reveal" style="box-shadow: 0 0 24px rgba(244,63,94,0.08), 0 4px 16px rgba(0,0,0,0.04); border: 1px solid rgba(244,63,94,0.1);">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center"><i class="fas fa-check text-rose-500"></i></div>
-                        <h3 class="text-lg font-bold text-gray-900">With Retain</h3>
+                <div class="comparison-card comparison-card-with reveal">
+                    <div class="comparison-header">
+                        <div class="comparison-icon comparison-icon-rose"><i class="fas fa-check"></i></div>
+                        <h3>With Retain</h3>
                     </div>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-rose-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Every guest becomes a contact</p><p class="text-gray-400 text-sm mt-0.5">WiFi, QR, reservations — data captured seamlessly</p></div>
+                    <ul class="comparison-list">
+                        <li class="comparison-item">
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p>Every guest becomes a contact</p><p class="item-desc">WiFi, QR, reservations — data captured seamlessly</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-rose-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Direct ordering grows</p><p class="text-gray-400 text-sm mt-0.5">First order via DoorDash, every order after is direct — zero commission</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p>Direct ordering grows</p><p class="item-desc">First order via DoorDash, every order after is direct — zero commission</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-rose-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Regulars built without loyalty cards</p><p class="text-gray-400 text-sm mt-0.5">They return because they feel remembered, not for stamps</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p>Regulars built without loyalty cards</p><p class="item-desc">They return because they feel remembered, not for stamps</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-rose-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Intelligent guest memory</p><p class="text-gray-400 text-sm mt-0.5">Favorite table, dietary needs, anniversary — remembered before they ask</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p>Intelligent guest memory</p><p class="item-desc">Favorite table, dietary needs, anniversary — remembered before they ask</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-rose-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Packed house, every season</p><p class="text-gray-400 text-sm mt-0.5">AI-timed re-engagement fills slow nights automatically</p></div>
+                        <li class="comparison-item">
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p>Packed house, every season</p><p class="item-desc">AI-timed re-engagement fills slow nights automatically</p></div>
                         </li>
                     </ul>
                 </div>
@@ -814,22 +346,22 @@
         </div>
     </section>
 
-    <!-- 6. VISUAL SHOWCASE — Bento Grid -->
-    <section class="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50/20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <span class="inline-flex items-center gap-2 bg-rose-100/80 backdrop-blur text-rose-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-rose-200/60 shadow-sm">
+    <!-- 6. VISUAL SHOWCASE -->
+    <section class="showcase-section">
+        <div class="container-md">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <span class="section-badge">
                     <i class="fas fa-desktop text-rose-500"></i> Platform Preview
                 </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2 mb-5 leading-tight">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg tracking-wide">Real screens. Real workflows. Built for restaurants.</p>
+                <h2 class="section-title-md">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
+                <p class="section-subtitle-lg" style="letter-spacing:0.05em;">Real screens. Real workflows. Built for restaurants.</p>
             </div>
             <div class="showcase-grid">
                 <div class="showcase-card showcase-featured">
                     <div class="showcase-media">
                         <img src="fb-showcase-dashboard.png" alt="Guest dashboard">
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-th-large mr-1"></i> Dashboard</span>
+                    <span class="showcase-badge"><i class="fas fa-th-large"></i> Dashboard</span>
                     <div class="showcase-overlay">
                         <h4>Unified Guest Dashboard</h4>
                         <p>Every visit, preference, and order — one intelligent view that knows your guests better than your best server does.</p>
@@ -839,7 +371,7 @@
                     <div class="showcase-media">
                         <video src="fb-showcase-workflow.mp4" autoplay loop muted playsinline></video>
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-bolt mr-1"></i> Automation</span>
+                    <span class="showcase-badge"><i class="fas fa-bolt"></i> Automation</span>
                     <div class="showcase-overlay">
                         <h4>Smart Re-Engagement Engine</h4>
                         <p>AI-timed messages that bring guests back — personally, not generically.</p>
@@ -849,7 +381,7 @@
                     <div class="showcase-media">
                         <img src="fb-showcase-analytics.png" alt="Revenue analytics">
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-chart-line mr-1"></i> Analytics</span>
+                    <span class="showcase-badge"><i class="fas fa-chart-line"></i> Analytics</span>
                     <div class="showcase-overlay">
                         <h4>Revenue Analytics</h4>
                         <p>Watch retention compound your growth — week after week, season after season.</p>
@@ -860,77 +392,77 @@
     </section>
 
     <!-- 7. INDUSTRY QUOTES -->
-    <section class="py-28 fb-quotes-glass">
+    <section class="fb-quotes-glass">
         <div class="fb-quotes-blob" style="width:400px;height:400px;background:rgba(244,63,94,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
         <div class="fb-quotes-blob" style="width:350px;height:350px;background:rgba(220,38,38,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
         <div class="fb-quotes-blob" style="width:250px;height:250px;background:rgba(251,113,133,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
         <div class="fb-quotes-dots"></div>
 
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-rose-100/80 text-rose-700 text-xs font-bold tracking-widest uppercase">🎙️ FROM THE TOP</span>
-                <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-5">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
-                <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">The biggest names in food & beverage agree — guest retention wins.</p>
+        <div class="container-sm" style="padding:0 1.5rem;position:relative;z-index:10;">
+            <div class="text-center reveal" style="margin-bottom:4rem;">
+                <span class="section-badge" style="background:rgba(255,228,230,0.8);">🎙️ FROM THE TOP</span>
+                <h2 class="section-title-md" style="margin-top:1.25rem;">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
+                <p class="section-subtitle-lg">The biggest names in food & beverage agree — guest retention wins.</p>
             </div>
 
             <div class="fb-quotes-grid">
-                <!-- Featured quote — Danny Meyer -->
-                <div class="fb-glass-quote featured reveal" style="text-align:center;align-items:center;justify-content:center;">
+                <!-- Featured quote -->
+                <div class="fb-glass-quote featured reveal">
                     <div class="flex flex-col items-center">
-                        <i class="fas fa-quote-left text-rose-400 text-lg mb-5 block"></i>
-                        <p class="text-gray-700 text-2xl md:text-3xl italic leading-relaxed font-medium">"The only way to build a great restaurant is to <span class="gradient-headline">treat guests so well they become part of your family.</span> The food gets them in. The feeling brings them back."</p>
-                        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-rose-100/60">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center"><i class="fas fa-crown text-rose-500 text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center"><i class="fas fa-gem text-red-500 text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><i class="fas fa-trophy text-orange-500 text-xs"></i></div>
+                        <i class="fas fa-quote-left quote-icon-lg"></i>
+                        <p class="quote-text-lg">"The only way to build a great restaurant is to <span class="gradient-headline">treat guests so well they become part of your family.</span> The food gets them in. The feeling brings them back."</p>
+                        <div class="quote-icons-row">
+                            <div class="quote-icons-stack">
+                                <div class="quote-mini-icon bg-rose-100"><i class="fas fa-crown text-rose-500"></i></div>
+                                <div class="quote-mini-icon bg-red-100"><i class="fas fa-gem text-red-500"></i></div>
+                                <div class="quote-mini-icon bg-orange-100"><i class="fas fa-trophy text-amber-500"></i></div>
                             </div>
-                            <p class="text-xs text-gray-400 leading-snug">Hospitality is everything —<br>own it or lose them</p>
+                            <p class="quote-icons-caption">Hospitality is everything —<br>own it or lose them</p>
                         </div>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="font-bold text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full text-sm">Danny Meyer</span>
-                        <span class="text-gray-400 text-xs ml-1">Founder, Union Square Hospitality Group</span>
+                    <div class="quote-footer">
+                        <span class="quote-dot-lg"></span>
+                        <span class="quote-name">Danny Meyer</span>
+                        <span class="quote-role">Founder, Union Square Hospitality Group</span>
                     </div>
                 </div>
 
-                <!-- Quote 2 — José Andrés -->
+                <!-- Quote 2 -->
                 <div class="fb-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-rose-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"A restaurant is not just about the food on the plate. It's about the memory you create — the feeling that stays with people long after the meal is over."</p>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="quote-text">"A restaurant is not just about the food on the plate. It's about the memory you create — the feeling that stays with people long after the meal is over."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="font-bold text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full text-sm">José Andrés</span>
-                        <span class="text-gray-400 text-xs ml-1">Chef & Founder, ThinkFoodGroup</span>
+                    <div class="quote-footer">
+                        <span class="quote-dot"></span>
+                        <span class="quote-name">José Andrés</span>
+                        <span class="quote-role">Chef & Founder, ThinkFoodGroup</span>
                     </div>
                 </div>
 
-                <!-- Quote 3 — Will Guidara -->
+                <!-- Quote 3 -->
                 <div class="fb-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-rose-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"Unreasonable hospitality is choosing to give more than is expected. When you make someone feel seen, they don't just come back — they bring everyone they know."</p>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="quote-text">"Unreasonable hospitality is choosing to give more than is expected. When you make someone feel seen, they don't just come back — they bring everyone they know."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="font-bold text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full text-sm">Will Guidara</span>
-                        <span class="text-gray-400 text-xs ml-1">Former Co-Owner, Eleven Madison Park</span>
+                    <div class="quote-footer">
+                        <span class="quote-dot"></span>
+                        <span class="quote-name">Will Guidara</span>
+                        <span class="quote-role">Former Co-Owner, Eleven Madison Park</span>
                     </div>
                 </div>
 
-                <!-- Quote 4 — David Chang -->
+                <!-- Quote 4 -->
                 <div class="fb-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-rose-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"The restaurants that survive aren't the ones with the best food — they're the ones that build a community. People come back to places where they feel they belong."</p>
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="quote-text">"The restaurants that survive aren't the ones with the best food — they're the ones that build a community. People come back to places where they feel they belong."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="font-bold text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full text-sm">David Chang</span>
-                        <span class="text-gray-400 text-xs ml-1">Founder, Momofuku</span>
+                    <div class="quote-footer">
+                        <span class="quote-dot"></span>
+                        <span class="quote-name">David Chang</span>
+                        <span class="quote-role">Founder, Momofuku</span>
                     </div>
                 </div>
             </div>
@@ -938,90 +470,90 @@
     </section>
 
     <!-- 8. BIG TEXT + IMAGE -->
-    <section class="py-28 bg-white reveal">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
+    <section class="bigtext-section reveal">
+        <div class="container-sm" style="padding:0 1.5rem;text-align:center;">
+            <h2 class="bigtext-title">
                 <span class="rose-gradient-text">Your Next Regular Is Already Sitting at Table 7.</span>
                 <br>
-                <span class="text-gray-300 text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 block">Stop letting them leave as strangers.</span>
+                <span class="bigtext-sub">Stop letting them leave as strangers.</span>
             </h2>
-            <div class="mt-14 max-w-4xl mx-auto reveal">
-                <div class="rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 0 40px rgba(244,63,94,0.15), 0 8px 32px rgba(0,0,0,0.1);">
-                    <img src="fb-showcase-automation.png" alt="Retain platform for restaurants" class="w-full object-cover hover:scale-105 transition-transform duration-700">
+            <div class="bigtext-image-wrap reveal">
+                <div class="bigtext-image-inner">
+                    <img src="fb-showcase-automation.png" alt="Retain platform for restaurants">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. STATS BANNER — Floating Glassmorphism Cards -->
-    <section class="fb-stats-banner py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">
+    <!-- 9. STATS BANNER -->
+    <section class="fb-stats-banner">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <h2 class="stats-title">
                     <span class="typewriter">What Guest Retention Actually Looks Like</span>
                 </h2>
-                <p class="text-rose-200 text-lg">Average results across restaurant brands partnering with Retain.</p>
+                <p class="stats-subtitle">Average results across restaurant brands partnering with Retain.</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="stat-float-card p-8 text-center reveal stagger-1">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 fb-counter" data-target="3.8" data-suffix="×">0×</p>
-                    <p class="text-rose-200 font-medium">More Repeat Visits</p>
+            <div class="stats-grid">
+                <div class="stat-float-card reveal stagger-1">
+                    <p class="stat-value fb-counter" data-target="3.8" data-suffix="×">0×</p>
+                    <p class="stat-label">More Repeat Visits</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-2">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 fb-counter" data-target="47" data-suffix="%">0%</p>
-                    <p class="text-rose-200 font-medium">Revenue Per Guest Growth</p>
+                <div class="stat-float-card reveal stagger-2">
+                    <p class="stat-value fb-counter" data-target="47" data-suffix="%">0%</p>
+                    <p class="stat-label">Revenue Per Guest Growth</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-3">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 fb-counter" data-target="62" data-suffix="%">0%</p>
-                    <p class="text-rose-200 font-medium">Direct Order Growth</p>
+                <div class="stat-float-card reveal stagger-3">
+                    <p class="stat-value fb-counter" data-target="62" data-suffix="%">0%</p>
+                    <p class="stat-label">Direct Order Growth</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-4">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 fb-counter" data-target="89" data-suffix="%">0%</p>
-                    <p class="text-rose-200 font-medium">Guest Retention Rate</p>
+                <div class="stat-float-card reveal stagger-4">
+                    <p class="stat-value fb-counter" data-target="89" data-suffix="%">0%</p>
+                    <p class="stat-label">Guest Retention Rate</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 10. TESTIMONIALS -->
-    <section class="py-24 bg-gradient-to-br from-white via-rose-50/20 to-white relative overflow-hidden">
-        <div class="absolute top-[-5%] right-[-5%] w-[300px] h-[300px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(244,63,94,0.08),transparent 70%);filter:blur(60px);"></div>
-        <div class="absolute bottom-[-5%] left-[10%] w-[250px] h-[250px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(220,38,38,0.06),transparent 70%);filter:blur(50px);"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-rose-100/80 text-rose-700 text-xs font-bold tracking-widest uppercase mb-4">⭐ SUCCESS STORIES</span>
-                <h2 class="font-poppins text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">They <span class="gradient-headline">Stopped Losing Guests.</span></h2>
-                <p class="text-gray-400 mt-4 max-w-xl mx-auto text-lg">Here's what happened next.</p>
+    <section class="testimonials-section">
+        <div class="testi-blob" style="top:-5%;right:-5%;width:300px;height:300px;background:radial-gradient(circle,rgba(244,63,94,0.08),transparent 70%);"></div>
+        <div class="testi-blob" style="bottom:-5%;left:10%;width:250px;height:250px;background:radial-gradient(circle,rgba(220,38,38,0.06),transparent 70%);filter:blur(50px);"></div>
+        <div class="container-md" style="position:relative;z-index:10;">
+            <div class="text-center reveal" style="margin-bottom:4rem;">
+                <span class="section-badge" style="background:rgba(255,228,230,0.8);margin-bottom:1rem;">⭐ SUCCESS STORIES</span>
+                <h2 class="section-title-md">They <span class="gradient-headline">Stopped Losing Guests.</span></h2>
+                <p class="section-subtitle-lg">Here's what happened next.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="testi-grid">
                 <div class="testi-card reveal">
-                    <div class="flex gap-2 mb-5">
-                        <i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i>
+                    <div class="testi-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 text-[1.05rem] italic leading-relaxed mb-7">"Before Retain, we had no idea who our regulars were. Now we know every guest by name, their favorites, and when they're overdue for a visit. Our Tuesday nights went from half-empty to fully booked in 8 weeks."</p>
-                    <div class="flex items-center gap-4 pt-5 border-t border-rose-100/60">
-                        <img src="https://picsum.photos/seed/chef1/160/160" alt="Maria Santos" class="w-14 h-14 rounded-full object-cover border-3 border-rose-200 shadow-md">
+                    <p class="testi-text">"Before Retain, we had no idea who our regulars were. Now we know every guest by name, their favorites, and when they're overdue for a visit. Our Tuesday nights went from half-empty to fully booked in 8 weeks."</p>
+                    <div class="testi-author">
+                        <img src="https://picsum.photos/seed/chef1/160/160" alt="Maria Santos" class="testi-avatar">
                         <div>
-                            <p class="font-bold text-gray-900 text-[0.95rem]">Maria Santos</p>
-                            <p class="text-gray-400 text-xs mt-0.5">Owner, Fuego Kitchen & Bar</p>
-                            <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-rose-50 to-red-50 text-rose-600 text-xs font-bold px-3 py-1 rounded-full mt-2">
-                                <i class="fas fa-arrow-up text-[0.6rem]"></i> 3.2× more repeat visits
+                            <p class="testi-name">Maria Santos</p>
+                            <p class="testi-role">Owner, Fuego Kitchen & Bar</p>
+                            <div class="testi-badge">
+                                <i class="fas fa-arrow-up"></i> 3.2× more repeat visits
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testi-card reveal">
-                    <div class="flex gap-2 mb-5">
-                        <i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i>
+                    <div class="testi-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 text-[1.05rem] italic leading-relaxed mb-7">"We were paying 30% to delivery apps and running Groupon deals just to fill seats. Retain shifted 40% of our delivery orders to direct and our average check size went up 28%. This isn't a tool — it's a partner."</p>
-                    <div class="flex items-center gap-4 pt-5 border-t border-rose-100/60">
-                        <img src="https://picsum.photos/seed/restaurateur2/160/160" alt="James Park" class="w-14 h-14 rounded-full object-cover border-3 border-rose-200 shadow-md">
+                    <p class="testi-text">"We were paying 30% to delivery apps and running Groupon deals just to fill seats. Retain shifted 40% of our delivery orders to direct and our average check size went up 28%. This isn't a tool — it's a partner."</p>
+                    <div class="testi-author">
+                        <img src="https://picsum.photos/seed/restaurateur2/160/160" alt="James Park" class="testi-avatar">
                         <div>
-                            <p class="font-bold text-gray-900 text-[0.95rem]">James Park</p>
-                            <p class="text-gray-400 text-xs mt-0.5">Managing Partner, Seoul Bowl (3 locations)</p>
-                            <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-rose-50 to-red-50 text-rose-600 text-xs font-bold px-3 py-1 rounded-full mt-2">
-                                <i class="fas fa-arrow-up text-[0.6rem]"></i> 40% direct order shift
+                            <p class="testi-name">James Park</p>
+                            <p class="testi-role">Managing Partner, Seoul Bowl (3 locations)</p>
+                            <div class="testi-badge">
+                                <i class="fas fa-arrow-up"></i> 40% direct order shift
                             </div>
                         </div>
                     </div>
@@ -1031,108 +563,98 @@
     </section>
 
     <!-- 11. CONTACT FORM -->
-    <section class="py-24 bg-gradient-to-br from-white via-rose-50/30 to-white relative overflow-hidden" id="contactForm">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <section class="contact-section" id="contactForm">
+        <div class="container" style="padding:0 1.5rem;">
+            <div class="contact-grid">
                 <!-- Left Side -->
                 <div class="reveal">
-                    <span class="text-rose-600 font-semibold text-sm tracking-wide mb-4 inline-block uppercase">GET STARTED</span>
-                    <h2 class="font-poppins text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">Let's Build Your <span class="rose-gradient-text">Guest Retention Ecosystem</span></h2>
-                    <p class="text-gray-500 text-lg mb-8">One conversation. We'll show you exactly where your guest revenue is leaking — and how to fix it.</p>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-search text-rose-600"></i>
-                            </div>
+                    <span class="contact-label">GET STARTED</span>
+                    <h2 class="contact-title">Let's Build Your <span class="rose-gradient-text">Guest Retention Ecosystem</span></h2>
+                    <p class="contact-desc">One conversation. We'll show you exactly where your guest revenue is leaking — and how to fix it.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon bg-rose"><i class="fas fa-search"></i></div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Personalized retention audit</h4>
-                                <p class="text-sm text-gray-500">We map your entire guest lifecycle and show you where diners are falling through the cracks</p>
+                                <h4>Personalized retention audit</h4>
+                                <p>We map your entire guest lifecycle and show you where diners are falling through the cracks</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-map text-red-600"></i>
-                            </div>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon bg-red"><i class="fas fa-map"></i></div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Custom ecosystem roadmap</h4>
-                                <p class="text-sm text-gray-500">A step-by-step plan built specifically for your restaurant type and guest base</p>
+                                <h4>Custom ecosystem roadmap</h4>
+                                <p>A step-by-step plan built specifically for your restaurant type and guest base</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-chart-line text-orange-600"></i>
-                            </div>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon bg-orange"><i class="fas fa-chart-line"></i></div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">ROI projection for your restaurant</h4>
-                                <p class="text-sm text-gray-500">See the revenue impact before you commit</p>
+                                <h4>ROI projection for your restaurant</h4>
+                                <p>See the revenue impact before you commit</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-handshake text-rose-600"></i>
-                            </div>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon bg-rose"><i class="fas fa-handshake"></i></div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">No commitment required</h4>
-                                <p class="text-sm text-gray-500">Zero pressure. If we're not the right fit, we'll tell you — and point you in the right direction</p>
+                                <h4>No commitment required</h4>
+                                <p>Zero pressure. If we're not the right fit, we'll tell you — and point you in the right direction</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Right Side — Form -->
                 <div class="reveal">
-                    <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl">
-                        <h3 class="font-poppins text-xl font-bold text-white mb-6">Book Your Free Consultation</h3>
-                        <form action="/contact/" method="GET" class="space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="text-gray-400 text-sm mb-1 block">First Name</label>
-                                    <input type="text" placeholder="John" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent">
+                    <div class="form-card">
+                        <h3>Book Your Free Consultation</h3>
+                        <form action="/contact/" method="GET">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" placeholder="John" class="form-input">
                                 </div>
-                                <div>
-                                    <label class="text-gray-400 text-sm mb-1 block">Last Name</label>
-                                    <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Work Email</label>
-                                <input type="email" placeholder="john@restaurant.com" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Restaurant / Company Name</label>
-                                <input type="text" placeholder="Your Restaurant Group" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Country *</label>
-                                <div class="relative">
-                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent pr-10">
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                        <i class="fas fa-chevron-down text-gray-500"></i>
-                                    </div>
-                                    <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
-                                        <div id="country-options" class="py-2 text-gray-900"></div>
-                                    </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" placeholder="Doe" class="form-input">
                                 </div>
                             </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Phone Number</label>
-                                <div class="flex gap-2">
-                                    <div class="w-1/4">
-                                        <div class="bg-slate-800 text-rose-400 py-3 px-4 rounded-xl border border-slate-700 text-center font-medium" id="phone-code">+</div>
+                            <div class="form-group">
+                                <label>Work Email</label>
+                                <input type="email" placeholder="john@restaurant.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Restaurant / Company Name</label>
+                                <input type="text" placeholder="Your Restaurant Group" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Country *</label>
+                                <div class="country-wrap">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" style="padding-right:2.5rem;">
+                                    <div class="country-chevron">
+                                        <i class="fas fa-chevron-down"></i>
                                     </div>
-                                    <div class="w-3/4">
-                                        <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent">
+                                    <div id="country-dropdown" class="country-dropdown">
+                                        <div id="country-options" class="country-options"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Message (Optional)</label>
-                                <textarea rows="4" placeholder="Tell us about your restaurant and what's not working with guest retention..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent resize-none"></textarea>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="phone-row">
+                                    <div class="phone-code" id="phone-code">+</div>
+                                    <div class="phone-input-wrap">
+                                        <input type="tel" placeholder="(555) 123-4567" class="form-input">
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] cta-shimmer" style="background: linear-gradient(135deg, #f43f5e, #dc2626);">
-                                Book Your Free Consultation <i class="fas fa-arrow-right ml-2"></i>
+                            <div class="form-group">
+                                <label>Message (Optional)</label>
+                                <textarea rows="4" placeholder="Tell us about your restaurant and what's not working with guest retention..." class="form-input"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit cta-shimmer">
+                                Book Your Free Consultation <i class="fas fa-arrow-right"></i>
                             </button>
                         </form>
-                        <p class="text-gray-500 text-xs text-center mt-3">We'll respond within 24 hours. No spam, ever.</p>
+                        <p class="form-note">We'll respond within 24 hours. No spam, ever.</p>
                     </div>
                 </div>
             </div>
@@ -1140,304 +662,57 @@
     </section>
 
     <!-- 12. FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 relative wave-divider">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
                 <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="/lightFavicon.png" alt="Retain" class="h-7 w-7">
-                        <span class="font-poppins font-bold text-white text-lg">Retain</span>
+                    <div class="footer-brand">
+                        <img src="/lightFavicon.png" alt="Retain">
+                        <span>Retain</span>
                     </div>
-                    <p class="text-sm leading-relaxed">Your guest retention growth partner. Turning one-time diners into lifelong regulars — for restaurants, F&B, and beyond.</p>
+                    <p class="footer-desc">Your guest retention growth partner. Turning one-time diners into lifelong regulars — for restaurants, F&B, and beyond.</p>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Product</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/how-it-works/" class="hover:text-rose-400 transition-colors">How It Works</a></li>
-                        <li><a href="/solutions/" class="hover:text-rose-400 transition-colors">Solutions</a></li>
-                        <li><a href="/why-retain/" class="hover:text-rose-400 transition-colors">Why Retain</a></li>
-                        <li><a href="/contact/" class="hover:text-rose-400 transition-colors">Book a Call</a></li>
+                    <h4 class="footer-heading">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/how-it-works/">How It Works</a></li>
+                        <li><a href="/solutions/">Solutions</a></li>
+                        <li><a href="/why-retain/">Why Retain</a></li>
+                        <li><a href="/contact/">Book a Call</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Industries</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/who-it-for/real-estate/" class="hover:text-rose-400 transition-colors">Real Estate</a></li>
-                        <li><a href="/who-it-for/ecommerce/" class="hover:text-rose-400 transition-colors">E-commerce & Retail</a></li>
-                        <li><a href="/who-it-for/travel-hospitality/" class="hover:text-rose-400 transition-colors">Travel & Hospitality</a></li>
-                        <li><a href="/who-it-for/food-beverage/" class="text-rose-400">Food & Beverage</a></li>
-                        <li><a href="/who-it-for/agencies/" class="hover:text-violet-400 transition-colors">Agencies</a>
-                        <a href="/who-it-for/study-abroad/"
-                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-teal-500 hover:bg-teal-50">Study Abroad</a></li>
+                    <h4 class="footer-heading">Industries</h4>
+                    <ul class="footer-links">
+                        <li><a href="/who-it-for/real-estate/">Real Estate</a></li>
+                        <li><a href="/who-it-for/ecommerce/">E-commerce & Retail</a></li>
+                        <li><a href="/who-it-for/travel-hospitality/">Travel & Hospitality</a></li>
+                        <li><a href="/who-it-for/food-beverage/" class="active-link">Food & Beverage</a></li>
+                        <li><a href="/who-it-for/agencies/">Agencies</a>
+                        <a href="/who-it-for/study-abroad/" class="study-abroad-link">Study Abroad</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/about/" class="hover:text-rose-400 transition-colors">About</a></li>
-                        <li><a href="https://solven.app/" class="hover:text-rose-400 transition-colors" target="_blank">Solven</a></li>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://solven.app/" target="_blank">Solven</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-sm">&copy; 2025 Retain by Solven. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-500 hover:text-rose-400 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-rose-400 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-rose-400 transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Retain by Solven. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Chat Widget -->
-    <script>
-    (function() {
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
-            .ripple-active::after { content: ""; position: absolute; inset: 0; background: rgba(244, 63, 94, 0.4); border-radius: 9999px; z-index: -1; animation: ripple 2s infinite; }
-            .no-scrollbar::-webkit-scrollbar { display: none; }
-            .chat-message { transform: translateY(20px); opacity: 0; transition: all 0.3s ease; display: inline-block; word-break: break-word; }
-            .chat-message.show { transform: translateY(0); opacity: 1; }
-            .typing-dots { display: inline-flex; gap: 3px; align-items: center; justify-content: center; }
-            .typing-dots span { width: 6px; height: 6px; background-color: black; border-radius: 50%; animation: blink 1.4s infinite both; }
-            .typing-dots span:nth-child(1) { animation-delay: 0s; }
-            .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-            .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-            @keyframes blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
-            .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-            #chatbot-window { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(0.8) translateY(40px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); transform-origin: bottom right; }
-            #chatbot-window.is-active { opacity: 1; visibility: visible; pointer-events: auto; transform: scale(1) translateY(0); }
-        `;
-        document.head.appendChild(style);
-
-        let session_id = sessionStorage.getItem('chatwidget_session_id');
-        if (!session_id) { session_id = crypto.randomUUID(); sessionStorage.setItem('chatwidget_session_id', session_id); }
-
-        const container = document.createElement('div');
-        container.id = 'chatbot-container';
-        container.className = 'fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans';
-        container.innerHTML = `
-            <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
-                <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-400 to-red-400"></div>
-                    <div class="flex items-center gap-4">
-                        <div class="relative">
-                            <img src="https://ui-avatars.com/api/?name=AI&background=f43f5e&color=fff" class="w-12 h-12 rounded-full border-2 border-rose-500/30 shadow-lg">
-                            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-rose-400 border-2 border-slate-900 rounded-full"></span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg leading-none">Aria</h4>
-                            <span class="text-xs text-rose-300 font-medium tracking-wide uppercase">AI Strategist</span>
-                        </div>
-                    </div>
-                    <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
-                </div>
-                <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
-                    <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
-                </div>
-                <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
-                    <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
-                        <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
-                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                        <button type="submit" class="text-rose-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
-                    </form>
-                </div>
-            </div>
-            <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none" style="background: #111827;">
-                <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition" style="color:#ffffff"></i>
-                <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50" style="color:#f43f5e"></i>
-            </button>
-        `;
-        document.body.appendChild(container);
-
-        const btn = document.getElementById('chatbot-toggle');
-        const win = document.getElementById('chatbot-window');
-        const iconMsg = document.getElementById('icon-msg');
-        const iconClose = document.getElementById('icon-close');
-        const closeBtn = document.getElementById('chatbot-close');
-
-        function toggleChat() {
-            const isActive = win.classList.contains('is-active');
-            if (isActive) {
-                win.classList.remove('is-active');
-                iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
-                iconClose.classList.add('opacity-0','-rotate-90','scale-50');
-                btn.style.background = '#111827';
-                btn.classList.add('ripple-active');
-            } else {
-                win.classList.add('is-active');
-                iconMsg.classList.add('opacity-0','rotate-90','scale-50');
-                iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
-                btn.style.background = '#111827';
-                btn.classList.remove('ripple-active');
-            }
-        }
-
-        btn.addEventListener('click', toggleChat);
-        closeBtn.addEventListener('click', toggleChat);
-
-        const form = document.getElementById('chatbot-form');
-        const input = document.getElementById('chatbot-input');
-        const messages = document.getElementById('chatbot-messages');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const text = input.value.trim();
-            if (!text) return;
-
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
-            userMsg.style.maxWidth = '80%';
-            userMsg.innerText = text;
-            messages.appendChild(userMsg);
-            requestAnimationFrame(() => userMsg.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-            input.value = '';
-
-            const typingBubble = document.createElement('div');
-            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
-            typingBubble.style.maxWidth = '80%';
-            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-            messages.appendChild(typingBubble);
-            requestAnimationFrame(() => typingBubble.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-
-            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_msg: text, session_id })
-            })
-            .then(res => res.json())
-            .then(data => {
-                const aiText = data.reply || '';
-                typingBubble.innerHTML = aiText;
-                messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-            });
-        });
-    })();
-    </script>
-
     <!-- Scripts -->
     <script src="countrycode.js"></script>
-    <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-
-        // Navbar shadow on scroll
-        window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('shadow-md', window.scrollY > 20); });
-
-        // Scroll reveal
-        (function() {
-            const revealObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObs.unobserve(entry.target); }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
-        })();
-
-        // Counter animation with spring easing
-        (function() {
-            const counters = document.querySelectorAll('.fb-counter');
-            let counted = false;
-            const counterObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !counted) {
-                        counted = true;
-                        counters.forEach(el => {
-                            const end = parseFloat(el.getAttribute('data-target'));
-                            const suffix = el.getAttribute('data-suffix') || '';
-                            const isFloat = el.getAttribute('data-target').includes('.');
-                            const duration = 1800;
-                            const start = performance.now();
-                            function tick(now) {
-                                const elapsed = now - start;
-                                const progress = Math.min(elapsed / duration, 1);
-                                const c1 = 1.70158;
-                                const c3 = c1 + 1;
-                                const ease = 1 + c3 * Math.pow(progress - 1, 3) + c1 * Math.pow(progress - 1, 2);
-                                const current = ease * end;
-                                el.textContent = (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
-                                if (progress < 1) requestAnimationFrame(tick);
-                            }
-                            requestAnimationFrame(tick);
-                        });
-                    }
-                });
-            }, { threshold: 0.3 });
-            const statsBanner = document.querySelector('.fb-stats-banner');
-            if (statsBanner) counterObs.observe(statsBanner);
-        })();
-
-        // Scroll-dependent process timeline
-        (function() {
-            const timeline = document.querySelector('.process-timeline');
-            const progressLine = document.querySelector('.process-timeline-progress');
-            const steps = document.querySelectorAll('.process-step');
-            const slideLeft = document.querySelector('.process-slide-left');
-            const slideRight = document.querySelector('.process-slide-right');
-            const headlineSection = slideLeft ? slideLeft.closest('.text-center') : null;
-            if (!timeline || !progressLine) return;
-
-            let ticking = false;
-            function onScroll() {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(() => {
-                    ticking = false;
-                    const wh = window.innerHeight;
-                    const tRect = timeline.getBoundingClientRect();
-                    const tTop = tRect.top;
-                    const tHeight = tRect.height;
-                    const scrollInto = wh * 0.65 - tTop;
-                    const progress = Math.max(0, Math.min(1, scrollInto / tHeight));
-                    const lineHeight = progress * tHeight;
-                    progressLine.style.height = lineHeight + 'px';
-
-                    steps.forEach(step => {
-                        const numberEl = step.querySelector('.process-step-number');
-                        if (!numberEl) return;
-                        const numberRect = numberEl.getBoundingClientRect();
-                        const numberMid = numberRect.top + numberRect.height / 2;
-                        const numberRelative = numberMid - tRect.top;
-                        if (lineHeight >= numberRelative - 10) {
-                            step.classList.add('step-visible');
-                        } else {
-                            step.classList.remove('step-visible');
-                        }
-                    });
-
-                    if (headlineSection) {
-                        const hRect = headlineSection.getBoundingClientRect();
-                        const rawProgress = (wh - hRect.top) / (wh * 0.5);
-                        const hp = Math.max(0, rawProgress);
-                        const alpha = Math.min(1, hp * 1.2);
-                        const leftX = -80 + hp * 80;
-                        const rightX = 80 - hp * 80;
-                        if (slideLeft) { slideLeft.style.opacity = alpha; slideLeft.style.transform = 'translateX(' + leftX.toFixed(1) + 'px)'; }
-                        if (slideRight) { slideRight.style.opacity = alpha; slideRight.style.transform = 'translateX(' + rightX.toFixed(1) + 'px)'; }
-                    }
-                });
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-        })();
-
-        // Showcase card reveal
-        const showcaseObs = new IntersectionObserver((entries) => {
-            entries.forEach((e, i) => {
-                if (e.isIntersecting) {
-                    setTimeout(() => e.target.classList.add('visible'), i * 150);
-                    showcaseObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

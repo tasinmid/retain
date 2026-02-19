@@ -6,932 +6,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrations - Retain</title>
     <link rel="icon" type="image/png" href="/darkFavicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-
-                    fontFamily: {
-                        raleway: ['Raleway', 'sans-serif'],
-                        robotoMono: ['Roboto Mono', 'monospace'],
-                        prompt: ['Prompt', 'sans-serif'],
-                        googleSans: ['Google Sans', 'sans-serif'],
-                        rubik: ['Rubik', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#1f2937',
-                        secondary: '#6b7280',
-                        customBlue: '#87a6df',
-                        darkBlue: '#060525',
-                        lightPurple: '#F2F1FD',
-                        borderPurple: '#B1ADCE'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-snap-type: y mandatory;
-            overflow-x: hidden;
-        }
-
-        section {
-            scroll-snap-align: start;
-        }
-
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        #typewriter-cursor {
-            font-family: 'Inter', monospace;
-            color: #1f2937;
-            display: inline-block;
-            margin-left: 2px;
-            line-height: 1;
-        }
-
-        #typewriter-wrapper.is-typing #typewriter-cursor {
-            animation: blink 1s infinite step-end;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        #chatbot-window {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: scale(0.8) translateY(40px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            transform-origin: bottom right;
-        }
-
-        #chatbot-window.is-active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: scale(1) translateY(0);
-        }
-
-        .glass-header {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1.6);
-                opacity: 0;
-            }
-        }
-
-        .ripple-active::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(16, 185, 129, 0.4);
-            border-radius: 9999px;
-            z-index: -1;
-            animation: ripple 2s infinite;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        ::selection {
-            background-color: black;
-            color: white;
-        }
-
-        ::-moz-selection {
-            background-color: black;
-            color: white;
-        }
-
-        .nav-link {
-            position: relative;
-            text-decoration: none;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: black;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .nav-link.active::after {
-            width: 66.66%;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .chat-bubble {
-            position: relative;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .chat-bubble:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .chat-bubble::after,
-        .chat-bubble::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
-
-        .chat-bubble-left {
-            background-color: white;
-            border: 2px solid black;
-        }
-
-        .chat-bubble-left::after {
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent white;
-            top: 20px;
-            right: -10px;
-            z-index: 1;
-        }
-
-        .chat-bubble-left::before {
-            border-width: 12px 0 12px 12px;
-            border-color: transparent transparent transparent black;
-            top: 18px;
-            right: -14px;
-            z-index: 0;
-        }
-
-        .chat-bubble-right {
-            background-color: black;
-            color: white;
-            border: 2px solid black;
-        }
-
-        .chat-bubble-right .font-semibold {
-            color: white;
-        }
-
-        .chat-bubble-right::after {
-            border-width: 10px 10px 10px 0;
-            border-color: transparent black transparent transparent;
-            top: 20px;
-            left: -10px;
-            z-index: 1;
-        }
-
-        .chat-bubble-right::before {
-            border-width: 12px 12px 12px 0;
-            border-color: transparent black transparent transparent;
-            top: 18px;
-            left: -14px;
-            z-index: 0;
-        }
-
-        .heading-underline {
-            position: relative;
-            text-decoration: none;
-        }
-
-        .heading-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 66.66%;
-            height: 3px;
-            background-color: white;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .heading-underline:hover::after {
-            width: 100%;
-        }
-
-        .heading-underline-black {
-            position: relative;
-            text-decoration: none;
-            /* Ensure no default underline */
-        }
-
-        .heading-underline-black::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            /* Adjust as needed for vertical position */
-            left: 0;
-            /* Align to the left of the parent span */
-            width: 66.66%;
-            /* Initial 2/3 width */
-            height: 3px;
-            background-color: black;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .heading-underline-black:hover::after {
-            width: 100%;
-            /* Full width on hover */
-        }
-
-        /* Tab Navigation Styles */
-        .tab-active {
-            border-color: #1f2937 !important;
-            /* gray-900 */
-            color: #1f2937 !important;
-            /* gray-900 */
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-viz.active {
-            display: block;
-        }
-
-        .tab-viz {
-            display: none;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
-
-        .marquee-content {
-            animation: marquee-scroll 40s linear infinite;
-            width: max-content;
-            /* Ensure content takes full width */
-            will-change: transform;
-        }
-
-        @media (min-width: 768px) {
-            .marquee-content {
-                animation-duration: 60s;
-            }
-        }
-
-        @keyframes marquee-scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-
-            /* Scrolls one full set of logos */
-        }
-
-        @keyframes marquee-scroll-reverse {
-            0% {
-                transform: translateX(-50%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .marquee-reverse {
-            animation-name: marquee-scroll-reverse;
-        }
-
-        #cursor-glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 80%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #solutions-container:hover #cursor-glow {
-            opacity: 1;
-        }
-
-        #solutions-container,
-        #sheen-border-container {
-            transition: transform 0.1s linear;
-            /* Use linear for direct scroll mapping */
-        }
-
-        .purple-sheen-text {
-            background: linear-gradient(115deg,
-                    black 0%,
-                    black 30%,
-                    #9b4dff 45%,
-                    #9b4dff 55%,
-                    black 70%,
-                    black 100%);
-            background-size: 300% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: shine 7s linear infinite;
-        }
-
-        @keyframes shine {
-
-            0% {
-                background-position: -300% center;
-            }
-
-            100% {
-                background-position: 300% center;
-            }
-
-        }
-
-
-
-        .sheen-border-wrapper {
-
-            background: linear-gradient(115deg,
-
-                    #B1ADCE 0%,
-
-                    #B1ADCE 40%,
-
-                    #F2F1FD 50%,
-                    /* Lighter purple sheen */
-
-                    #B1ADCE 60%,
-
-                    #B1ADCE 100%);
-
-            background-size: 300% auto;
-
-            animation: shine 7s linear infinite;
-
-        }
-
-        .sheen-button {
-            background: linear-gradient(115deg,
-                    #4f00bc 0%,
-                    /* Darker purple */
-                    #6f00e6 30%,
-                    /* Medium purple */
-                    #9b4dff 50%,
-                    /* Lighter purple for the sheen */
-                    #6f00e6 70%,
-                    #4f00bc 100%);
-            background-size: 300% auto;
-            animation: shine 7s linear infinite;
-            color: white;
-            /* Ensure text is white */
-            transition: background-position 0.3s ease;
-            /* Smooth transition for hover effect */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="bg-white">
+<body>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex items-baseline">
-                        <a href="/home/" class="flex items-baseline">
-                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
-                            <span class="text-2xl font-bold text-gray-900">Retain</span>
-                        </a>
-                        <a href="https://solven.app/"
-                            class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank"
-                            rel="noopener noreferrer">by Solven</a>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="/home/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
-                    <a href="/about/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                    <a href="/solutions/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Solutions</a>
-                    <div class="relative group">
-                        <button
-                            class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
-                            Who It's For
-                            <i
-                                class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
-                        </button>
-                        <div
-                            class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
-                            <a href="/who-it-for/real-estate/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">
-                                <i class="fas fa-home mr-3 text-blue-500 bg-blue-50 p-1.5 rounded-lg"></i> Real Estate
-                            </a>
-                            <a href="/who-it-for/ecommerce/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-amber-600 transition-colors">
-                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i>
-                                E-commerce & Retail
-                            </a>
-                            <a href="/who-it-for/travel-hospitality/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-sky-600 transition-colors">
-                                <i class="fas fa-plane mr-3 text-sky-500 bg-sky-50 p-1.5 rounded-lg"></i>
-                                Travel & Hospitality
-                            </a>
-                            <a href="/who-it-for/food-beverage/"
-                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-rose-600 transition-colors">
-                                <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i>
-                                Food & Beverage
-                            </a>
-                        <a href="/who-it-for/agencies/"
-                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-violet-600 transition-colors">
-                            <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i>
-                            Agencies
-                        </a>
-                        </div>
-                    </div>
-                    <a href="/why-retain/"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/"
-                        class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
-                        Book a Call
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand">
+                <a href="/home/">
+                    <img src="/lightFavicon.png" alt="Retain Logo">
+                    <span class="navbar-brand-name">Retain</span>
+                </a>
+                <a href="https://solven.app/" class="navbar-by" target="_blank" rel="noopener noreferrer">by Solven</a>
             </div>
+            <div class="navbar-links">
+                <a href="/home/" class="nav-link">Home</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/solutions/" class="nav-link active">Solutions</a>
+                <div class="dropdown">
+                    <button class="dropdown-trigger nav-link">
+                        Who It's For
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="/who-it-for/real-estate/" class="dropdown-item di-realestate">
+                            <i class="fas fa-home"></i> Real Estate
+                        </a>
+                        <a href="/who-it-for/ecommerce/" class="dropdown-item di-ecommerce">
+                            <i class="fas fa-shopping-bag"></i> E-commerce &amp; Retail
+                        </a>
+                        <a href="/who-it-for/travel-hospitality/" class="dropdown-item di-travel">
+                            <i class="fas fa-plane"></i> Travel &amp; Hospitality
+                        </a>
+                        <a href="/who-it-for/food-beverage/" class="dropdown-item di-food">
+                            <i class="fas fa-utensils"></i> Food &amp; Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/" class="dropdown-item di-agencies">
+                            <i class="fas fa-briefcase"></i> Agencies
+                        </a>
+                    </div>
+                </div>
+                <a href="/why-retain/" class="nav-link">Why Retain</a>
+                <a href="/contact/" class="btn-book-call">Book a Call</a>
+            </div>
+            <button id="mobile-menu-button" class="mobile-menu-btn">
+                <span class="sr-only">Open main menu</span>
+                <svg style="height:1.5rem;width:1.5rem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
 
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/home/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/about/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="/solutions/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Solutions</a>
-                <div class="pl-3 space-y-1">
-                    <p class="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Who It's For</p>
-                    <a href="/who-it-for/real-estate/"
-                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-blue-500 hover:bg-blue-50">Real
-                        Estate</a>
-                    <a href="/who-it-for/ecommerce/"
-                        class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-amber-500 hover:bg-amber-50">E-commerce & Retail</a>
-                        <a href="/who-it-for/travel-hospitality/"
-                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-sky-500 hover:bg-sky-50">Travel & Hospitality</a>
-                        <a href="/who-it-for/food-beverage/"
-                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-rose-500 hover:bg-rose-50">Food & Beverage</a>
-                        <a href="/who-it-for/agencies/"
-                            class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium pl-6 border-l-2 border-transparent hover:border-violet-500 hover:bg-violet-50">Agencies</a>
-                </div>
-                <a href="/why-retain/"
-                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why
-                    Retain</a>
-                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a
-                    Call</a>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="/home/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/solutions/" class="mm-active">Solutions</a>
+            <div style="padding-left:.75rem">
+                <p class="mm-section-label">Who It's For</p>
+                <a href="/who-it-for/real-estate/" class="mm-sub ms-realestate">Real Estate</a>
+                <a href="/who-it-for/ecommerce/" class="mm-sub ms-ecommerce">E-commerce &amp; Retail</a>
+                <a href="/who-it-for/travel-hospitality/" class="mm-sub ms-travel">Travel &amp; Hospitality</a>
+                <a href="/who-it-for/food-beverage/" class="mm-sub ms-food">Food &amp; Beverage</a>
+                <a href="/who-it-for/agencies/" class="mm-sub ms-agencies">Agencies</a>
             </div>
+            <a href="/why-retain/">Why Retain</a>
+            <a href="/contact/" class="mm-book-call">Book a Call</a>
         </div>
     </nav>
 
     <!-- Chat Widget -->
-    <div id="chatbot-container" class="fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans">
-        <div id="chatbot-window"
-            class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100"
-            style="height:600px;">
-            <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0"
-                style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
-                <div class="flex items-center gap-4">
-                    <div class="relative">
-                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff"
-                            class="w-12 h-12 rounded-full border-2 border-emerald-500/30 shadow-lg">
-                        <span
-                            class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+    <div class="chatbot-container" id="chatbot-container">
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chat-header">
+                <div class="chat-header-bar"></div>
+                <div class="chat-header-info">
+                    <div class="chat-avatar-wrap">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="chat-avatar" alt="AI Avatar">
+                        <span class="chat-avatar-dot"></span>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg leading-none">Aria</h4>
-                        <span class="text-xs text-emerald-300 font-medium tracking-wide uppercase">AI Strategist</span>
+                        <h4 class="chat-header-name">Aria</h4>
+                        <span class="chat-header-role">AI Strategist</span>
                     </div>
                 </div>
-                <button id="chatbot-close"
-                    class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i
-                        class="fas fa-times text-lg"></i></button>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times"></i></button>
             </div>
-
-            <div id="chatbot-messages"
-                class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
-                <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online
-                </div>
+            <div id="chatbot-messages" class="chat-messages">
+                <div class="chat-messages-today">Today • Online</div>
             </div>
-
-            <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
-                <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
-                    <input type="text" id="chatbot-input" placeholder="Type a message..."
-                        class="bg-transparent border-none outline-none flex-1 text-sm" autocomplete="off"
-                        autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <button type="submit" class="text-emerald-500 transition-transform hover:scale-110"><i
-                            class="fas fa-paper-plane text-lg"></i></button>
+            <div class="chat-input-area">
+                <form id="chatbot-form" class="chat-form">
+                    <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
-
-        <button id="chatbot-toggle"
-            class="ripple-active relative w-16 h-16 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none">
-            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition"></i>
-            <i id="icon-close"
-                class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
+        <button id="chatbot-toggle" class="chatbot-toggle ripple-active">
+            <i id="icon-msg" class="fas fa-comment-dots"></i>
+            <i id="icon-close" class="fas fa-chevron-down icon-hidden"></i>
         </button>
     </div>
 
     <!-- Integrations Page Content -->
-    <section class="py-16 sm:py-24">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-rubik">
-                    All <span class="text-purple-600">Integrations</span>
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    Connect Retain with your favorite tools and platforms to create a seamless customer experience
-                </p>
+    <section class="integrations-section">
+        <div class="integrations-container">
+            <div class="integrations-header">
+                <h1>All <span class="highlight">Integrations</span></h1>
+                <p>Connect Retain with your favorite tools and platforms to create a seamless customer experience</p>
             </div>
-
-            <div id="integrations-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="integrations-grid" class="integrations-grid"></div>
         </div>
-
-        <div class="text-center mt-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Looking for a specific integration?</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto mb-8">
-                Can't find the tool you're looking for? Contact us and we'll work with you to create a custom
-                integration.
-            </p>
-            <a href="/contact/"
-                class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
+        <div class="integrations-cta">
+            <h2>Looking for a specific integration?</h2>
+            <p>Can't find the tool you're looking for? Contact us and we'll work with you to create a custom integration.</p>
+            <a href="/contact/" class="cta-btn sheen-button">
                 Request Integration
-                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                <i class="fas fa-arrow-right"></i>
             </a>
-        </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white rounded-t-3xl shadow-[0_-20px_50px_-10px_rgba(0,0,0,0.7)] py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <span class="text-2xl font-bold text-gray-900">Retain</span>
-                    <p class="text-gray-600 mt-1 text-sm">Building customer loyalty systems</p>
-                </div>
-                <div class="text-gray-600 text-sm text-center md:text-right">
-                    <p>© 2026 Retain. All rights reserved.</p>
-                </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span>Retain</span>
+                <p>Building customer loyalty systems</p>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 Retain. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <style>
-        #chatbot-container {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .glass-header {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .chat-message {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            display: inline-block;
-            word-break: break-word;
-        }
-
-        .chat-message.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .typing-dots {
-            display: inline-flex;
-            gap: 3px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .typing-dots span {
-            width: 6px;
-            height: 6px;
-            background-color: black;
-            border-radius: 50%;
-            animation: blink 1.4s infinite both;
-        }
-
-        .typing-dots span:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .typing-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes blink {
-
-            0%,
-            80%,
-            100% {
-                opacity: 0;
-            }
-
-            40% {
-                opacity: 1;
-            }
-        }
-
-        .icon-transition {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-    </style>
-
-    <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Chat widget functionality
-        // ---- 2. Session ID ----
-        let session_id = sessionStorage.getItem('chatwidget_session_id');
-        if (!session_id) {
-            session_id = crypto.randomUUID();
-            sessionStorage.setItem('chatwidget_session_id', session_id);
-        }
-
-        // ---- 4. Toggle Logic ----
-        const btn = document.getElementById('chatbot-toggle');
-        const win = document.getElementById('chatbot-window');
-        const iconMsg = document.getElementById('icon-msg');
-        const iconClose = document.getElementById('icon-close');
-        const closeBtn = document.getElementById('chatbot-close');
-
-        function toggleChat() {
-            const isActive = win.classList.contains('is-active');
-            if (isActive) {
-                win.classList.remove('is-active');
-                iconMsg.classList.remove('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.add('opacity-0', '-rotate-90', 'scale-50');
-                btn.style.backgroundColor = '#0f172a';
-                btn.style.color = '#ffffff';
-                btn.classList.add('ripple-active');
-            } else {
-                win.classList.add('is-active');
-                iconMsg.classList.add('opacity-0', 'rotate-90', 'scale-50');
-                iconClose.classList.remove('opacity-0', '-rotate-90', 'scale-50');
-                btn.style.backgroundColor = '#ffffff';
-                btn.style.color = '#0f172a';
-                btn.classList.remove('ripple-active');
-            }
-        }
-
-        btn.addEventListener('click', toggleChat);
-        closeBtn.addEventListener('click', toggleChat);
-
-        // ---- 5. Message Sending + Persistent Typing ----
-        const form = document.getElementById('chatbot-form');
-        const input = document.getElementById('chatbot-input');
-        const messages = document.getElementById('chatbot-messages');
-
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const text = input.value.trim();
-            if (!text) return;
-
-            // ---- User bubble ----
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
-            userMsg.style.maxWidth = 'fit-content';
-            userMsg.style.maxWidth = '80%';
-            userMsg.innerText = text;
-            messages.appendChild(userMsg);
-            requestAnimationFrame(() => userMsg.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-            input.value = '';
-
-            // ---- AI typing bubble ----
-            const typingBubble = document.createElement('div');
-            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
-            typingBubble.style.maxWidth = 'fit-content';
-            typingBubble.style.maxWidth = '80%';
-            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-            messages.appendChild(typingBubble);
-            requestAnimationFrame(() => typingBubble.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-
-            // ---- Send POST request ----
-            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_msg: text, session_id })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    const aiText = data.reply || '';
-                    typingBubble.innerHTML = aiText;
-                    messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-                })
-            // No catch: typing bubble stays until reply arrives
-        });
-    </script>
-    
-    <script>
-        const script = document.createElement('script');
-        script.src = 'integrations-data.js';
-        script.onload = function() {
-            console.log('Integrations data loaded successfully');
-            renderIntegrations();
-        };
-        script.onerror = function() {
-            console.error('Failed to load integrations-data.js');
-        };
-        document.head.appendChild(script);
-
-        function renderIntegrations() {
-            const grid = document.getElementById('integrations-grid');
-            
-            if (typeof integrations === 'undefined') {
-                console.error('Integrations data not loaded');
-                return;
-            }
-            
-            integrations.forEach(integration => {
-                const card = document.createElement('div');
-                card.className = 'bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow';
-                
-                let iconHtml;
-                if (integration.iconType === 'svg') {
-                    if (integration.svgInnerHtml) {
-                        iconHtml = `
-                            <svg class="w-8 h-8" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg">
-                                ${integration.svgInnerHtml}
-                            </svg>
-                        `;
-                    } else {
-                        iconHtml = `
-                            <svg class="w-8 h-8 ${integration.iconColor}" fill="currentColor" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg">
-                                <path d="${integration.svgPath}" />
-                            </svg>
-                        `;
-                    }
-                } else {
-                    iconHtml = `<i class="${integration.iconClass} ${integration.iconColor} text-2xl"></i>`;
-                }
-                
-                let tagsHtml;
-                if (integration.tags && integration.tags.length > 0) {
-                    tagsHtml = `
-                        <div class="flex flex-wrap justify-center gap-1">
-                            ${integration.tags.map(tag => `
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${tag.backgroundColor} ${tag.textColor} mb-1">
-                                    ${tag.text}
-                                </span>
-                            `).join('')}
-                        </div>
-                    `;
-                } else {
-                    tagsHtml = `
-                        <div class="flex justify-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${integration.tagBackgroundColor} ${integration.tagTextColor}">
-                                ${integration.tag}
-                            </span>
-                        </div>
-                    `;
-                }
-                
-                card.innerHTML = `
-                    <div class="w-16 h-16 ${integration.backgroundColor} rounded-xl flex items-center justify-center mx-auto mb-4">
-                        ${iconHtml}
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">${integration.name}</h3>
-                    <p class="text-gray-600 mb-4">${integration.subtitle}</p>
-                    ${tagsHtml}
-                `;
-                
-                grid.appendChild(card);
-            });
-        }
-    </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+    <script src="integrations-data.js"></script>
+    <script src="script.js"></script>
+    <script>renderIntegrations();</script>
 </body>
 
 </html>

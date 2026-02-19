@@ -6,499 +6,126 @@
     <title>Retain for Study Abroad Consultancies — Turn Inquiries Into Lifetime Alumni</title>
     <meta name="description" content="Retain is the student retention growth partner for study abroad consultancies. Stop losing students after admission — build a retention ecosystem that turns one-time applicants into lifelong alumni and referral engines.">
     <link rel="icon" type="image/png" href="/darkFavicon.png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        html, body { overflow-x: hidden; }
-        * { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-
-        .nav-link { position: relative; padding-bottom: 2px; }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #14b8a6, #06b6d4);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        .teal-gradient { background: linear-gradient(135deg, #14b8a6, #0891b2); }
-        .teal-gradient-text {
-            background: linear-gradient(90deg, #14b8a6 0%, #0891b2 40%, #22d3ee 50%, #0891b2 60%, #14b8a6 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 4s ease-in-out infinite;
-        }
-        @keyframes textShimmer {
-            0% { background-position: 100% center; }
-            100% { background-position: -100% center; }
-        }
-
-        .gradient-headline {
-            background: linear-gradient(90deg, #14b8a6 0%, #0891b2 35%, #22d3ee 50%, #0891b2 65%, #14b8a6 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShimmer 4.5s ease-in-out infinite;
-        }
-
-        /* Gradient Mesh Hero */
-        .hero-mesh {
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(204,251,241,0.8) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(153,246,228,0.6) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 80%, rgba(207,250,254,0.5) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 30%, rgba(204,251,241,0.4) 0%, transparent 40%),
-                radial-gradient(ellipse at 90% 70%, rgba(240,253,250,0.7) 0%, transparent 50%),
-                linear-gradient(135deg, #f0fdfa 0%, #ffffff 40%, #ecfeff 70%, #f0fdfa 100%);
-        }
-
-        /* Floating orbs */
-        @keyframes floatA { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(15px, -20px) scale(1.05); } 66% { transform: translate(-10px, 10px) scale(0.95); } }
-        @keyframes floatB { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, -15px); } }
-        .floating-orb { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0.12; filter: blur(1px); }
-        .float-a { animation: floatA 8s ease-in-out infinite; }
-        .float-b { animation: floatB 10s ease-in-out infinite; }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
-
-        /* Shimmer CTA */
-        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-        .cta-shimmer { position: relative; overflow: hidden; }
-        .cta-shimmer::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; pointer-events: none; border-radius: inherit; }
-
-        /* Glass card */
-        .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-
-        /* Scroll reveals */
-        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal-left.visible { opacity: 1; transform: translateX(0); }
-        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal-right.visible { opacity: 1; transform: translateX(0); }
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
-        .stagger-4 { transition-delay: 0.4s; }
-
-        html { scroll-behavior: smooth; }
-        a, button { transition: all 0.3s ease; }
-
-        /* Hero text cycling - yo-yo */
-        .hero-cycle-wrapper { display: block; position: relative; overflow: hidden; height: 1.2em; line-height: 1.2; }
-        .hero-cycle-list { display: flex; flex-direction: column; animation: heroCycle 10s cubic-bezier(0.4,0,0.2,1) infinite; }
-        .hero-cycle-item { height: 1.2em; display: flex; align-items: center; white-space: nowrap; }
-        @keyframes heroCycle {
-            0%, 8%    { transform: translateY(0); }
-            20%, 28%  { transform: translateY(-20%); }
-            40%, 48%  { transform: translateY(-40%); }
-            60%, 68%  { transform: translateY(-60%); }
-            80%, 96%  { transform: translateY(-80%); }
-            100%      { transform: translateY(-80%); }
-        }
-
-        /* ======= MARQUEE TICKER ======= */
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: marqueeScroll 30s linear infinite;
-        }
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ======= HORIZONTAL SCROLL CARDS ======= */
-        .pain-scroll {
-            display: flex;
-            gap: 1.5rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 1rem;
-        }
-        .pain-scroll::-webkit-scrollbar { height: 6px; }
-        .pain-scroll::-webkit-scrollbar-track { background: rgba(20,184,166,0.08); border-radius: 3px; }
-        .pain-scroll::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #14b8a6, #0891b2); border-radius: 3px; }
-        .pain-card {
-            min-width: 320px;
-            max-width: 360px;
-            scroll-snap-align: start;
-            flex-shrink: 0;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(20,184,166,0.12);
-            box-shadow: 0 8px 32px rgba(20,184,166,0.06);
-            transition: all 0.4s ease;
-        }
-        .pain-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(20,184,166,0.15); }
-
-        /* ======= PROCESS TIMELINE ======= */
-        .process-timeline { position: relative; padding: 1rem 0; }
-        .process-timeline-progress {
-            position: absolute; left: 50%; top: 0; width: 3px; height: 0;
-            background: linear-gradient(180deg, #14b8a6, #0891b2, #22d3ee);
-            transform: translateX(-50%); z-index: 0; will-change: height;
-            transition: height 0.15s linear; border-radius: 0 0 3px 3px;
-        }
-        .process-step {
-            display: flex; align-items: center; margin-bottom: 2rem; position: relative;
-            opacity: 0; transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-            will-change: opacity, transform;
-        }
-        .process-step.step-visible { opacity: 1; transform: translateY(0); }
-        .process-step:last-child { margin-bottom: 0; }
-        .process-step:nth-child(odd) { flex-direction: row; }
-        .process-step:nth-child(even) { flex-direction: row-reverse; }
-        .process-step-card {
-            width: 44%; background: #ffffff; border: 1px solid #f0f0f0; border-radius: 1rem;
-            padding: 1.75rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
-            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s ease, background 0.4s ease;
-            position: relative; overflow: hidden;
-        }
-        .process-step-card::after {
-            content: ''; position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem; height: 2px;
-            background: linear-gradient(90deg, #14b8a6, #0891b2);
-            opacity: 0; transform: scaleX(0);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-        }
-        .step-visible .process-step-card::after { opacity: 1; transform: scaleX(1); }
-        .process-step-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(20,184,166,0.1), 0 2px 8px rgba(0,0,0,0.04);
-            background: #f0fdfa;
-        }
-        .process-step-number {
-            position: absolute; left: 50%; transform: translateX(-50%) scale(0.5);
-            width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #14b8a6, #0891b2);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 800; font-size: 1.1rem; z-index: 2;
-            box-shadow: 0 4px 16px rgba(20,184,166,0.3);
-            opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.6s ease;
-            will-change: opacity, transform;
-        }
-        .process-step.step-visible .process-step-number {
-            opacity: 1; transform: translateX(-50%) scale(1);
-            box-shadow: 0 0 20px rgba(20,184,166,0.5), 0 4px 16px rgba(20,184,166,0.3);
-        }
-        .process-step.step-visible .process-step-number::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
-            background: linear-gradient(90deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-            background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite; pointer-events: none;
-        }
-        .process-step-spacer { width: 12%; }
-        .process-step-card .step-icon {
-            width: 42px; height: 42px; border-radius: 10px;
-            background: linear-gradient(135deg, #f0fdfa, #ccfbf1);
-            display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem;
-        }
-        .process-step-card .step-icon i { color: #14b8a6; font-size: 1.1rem; }
-        .process-step-card h3 { font-size: 1.1rem; font-weight: 700; color: #111827; margin-bottom: 0.35rem; }
-        .process-step-card p { color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.88rem; }
-        .process-slide-left, .process-slide-right { display: inline-block; will-change: transform, opacity; }
-        @media (max-width: 768px) {
-            .process-timeline-progress { left: 28px; }
-            .process-step, .process-step:nth-child(even) { flex-direction: row !important; }
-            .process-step-number { left: 28px !important; transform: translateX(-50%); }
-            .process-step-spacer { display: none; }
-            .process-step-card { width: 100%; margin-left: 72px; }
-            .process-step { transition: opacity 0.15s ease, transform 0.15s ease; }
-        }
-
-        /* ======= SPLIT SCREEN ======= */
-        .split-left {
-            clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
-        }
-        .split-right {
-            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
-        }
-        @media (max-width: 768px) {
-            .split-left, .split-right { clip-path: none; }
-        }
-
-        /* ======= ANIMATED COUNTER CARDS ======= */
-        .stat-float-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 1.5rem;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .stat-float-card:nth-child(odd) { transform: rotate(-2deg); }
-        .stat-float-card:nth-child(even) { transform: rotate(2deg); }
-        .stat-float-card:hover { transform: rotate(0deg) translateY(-8px) !important; box-shadow: 0 20px 50px rgba(20,184,166,0.2); }
-
-        /* ======= TYPEWRITER ======= */
-        .typewriter {
-            display: inline-block;
-            border-right: 3px solid #14b8a6;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typewrite 3.5s steps(40, end) forwards, blinkCaret 0.75s step-end 6, hideCaret 0s forwards 4.5s;
-        }
-        @keyframes typewrite { from { width: 0; } to { width: 100%; } }
-        @keyframes blinkCaret { from, to { border-color: transparent; } 50% { border-color: #14b8a6; } }
-        @keyframes hideCaret { to { border-right-color: transparent; border-right-width: 0; } }
-
-        /* Showcase - Bento Grid */
-        .showcase-card {
-            position: relative; border-radius: 1.5rem; overflow: hidden; background: #fff;
-            box-shadow: 0 0 24px rgba(20,184,166,0.08), 0 4px 16px rgba(0,0,0,0.04);
-            transition: box-shadow 0.5s ease, transform 0.4s ease;
-            opacity: 0; transform: translateY(30px);
-        }
-        .showcase-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s ease; }
-        .showcase-card:hover { box-shadow: 0 0 40px rgba(20,184,166,0.18), 0 12px 40px rgba(20,184,166,0.12); transform: translateY(-5px); }
-        .showcase-card.visible:hover { transform: translateY(-5px); }
-        .showcase-card .showcase-media { overflow: hidden; position: relative; }
-        .showcase-card .showcase-media .showcase-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .showcase-card:hover .showcase-media .showcase-placeholder { transform: scale(1.05); transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
-        .showcase-card .showcase-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 2rem 1.75rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); color: white;
-        }
-        .showcase-card .showcase-overlay h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem; }
-        .showcase-card .showcase-overlay p { font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.55; }
-        .showcase-card .showcase-badge {
-            position: absolute; top: 1rem; left: 1rem; background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            padding: 0.4rem 1rem; border-radius: 999px;
-            font-size: 0.72rem; font-weight: 700; color: #0d9488; text-transform: uppercase;
-            letter-spacing: 0.06em; z-index: 2; box-shadow: 0 2px 12px rgba(20,184,166,0.15);
-            transition: transform 0.3s ease;
-        }
-        .showcase-card:hover .showcase-badge { transform: translateY(-2px); }
-        .showcase-grid {
-            display: grid; grid-template-columns: 1.2fr 0.8fr; grid-template-rows: 280px 280px; gap: 1.25rem;
-        }
-        .showcase-card.showcase-featured { grid-row: 1 / -1; }
-        .showcase-card.showcase-featured .showcase-media { height: 100%; }
-        .showcase-card:not(.showcase-featured) .showcase-media { height: 100%; }
-        @media (max-width: 768px) {
-            .showcase-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .showcase-card.showcase-featured { grid-row: auto; }
-            .showcase-card .showcase-media { height: 250px !important; }
-        }
-
-        /* Quotes */
-        .sa-quotes-glass {
-            background: linear-gradient(135deg, rgba(240,253,250,0.3) 0%, #ffffff 50%, rgba(204,251,241,0.3) 100%);
-            position: relative; overflow: hidden;
-        }
-        .sa-quotes-blob {
-            position: absolute; border-radius: 50%; filter: blur(80px);
-            animation: blobDrift 20s ease-in-out infinite; pointer-events: none;
-        }
-        @keyframes blobDrift { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-20px) scale(1.05); } 66% { transform: translate(-20px,15px) scale(0.95); } }
-        .sa-quotes-dots {
-            position: absolute; bottom: 0; right: 0; width: 200px; height: 200px;
-            background-image: radial-gradient(circle, rgba(20,184,166,0.12) 1px, transparent 1px);
-            background-size: 20px 20px; pointer-events: none;
-        }
-        .sa-quotes-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: 1fr 1fr 1fr; gap: 1.5rem; align-items: stretch; }
-        .sa-glass-quote {
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(20,184,166,0.1); border-radius: 1.5rem; padding: 2rem 2.25rem;
-            box-shadow: 0 0 20px rgba(20,184,166,0.12), 0 8px 32px rgba(20,184,166,0.08);
-            display: flex; flex-direction: column; justify-content: space-between; min-height: 0;
-            transition: box-shadow 0.4s ease, transform 0.4s ease;
-        }
-        .sa-glass-quote:hover { box-shadow: 0 0 40px rgba(20,184,166,0.2), 0 16px 50px rgba(20,184,166,0.22); transform: translateY(-4px); }
-        .sa-glass-quote.featured { grid-row: 1 / -1; padding: 2.5rem; animation: quoteFloat1 4s ease-in-out infinite; }
-        .sa-glass-quote:nth-child(2) { animation: quoteFloat2 5s ease-in-out infinite 0.5s; }
-        .sa-glass-quote:nth-child(3) { animation: quoteFloat3 6s ease-in-out infinite 1s; }
-        .sa-glass-quote:nth-child(4) { animation: quoteFloat4 4.5s ease-in-out infinite 0.3s; }
-        @keyframes quoteFloat1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        @keyframes quoteFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-        @keyframes quoteFloat3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes quoteFloat4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-        @media (max-width: 768px) { .sa-quotes-grid { grid-template-columns: 1fr; grid-template-rows: auto; } .sa-glass-quote.featured { grid-row: auto; } }
-
-        /* Stats banner */
-        .sa-stats-banner {
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #0f2a2a, #1a2828, #0f172a);
-            background-size: 400% 400%;
-            animation: meshGradient 15s ease infinite;
-            position: relative; overflow: hidden;
-        }
-        @keyframes meshGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .sa-stats-banner::before {
-            content: ''; position: absolute; top: -50%; right: -20%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(20,184,166,0.08), transparent 70%);
-            border-radius: 50%; pointer-events: none;
-        }
-
-        /* Testimonials */
-        .testi-card {
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(20,184,166,0.1); border-radius: 1.5rem; padding: 2.5rem;
-            position: relative; box-shadow: 0 0 24px rgba(20,184,166,0.08), 0 4px 16px rgba(0,0,0,0.03);
-            transition: box-shadow 0.4s ease, transform 0.4s ease; overflow: hidden;
-        }
-        .testi-card:hover { box-shadow: 0 0 40px rgba(20,184,166,0.15), 0 12px 36px rgba(20,184,166,0.1); transform: translateY(-4px); }
-        .testi-card::before { content: '\f10d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 1.5rem; right: 2rem; font-size: 3.5rem; color: rgba(20,184,166,0.06); pointer-events: none; }
-
-        /* Wave divider */
-        .wave-divider { position: relative; }
-        .wave-divider::before {
-            content:''; position:absolute; top:-60px; left:0; right:0; height:60px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%230f172a' d='M0,30 C360,60 720,0 1080,30 C1260,45 1380,35 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat bottom;
-            background-size: cover;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white text-gray-800">
+<body>
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex items-baseline">
-                        <a href="/home/" class="flex items-baseline">
-                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
-                            <span class="text-2xl font-bold text-gray-900">Retain</span>
-                        </a>
-                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
-                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
-                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Solutions</a>
-                    <div class="relative group">
-                        <button class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link flex items-center py-2">
-                            Who It's For
-                            <i class="fas fa-chevron-down ml-1.5 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
-                        </button>
-                        <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-56 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 border border-gray-100">
-                            <a href="/who-it-for/real-estate/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                                <i class="fas fa-building mr-3 text-emerald-500 bg-emerald-50 p-1.5 rounded-lg"></i> Real Estate
-                            </a>
-                            <a href="/who-it-for/ecommerce/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                                <i class="fas fa-shopping-bag mr-3 text-amber-500 bg-amber-50 p-1.5 rounded-lg"></i> E-commerce & Retail
-                            </a>
-                            <a href="/who-it-for/travel-hospitality/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                                <i class="fas fa-plane mr-3 text-sky-500 bg-sky-50 p-1.5 rounded-lg"></i> Travel & Hospitality
-                            </a>
-                            <a href="/who-it-for/food-beverage/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                                <i class="fas fa-utensils mr-3 text-rose-500 bg-rose-50 p-1.5 rounded-lg"></i> Food & Beverage
-                            </a>
-                            <a href="/who-it-for/agencies/" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors">
-                                <i class="fas fa-briefcase mr-3 text-violet-500 bg-violet-50 p-1.5 rounded-lg"></i> Agencies
-                            </a>
-                            <a href="/who-it-for/study-abroad/" class="block px-4 py-3 text-sm text-teal-700 font-medium bg-teal-50 rounded-md transition-colors">
-                                <i class="fas fa-graduation-cap mr-3 text-teal-500 bg-teal-50 p-1.5 rounded-lg"></i> Study Abroad
-                            </a>
-                        </div>
-                    </div>
-                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
-                    <a href="/contact/" class="text-white px-5 py-2 rounded-lg hover:shadow-lg transition-all font-medium whitespace-nowrap" style="background: linear-gradient(135deg, #14b8a6, #0891b2);">
-                        Book a Call
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="flex items-center">
+                <a href="/home/" class="navbar-logo">
+                    <img src="/lightFavicon.png" alt="Retain Logo">
+                    <span class="navbar-logo-text">Retain</span>
+                </a>
+                <a href="https://solven.app/" class="navbar-by-solven" target="_blank" rel="noopener noreferrer">by Solven</a>
+            </div>
+            <div class="nav-links">
+                <a href="/home/" class="nav-link">Home</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/solutions/" class="nav-link">Solutions</a>
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn nav-link">
+                        Who It's For
+                        <i class="fas fa-chevron-down"></i>
                     </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="/who-it-for/real-estate/" class="nav-dropdown-item">
+                            <i class="fas fa-building icon-realestate"></i> Real Estate
+                        </a>
+                        <a href="/who-it-for/ecommerce/" class="nav-dropdown-item">
+                            <i class="fas fa-shopping-bag icon-ecommerce"></i> E-commerce & Retail
+                        </a>
+                        <a href="/who-it-for/travel-hospitality/" class="nav-dropdown-item">
+                            <i class="fas fa-plane icon-travel"></i> Travel & Hospitality
+                        </a>
+                        <a href="/who-it-for/food-beverage/" class="nav-dropdown-item">
+                            <i class="fas fa-utensils icon-food"></i> Food & Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/" class="nav-dropdown-item">
+                            <i class="fas fa-briefcase icon-agencies"></i> Agencies
+                        </a>
+                        <a href="/who-it-for/study-abroad/" class="nav-dropdown-item nav-dropdown-item-active">
+                            <i class="fas fa-graduation-cap icon-studyabroad"></i> Study Abroad
+                        </a>
+                    </div>
                 </div>
+                <a href="/why-retain/" class="nav-link">Why Retain</a>
+                <a href="/contact/" class="nav-cta">Book a Call</a>
+            </div>
+            <div class="mobile-menu-btn-wrap" style="display:none;">
+                <button id="mobile-menu-btn" class="mobile-menu-btn">
+                    <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </div>
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Solutions</a>
-                <a href="/who-it-for/real-estate/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Real Estate</a>
-                <a href="/who-it-for/ecommerce/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">E-commerce & Retail</a>
-                <a href="/who-it-for/travel-hospitality/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Travel & Hospitality</a>
-                <a href="/who-it-for/food-beverage/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Food & Beverage</a>
-                <a href="/who-it-for/agencies/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Agencies</a>
-                <a href="/who-it-for/study-abroad/" class="text-teal-600 font-semibold block px-3 py-2 rounded-md text-base">Study Abroad</a>
-                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
-                <a href="/contact/" class="text-white block px-3 py-2 rounded-md text-base font-medium" style="background: linear-gradient(135deg, #14b8a6, #0891b2);">Book a Call</a>
-            </div>
+        <div class="mobile-menu hidden" id="mobile-menu">
+            <a href="/home/" class="mobile-menu-link">Home</a>
+            <a href="/about/" class="mobile-menu-link">About</a>
+            <a href="/solutions/" class="mobile-menu-link">Solutions</a>
+            <a href="/who-it-for/real-estate/" class="mobile-menu-link">Real Estate</a>
+            <a href="/who-it-for/ecommerce/" class="mobile-menu-link">E-commerce & Retail</a>
+            <a href="/who-it-for/travel-hospitality/" class="mobile-menu-link">Travel & Hospitality</a>
+            <a href="/who-it-for/food-beverage/" class="mobile-menu-link">Food & Beverage</a>
+            <a href="/who-it-for/agencies/" class="mobile-menu-link">Agencies</a>
+            <a href="/who-it-for/study-abroad/" class="mobile-menu-link mobile-menu-link-active">Study Abroad</a>
+            <a href="/why-retain/" class="mobile-menu-link">Why Retain</a>
+            <a href="/contact/" class="mobile-menu-cta">Book a Call</a>
         </div>
     </nav>
 
-    <!-- 1. HERO — Gradient Mesh -->
-    <section class="hero-mesh pt-32 pb-28 lg:pt-44 lg:pb-40 relative overflow-hidden min-h-[90vh] flex items-center">
-        <div class="floating-orb float-a bg-teal-400" style="width:120px;height:120px;top:10%;right:8%;"></div>
-        <div class="floating-orb float-b bg-cyan-500" style="width:80px;height:80px;bottom:15%;left:5%;"></div>
-        <div class="floating-orb float-a bg-teal-300" style="width:60px;height:60px;top:60%;right:25%;"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <!-- 1. HERO -->
+    <section class="hero-mesh">
+        <div class="floating-orb float-a" style="background:#2dd4bf;width:120px;height:120px;top:10%;right:8%;"></div>
+        <div class="floating-orb float-b" style="background:#06b6d4;width:80px;height:80px;bottom:15%;left:5%;"></div>
+        <div class="floating-orb float-a" style="background:#5eead4;width:60px;height:60px;top:60%;right:25%;"></div>
+        <div class="container relative" style="z-index:10;">
+            <div class="hero-grid">
                 <div class="animate-fade-in-up">
-                    <span class="inline-block bg-teal-100 text-teal-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
-                        <i class="fas fa-graduation-cap mr-1"></i> Retain for Study Abroad
+                    <span class="hero-badge">
+                        <i class="fas fa-graduation-cap" style="margin-right:0.25rem;"></i> Retain for Study Abroad
                     </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    <h1 class="hero-title">
                         Every Admit Starts With
                         <span class="hero-cycle-wrapper"><span class="hero-cycle-list"><span class="hero-cycle-item teal-gradient-text">Trust</span><span class="hero-cycle-item teal-gradient-text">Referrals</span><span class="hero-cycle-item teal-gradient-text">Happy Alumni</span><span class="hero-cycle-item teal-gradient-text">Retention</span><span class="hero-cycle-item teal-gradient-text">Trust</span></span></span>
                     </h1>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-xl">
+                    <p class="hero-desc">
                         They got the admit. Posted it on Instagram. Then never referred a single friend — because nobody stayed in touch. Retain is your student retention growth partner — a memory system that turns one-time applicants into lifelong alumni and referral engines.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contactForm" class="teal-gradient text-white px-8 py-3.5 rounded-full font-semibold text-center hover:opacity-90 transition-opacity shadow-lg shadow-teal-200 cta-shimmer">
-                            Build Your Retention Ecosystem <i class="fas fa-arrow-right ml-2"></i>
+                    <div class="hero-buttons">
+                        <a href="#contactForm" class="hero-btn-primary cta-shimmer">
+                            Build Your Retention Ecosystem <i class="fas fa-arrow-right" style="margin-left:0.5rem;"></i>
                         </a>
-                        <a href="/how-it-works/" class="bg-white text-teal-700 border-2 border-teal-200 px-8 py-3.5 rounded-full font-semibold text-center hover:border-teal-400 transition-colors">
+                        <a href="/how-it-works/" class="hero-btn-secondary">
                             See How It Works
                         </a>
                     </div>
                 </div>
-                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="rounded-2xl shadow-2xl w-full h-80 lg:h-[420px] flex items-center justify-center" style="background: linear-gradient(135deg, #ccfbf1, #a7f3d0, #cffafe);">
-                        <i class="fas fa-globe-americas text-teal-400 text-8xl opacity-40"></i>
+                <div class="relative animate-fade-in-up animate-delay-200">
+                    <div class="hero-visual">
+                        <i class="fas fa-globe-americas"></i>
                     </div>
-                    <div class="absolute -bottom-6 -left-6 glass-card rounded-xl shadow-lg p-4 hidden lg:block">
+                    <div class="hero-stat-card hero-stat-left glass-card" style="display:none;">
                         <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 teal-gradient rounded-full flex items-center justify-center">
-                                <i class="fas fa-user-graduate text-white text-lg"></i>
+                            <div class="hero-stat-icon teal-gradient" style="display:flex;align-items:center;justify-content:center;">
+                                <i class="fas fa-user-graduate" style="color:#fff;font-size:1.125rem;"></i>
                             </div>
                             <div>
-                                <p class="text-2xl font-bold text-gray-900">4.2×</p>
-                                <p class="text-sm text-gray-500">More student referrals</p>
+                                <p class="hero-stat-value">4.2×</p>
+                                <p class="hero-stat-label">More student referrals</p>
                             </div>
                         </div>
                     </div>
-                    <div class="absolute -top-4 -right-4 glass-card rounded-xl shadow-lg p-3 hidden lg:block">
+                    <div class="hero-stat-card hero-stat-right glass-card" style="display:none;">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-chart-line text-teal-600 text-sm"></i>
+                            <div class="hero-stat-icon-sm">
+                                <i class="fas fa-chart-line"></i>
                             </div>
                             <div>
-                                <p class="text-lg font-bold text-gray-900">+53%</p>
-                                <p class="text-xs text-gray-500">Revenue per student</p>
+                                <p class="hero-stat-value-sm">+53%</p>
+                                <p class="hero-stat-label-sm">Revenue per student</p>
                             </div>
                         </div>
                     </div>
@@ -508,184 +135,96 @@
     </section>
 
     <!-- 2. MARQUEE TICKER -->
-    <section class="py-5 overflow-hidden" style="background: #0f172a;">
+    <section class="marquee-section">
         <div class="marquee-track">
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">STOP STARTING FROM ZERO EVERY INTAKE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">YOUR ALUMNI ARE YOUR PIPELINE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">COMPETING ON PRICE IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">BUILD STUDENT MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">STOP STARTING FROM ZERO EVERY INTAKE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">YOUR ALUMNI ARE YOUR PIPELINE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">COMPETING ON PRICE IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-            <span class="text-sm md:text-base font-bold uppercase tracking-[0.25em] px-8 whitespace-nowrap teal-gradient-text">BUILD STUDENT MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">STOP STARTING FROM ZERO EVERY INTAKE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">YOUR ALUMNI ARE YOUR PIPELINE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">COMPETING ON PRICE IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">BUILD STUDENT MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">STOP STARTING FROM ZERO EVERY INTAKE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">YOUR ALUMNI ARE YOUR PIPELINE&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">COMPETING ON PRICE IS NOT A STRATEGY&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="marquee-item teal-gradient-text">BUILD STUDENT MEMORY THAT COMPOUNDS&nbsp;&nbsp;•&nbsp;&nbsp;</span>
         </div>
     </section>
 
     <!-- 3. PAIN POINTS -->
-    <style>
-        .pain-bento {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-        .pain-bento-card {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(20,184,166,0.08);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        .pain-bento-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(20,184,166,0.2);
-            box-shadow: 0 0 30px rgba(20,184,166,0.1), 0 12px 32px rgba(20,184,166,0.08);
-        }
-        .pain-bento-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #14b8a6, #0891b2);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .pain-bento-card:hover::after {
-            transform: scaleX(1);
-        }
-        .pain-bento-featured {
-            grid-column: span 2;
-            background: linear-gradient(135deg, rgba(240,253,250,0.8), rgba(255,255,255,0.9));
-            padding: 2.5rem;
-        }
-        .pain-bento-featured .pain-icon-wrap {
-            width: 64px;
-            height: 64px;
-        }
-        .pain-bento-featured .pain-icon-wrap i {
-            font-size: 1.5rem;
-        }
-        .pain-bento-featured h3 {
-            font-size: 1.35rem;
-        }
-        .pain-icon-wrap {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 4px 16px rgba(20,184,166,0.1);
-            border: 1px solid rgba(20,184,166,0.08);
-        }
-        .pain-icon-wrap i {
-            font-size: 1.15rem;
-        }
-        .pain-bento-num {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 3rem;
-            font-weight: 800;
-            color: rgba(20,184,166,0.04);
-            line-height: 1;
-            font-family: 'Poppins', sans-serif;
-            pointer-events: none;
-        }
-        @media (max-width: 768px) {
-            .pain-bento {
-                grid-template-columns: 1fr;
-            }
-            .pain-bento-featured {
-                grid-column: span 1;
-            }
-        }
-    </style>
-    <section class="py-24 bg-white relative overflow-hidden" id="pain-points">
-        <div class="absolute top-[-5%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(20,184,166,0.07),transparent 70%);filter:blur(80px);"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-flex items-center gap-2 bg-teal-100/80 backdrop-blur text-teal-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-teal-200/60 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span> The Problem
+    <section class="pain-section" id="pain-points">
+        <div class="bg-blur"></div>
+        <div class="container-md relative" style="z-index:10;">
+            <div class="text-center reveal" style="margin-bottom:4rem;">
+                <span class="section-badge">
+                    <span class="pulse-dot"></span> The Problem
                 </span>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.1] max-w-4xl mx-auto">
+                <h2 class="pain-title">
                     Why Do 75% of Students <span class="teal-gradient-text">Ghost After Admission?</span>
                 </h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-base">They got their dream uni. But you have zero way to stay connected.</p>
+                <p class="pain-subtitle">They got their dream uni. But you have zero way to stay connected.</p>
             </div>
 
-            <div class="mb-14 rounded-2xl overflow-hidden reveal" style="box-shadow: 0 0 30px rgba(20,184,166,0.08), 0 4px 16px rgba(0,0,0,0.04);">
-                <div class="w-full h-72 flex items-center justify-center" style="background: linear-gradient(135deg, #0f766e, #0e7490, #155e75);">
-                    <i class="fas fa-plane-departure text-teal-300 text-7xl opacity-30"></i>
+            <div class="pain-hero-image reveal">
+                <div class="pain-hero-image-inner">
+                    <i class="fas fa-plane-departure"></i>
                 </div>
             </div>
 
             <div class="pain-bento">
-                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay: 0ms;">
+                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay:0ms;">
                     <span class="pain-bento-num">01</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-ghost text-teal-500"></i></div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Students Vanish After Admit</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">You spent months on their application. Counseling sessions, document prep, mock interviews — then they get the admit letter and disappear into thin air. No referral. No review. No younger sibling sent your way. That's not an alumni — that's a ghost.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-ghost" style="color:#14b8a6;"></i></div>
+                    <h3>Students Vanish After Admit</h3>
+                    <p>You spent months on their application. Counseling sessions, document prep, mock interviews — then they get the admit letter and disappear into thin air. No referral. No review. No younger sibling sent your way. That's not an alumni — that's a ghost.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 100ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:100ms;">
                     <span class="pain-bento-num">02</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-users-slash text-cyan-500"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Zero Alumni Tracking</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Placed 500+ students over the years. Can't name 20 of them today. No alumni network, no success stories, no proof that works.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-users-slash" style="color:#06b6d4;"></i></div>
+                    <h3>Zero Alumni Tracking</h3>
+                    <p>Placed 500+ students over the years. Can't name 20 of them today. No alumni network, no success stories, no proof that works.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 200ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:200ms;">
                     <span class="pain-bento-num">03</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-calendar-times text-teal-600"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Seasonal Enrollment Chaos</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Fall intake is a madhouse. Spring is a graveyard. You're either drowning or starving — no pipeline to smooth it out.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-calendar-times" style="color:#0d9488;"></i></div>
+                    <h3>Seasonal Enrollment Chaos</h3>
+                    <p>Fall intake is a madhouse. Spring is a graveyard. You're either drowning or starving — no pipeline to smooth it out.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 300ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:300ms;">
                     <span class="pain-bento-num">04</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-tags text-cyan-600"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Racing to the Bottom on Price</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">New consultancy opened down the street charging half your fee. Students shop around like it's a commodity. You can't win on price forever.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-tags" style="color:#0891b2;"></i></div>
+                    <h3>Racing to the Bottom on Price</h3>
+                    <p>New consultancy opened down the street charging half your fee. Students shop around like it's a commodity. You can't win on price forever.</p>
                 </div>
-                <div class="pain-bento-card reveal" style="transition-delay: 400ms;">
+                <div class="pain-bento-card reveal" style="transition-delay:400ms;">
                     <span class="pain-bento-num">05</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-brain text-teal-500"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">No Student Memory</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">A student's younger brother walks in. Your counselor has no idea their sibling went to UBC through you last year. That's not service — that's amnesia.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-brain" style="color:#14b8a6;"></i></div>
+                    <h3>No Student Memory</h3>
+                    <p>A student's younger brother walks in. Your counselor has no idea their sibling went to UBC through you last year. That's not service — that's amnesia.</p>
                 </div>
-                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay: 500ms;">
+                <div class="pain-bento-card pain-bento-featured reveal" style="transition-delay:500ms;">
                     <span class="pain-bento-num">06</span>
-                    <div class="pain-icon-wrap"><i class="fas fa-door-open text-cyan-500"></i></div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">No Post-Placement Engagement</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Visa approved. Flight booked. Then… silence. No check-in after they land. No "how's your first semester?" No reason for them to ever think of you again when their roommate asks "how'd you find this uni?" That relationship just evaporated.</p>
+                    <div class="pain-icon-wrap"><i class="fas fa-door-open" style="color:#06b6d4;"></i></div>
+                    <h3>No Post-Placement Engagement</h3>
+                    <p>Visa approved. Flight booked. Then… silence. No check-in after they land. No "how's your first semester?" No reason for them to ever think of you again when their roommate asks "how'd you find this uni?" That relationship just evaporated.</p>
                 </div>
             </div>
 
-            <div class="text-center mt-14 reveal">
-                <p class="text-gray-700 font-semibold text-lg">You're spending more acquiring new leads than activating the hundreds of students who already trust you.</p>
+            <div class="text-center reveal" style="margin-top:3.5rem;">
+                <p class="pain-bottom-text">You're spending more acquiring new leads than activating the hundreds of students who already trust you.</p>
             </div>
         </div>
     </section>
 
     <!-- 4. PROCESS TIMELINE -->
-    <section class="py-16 bg-white" id="process">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 reveal">
-                <span class="inline-flex items-center gap-2 bg-teal-100/80 backdrop-blur text-teal-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-teal-200/60 shadow-sm">
-                    <i class="fas fa-cogs text-teal-500"></i> Our Process
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="text-center section-header reveal" style="margin-bottom:3rem;">
+                <span class="section-badge">
+                    <i class="fas fa-cogs" style="color:#14b8a6;"></i> Our Process
                 </span>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mt-2 mb-6 leading-[1.15] max-w-4xl mx-auto"><span class="process-slide-left">From First Inquiry</span> <span class="process-slide-right teal-gradient-text">to Lifetime Alumni.</span></h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-base">How we turn a single admission into a lifetime relationship — so every placed student becomes your best recruiter.</p>
+                <h2 class="process-title"><span class="process-slide-left">From First Inquiry</span> <span class="process-slide-right teal-gradient-text">to Lifetime Alumni.</span></h2>
+                <p class="process-subtitle">How we turn a single admission into a lifetime relationship — so every placed student becomes your best recruiter.</p>
             </div>
             <div class="process-timeline">
                 <div class="process-timeline-progress"></div>
-                <!-- Step 1 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-user-plus"></i></div>
@@ -695,7 +234,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">01</div>
                 </div>
-                <!-- Step 2 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-brain"></i></div>
@@ -705,7 +243,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">02</div>
                 </div>
-                <!-- Step 3 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-clock"></i></div>
@@ -715,7 +252,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">03</div>
                 </div>
-                <!-- Step 4 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-magic"></i></div>
@@ -725,7 +261,6 @@
                     <div class="process-step-spacer"></div>
                     <div class="process-step-number">04</div>
                 </div>
-                <!-- Step 5 -->
                 <div class="process-step">
                     <div class="process-step-card">
                         <div class="step-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -740,71 +275,71 @@
     </section>
 
     <!-- 5. WITH vs WITHOUT -->
-    <section class="py-20 bg-white relative overflow-hidden" id="comparison">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <span class="inline-flex items-center gap-2 bg-teal-100/80 backdrop-blur text-teal-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-teal-200/60 shadow-sm">
-                    <i class="fas fa-exchange-alt text-teal-500"></i> Why Retain
+    <section class="comparison-section" id="comparison">
+        <div class="container-md">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <span class="section-badge">
+                    <i class="fas fa-exchange-alt" style="color:#14b8a6;"></i> Why Retain
                 </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2 mb-5 leading-tight">Not Another CRM. <span class="gradient-headline">A Growth Partner.</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Most platforms hand you software and wish you luck. Retain builds your entire student retention ecosystem — so your enrollment compounds instead of resets every intake.</p>
+                <h2 class="comparison-title">Not Another CRM. <span class="gradient-headline">A Growth Partner.</span></h2>
+                <p class="comparison-subtitle">Most platforms hand you software and wish you luck. Retain builds your entire student retention ecosystem — so your enrollment compounds instead of resets every intake.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="comparison-grid">
                 <!-- Without -->
-                <div class="bg-gray-50 rounded-2xl p-8 lg:p-10 reveal" style="box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center"><i class="fas fa-times text-red-500"></i></div>
-                        <h3 class="text-lg font-bold text-gray-900">Without Retain</h3>
+                <div class="comparison-card-without reveal">
+                    <div class="comparison-card-header">
+                        <div class="comparison-icon comparison-icon-red"><i class="fas fa-times"></i></div>
+                        <h3>Without Retain</h3>
                     </div>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Students vanish after placement</p><p class="text-gray-400 text-sm mt-0.5">Months of work, zero relationship left after the visa</p></div>
+                    <ul class="comparison-list">
+                        <li>
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p class="item-title">Students vanish after placement</p><p class="item-desc">Months of work, zero relationship left after the visa</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Competing on price alone</p><p class="text-gray-400 text-sm mt-0.5">New consultancies undercut you every season — margins shrink</p></div>
+                        <li>
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p class="item-title">Competing on price alone</p><p class="item-desc">New consultancies undercut you every season — margins shrink</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">No alumni network exists</p><p class="text-gray-400 text-sm mt-0.5">500 placed students, zero social proof or referral pipeline</p></div>
+                        <li>
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p class="item-title">No alumni network exists</p><p class="item-desc">500 placed students, zero social proof or referral pipeline</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Siblings treated like strangers</p><p class="text-gray-400 text-sm mt-0.5">Brother walked in — no one knew his sister went through you</p></div>
+                        <li>
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p class="item-title">Siblings treated like strangers</p><p class="item-desc">Brother walked in — no one knew his sister went through you</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-minus text-red-400 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Dead months between intakes</p><p class="text-gray-400 text-sm mt-0.5">No system to keep leads warm or fill slow seasons</p></div>
+                        <li>
+                            <i class="fas fa-minus icon-minus"></i>
+                            <div><p class="item-title">Dead months between intakes</p><p class="item-desc">No system to keep leads warm or fill slow seasons</p></div>
                         </li>
                     </ul>
                 </div>
                 <!-- With -->
-                <div class="bg-white rounded-2xl p-8 lg:p-10 reveal" style="box-shadow: 0 0 24px rgba(20,184,166,0.08), 0 4px 16px rgba(0,0,0,0.04); border: 1px solid rgba(20,184,166,0.1);">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center"><i class="fas fa-check text-teal-500"></i></div>
-                        <h3 class="text-lg font-bold text-gray-900">With Retain</h3>
+                <div class="comparison-card-with reveal">
+                    <div class="comparison-card-header">
+                        <div class="comparison-icon comparison-icon-teal"><i class="fas fa-check"></i></div>
+                        <h3>With Retain</h3>
                     </div>
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-teal-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Every student becomes a lifelong contact</p><p class="text-gray-400 text-sm mt-0.5">WhatsApp, forms, fairs — data captured seamlessly</p></div>
+                    <ul class="comparison-list">
+                        <li>
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p class="item-title">Every student becomes a lifelong contact</p><p class="item-desc">WhatsApp, forms, fairs — data captured seamlessly</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-teal-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Alumni referrals flow naturally</p><p class="text-gray-400 text-sm mt-0.5">Placed students send friends and family — zero awkward asks</p></div>
+                        <li>
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p class="item-title">Alumni referrals flow naturally</p><p class="item-desc">Placed students send friends and family — zero awkward asks</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-teal-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Premium positioning, not price wars</p><p class="text-gray-400 text-sm mt-0.5">Students choose you because they feel remembered and valued</p></div>
+                        <li>
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p class="item-title">Premium positioning, not price wars</p><p class="item-desc">Students choose you because they feel remembered and valued</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-teal-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Intelligent student memory</p><p class="text-gray-400 text-sm mt-0.5">Dream unis, test scores, family history — remembered before they ask</p></div>
+                        <li>
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p class="item-title">Intelligent student memory</p><p class="item-desc">Dream unis, test scores, family history — remembered before they ask</p></div>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-check text-teal-500 text-xs mt-2"></i>
-                            <div><p class="text-gray-700 font-medium">Full pipeline, every intake</p><p class="text-gray-400 text-sm mt-0.5">AI-timed re-engagement fills slow seasons automatically</p></div>
+                        <li>
+                            <i class="fas fa-check icon-check"></i>
+                            <div><p class="item-title">Full pipeline, every intake</p><p class="item-desc">AI-timed re-engagement fills slow seasons automatically</p></div>
                         </li>
                     </ul>
                 </div>
@@ -812,24 +347,24 @@
         </div>
     </section>
 
-    <!-- 6. VISUAL SHOWCASE — Bento Grid -->
-    <section class="py-24 bg-gradient-to-br from-gray-50 via-white to-teal-50/20">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <span class="inline-flex items-center gap-2 bg-teal-100/80 backdrop-blur text-teal-700 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-6 border border-teal-200/60 shadow-sm">
-                    <i class="fas fa-desktop text-teal-500"></i> Platform Preview
+    <!-- 6. VISUAL SHOWCASE -->
+    <section class="showcase-section">
+        <div class="container-md">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <span class="section-badge">
+                    <i class="fas fa-desktop" style="color:#14b8a6;"></i> Platform Preview
                 </span>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2 mb-5 leading-tight">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg tracking-wide">Real screens. Real workflows. Built for study abroad consultancies.</p>
+                <h2 class="showcase-title">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
+                <p class="showcase-subtitle">Real screens. Real workflows. Built for study abroad consultancies.</p>
             </div>
             <div class="showcase-grid">
                 <div class="showcase-card showcase-featured">
                     <div class="showcase-media">
-                        <div class="showcase-placeholder w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #0f766e, #0e7490, #164e63);">
-                            <i class="fas fa-th-large text-teal-300 text-7xl opacity-30"></i>
+                        <div class="showcase-placeholder" style="background:linear-gradient(135deg,#0f766e,#0e7490,#164e63);">
+                            <i class="fas fa-th-large" style="color:#5eead4;font-size:4.5rem;opacity:0.3;"></i>
                         </div>
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-th-large mr-1"></i> Dashboard</span>
+                    <span class="showcase-badge"><i class="fas fa-th-large" style="margin-right:0.25rem;"></i> Dashboard</span>
                     <div class="showcase-overlay">
                         <h4>Unified Student Dashboard</h4>
                         <p>Every inquiry, application status, and placement — one intelligent view that knows your students better than your best counselor does.</p>
@@ -837,11 +372,11 @@
                 </div>
                 <div class="showcase-card">
                     <div class="showcase-media">
-                        <div class="showcase-placeholder w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #115e59, #155e75, #1e3a5f);">
-                            <i class="fas fa-bolt text-cyan-300 text-5xl opacity-30"></i>
+                        <div class="showcase-placeholder" style="background:linear-gradient(135deg,#115e59,#155e75,#1e3a5f);">
+                            <i class="fas fa-bolt" style="color:#67e8f9;font-size:3rem;opacity:0.3;"></i>
                         </div>
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-bolt mr-1"></i> Automation</span>
+                    <span class="showcase-badge"><i class="fas fa-bolt" style="margin-right:0.25rem;"></i> Automation</span>
                     <div class="showcase-overlay">
                         <h4>Smart Re-Engagement Engine</h4>
                         <p>AI-timed messages that keep students connected — personally, not generically.</p>
@@ -849,11 +384,11 @@
                 </div>
                 <div class="showcase-card">
                     <div class="showcase-media">
-                        <div class="showcase-placeholder w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #134e4a, #0c4a6e, #1e293b);">
-                            <i class="fas fa-chart-line text-teal-300 text-5xl opacity-30"></i>
+                        <div class="showcase-placeholder" style="background:linear-gradient(135deg,#134e4a,#0c4a6e,#1e293b);">
+                            <i class="fas fa-chart-line" style="color:#5eead4;font-size:3rem;opacity:0.3;"></i>
                         </div>
                     </div>
-                    <span class="showcase-badge"><i class="fas fa-chart-line mr-1"></i> Analytics</span>
+                    <span class="showcase-badge"><i class="fas fa-chart-line" style="margin-right:0.25rem;"></i> Analytics</span>
                     <div class="showcase-overlay">
                         <h4>Enrollment Analytics</h4>
                         <p>Watch retention compound your growth — intake after intake, year after year.</p>
@@ -864,77 +399,77 @@
     </section>
 
     <!-- 7. INDUSTRY QUOTES -->
-    <section class="py-28 sa-quotes-glass">
+    <section class="sa-quotes-glass">
         <div class="sa-quotes-blob" style="width:400px;height:400px;background:rgba(20,184,166,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
         <div class="sa-quotes-blob" style="width:350px;height:350px;background:rgba(8,145,178,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
         <div class="sa-quotes-blob" style="width:250px;height:250px;background:rgba(34,211,238,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
         <div class="sa-quotes-dots"></div>
 
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-teal-100/80 text-teal-700 text-xs font-bold tracking-widest uppercase">🎙️ FROM THE FIELD</span>
-                <h2 class="font-poppins text-3xl md:text-5xl font-bold text-gray-900 mt-5">Consultancy Owners Have <span class="gradient-headline">Spoken.</span></h2>
-                <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">The ones building real consultancies agree — student retention wins.</p>
+        <div class="container-sm relative" style="z-index:10;padding:0 1.5rem;">
+            <div class="text-center reveal" style="margin-bottom:4rem;">
+                <span class="section-badge" style="background:rgba(204,251,241,0.8);padding:0.375rem 1rem;">🎙️ FROM THE FIELD</span>
+                <h2 class="font-poppins" style="font-size:1.875rem;font-weight:700;color:#111827;margin-top:1.25rem;">Consultancy Owners Have <span class="gradient-headline">Spoken.</span></h2>
+                <p style="color:#6b7280;margin-top:1rem;max-width:42rem;margin-left:auto;margin-right:auto;font-size:1.125rem;">The ones building real consultancies agree — student retention wins.</p>
             </div>
 
             <div class="sa-quotes-grid">
                 <!-- Featured quote -->
-                <div class="sa-glass-quote featured reveal" style="text-align:center;align-items:center;justify-content:center;">
+                <div class="sa-glass-quote featured reveal">
                     <div class="flex flex-col items-center">
-                        <i class="fas fa-quote-left text-teal-400 text-lg mb-5 block"></i>
-                        <p class="text-gray-700 text-2xl md:text-3xl italic leading-relaxed font-medium">"We placed 200 students last year. <span class="gradient-headline">Not one of them referred a friend.</span> Not because they weren't happy — but because we never stayed in touch long enough to ask."</p>
-                        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-teal-100/60">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center"><i class="fas fa-graduation-cap text-teal-500 text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center"><i class="fas fa-globe text-cyan-500 text-xs"></i></div>
-                                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center"><i class="fas fa-users text-emerald-500 text-xs"></i></div>
+                        <i class="fas fa-quote-left quote-icon" style="font-size:1.125rem;"></i>
+                        <p class="quote-text-lg">"We placed 200 students last year. <span class="gradient-headline">Not one of them referred a friend.</span> Not because they weren't happy — but because we never stayed in touch long enough to ask."</p>
+                        <div class="quote-divider" style="justify-content:center;">
+                            <div class="quote-icon-group flex">
+                                <div class="quote-icon-circle" style="background:#ccfbf1;"><i class="fas fa-graduation-cap" style="color:#14b8a6;"></i></div>
+                                <div class="quote-icon-circle" style="background:#cffafe;margin-left:-0.5rem;"><i class="fas fa-globe" style="color:#06b6d4;"></i></div>
+                                <div class="quote-icon-circle" style="background:#d1fae5;margin-left:-0.5rem;"><i class="fas fa-users" style="color:#10b981;"></i></div>
                             </div>
-                            <p class="text-xs text-gray-400 leading-snug">The relationship is everything —<br>own it or lose the referral</p>
+                            <p class="quote-caption">The relationship is everything —<br>own it or lose the referral</p>
                         </div>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-teal-400 inline-block"></span>
-                        <span class="font-bold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full text-sm">Rafiq Hassan</span>
-                        <span class="text-gray-400 text-xs ml-1">Founder, Horizon Education Consultants</span>
+                    <div class="quote-author-row" style="margin-top:1.5rem;justify-content:center;">
+                        <span class="quote-author-dot"></span>
+                        <span class="quote-author-name">Rafiq Hassan</span>
+                        <span class="quote-author-title">Founder, Horizon Education Consultants</span>
                     </div>
                 </div>
 
                 <!-- Quote 2 -->
                 <div class="sa-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-teal-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"Every September I start from scratch. New leads, new Facebook ads, new education fairs. Meanwhile my competitors are getting walk-ins from last year's students sending their friends. I needed that pipeline yesterday."</p>
+                        <i class="fas fa-quote-left quote-icon-sm" style="font-size:1rem;"></i>
+                        <p class="quote-text">"Every September I start from scratch. New leads, new Facebook ads, new education fairs. Meanwhile my competitors are getting walk-ins from last year's students sending their friends. I needed that pipeline yesterday."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400 inline-block"></span>
-                        <span class="font-bold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full text-sm">Priya Mehta</span>
-                        <span class="text-gray-400 text-xs ml-1">Director, GlobalPath Edu</span>
+                    <div class="quote-author-row">
+                        <span class="quote-author-dot-sm"></span>
+                        <span class="quote-author-name">Priya Mehta</span>
+                        <span class="quote-author-title">Director, GlobalPath Edu</span>
                     </div>
                 </div>
 
                 <!-- Quote 3 -->
                 <div class="sa-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-teal-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"A student's mom called asking about her younger son. My counselor had no idea we'd already placed the older daughter at Melbourne two years ago. That's embarrassing. That's the kind of thing that makes people switch consultancies."</p>
+                        <i class="fas fa-quote-left quote-icon-sm" style="font-size:1rem;"></i>
+                        <p class="quote-text">"A student's mom called asking about her younger son. My counselor had no idea we'd already placed the older daughter at Melbourne two years ago. That's embarrassing. That's the kind of thing that makes people switch consultancies."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400 inline-block"></span>
-                        <span class="font-bold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full text-sm">David Okonkwo</span>
-                        <span class="text-gray-400 text-xs ml-1">CEO, NextStep Abroad</span>
+                    <div class="quote-author-row">
+                        <span class="quote-author-dot-sm"></span>
+                        <span class="quote-author-name">David Okonkwo</span>
+                        <span class="quote-author-title">CEO, NextStep Abroad</span>
                     </div>
                 </div>
 
                 <!-- Quote 4 -->
                 <div class="sa-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left text-teal-400 text-base mb-4 block"></i>
-                        <p class="text-gray-700 text-base italic leading-relaxed">"We're not losing students to better consultancies. We're losing them to consultancies that remember their names. That's it. The bar is on the floor and we're still tripping over it."</p>
+                        <i class="fas fa-quote-left quote-icon-sm" style="font-size:1rem;"></i>
+                        <p class="quote-text">"We're not losing students to better consultancies. We're losing them to consultancies that remember their names. That's it. The bar is on the floor and we're still tripping over it."</p>
                     </div>
-                    <div class="mt-6 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400 inline-block"></span>
-                        <span class="font-bold text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full text-sm">Anika Rahman</span>
-                        <span class="text-gray-400 text-xs ml-1">Founder, BridgeWay Education</span>
+                    <div class="quote-author-row">
+                        <span class="quote-author-dot-sm"></span>
+                        <span class="quote-author-name">Anika Rahman</span>
+                        <span class="quote-author-title">Founder, BridgeWay Education</span>
                     </div>
                 </div>
             </div>
@@ -942,92 +477,92 @@
     </section>
 
     <!-- 8. BIG TEXT + IMAGE -->
-    <section class="py-28 bg-white reveal">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight">
+    <section class="big-text-section reveal">
+        <div class="container-sm text-center">
+            <h2 class="big-text-title">
                 <span class="teal-gradient-text">Your Next 50 Referrals Are Already Studying Abroad.</span>
                 <br>
-                <span class="text-gray-300 text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 block">Stop letting them forget who sent them there.</span>
+                <span class="big-text-subtitle">Stop letting them forget who sent them there.</span>
             </h2>
-            <div class="mt-14 max-w-4xl mx-auto reveal">
-                <div class="rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 0 40px rgba(20,184,166,0.15), 0 8px 32px rgba(0,0,0,0.1);">
-                    <div class="w-full h-80 flex items-center justify-center" style="background: linear-gradient(135deg, #0f766e, #0e7490, #1e293b);">
-                        <i class="fas fa-paper-plane text-teal-300 text-8xl opacity-25"></i>
+            <div class="big-text-image reveal">
+                <div class="big-text-image-inner">
+                    <div class="big-text-image-placeholder">
+                        <i class="fas fa-paper-plane"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. STATS BANNER — Floating Glassmorphism Cards -->
-    <section class="sa-stats-banner py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14 reveal">
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-3">
+    <!-- 9. STATS BANNER -->
+    <section class="sa-stats-banner">
+        <div class="container">
+            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+                <h2 class="stats-title">
                     <span class="typewriter">What Student Retention Actually Looks Like</span>
                 </h2>
-                <p class="text-teal-200 text-lg">Average results across consultancies partnering with Retain.</p>
+                <p class="stats-subtitle">Average results across consultancies partnering with Retain.</p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="stat-float-card p-8 text-center reveal stagger-1">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 sa-counter" data-target="4.2" data-suffix="×">0×</p>
-                    <p class="text-teal-200 font-medium">More Student Referrals</p>
+            <div class="stats-grid">
+                <div class="stat-float-card reveal stagger-1">
+                    <p class="stat-value sa-counter" data-target="4.2" data-suffix="×">0×</p>
+                    <p class="stat-label">More Student Referrals</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-2">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 sa-counter" data-target="53" data-suffix="%">0%</p>
-                    <p class="text-teal-200 font-medium">Revenue Per Student Growth</p>
+                <div class="stat-float-card reveal stagger-2">
+                    <p class="stat-value sa-counter" data-target="53" data-suffix="%">0%</p>
+                    <p class="stat-label">Revenue Per Student Growth</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-3">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 sa-counter" data-target="38" data-suffix="%">0%</p>
-                    <p class="text-teal-200 font-medium">Sibling & Family Enrollments</p>
+                <div class="stat-float-card reveal stagger-3">
+                    <p class="stat-value sa-counter" data-target="38" data-suffix="%">0%</p>
+                    <p class="stat-label">Sibling & Family Enrollments</p>
                 </div>
-                <div class="stat-float-card p-8 text-center reveal stagger-4">
-                    <p class="text-5xl lg:text-6xl font-bold text-white mb-2 sa-counter" data-target="91" data-suffix="%">0%</p>
-                    <p class="text-teal-200 font-medium">Alumni Retention Rate</p>
+                <div class="stat-float-card reveal stagger-4">
+                    <p class="stat-value sa-counter" data-target="91" data-suffix="%">0%</p>
+                    <p class="stat-label">Alumni Retention Rate</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 10. TESTIMONIALS -->
-    <section class="py-24 bg-gradient-to-br from-white via-teal-50/20 to-white relative overflow-hidden">
-        <div class="absolute top-[-5%] right-[-5%] w-[300px] h-[300px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(20,184,166,0.08),transparent 70%);filter:blur(60px);"></div>
-        <div class="absolute bottom-[-5%] left-[10%] w-[250px] h-[250px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(8,145,178,0.06),transparent 70%);filter:blur(50px);"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-teal-100/80 text-teal-700 text-xs font-bold tracking-widest uppercase mb-4">⭐ SUCCESS STORIES</span>
-                <h2 class="font-poppins text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">They <span class="gradient-headline">Stopped Losing Students.</span></h2>
-                <p class="text-gray-400 mt-4 max-w-xl mx-auto text-lg">Here's what happened next.</p>
+    <section class="testimonials-section">
+        <div class="bg-blur-1"></div>
+        <div class="bg-blur-2"></div>
+        <div class="container-md relative" style="z-index:10;">
+            <div class="text-center reveal" style="margin-bottom:4rem;">
+                <span class="section-badge" style="margin-bottom:1rem;">⭐ SUCCESS STORIES</span>
+                <h2 class="font-poppins" style="font-size:1.875rem;font-weight:800;color:#111827;line-height:1.2;">They <span class="gradient-headline">Stopped Losing Students.</span></h2>
+                <p style="color:#9ca3af;margin-top:1rem;max-width:36rem;margin-left:auto;margin-right:auto;font-size:1.125rem;">Here's what happened next.</p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="testi-grid">
                 <div class="testi-card reveal">
-                    <div class="flex gap-2 mb-5">
-                        <i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i>
+                    <div class="testi-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 text-[1.05rem] italic leading-relaxed mb-7">"Before Retain, we had zero contact with students after their visa got approved. Now we check in during their first semester, celebrate their milestones, and guess what — 3 out of every 5 referrals come from placed students. Our spring intake went from struggling to waitlisted."</p>
-                    <div class="flex items-center gap-4 pt-5 border-t border-teal-100/60">
-                        <img src="https://picsum.photos/seed/consultant1/160/160" alt="Nadia Karim" class="w-14 h-14 rounded-full object-cover border-3 border-teal-200 shadow-md">
+                    <p class="testi-text">"Before Retain, we had zero contact with students after their visa got approved. Now we check in during their first semester, celebrate their milestones, and guess what — 3 out of every 5 referrals come from placed students. Our spring intake went from struggling to waitlisted."</p>
+                    <div class="testi-author">
+                        <img src="https://picsum.photos/seed/consultant1/160/160" alt="Nadia Karim">
                         <div>
-                            <p class="font-bold text-gray-900 text-[0.95rem]">Nadia Karim</p>
-                            <p class="text-gray-400 text-xs mt-0.5">Owner, Atlas Education Consultancy</p>
-                            <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-600 text-xs font-bold px-3 py-1 rounded-full mt-2">
-                                <i class="fas fa-arrow-up text-[0.6rem]"></i> 4.2× more referrals
+                            <p class="testi-author-name">Nadia Karim</p>
+                            <p class="testi-author-role">Owner, Atlas Education Consultancy</p>
+                            <div class="testi-badge">
+                                <i class="fas fa-arrow-up"></i> 4.2× more referrals
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testi-card reveal">
-                    <div class="flex gap-2 mb-5">
-                        <i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i><i class="fas fa-star text-amber-400 text-sm"></i>
+                    <div class="testi-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-600 text-[1.05rem] italic leading-relaxed mb-7">"We were spending a fortune on Facebook ads just to fill each intake. Retain helped us build an alumni network that now generates 40% of our new leads organically. Our cost per enrollment dropped by half and our reputation went through the roof. This isn't a CRM — it's a partner."</p>
-                    <div class="flex items-center gap-4 pt-5 border-t border-teal-100/60">
-                        <img src="https://picsum.photos/seed/consultant2/160/160" alt="Marcus Chen" class="w-14 h-14 rounded-full object-cover border-3 border-teal-200 shadow-md">
+                    <p class="testi-text">"We were spending a fortune on Facebook ads just to fill each intake. Retain helped us build an alumni network that now generates 40% of our new leads organically. Our cost per enrollment dropped by half and our reputation went through the roof. This isn't a CRM — it's a partner."</p>
+                    <div class="testi-author">
+                        <img src="https://picsum.photos/seed/consultant2/160/160" alt="Marcus Chen">
                         <div>
-                            <p class="font-bold text-gray-900 text-[0.95rem]">Marcus Chen</p>
-                            <p class="text-gray-400 text-xs mt-0.5">Managing Director, Pacific Study Group (4 branches)</p>
-                            <div class="inline-flex items-center gap-1.5 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-600 text-xs font-bold px-3 py-1 rounded-full mt-2">
-                                <i class="fas fa-arrow-up text-[0.6rem]"></i> 40% organic lead growth
+                            <p class="testi-author-name">Marcus Chen</p>
+                            <p class="testi-author-role">Managing Director, Pacific Study Group (4 branches)</p>
+                            <div class="testi-badge">
+                                <i class="fas fa-arrow-up"></i> 40% organic lead growth
                             </div>
                         </div>
                     </div>
@@ -1037,108 +572,106 @@
     </section>
 
     <!-- 11. CONTACT FORM -->
-    <section class="py-24 bg-gradient-to-br from-white via-teal-50/30 to-white relative overflow-hidden" id="contactForm">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <section class="contact-section" id="contactForm">
+        <div class="container">
+            <div class="contact-grid">
                 <!-- Left Side -->
                 <div class="reveal">
-                    <span class="text-teal-600 font-semibold text-sm tracking-wide mb-4 inline-block uppercase">GET STARTED</span>
-                    <h2 class="font-poppins text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">Let's Build Your <span class="teal-gradient-text">Student Retention Ecosystem</span></h2>
-                    <p class="text-gray-500 text-lg mb-8">One conversation. We'll show you exactly where your student relationships are leaking — and how to fix it.</p>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-search text-teal-600"></i>
+                    <span class="contact-label-top">GET STARTED</span>
+                    <h2 class="contact-title font-poppins">Let's Build Your <span class="teal-gradient-text">Student Retention Ecosystem</span></h2>
+                    <p class="contact-desc">One conversation. We'll show you exactly where your student relationships are leaking — and how to fix it.</p>
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon contact-feature-icon-teal">
+                                <i class="fas fa-search"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Personalized retention audit</h4>
-                                <p class="text-sm text-gray-500">We map your entire student lifecycle and show you where leads and alumni are falling through the cracks</p>
+                                <h4>Personalized retention audit</h4>
+                                <p>We map your entire student lifecycle and show you where leads and alumni are falling through the cracks</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-cyan-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-map text-cyan-600"></i>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon contact-feature-icon-cyan">
+                                <i class="fas fa-map"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Custom ecosystem roadmap</h4>
-                                <p class="text-sm text-gray-500">A step-by-step plan built specifically for your consultancy type and student base</p>
+                                <h4>Custom ecosystem roadmap</h4>
+                                <p>A step-by-step plan built specifically for your consultancy type and student base</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-chart-line text-emerald-600"></i>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon contact-feature-icon-emerald">
+                                <i class="fas fa-chart-line"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">ROI projection for your consultancy</h4>
-                                <p class="text-sm text-gray-500">See the enrollment impact before you commit</p>
+                                <h4>ROI projection for your consultancy</h4>
+                                <p>See the enrollment impact before you commit</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-handshake text-teal-600"></i>
+                        <div class="contact-feature">
+                            <div class="contact-feature-icon contact-feature-icon-teal">
+                                <i class="fas fa-handshake"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">No commitment required</h4>
-                                <p class="text-sm text-gray-500">Zero pressure. If we're not the right fit, we'll tell you — and point you in the right direction</p>
+                                <h4>No commitment required</h4>
+                                <p>Zero pressure. If we're not the right fit, we'll tell you — and point you in the right direction</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Right Side — Form -->
                 <div class="reveal">
-                    <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl">
-                        <h3 class="font-poppins text-xl font-bold text-white mb-6">Book Your Free Consultation</h3>
-                        <form action="/contact/" method="GET" class="space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="text-gray-400 text-sm mb-1 block">First Name</label>
-                                    <input type="text" placeholder="John" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
+                    <div class="contact-form-card">
+                        <h3 class="font-poppins">Book Your Free Consultation</h3>
+                        <form action="/contact/" method="GET" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" placeholder="John" class="form-input">
                                 </div>
-                                <div>
-                                    <label class="text-gray-400 text-sm mb-1 block">Last Name</label>
-                                    <input type="text" placeholder="Doe" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Work Email</label>
-                                <input type="email" placeholder="john@consultancy.com" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Consultancy Name</label>
-                                <input type="text" placeholder="Your Education Consultancy" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Country *</label>
-                                <div class="relative">
-                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent pr-10">
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                        <i class="fas fa-chevron-down text-gray-500"></i>
-                                    </div>
-                                    <div id="country-dropdown" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform">
-                                        <div id="country-options" class="py-2 text-gray-900"></div>
-                                    </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" placeholder="Doe" class="form-input">
                                 </div>
                             </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Phone Number</label>
-                                <div class="flex gap-2">
-                                    <div class="w-1/4">
-                                        <div class="bg-slate-800 text-teal-400 py-3 px-4 rounded-xl border border-slate-700 text-center font-medium" id="phone-code">+</div>
+                            <div class="form-group">
+                                <label>Work Email</label>
+                                <input type="email" placeholder="john@consultancy.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Consultancy Name</label>
+                                <input type="text" placeholder="Your Education Consultancy" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Country *</label>
+                                <div class="country-input-wrapper">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" style="padding-right:2.5rem;">
+                                    <div class="dropdown-arrow">
+                                        <i class="fas fa-chevron-down"></i>
                                     </div>
-                                    <div class="w-3/4">
-                                        <input type="tel" placeholder="(555) 123-4567" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent">
+                                    <div id="country-dropdown">
+                                        <div id="country-options"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <label class="text-gray-400 text-sm mb-1 block">Message (Optional)</label>
-                                <textarea rows="4" placeholder="Tell us about your consultancy and what's not working with student retention..." class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"></textarea>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="phone-row">
+                                    <div class="phone-code" id="phone-code">+</div>
+                                    <div class="phone-input-wrap">
+                                        <input type="tel" placeholder="(555) 123-4567" class="form-input">
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] cta-shimmer" style="background: linear-gradient(135deg, #14b8a6, #0891b2);">
-                                Book Your Free Consultation <i class="fas fa-arrow-right ml-2"></i>
+                            <div class="form-group">
+                                <label>Message (Optional)</label>
+                                <textarea rows="4" placeholder="Tell us about your consultancy and what's not working with student retention..." class="form-input form-textarea"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit cta-shimmer">
+                                Book Your Free Consultation <i class="fas fa-arrow-right" style="margin-left:0.5rem;"></i>
                             </button>
                         </form>
-                        <p class="text-gray-500 text-xs text-center mt-3">We'll respond within 24 hours. No spam, ever.</p>
+                        <p class="form-disclaimer">We'll respond within 24 hours. No spam, ever.</p>
                     </div>
                 </div>
             </div>
@@ -1146,303 +679,107 @@
     </section>
 
     <!-- 12. FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8 relative wave-divider">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="/lightFavicon.png" alt="Retain" class="h-7 w-7">
-                        <span class="font-poppins font-bold text-white text-lg">Retain</span>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-row">
+                        <img src="/lightFavicon.png" alt="Retain">
+                        <span class="footer-brand-name font-poppins">Retain</span>
                     </div>
-                    <p class="text-sm leading-relaxed">Your student retention growth partner. Turning one-time applicants into lifelong alumni — for study abroad consultancies and beyond.</p>
+                    <p>Your student retention growth partner. Turning one-time applicants into lifelong alumni — for study abroad consultancies and beyond.</p>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Product</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/how-it-works/" class="hover:text-teal-400 transition-colors">How It Works</a></li>
-                        <li><a href="/solutions/" class="hover:text-teal-400 transition-colors">Solutions</a></li>
-                        <li><a href="/why-retain/" class="hover:text-teal-400 transition-colors">Why Retain</a></li>
-                        <li><a href="/contact/" class="hover:text-teal-400 transition-colors">Book a Call</a></li>
+                    <h4 class="footer-heading">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/how-it-works/">How It Works</a></li>
+                        <li><a href="/solutions/">Solutions</a></li>
+                        <li><a href="/why-retain/">Why Retain</a></li>
+                        <li><a href="/contact/">Book a Call</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Industries</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/who-it-for/real-estate/" class="hover:text-teal-400 transition-colors">Real Estate</a></li>
-                        <li><a href="/who-it-for/ecommerce/" class="hover:text-teal-400 transition-colors">E-commerce & Retail</a></li>
-                        <li><a href="/who-it-for/travel-hospitality/" class="hover:text-teal-400 transition-colors">Travel & Hospitality</a></li>
-                        <li><a href="/who-it-for/food-beverage/" class="hover:text-teal-400 transition-colors">Food & Beverage</a></li>
-                        <li><a href="/who-it-for/agencies/" class="hover:text-teal-400 transition-colors">Agencies</a></li>
-                        <li><a href="/who-it-for/study-abroad/" class="text-teal-400">Study Abroad</a></li>
+                    <h4 class="footer-heading">Industries</h4>
+                    <ul class="footer-links">
+                        <li><a href="/who-it-for/real-estate/">Real Estate</a></li>
+                        <li><a href="/who-it-for/ecommerce/">E-commerce & Retail</a></li>
+                        <li><a href="/who-it-for/travel-hospitality/">Travel & Hospitality</a></li>
+                        <li><a href="/who-it-for/food-beverage/">Food & Beverage</a></li>
+                        <li><a href="/who-it-for/agencies/">Agencies</a></li>
+                        <li><a href="/who-it-for/study-abroad/" class="active">Study Abroad</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="/about/" class="hover:text-teal-400 transition-colors">About</a></li>
-                        <li><a href="https://solven.app/" class="hover:text-teal-400 transition-colors" target="_blank">Solven</a></li>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://solven.app/" target="_blank">Solven</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-sm">&copy; 2025 Retain by Solven. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-500 hover:text-teal-400 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-teal-400 transition-colors"><i class="fab fa-twitter text-lg"></i></a>
-                    <a href="#" class="text-gray-500 hover:text-teal-400 transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Retain by Solven. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Chat Widget -->
-    <script>
-    (function() {
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
-            .ripple-active::after { content: ""; position: absolute; inset: 0; background: rgba(20, 184, 166, 0.4); border-radius: 9999px; z-index: -1; animation: ripple 2s infinite; }
-            .no-scrollbar::-webkit-scrollbar { display: none; }
-            .chat-message { transform: translateY(20px); opacity: 0; transition: all 0.3s ease; display: inline-block; word-break: break-word; }
-            .chat-message.show { transform: translateY(0); opacity: 1; }
-            .typing-dots { display: inline-flex; gap: 3px; align-items: center; justify-content: center; }
-            .typing-dots span { width: 6px; height: 6px; background-color: black; border-radius: 50%; animation: blink 1.4s infinite both; }
-            .typing-dots span:nth-child(1) { animation-delay: 0s; }
-            .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-            .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-            @keyframes blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
-            .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-            #chatbot-window { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(0.8) translateY(40px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1); transform-origin: bottom right; }
-            #chatbot-window.is-active { opacity: 1; visibility: visible; pointer-events: auto; transform: scale(1) translateY(0); }
-        `;
-        document.head.appendChild(style);
-
-        let session_id = sessionStorage.getItem('chatwidget_session_id');
-        if (!session_id) { session_id = crypto.randomUUID(); sessionStorage.setItem('chatwidget_session_id', session_id); }
-
-        const container = document.createElement('div');
-        container.id = 'chatbot-container';
-        container.className = 'fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans';
-        container.innerHTML = `
-            <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
-                <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 to-cyan-400"></div>
-                    <div class="flex items-center gap-4">
-                        <div class="relative">
-                            <img src="https://ui-avatars.com/api/?name=AI&background=14b8a6&color=fff" class="w-12 h-12 rounded-full border-2 border-teal-500/30 shadow-lg">
-                            <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-teal-400 border-2 border-slate-900 rounded-full"></span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg leading-none">Aria</h4>
-                            <span class="text-xs text-teal-300 font-medium tracking-wide uppercase">AI Strategist</span>
-                        </div>
+    <!-- Chat Widget (HTML only, JS in script.js) -->
+    <div id="chatbot-container">
+        <div id="chatbot-window">
+            <div class="chat-header">
+                <div class="chat-header-bar"></div>
+                <div class="chat-header-info">
+                    <div class="chat-avatar-wrap">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=14b8a6&color=fff" class="chat-avatar" alt="AI">
+                        <span class="chat-online-dot"></span>
                     </div>
-                    <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
+                    <div>
+                        <h4 class="chat-header-name">Aria</h4>
+                        <span class="chat-header-role">AI Strategist</span>
+                    </div>
                 </div>
-                <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
-                    <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
-                </div>
-                <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
-                    <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
-                        <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
-                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                        <button type="submit" class="text-teal-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
-                    </form>
-                </div>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times"></i></button>
             </div>
-            <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none" style="background: #111827;">
-                <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition" style="color:#ffffff"></i>
-                <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50" style="color:#14b8a6"></i>
-            </button>
-        `;
-        document.body.appendChild(container);
-
-        const btn = document.getElementById('chatbot-toggle');
-        const win = document.getElementById('chatbot-window');
-        const iconMsg = document.getElementById('icon-msg');
-        const iconClose = document.getElementById('icon-close');
-        const closeBtn = document.getElementById('chatbot-close');
-
-        function toggleChat() {
-            const isActive = win.classList.contains('is-active');
-            if (isActive) {
-                win.classList.remove('is-active');
-                iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
-                iconClose.classList.add('opacity-0','-rotate-90','scale-50');
-                btn.style.background = '#111827';
-                btn.classList.add('ripple-active');
-            } else {
-                win.classList.add('is-active');
-                iconMsg.classList.add('opacity-0','rotate-90','scale-50');
-                iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
-                btn.style.background = '#111827';
-                btn.classList.remove('ripple-active');
-            }
-        }
-
-        btn.addEventListener('click', toggleChat);
-        closeBtn.addEventListener('click', toggleChat);
-
-        const form = document.getElementById('chatbot-form');
-        const input = document.getElementById('chatbot-input');
-        const messages = document.getElementById('chatbot-messages');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const text = input.value.trim();
-            if (!text) return;
-
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
-            userMsg.style.maxWidth = '80%';
-            userMsg.innerText = text;
-            messages.appendChild(userMsg);
-            requestAnimationFrame(() => userMsg.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-            input.value = '';
-
-            const typingBubble = document.createElement('div');
-            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
-            typingBubble.style.maxWidth = '80%';
-            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-            messages.appendChild(typingBubble);
-            requestAnimationFrame(() => typingBubble.classList.add('show'));
-            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-
-            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_msg: text, session_id })
-            })
-            .then(res => res.json())
-            .then(data => {
-                const aiText = data.reply || '';
-                typingBubble.innerHTML = aiText;
-                messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-            });
-        });
-    })();
-    </script>
+            <div id="chatbot-messages" class="no-scrollbar">
+                <div class="chat-timestamp">Today • Online</div>
+            </div>
+            <div class="chat-input-area">
+                <form id="chatbot-form">
+                    <input type="text" id="chatbot-input" placeholder="Type a message..."
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button type="submit"><i class="fas fa-paper-plane" style="font-size:1.125rem;"></i></button>
+                </form>
+            </div>
+        </div>
+        <button id="chatbot-toggle" class="ripple-active">
+            <i id="icon-msg" class="fas fa-comment-dots icon-transition icon-visible" style="font-size:1.5rem;color:#fff;"></i>
+            <i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden" style="font-size:1.5rem;"></i>
+        </button>
+    </div>
 
     <!-- Scripts -->
     <script src="countrycode.js"></script>
     <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-
-        // Navbar shadow on scroll
-        window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('shadow-md', window.scrollY > 20); });
-
-        // Scroll reveal
+        // Show mobile menu button on small screens via CSS media query workaround
         (function() {
-            const revealObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObs.unobserve(entry.target); }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+            var wrap = document.querySelector('.mobile-menu-btn-wrap');
+            function check() { wrap.style.display = window.innerWidth < 768 ? 'flex' : 'none'; }
+            check();
+            window.addEventListener('resize', check);
         })();
-
-        // Counter animation with spring easing
+        // Show hero stat cards on large screens
         (function() {
-            const counters = document.querySelectorAll('.sa-counter');
-            let counted = false;
-            const counterObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !counted) {
-                        counted = true;
-                        counters.forEach(el => {
-                            const end = parseFloat(el.getAttribute('data-target'));
-                            const suffix = el.getAttribute('data-suffix') || '';
-                            const isFloat = el.getAttribute('data-target').includes('.');
-                            const duration = 1800;
-                            const start = performance.now();
-                            function tick(now) {
-                                const elapsed = now - start;
-                                const progress = Math.min(elapsed / duration, 1);
-                                const c1 = 1.70158;
-                                const c3 = c1 + 1;
-                                const ease = 1 + c3 * Math.pow(progress - 1, 3) + c1 * Math.pow(progress - 1, 2);
-                                const current = ease * end;
-                                el.textContent = (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
-                                if (progress < 1) requestAnimationFrame(tick);
-                            }
-                            requestAnimationFrame(tick);
-                        });
-                    }
-                });
-            }, { threshold: 0.3 });
-            const statsBanner = document.querySelector('.sa-stats-banner');
-            if (statsBanner) counterObs.observe(statsBanner);
+            var cards = document.querySelectorAll('.hero-stat-card');
+            function check() { cards.forEach(function(c) { c.style.display = window.innerWidth >= 1024 ? 'block' : 'none'; }); }
+            check();
+            window.addEventListener('resize', check);
         })();
-
-        // Scroll-dependent process timeline
-        (function() {
-            const timeline = document.querySelector('.process-timeline');
-            const progressLine = document.querySelector('.process-timeline-progress');
-            const steps = document.querySelectorAll('.process-step');
-            const slideLeft = document.querySelector('.process-slide-left');
-            const slideRight = document.querySelector('.process-slide-right');
-            const headlineSection = slideLeft ? slideLeft.closest('.text-center') : null;
-            if (!timeline || !progressLine) return;
-
-            let ticking = false;
-            function onScroll() {
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(() => {
-                    ticking = false;
-                    const wh = window.innerHeight;
-                    const tRect = timeline.getBoundingClientRect();
-                    const tTop = tRect.top;
-                    const tHeight = tRect.height;
-                    const scrollInto = wh * 0.65 - tTop;
-                    const progress = Math.max(0, Math.min(1, scrollInto / tHeight));
-                    const lineHeight = progress * tHeight;
-                    progressLine.style.height = lineHeight + 'px';
-
-                    steps.forEach(step => {
-                        const numberEl = step.querySelector('.process-step-number');
-                        if (!numberEl) return;
-                        const numberRect = numberEl.getBoundingClientRect();
-                        const numberMid = numberRect.top + numberRect.height / 2;
-                        const numberRelative = numberMid - tRect.top;
-                        if (lineHeight >= numberRelative - 10) {
-                            step.classList.add('step-visible');
-                        } else {
-                            step.classList.remove('step-visible');
-                        }
-                    });
-
-                    if (headlineSection) {
-                        const hRect = headlineSection.getBoundingClientRect();
-                        const rawProgress = (wh - hRect.top) / (wh * 0.5);
-                        const hp = Math.max(0, rawProgress);
-                        const alpha = Math.min(1, hp * 1.2);
-                        const leftX = -80 + hp * 80;
-                        const rightX = 80 - hp * 80;
-                        if (slideLeft) { slideLeft.style.opacity = alpha; slideLeft.style.transform = 'translateX(' + leftX.toFixed(1) + 'px)'; }
-                        if (slideRight) { slideRight.style.opacity = alpha; slideRight.style.transform = 'translateX(' + rightX.toFixed(1) + 'px)'; }
-                    }
-                });
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
-        })();
-
-        // Showcase card reveal
-        const showcaseObs = new IntersectionObserver((entries) => {
-            entries.forEach((e, i) => {
-                if (e.isIntersecting) {
-                    setTimeout(() => e.target.classList.add('visible'), i * 150);
-                    showcaseObs.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el));
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
