@@ -212,9 +212,9 @@ function populateCountryOptions(countries = countryData) {
   // Add countries to dropdown
   countries.forEach((country, index) => {
     const option = document.createElement('div');
-    option.className = 'country-option px-4 py-2 cursor-pointer hover:bg-indigo-50 transition-colors duration-150 flex items-center';
+    option.className = 'country-option';
     option.setAttribute('data-index', index);
-    option.innerHTML = `${country.flag} <span class="ml-2">${country.name}</span>`;
+    option.innerHTML = `${country.flag} <span style="margin-left:0.5rem;">${country.name}</span>`;
 
     option.addEventListener('click', () => {
       selectCountry(country);
@@ -242,9 +242,9 @@ function selectCountry(country, closeDropdown = true) {
   }
 
   if (dropdown && closeDropdown) {
-    dropdown.classList.add('hidden');
-    dropdown.classList.remove('opacity-100', 'scale-100');
-    dropdown.classList.add('opacity-0', 'scale-95');
+    dropdown.classList.remove('active');
+    
+    
     isOpen = false;
   }
 }
@@ -255,13 +255,13 @@ function toggleDropdown() {
   if (!dropdown) return;
 
   if (isOpen) {
-    dropdown.classList.add('hidden');
-    dropdown.classList.remove('opacity-100', 'scale-100');
-    dropdown.classList.add('opacity-0', 'scale-95');
+    dropdown.classList.remove('active');
+    
+    
   } else {
-    dropdown.classList.remove('hidden');
-    dropdown.classList.remove('opacity-0', 'scale-95');
-    dropdown.classList.add('opacity-100', 'scale-100');
+    dropdown.classList.add('active');
+    
+    
   }
 
   isOpen = !isOpen;
@@ -311,9 +311,9 @@ function handleKeyboardNavigation(event) {
 
     case 'Escape':
       if (isOpen) {
-        dropdown.classList.add('hidden');
-        dropdown.classList.remove('opacity-100', 'scale-100');
-        dropdown.classList.add('opacity-0', 'scale-95');
+        dropdown.classList.remove('active');
+        
+        
         isOpen = false;
       }
       break;
@@ -324,12 +324,12 @@ function handleKeyboardNavigation(event) {
 function updateFocusedOption(options) {
   // Remove highlight from all options
   options.forEach(option => {
-    option.classList.remove('bg-indigo-100');
+    option.classList.remove('focused');
   });
 
   // Highlight the focused option if it exists
   if (focusedIndex >= 0 && options[focusedIndex]) {
-    options[focusedIndex].classList.add('bg-indigo-100');
+    options[focusedIndex].classList.add('focused');
     // Scroll the focused option into view
     options[focusedIndex].scrollIntoView({ block: 'nearest' });
   }
@@ -362,9 +362,9 @@ document.addEventListener('click', function (event) {
   if (isOpen &&
     !dropdown.contains(event.target) &&
     !input.contains(event.target)) {
-    dropdown.classList.add('hidden');
-    dropdown.classList.remove('opacity-100', 'scale-100');
-    dropdown.classList.add('opacity-0', 'scale-95');
+    dropdown.classList.remove('active');
+    
+    
     isOpen = false;
   }
 });
@@ -384,7 +384,7 @@ function validateForm(event) {
   // Reset previous error indicators
   const allInputs = document.querySelectorAll('input, textarea');
   allInputs.forEach(input => {
-    input.classList.remove('border-red-500');
+    input.style.borderColor = '';
     // Remove any existing error messages
     const existingError = input.parentNode.querySelector('.error-message');
     if (existingError) {
@@ -397,14 +397,14 @@ function validateForm(event) {
 
   // Validate first name
   if (!firstName.value.trim()) {
-    firstName.classList.add('border-red-500');
+    firstName.style.borderColor = '#ef4444';
     showError(firstName, 'First name is required');
     isValid = false;
   }
 
   // Validate last name
   if (!lastName.value.trim()) {
-    lastName.classList.add('border-red-500');
+    lastName.style.borderColor = '#ef4444';
     showError(lastName, 'Last name is required');
     isValid = false;
   }
@@ -412,25 +412,25 @@ function validateForm(event) {
   // Validate email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!workEmail.value.trim()) {
-    workEmail.classList.add('border-red-500');
+    workEmail.style.borderColor = '#ef4444';
     showError(workEmail, 'Work email is required');
     isValid = false;
   } else if (!emailRegex.test(workEmail.value.trim())) {
-    workEmail.classList.add('border-red-500');
+    workEmail.style.borderColor = '#ef4444';
     showError(workEmail, 'Please enter a valid email address');
     isValid = false;
   }
 
   // Validate company name
   if (!companyName.value.trim()) {
-    companyName.classList.add('border-red-500');
+    companyName.style.borderColor = '#ef4444';
     showError(companyName, 'Company name is required');
     isValid = false;
   }
 
   // Validate country
   if (!countryInput.value.trim() || countryInput.value.trim() === "Select or type a country...") {
-    countryInput.classList.add('border-red-500');
+    countryInput.style.borderColor = '#ef4444';
     showError(countryInput, 'Country is required');
     isValid = false;
   }
@@ -443,7 +443,7 @@ function validateForm(event) {
     // event.target.submit();
   } else {
     // Scroll to the first error field
-    const firstErrorField = document.querySelector('input.border-red-500, select.border-red-500');
+    const firstErrorField = document.querySelector('.error-message')?.parentNode?.querySelector('input');
     if (firstErrorField) {
       firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       firstErrorField.focus();
@@ -455,7 +455,7 @@ function validateForm(event) {
 function showError(field, message) {
   // Create error message element
   const errorDiv = document.createElement('div');
-  errorDiv.className = 'error-message text-red-500 text-xs mt-1';
+  errorDiv.className = 'error-message'; errorDiv.style.cssText = 'color:#ef4444;font-size:0.75rem;margin-top:0.25rem;';
   errorDiv.textContent = message;
 
   // Add error message after the field
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Add form submission listener
-  const formElement = document.querySelector('form.space-y-7');
+  const formElement = document.querySelector('form');
   if (formElement) {
     formElement.addEventListener('submit', validateForm);
   }

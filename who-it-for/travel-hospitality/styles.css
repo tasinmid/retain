@@ -914,6 +914,8 @@ input, textarea, button { font: inherit; }
 #country-dropdown.show { opacity: 1; transform: scale(1); visibility: visible; }
 #country-options { padding: 0.5rem 0; color: #111827; }
 
+
+
 .phone-row { display: flex; gap: 0.5rem; }
 .phone-code {
     width: 25%; background: #1e293b; color: #38bdf8;
@@ -1100,3 +1102,32 @@ input, textarea, button { font: inherit; }
 .chat-toggle .icon-hidden { opacity: 0; transform: rotate(-90deg) scale(0.5); }
 .chat-toggle .icon-visible { opacity: 1; transform: rotate(0) scale(1); }
 .chat-toggle i { font-size: 1.5rem; }
+
+/* === Country Dropdown === */
+#country-dropdown {
+    position: absolute; z-index: 10; width: 100%; margin-top: 0.25rem;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-height: 15rem; overflow: auto;
+    opacity: 0; transform: scale(0.95);
+    transition: all 0.2s ease-in-out;
+    visibility: hidden;
+    pointer-events: none;
+}
+#country-dropdown.active {
+    opacity: 1; transform: scale(1);
+    visibility: visible;
+    pointer-events: auto;
+}
+#country-options { padding: 0.5rem 0; color: #111827; }
+.country-option {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.country-option:hover, .country-option.focused {
+    background: #f0fdfa;
+}

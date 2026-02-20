@@ -359,39 +359,38 @@ section { scroll-snap-align: start; }
 .chat-bubble-left {
     background: #ffffff;
     color: #1f2937;
-    border: none;
-    border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    border: 1.5px solid rgba(0,0,0,0.15);
+    border-radius: 1.5rem 1.5rem 1.5rem 0.35rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.06);
 }
 .chat-bubble-left:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08);
+    border-color: rgba(0,0,0,0.25);
 }
 .chat-bubble-left::after {
-    left: -6px;
-    width: 12px;
-    height: 12px;
+    left: -7px;
+    width: 14px;
+    height: 14px;
     background: #ffffff;
-    border-radius: 0 0 0 0;
     clip-path: polygon(100% 0, 0 100%, 100% 100%);
 }
 
 .chat-bubble-right {
-    background: #111827;
-    color: #f1f5f9;
-    border: none;
-    border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08);
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 1.5rem 1.5rem 0.35rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.15);
 }
 .chat-bubble-right:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 12px 32px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 12px 32px rgba(0,0,0,0.2);
 }
-.chat-bubble-right .font-semibold { color: #fff; }
+.chat-bubble-right .font-semibold { color: #fff; font-weight: 600; }
 .chat-bubble-right::after {
-    right: -6px;
-    width: 12px;
-    height: 12px;
-    background: #111827;
-    border-radius: 0;
+    right: -7px;
+    width: 14px;
+    height: 14px;
+    background: #0f172a;
     clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
 
@@ -555,7 +554,7 @@ section { scroll-snap-align: start; }
 .solution-title {
     text-transform: uppercase; font-weight: 700; font-size: 1.5rem;
     color: white; margin-bottom: 1rem; font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.025em; line-height: 1.75;
+    letter-spacing: 0.025em; line-height: 1.3;
 }
 @media (min-width: 640px) { .solution-title { font-size: 2.25rem; } }
 
@@ -720,6 +719,7 @@ section { scroll-snap-align: start; }
 .integration-heading {
     font-size: 2.25rem; font-weight: 700; color: #111827;
     margin-bottom: 1.5rem; font-family: 'Google Sans', sans-serif;
+    line-height: 1.1;
 }
 @media (min-width: 640px) { .integration-heading { font-size: 3rem; } }
 @media (min-width: 768px) { .integration-heading { font-size: 3.75rem; } }
@@ -1129,18 +1129,9 @@ section { scroll-snap-align: start; }
 }
 .country-chevron i { color: #6b7280; }
 
-#country-dropdown {
-    position: absolute; z-index: 10; width: 100%; margin-top: 0.25rem;
-    background: white; border: 1px solid #e5e7eb; border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-    max-height: 15rem; overflow: auto;
-    display: none; opacity: 0; transform: scale(0.95);
-    transition: all 0.2s ease-in-out;
-}
-#country-dropdown.is-open {
-    display: block; opacity: 1; transform: scale(1);
-}
-#country-options { padding: 0.5rem 0; color: #111827; }
+/* old country dropdown rules removed — using #country-dropdown.active below */
+
+
 
 .form-submit {
     width: 100%; background: linear-gradient(to right, #4f46e5, #9333ea);
@@ -1326,3 +1317,32 @@ section { scroll-snap-align: start; }
 /* ===== NO-SCROLLBAR UTILITY ===== */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === Country Dropdown === */
+#country-dropdown {
+    position: absolute; z-index: 10; width: 100%; margin-top: 0.25rem;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-height: 15rem; overflow: auto;
+    opacity: 0; transform: scale(0.95);
+    transition: all 0.2s ease-in-out;
+    visibility: hidden;
+    pointer-events: none;
+}
+#country-dropdown.active {
+    opacity: 1; transform: scale(1);
+    visibility: visible;
+    pointer-events: auto;
+}
+#country-options { padding: 0.5rem 0; color: #111827; }
+.country-option {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.country-option:hover, .country-option.focused {
+    background: #f0fdfa;
+}

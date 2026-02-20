@@ -108,7 +108,8 @@ input, select, textarea { font-family: inherit; }
 .navbar-by-solven { color: #6b7280; font-size: 0.875rem; margin-left: 0.5rem; transition: color 0.3s; }
 .navbar-by-solven:hover { color: #374151; }
 
-.nav-links { display: none; align-items: center; gap: 2.5rem; }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; }
+@media (max-width: 767px) { .nav-links { display: none !important; } }
 .nav-links a.nav-link { color: #374151; font-weight: 500; }
 .nav-links a.nav-link:hover { color: #111827; }
 
@@ -914,6 +915,8 @@ select.form-input { appearance: auto; }
 #country-dropdown.show { opacity: 1; transform: scale(1); visibility: visible; }
 #country-options { padding: 0.5rem 0; color: #111827; }
 
+
+
 .phone-row { display: flex; gap: 0.5rem; }
 .phone-code {
     width: 25%; background: #1e293b; color: #a78bfa;
@@ -1088,3 +1091,32 @@ select.form-input { appearance: auto; }
     z-index: 10000; background: #111827; border: none; cursor: pointer;
 }
 #chatbot-toggle i { position: absolute; }
+
+/* === Country Dropdown === */
+#country-dropdown {
+    position: absolute; z-index: 10; width: 100%; margin-top: 0.25rem;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-height: 15rem; overflow: auto;
+    opacity: 0; transform: scale(0.95);
+    transition: all 0.2s ease-in-out;
+    visibility: hidden;
+    pointer-events: none;
+}
+#country-dropdown.active {
+    opacity: 1; transform: scale(1);
+    visibility: visible;
+    pointer-events: auto;
+}
+#country-options { padding: 0.5rem 0; color: #111827; }
+.country-option {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.country-option:hover, .country-option.focused {
+    background: #f0fdfa;
+}

@@ -109,7 +109,8 @@ input, textarea, button { font-family: inherit; }
 .navbar-by-solven { color: #6b7280; font-size: 0.875rem; margin-left: 0.5rem; transition: color 0.3s; }
 .navbar-by-solven:hover { color: #374151; }
 
-.nav-links { display: none; align-items: center; gap: 2.5rem; }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; }
+@media (max-width: 767px) { .nav-links { display: none !important; } }
 .nav-link { position: relative; padding-bottom: 2px; color: #374151; font-weight: 500; }
 .nav-link::after {
     content: '';
@@ -905,6 +906,21 @@ input, textarea, button { font-family: inherit; }
     pointer-events: auto;
 }
 #country-options { padding: 0.5rem 0; color: #111827; }
+.country-option {
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.country-option:hover, .country-option.focused {
+    background: #f0fdfa;
+}
+.country-option .flag { font-size: 1.1rem; }
+.country-option .name { flex: 1; }
+.country-option .code { color: #9ca3af; font-size: 0.8rem; }
 
 /* Phone row */
 .phone-row { display: flex; gap: 0.5rem; }

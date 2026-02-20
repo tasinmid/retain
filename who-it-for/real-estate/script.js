@@ -2,17 +2,19 @@
 // MOBILE MENU
 // =====================
 (function() {
-    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menuBtn = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     if (!menuBtn || !mobileMenu) return;
 
     menuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('open');
+        var wrapper = document.getElementById('mobile-menu');
+        if (wrapper) wrapper.classList.toggle('open');
     });
 
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
+    var wrapper = document.getElementById('mobile-menu');
+    if (wrapper) wrapper.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
-            mobileMenu.classList.remove('open');
+            wrapper.classList.remove('open');
         });
     });
 })();
@@ -21,7 +23,7 @@
 // NAVBAR SHADOW ON SCROLL
 // =====================
 (function() {
-    var nav = document.querySelector('.navbar');
+    var nav = document.querySelector('.main-nav');
     if (!nav) return;
     window.addEventListener('scroll', function() {
         if (window.scrollY > 20) {

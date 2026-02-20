@@ -3,128 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retain - Customer Loyalty Systems</title>
+    <title>Solutions — Retain</title>
+    <meta name="description" content="Retain builds and operates complete customer retention systems. One integrated platform — installed, operated, and optimized for your business.">
     <link rel="icon" type="image/png" href="/darkFavicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <div class="navbar-logo">
-                <a href="/home/" class="navbar-logo" style="display:flex;align-items:baseline;">
-                    <img src="/lightFavicon.png" alt="Retain Logo">
-                    <span class="navbar-logo-text">Retain</span>
+    <nav class="main-nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <a href="/home/" class="nav-brand-link">
+                    <img src="/lightFavicon.png" alt="Retain Logo" class="nav-brand-logo">
+                    <span class="nav-brand-name">Retain</span>
                 </a>
-                <a href="https://solven.app/" class="navbar-logo-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
+                <a href="https://solven.app/" class="nav-brand-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
             </div>
-            <div class="navbar-links">
+            <div class="nav-links">
                 <a href="/home/" class="nav-link">Home</a>
                 <a href="/about/" class="nav-link">About</a>
                 <a href="/solutions/" class="nav-link active">Solutions</a>
                 <div class="nav-dropdown">
-                    <button class="nav-dropdown-btn">Who It's For <i class="fas fa-chevron-down"></i></button>
+                    <button class="nav-dropdown-btn">
+                        Who It's For
+                        <i class="fas fa-chevron-down chevron-icon"></i>
+                    </button>
                     <div class="nav-dropdown-menu">
-                        <a href="/who-it-for/real-estate/" class="nav-dropdown-item"><i class="fas fa-home icon-blue"></i> Real Estate</a>
-                        <a href="/who-it-for/ecommerce/" class="nav-dropdown-item"><i class="fas fa-shopping-bag icon-amber"></i> E-commerce & Retail</a>
-                        <a href="/who-it-for/travel-hospitality/" class="nav-dropdown-item"><i class="fas fa-plane icon-sky"></i> Travel & Hospitality</a>
-                        <a href="/who-it-for/food-beverage/" class="nav-dropdown-item"><i class="fas fa-utensils icon-rose"></i> Food & Beverage</a>
-                        <a href="/who-it-for/agencies/" class="nav-dropdown-item"><i class="fas fa-briefcase icon-violet"></i> Agencies</a>
-                        <a href="/who-it-for/study-abroad/" class="nav-dropdown-item"><i class="fas fa-graduation-cap icon-teal"></i> Study Abroad</a>
+                        <a href="/who-it-for/real-estate/" class="nav-dropdown-item hover-blue">
+                            <i class="fas fa-home dropdown-icon blue"></i> Real Estate
+                        </a>
+                        <a href="/who-it-for/ecommerce/" class="nav-dropdown-item hover-amber">
+                            <i class="fas fa-shopping-bag dropdown-icon amber"></i> E-commerce &amp; Retail
+                        </a>
+                        <a href="/who-it-for/travel-hospitality/" class="nav-dropdown-item hover-sky">
+                            <i class="fas fa-plane dropdown-icon sky"></i> Travel &amp; Hospitality
+                        </a>
+                        <a href="/who-it-for/food-beverage/" class="nav-dropdown-item hover-rose">
+                            <i class="fas fa-utensils dropdown-icon rose"></i> Food &amp; Beverage
+                        </a>
+                        <a href="/who-it-for/agencies/" class="nav-dropdown-item hover-violet">
+                            <i class="fas fa-briefcase dropdown-icon violet"></i> Agencies
+                        </a>
+                        <a href="/who-it-for/study-abroad/" class="nav-dropdown-item hover-teal">
+                            <i class="fas fa-graduation-cap dropdown-icon teal"></i> Study Abroad
+                        </a>
                     </div>
                 </div>
                 <a href="/why-retain/" class="nav-link">Why Retain</a>
-                <a href="/contact/" class="navbar-cta">Book a Call</a>
+                <a href="/contact/" class="nav-cta">Book a Call</a>
             </div>
-            <button id="mobile-menu-button" class="mobile-menu-btn">
-                <span class="sr-only">Open main menu</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-            </button>
+            <div class="mobile-nav-btn-wrapper">
+                <button id="mobile-menu-button" class="mobile-menu-btn">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div id="mobile-menu" class="mobile-menu">
+
+        <div class="mobile-menu-wrapper" id="mobile-menu">
             <div class="mobile-menu-inner">
-                <a href="/home/" class="mobile-nav-link">Home</a>
-                <a href="/about/" class="mobile-nav-link">About</a>
-                <a href="/solutions/" class="mobile-nav-link">Solutions</a>
-                <div class="mobile-nav-sub">
-                    <p class="mobile-nav-group-label">Who It's For</p>
-                    <a href="/who-it-for/real-estate/" class="mobile-nav-sub-link hover-blue">Real Estate</a>
-                    <a href="/who-it-for/ecommerce/" class="mobile-nav-sub-link hover-amber">E-commerce & Retail</a>
-                    <a href="/who-it-for/travel-hospitality/" class="mobile-nav-sub-link hover-sky">Travel & Hospitality</a>
-                    <a href="/who-it-for/food-beverage/" class="mobile-nav-sub-link hover-rose">Food & Beverage</a>
-                    <a href="/who-it-for/agencies/" class="mobile-nav-sub-link hover-violet">Agencies</a>
-                    <a href="/who-it-for/study-abroad/" class="mobile-nav-sub-link hover-teal">Study Abroad</a>
+                <div class="mobile-nav-items">
+                    <a href="/home/" class="mobile-nav-link">Home</a>
+                    <a href="/about/" class="mobile-nav-link">About</a>
+                    <a href="/solutions/" class="mobile-nav-link active-mobile">Solutions</a>
+                    <div class="mobile-sub-nav">
+                        <p class="mobile-sub-label">Who It's For</p>
+                        <a href="/who-it-for/real-estate/" class="mobile-sub-link hover-blue">Real Estate</a>
+                        <a href="/who-it-for/ecommerce/" class="mobile-sub-link hover-amber">E-commerce &amp; Retail</a>
+                        <a href="/who-it-for/travel-hospitality/" class="mobile-sub-link hover-sky">Travel &amp; Hospitality</a>
+                        <a href="/who-it-for/food-beverage/" class="mobile-sub-link hover-rose">Food &amp; Beverage</a>
+                        <a href="/who-it-for/agencies/" class="mobile-sub-link hover-violet">Agencies</a>
+                        <a href="/who-it-for/study-abroad/" class="mobile-sub-link hover-teal">Study Abroad</a>
+                    </div>
+                    <a href="/why-retain/" class="mobile-nav-link">Why Retain</a>
+                    <a href="/contact/" class="mobile-nav-cta">Book a Call</a>
                 </div>
-                <a href="/why-retain/" class="mobile-nav-link">Why Retain</a>
-                <a href="/contact/" class="mobile-cta">Book a Call</a>
             </div>
         </div>
     </nav>
 
-    <!-- Solutions Page -->
-    <section>
-        <div class="solutions-wrapper">
-            <div class="solutions-header">
-                <h2 class="solutions-title">One integrated system</h2>
-                <p class="solutions-subtitle">Everything works together as parts of a single retention engine</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 class="solution-card-title">System Installation & Integration</h3>
-                    <div class="solution-features">
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Unified customer data architecture</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Intelligent workflow design</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Seamless team integration</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Custom journey mapping</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3 class="solution-card-title">Ongoing Operation & Optimization</h3>
-                    <div class="solution-features">
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Monthly system operation</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>AI-assisted communication</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Team training & adoption</span>
-                        </div>
-                        <div class="solution-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Performance analytics & growth</span>
-                        </div>
-                    </div>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content reveal">
+                <p class="hero-label">Solutions</p>
+                <h1 class="hero-title">One system.<br>Every touchpoint.<br>Zero guesswork.</h1>
+                <p class="hero-subtitle">We don't sell you software and wish you luck. We build, install, and operate your entire customer retention engine — so your revenue compounds instead of resets.</p>
+                <div class="hero-actions">
+                    <a href="/contact/" class="btn-primary">Book a Call <i class="fas fa-arrow-right"></i></a>
+                    <a href="#how-it-works" class="btn-secondary">See how it works</a>
                 </div>
             </div>
-            <div class="solutions-quote">
-                <p>"We don't sell tools. We build and operate complete customer loyalty systems that deliver measurable business outcomes."</p>
+        </div>
+    </section>
+
+    <!-- The System Overview -->
+    <section class="system-overview">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">The Retain System</h2>
+                <p class="section-subtitle">Six integrated modules working as one retention engine. Each part feeds the next — creating a compounding cycle of customer intelligence, engagement, and growth.</p>
             </div>
-            <div class="solutions-back">
-                <a href="/home/">← Back to Home</a>
+
+            <div class="system-grid">
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="system-card-title">Customer Intelligence</h3>
+                    <p class="system-card-desc">Unified profiles built from every interaction. Know who your customers are, what they want, and when they're about to leave.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> Unified customer profiles</li>
+                        <li><i class="fas fa-check"></i> Behavioral tracking & scoring</li>
+                        <li><i class="fas fa-check"></i> Predictive churn detection</li>
+                        <li><i class="fas fa-check"></i> Smart segmentation</li>
+                    </ul>
+                </div>
+
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="system-card-title">Automated Engagement</h3>
+                    <p class="system-card-desc">The right message, right channel, right moment. AI-powered sequences that feel personal — because they are.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> Lifecycle campaign engine</li>
+                        <li><i class="fas fa-check"></i> AI-crafted messaging</li>
+                        <li><i class="fas fa-check"></i> Multi-channel delivery</li>
+                        <li><i class="fas fa-check"></i> Smart follow-up triggers</li>
+                    </ul>
+                </div>
+
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="system-card-title">Workflow Automation</h3>
+                    <p class="system-card-desc">Custom workflows that replace manual processes. From lead nurture to win-back — every journey is mapped and automated.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> Custom journey mapping</li>
+                        <li><i class="fas fa-check"></i> Intelligent workflow design</li>
+                        <li><i class="fas fa-check"></i> Event-based triggers</li>
+                        <li><i class="fas fa-check"></i> Cross-channel orchestration</li>
+                    </ul>
+                </div>
+
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="system-card-title">Analytics & Reporting</h3>
+                    <p class="system-card-desc">Real-time visibility into what's working. Track retention, revenue, and engagement — all in one dashboard.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> Real-time dashboards</li>
+                        <li><i class="fas fa-check"></i> ROI & revenue tracking</li>
+                        <li><i class="fas fa-check"></i> Cohort & trend analysis</li>
+                        <li><i class="fas fa-check"></i> Custom report builder</li>
+                    </ul>
+                </div>
+
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="system-card-title">Integration Hub</h3>
+                    <p class="system-card-desc">Connect everything. CRM, email, SMS, social, POS — we wire it all into one unified ecosystem that actually talks to each other.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> CRM & POS integration</li>
+                        <li><i class="fas fa-check"></i> Email & SMS platforms</li>
+                        <li><i class="fas fa-check"></i> Social media channels</li>
+                        <li><i class="fas fa-check"></i> Custom API connections</li>
+                    </ul>
+                </div>
+
+                <div class="system-card reveal">
+                    <div class="system-card-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="system-card-title">Managed Operations</h3>
+                    <p class="system-card-desc">We don't just build it — we run it. Monthly optimization, campaign management, and performance tuning by our team.</p>
+                    <ul class="system-card-features">
+                        <li><i class="fas fa-check"></i> Dedicated retention team</li>
+                        <li><i class="fas fa-check"></i> Monthly optimization cycles</li>
+                        <li><i class="fas fa-check"></i> Team training & adoption</li>
+                        <li><i class="fas fa-check"></i> Ongoing strategy refinement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">How it works</h2>
+                <p class="section-subtitle">From zero to fully operational retention system in four phases.</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step reveal">
+                    <div class="process-step-number">01</div>
+                    <div class="process-step-content">
+                        <h3>Discover</h3>
+                        <p>We audit your current stack, customer data, and retention gaps. We map every touchpoint and find where customers are slipping away.</p>
+                    </div>
+                </div>
+
+                <div class="process-connector reveal"></div>
+
+                <div class="process-step reveal">
+                    <div class="process-step-number">02</div>
+                    <div class="process-step-content">
+                        <h3>Install</h3>
+                        <p>We build your custom retention architecture. Data pipelines, integrations, workflows, and automations — all designed specifically for your business.</p>
+                    </div>
+                </div>
+
+                <div class="process-connector reveal"></div>
+
+                <div class="process-step reveal">
+                    <div class="process-step-number">03</div>
+                    <div class="process-step-content">
+                        <h3>Operate</h3>
+                        <p>Our team manages your system day-to-day. Campaigns launch, sequences fire, follow-ups happen — automatically and with human oversight.</p>
+                    </div>
+                </div>
+
+                <div class="process-connector reveal"></div>
+
+                <div class="process-step reveal">
+                    <div class="process-step-number">04</div>
+                    <div class="process-step-content">
+                        <h3>Optimize</h3>
+                        <p>Monthly reviews, A/B testing, and performance tuning. We continuously refine your system based on real data — so results compound over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Makes Us Different -->
+    <section class="comparison">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Not another SaaS tool</h2>
+                <p class="section-subtitle">Most companies sell you software. We build and run your entire retention operation.</p>
+            </div>
+
+            <div class="comparison-table reveal">
+                <div class="comparison-header">
+                    <div class="comparison-label"></div>
+                    <div class="comparison-col comparison-col-them">Typical SaaS Tools</div>
+                    <div class="comparison-col comparison-col-us">Retain</div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-label">Setup</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> Self-service onboarding</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> Custom-built for your business</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Operation</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> You figure it out</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> We run it for you</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Strategy</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> Generic templates</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> Tailored to your industry</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Optimization</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> You analyze the data</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> Monthly performance reviews</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Support</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> Ticket system</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> Dedicated retention team</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Results</div>
+                    <div class="comparison-col comparison-col-them"><i class="fas fa-times"></i> Depends on your effort</div>
+                    <div class="comparison-col comparison-col-us"><i class="fas fa-check"></i> Guaranteed outcomes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid reveal">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="3.2">0</div>
+                    <div class="stat-suffix">x</div>
+                    <p class="stat-label">Average increase in customer lifetime value</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="67">0</div>
+                    <div class="stat-suffix">%</div>
+                    <p class="stat-label">Reduction in customer churn rate</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="42">0</div>
+                    <div class="stat-suffix">%</div>
+                    <p class="stat-label">Increase in repeat purchase rate</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-suffix">wks</div>
+                    <p class="stat-label">Average time to full system deployment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2 class="cta-title">Ready to build your retention engine?</h2>
+                <p class="cta-subtitle">Stop losing customers to neglect. Let's build a system that turns one-time buyers into lifelong advocates.</p>
+                <a href="/contact/" class="btn-primary btn-lg">Book Your Free Consultation <i class="fas fa-arrow-right"></i></a>
+                <p class="cta-note">No commitment. No pressure. Just a conversation about your growth.</p>
             </div>
         </div>
     </section>
@@ -134,10 +344,10 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <span class="footer-brand-name">Retain</span>
-                <p class="footer-brand-sub">Building customer loyalty systems</p>
+                <p class="footer-brand-tagline">Building customer loyalty systems</p>
             </div>
             <div class="footer-copy">
-                <p>© 2026 Retain. All rights reserved.</p>
+                <p>&copy; 2026 Retain. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -1,6 +1,6 @@
 // ========== MOBILE MENU ==========
 (function() {
-    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menuBtn = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     if (!menuBtn || !mobileMenu) return;
 
@@ -16,7 +16,7 @@
 
 // ========== NAVBAR SHADOW ON SCROLL ==========
 (function() {
-    var nav = document.querySelector('.navbar');
+    var nav = document.querySelector('.main-nav');
     if (!nav) return;
     window.addEventListener('scroll', function() {
         if (window.scrollY > 20) {

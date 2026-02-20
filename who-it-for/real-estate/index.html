@@ -12,78 +12,79 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-inner">
-            <div class="navbar-brand">
-                <a href="/home/">
-                    <img src="/lightFavicon.png" alt="Retain Logo">
-                    <span class="navbar-brand-name">Retain</span>
+    <nav class="main-nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <a href="/home/" class="nav-brand-link">
+                    <img src="/lightFavicon.png" alt="Retain Logo" class="nav-brand-logo">
+                    <span class="nav-brand-name">Retain</span>
                 </a>
-                <a href="https://solven.app/" class="navbar-brand-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
+                <a href="https://solven.app/" class="nav-brand-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
             </div>
-            <div class="navbar-links">
+            <div class="nav-links">
                 <a href="/home/" class="nav-link">Home</a>
                 <a href="/about/" class="nav-link">About</a>
                 <a href="/solutions/" class="nav-link">Solutions</a>
-                <div class="dropdown">
-                    <button class="dropdown-btn nav-link">
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">
                         Who It's For
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-down chevron-icon"></i>
                     </button>
-                    <div class="dropdown-menu">
-                        <a href="/who-it-for/real-estate/" class="dropdown-item-active">
-                            <i class="fas fa-building icon-emerald"></i>
-                            Real Estate
+                    <div class="nav-dropdown-menu">
+                        <a href="/who-it-for/real-estate/" class="nav-dropdown-item hover-blue active-dropdown">
+                            <i class="fas fa-home dropdown-icon blue"></i> Real Estate
                         </a>
-                        <a href="/who-it-for/ecommerce/">
-                            <i class="fas fa-shopping-bag icon-amber"></i>
-                            E-commerce &amp; Retail
+                        <a href="/who-it-for/ecommerce/" class="nav-dropdown-item hover-amber">
+                            <i class="fas fa-shopping-bag dropdown-icon amber"></i> E-commerce &amp; Retail
                         </a>
-                        <a href="/who-it-for/travel-hospitality/">
-                            <i class="fas fa-plane icon-sky"></i>
-                            Travel &amp; Hospitality
+                        <a href="/who-it-for/travel-hospitality/" class="nav-dropdown-item hover-sky">
+                            <i class="fas fa-plane dropdown-icon sky"></i> Travel &amp; Hospitality
                         </a>
-                        <a href="/who-it-for/food-beverage/">
-                            <i class="fas fa-utensils icon-rose"></i>
-                            Food &amp; Beverage
+                        <a href="/who-it-for/food-beverage/" class="nav-dropdown-item hover-rose">
+                            <i class="fas fa-utensils dropdown-icon rose"></i> Food &amp; Beverage
                         </a>
-                        <a href="/who-it-for/agencies/">
-                            <i class="fas fa-briefcase icon-violet"></i>
-                            Agencies
+                        <a href="/who-it-for/agencies/" class="nav-dropdown-item hover-violet">
+                            <i class="fas fa-briefcase dropdown-icon violet"></i> Agencies
                         </a>
-                        <a href="/who-it-for/study-abroad/">
-                            <i class="fas fa-graduation-cap icon-teal"></i>
-                            Study Abroad
+                        <a href="/who-it-for/study-abroad/" class="nav-dropdown-item hover-teal">
+                            <i class="fas fa-graduation-cap dropdown-icon teal"></i> Study Abroad
                         </a>
                     </div>
                 </div>
                 <a href="/why-retain/" class="nav-link">Why Retain</a>
-                <a href="/contact/" class="btn-primary">Book a Call</a>
+                <a href="/contact/" class="nav-cta">Book a Call</a>
             </div>
-            <div class="mobile-menu-btn-wrap">
-                <button id="mobile-menu-btn" class="mobile-menu-btn">
+            <div class="mobile-nav-btn-wrapper">
+                <button id="mobile-menu-button" class="mobile-menu-btn">
                     <span class="sr-only">Open main menu</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
         </div>
 
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="/home/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/solutions/">Solutions</a>
-            <div class="mobile-menu-sub">
-                <p class="mobile-menu-sub-title">Who It's For</p>
-                <a href="/who-it-for/real-estate/" class="mobile-menu-active">Real Estate</a>
-                <a href="/who-it-for/ecommerce/">E-commerce &amp; Retail</a>
-                <a href="/who-it-for/travel-hospitality/">Travel &amp; Hospitality</a>
-                <a href="/who-it-for/food-beverage/">Food &amp; Beverage</a>
-                <a href="/who-it-for/agencies/">Agencies</a>
+        <div class="mobile-menu-wrapper" id="mobile-menu">
+            <div class="mobile-menu-inner">
+                <div class="mobile-nav-items">
+                    <a href="/home/" class="mobile-nav-link">Home</a>
+                    <a href="/about/" class="mobile-nav-link">About</a>
+                    <a href="/solutions/" class="mobile-nav-link">Solutions</a>
+                    <div class="mobile-sub-nav">
+                        <p class="mobile-sub-label">Who It's For</p>
+                        <a href="/who-it-for/real-estate/" class="mobile-sub-link hover-blue active-mobile">Real Estate</a>
+                        <a href="/who-it-for/ecommerce/" class="mobile-sub-link hover-amber">E-commerce &amp; Retail</a>
+                        <a href="/who-it-for/travel-hospitality/" class="mobile-sub-link hover-sky">Travel &amp; Hospitality</a>
+                        <a href="/who-it-for/food-beverage/" class="mobile-sub-link hover-rose">Food &amp; Beverage</a>
+                        <a href="/who-it-for/agencies/" class="mobile-sub-link hover-violet">Agencies</a>
+                        <a href="/who-it-for/study-abroad/" class="mobile-sub-link hover-teal">Study Abroad</a>
+                    </div>
+                    <a href="/why-retain/" class="mobile-nav-link">Why Retain</a>
+                    <a href="/contact/" class="mobile-nav-cta">Book a Call</a>
+                </div>
             </div>
-            <a href="/why-retain/">Why Retain</a>
-            <a href="/contact/" class="mobile-menu-cta">Book a Call</a>
         </div>
     </nav>
 
@@ -340,7 +341,7 @@
                 <span class="section-badge">
                     <i class="fas fa-desktop" style="color:#10b981;"></i> Platform Preview
                 </span>
-                <h2 class="section-title" style="font-size:1.875rem;font-weight:800;margin-top:0.5rem;margin-bottom:1.25rem;line-height:1.2;">See the <span class="gradient-headline">Ecosystem</span> in Action</h2>
+                <h2 class="section-title" style="font-size:2.75rem;font-weight:800;margin-top:0.5rem;margin-bottom:1.25rem;line-height:1.15;">See the <span class="gradient-headline">Ecosystem</span> in Action</h2>
                 <p class="section-subtitle" style="max-width:42rem;font-size:1.125rem;letter-spacing:0.025em;">Real screens. Real workflows. Real results.</p>
             </div>
             <div class="showcase-grid">

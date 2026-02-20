@@ -203,3 +203,5 @@ document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el
         });
     });
 })();
+
+// removed — country dropdown handled by countrycode.js
