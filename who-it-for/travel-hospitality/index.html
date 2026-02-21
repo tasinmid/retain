@@ -15,7 +15,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <div class="flex items-center">
+            <div class="navbar-brand-row">
                 <a href="/home/" class="navbar-logo">
                     <img src="/lightFavicon.png" alt="Retain Logo">
                     <span class="navbar-logo-text">Retain</span>
@@ -78,7 +78,7 @@
         <div class="floating-orb float-a orb-1"></div>
         <div class="floating-orb float-b orb-2"></div>
         <div class="floating-orb float-a orb-3"></div>
-        <div class="container relative-z10">
+        <div class="container content-layer">
             <div class="hero-grid">
                 <div class="animate-fade-in-up">
                     <span class="hero-badge">
@@ -100,10 +100,10 @@
                         </a>
                     </div>
                 </div>
-                <div class="relative animate-fade-in-up animate-delay-200">
+                <div class="hero-visual-wrap animate-fade-in-up animate-delay-200">
                     <video src="th-hero-video.mp4" autoplay loop muted playsinline poster="th-hero-hotel.png" class="hero-video"></video>
                     <div class="hero-stat-card bottom-left">
-                        <div class="flex items-center gap-3">
+                        <div class="hero-stat-row">
                             <div class="hero-stat-icon sky">
                                 <i class="fas fa-redo"></i>
                             </div>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div class="hero-stat-card top-right">
-                        <div class="flex items-center gap-2">
+                        <div class="hero-stat-detail">
                             <div class="hero-stat-icon-sm indigo">
                                 <i class="fas fa-chart-line icon-color-indigo-sm"></i>
                             </div>
@@ -136,8 +136,8 @@
         <div class="pain-blob pain-blob-3"></div>
         <div class="dot-pattern dot-pattern-positioned"></div>
 
-        <div class="container relative-z10">
-            <div class="text-center th-glass-reveal mb-5">
+        <div class="container content-layer">
+            <div class="section-intro-centered th-glass-reveal">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> The Problem
                 </span>
@@ -147,7 +147,7 @@
                 <p class="section-subtitle">They loved the stay. But nobody followed up. Next time, they booked through an OTA — as if they'd never been.</p>
             </div>
 
-            <div class="th-glass-reveal mb-3-5">
+            <div class="th-glass-reveal section-spacer-mid">
                 <div class="pain-banner">
                     <img src="th-pain-banner.png" alt="Guest walking away from hotel">
                 </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="text-center th-glass-reveal th-glass-reveal-last">
+            <div class="section-cta-centered th-glass-reveal th-glass-reveal-last">
                 <p class="pain-footer-text">You're spending more on finding new guests than keeping the ones who already loved you. That math doesn't work.</p>
                 <a href="#process" class="link-process">
                     <i class="fas fa-arrow-down pain-arrow-icon"></i>
@@ -204,7 +204,7 @@
     <!-- 3. PROCESS TIMELINE -->
     <section class="process-section" id="process">
         <div class="container">
-            <div class="text-center reveal mb-3">
+            <div class="section-header-compact reveal">
                 <span class="section-badge">
                     <i class="fas fa-cogs icon-color-sky"></i> Our Process
                 </span>
@@ -269,8 +269,8 @@
 
     <!-- 4. WITH vs WITHOUT RETAIN -->
     <section class="vs-section">
-        <div class="container relative-z10">
-            <div class="text-center reveal mb-4">
+        <div class="container content-layer">
+            <div class="section-header-block reveal">
                 <span class="vs-badge-label">Why Retain</span>
                 <h2 class="section-title section-title-mt-mb">Not Another Tool. <span class="gradient-headline">A Growth Partner.</span></h2>
                 <p class="section-subtitle section-subtitle-gray">Most platforms hand you software and wish you luck. Retain builds and runs your entire guest retention ecosystem — strategy, systems, and execution.</p>
@@ -278,7 +278,7 @@
             <div class="vs-grid">
                 <div class="th-vs-badge">VS</div>
                 <!-- Without -->
-                <div class="vs-card-dark reveal transition-delay-100">
+                <div class="vs-card-dark reveal animation-stagger-1">
                     <div class="vs-header">
                         <div class="vs-icon red"><i class="fas fa-heart-broken"></i></div>
                         <p class="vs-header-label red">Without Retain</p>
@@ -303,7 +303,7 @@
                     </ul>
                 </div>
                 <!-- With -->
-                <div class="vs-card-sky reveal transition-delay-200">
+                <div class="vs-card-sky reveal animation-stagger-2">
                     <div class="vs-card-corner"></div>
                     <div class="vs-header vs-header-z">
                         <div class="vs-icon sky"><i class="fas fa-heart"></i></div>
@@ -334,8 +334,8 @@
 
     <!-- 5. VISUAL SHOWCASE — Bento Grid -->
     <section class="showcase-section">
-        <div class="container-sm container-72">
-            <div class="text-center reveal mb-3-5">
+        <div class="section-container-narrow container-72">
+            <div class="section-header-mid reveal">
                 <span class="section-badge">
                     <i class="fas fa-desktop icon-color-sky"></i> Platform Preview
                 </span>
@@ -384,29 +384,29 @@
         <div class="th-quotes-blob"></div>
         <div class="th-quotes-dots"></div>
 
-        <div class="container-sm container-64-z10">
-            <div class="text-center reveal mb-4">
+        <div class="section-container-narrow quotes-content-layer">
+            <div class="section-header-block reveal">
                 <span class="section-badge section-badge-sky">🎙️ FROM THE TOP</span>
-                <h2 class="section-title mt-1-25">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
+                <h2 class="section-title section-title-offset">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
                 <p class="text-muted-desc">The biggest names in hospitality agree — guest retention wins.</p>
             </div>
 
             <div class="th-quotes-grid">
                 <!-- Featured quote -->
                 <div class="th-glass-quote featured reveal">
-                    <div class="flex flex-col items-center">
+                    <div class="quote-content-centered">
                         <i class="fas fa-quote-left quote-icon-featured"></i>
                         <p class="quote-text-featured">"The hotel industry has to remember that <span class="gradient-headline">the guest is the center of everything we do.</span> If we lose sight of that, we lose everything."</p>
                         <div class="featured-divider">
                             <div class="featured-icons">
                                 <div class="featured-icon-circle sky-bg"><i class="fas fa-crown"></i></div>
-                                <div class="featured-icon-circle indigo-bg ml-neg-05"><i class="fas fa-gem"></i></div>
-                                <div class="featured-icon-circle blue-bg ml-neg-05"><i class="fas fa-trophy"></i></div>
+                                <div class="featured-icon-circle indigo-bg icon-overlap-left"><i class="fas fa-gem"></i></div>
+                                <div class="featured-icon-circle blue-bg icon-overlap-left"><i class="fas fa-trophy"></i></div>
                             </div>
                             <p class="featured-divider-text">Guest-centricity is everything —<br>own it or lose it</p>
                         </div>
                     </div>
-                    <div class="quote-attribution mt-1-5">
+                    <div class="quote-attribution quote-attribution-spaced">
                         <span class="quote-dot"></span>
                         <span class="quote-author">Arne Sorenson</span>
                         <span class="quote-role">Late CEO, Marriott International</span>
@@ -471,24 +471,24 @@
     <!-- 8. STATS BANNER -->
     <section class="th-stats-banner">
         <div class="container">
-            <div class="text-center reveal mb-3-5">
+            <div class="section-header-mid reveal">
                 <h2 class="stats-title">What Guest Retention Actually Looks Like</h2>
                 <p class="stats-subtitle">Average results across hospitality brands using Retain's retention ecosystem.</p>
             </div>
             <div class="stats-grid">
-                <div class="text-center reveal stagger-1">
+                <div class="stat-item-centered reveal stagger-1">
                     <p class="stat-value th-counter" data-target="4.1" data-suffix="×">0×</p>
                     <p class="stat-label">More Repeat Bookings</p>
                 </div>
-                <div class="text-center reveal stagger-2">
+                <div class="stat-item-centered reveal stagger-2">
                     <p class="stat-value th-counter" data-target="62" data-suffix="%">0%</p>
                     <p class="stat-label">Direct Booking Growth</p>
                 </div>
-                <div class="text-center reveal stagger-3">
+                <div class="stat-item-centered reveal stagger-3">
                     <p class="stat-value th-counter" data-target="38" data-suffix="%">0%</p>
                     <p class="stat-label">Higher RevPAR</p>
                 </div>
-                <div class="text-center reveal stagger-4">
+                <div class="stat-item-centered reveal stagger-4">
                     <p class="stat-value th-counter" data-target="91" data-suffix="%">0%</p>
                     <p class="stat-label">Guest Satisfaction</p>
                 </div>
@@ -500,8 +500,8 @@
     <section class="testimonials-section">
         <div class="pain-blob testi-blob-1"></div>
         <div class="pain-blob testi-blob-2"></div>
-        <div class="container-sm container-72-z10">
-            <div class="text-center reveal mb-4">
+        <div class="section-container-narrow testimonials-content-layer">
+            <div class="section-header-block reveal">
                 <span class="section-badge">⭐ SUCCESS STORIES</span>
                 <h2 class="section-title fw-800">They <span class="gradient-headline">Stopped Losing Guests.</span></h2>
                 <p class="text-muted-sub-sm">Here's what happened next.</p>
@@ -697,7 +697,7 @@
         <div id="chatbot-window">
             <div class="chat-header">
                 <div class="chat-header-line"></div>
-                <div class="flex items-center gap-4">
+                <div class="chat-header-row">
                     <div class="chat-header-avatar">
                         <img src="https://ui-avatars.com/api/?name=AI&background=0ea5e9&color=fff" alt="Aria">
                         <span class="chat-header-status"></span>

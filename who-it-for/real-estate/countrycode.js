@@ -195,8 +195,6 @@ const countryData = [
   { name: "Zimbabwe", code: "+263", flag: "🇿🇼" }
 ];
 
-let searchBuffer = ''; // Buffer for storing typed characters
-let searchTimeout; // Timeout for resetting the search buffer
 let isOpen = false; // Track if dropdown is open
 let filteredCountries = [...countryData]; // Copy of country data for filtering
 let focusedIndex = -1; // Track focused item for keyboard navigation
@@ -379,7 +377,6 @@ function validateForm(event) {
   const workEmail = document.querySelector('input[placeholder="john@company.com"]');
   const companyName = document.querySelector('input[placeholder="Your Company"]');
   const countryInput = document.getElementById('country-input');
-  const submitButton = document.querySelector('button[type="submit"]');
 
   // Reset previous error indicators
   const allInputs = document.querySelectorAll('input, textarea');
@@ -393,7 +390,6 @@ function validateForm(event) {
   });
 
   let isValid = true;
-  let errorMessage = '';
 
   // Validate first name
   if (!firstName.value.trim()) {

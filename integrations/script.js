@@ -93,28 +93,28 @@ function renderIntegrations() {
         let iconHtml;
         if (integration.iconType === 'svg') {
             if (integration.svgInnerHtml) {
-                iconHtml = `<svg class="w-8 h-8" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg">${integration.svgInnerHtml}</svg>`;
+                iconHtml = `<svg class="integration-icon-svg" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg">${integration.svgInnerHtml}</svg>`;
             } else {
-                iconHtml = `<svg class="w-8 h-8 ${integration.iconColor}" fill="currentColor" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg"><path d="${integration.svgPath}" /></svg>`;
+                iconHtml = `<svg class="integration-icon-svg ${integration.iconColor}" fill="currentColor" viewBox="${integration.svgViewBox}" xmlns="http://www.w3.org/2000/svg"><path d="${integration.svgPath}" /></svg>`;
             }
         } else {
-            iconHtml = `<i class="${integration.iconClass} ${integration.iconColor} text-2xl"></i>`;
+            iconHtml = `<i class="${integration.iconClass} ${integration.iconColor} integration-icon-fa"></i>`;
         }
 
         let tagsHtml;
         if (integration.tags && integration.tags.length > 0) {
-            tagsHtml = `<div class="flex flex-wrap justify-center gap-1">${integration.tags.map(tag =>
-                `<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${tag.backgroundColor} ${tag.textColor} mb-1">${tag.text}</span>`
+            tagsHtml = `<div class="integration-tags">${integration.tags.map(tag =>
+                `<span class="integration-tag integration-tag-spaced ${tag.backgroundColor} ${tag.textColor}">${tag.text}</span>`
             ).join('')}</div>`;
         } else {
-            tagsHtml = `<div class="flex justify-center"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${integration.tagBackgroundColor} ${integration.tagTextColor}">${integration.tag}</span></div>`;
+            tagsHtml = `<div class="integration-tags"><span class="integration-tag ${integration.tagBackgroundColor} ${integration.tagTextColor}">${integration.tag}</span></div>`;
         }
 
         card.innerHTML = `
-            <div class="w-16 h-16 ${integration.backgroundColor} rounded-xl flex items-center justify-center mx-auto mb-4">
+            <div class="integration-icon-wrapper ${integration.backgroundColor}">
                 ${iconHtml}
             </div>
-            <h3 class="text-xl font-bold mb-2">${integration.name}</h3>
+            <h3 class="integration-card-name">${integration.name}</h3>
             <p class="card-subtitle">${integration.subtitle}</p>
             ${tagsHtml}
         `;

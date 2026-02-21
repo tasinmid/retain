@@ -318,75 +318,82 @@ img { max-width: 100%; display: block; }
 }
 @keyframes shine { 0%{ background-position:-300% center; } 100%{ background-position:300% center; } }
 
-/* ===== TAILWIND-COMPATIBLE UTILITY CLASSES (for integrations-data.js) ===== */
-/* Background colors */
-.bg-white { background-color: #fff; }
-.bg-blue-50 { background-color: #eff6ff; }
-.bg-blue-100 { background-color: #dbeafe; }
-.bg-purple-50 { background-color: #faf5ff; }
-.bg-purple-100 { background-color: #f3e8ff; }
-.bg-green-100 { background-color: #dcfce7; }
-.bg-yellow-100 { background-color: #fef9c3; }
-.bg-indigo-100 { background-color: #e0e7ff; }
-.bg-red-100 { background-color: #fee2e2; }
-.bg-teal-100 { background-color: #ccfbf1; }
-.bg-pink-100 { background-color: #fce7f3; }
-.bg-slate-100 { background-color: #f1f5f9; }
-.bg-emerald-100 { background-color: #d1fae5; }
-.bg-orange-50 { background-color: #fff7ed; }
-.bg-orange-100 { background-color: #ffedd5; }
-.bg-amber-50 { background-color: #fffbeb; }
-.bg-amber-100 { background-color: #fef3c7; }
+/* ===== INTEGRATION CARD COMPONENTS ===== */
 
-/* Text colors */
-.text-blue-400 { color: #60a5fa; }
-.text-blue-500 { color: #3b82f6; }
-.text-blue-600 { color: #2563eb; }
-.text-blue-800 { color: #1e40af; }
-.text-purple-600 { color: #9333ea; }
-.text-purple-800 { color: #6b21a8; }
-.text-pink-600 { color: #db2777; }
-.text-pink-800 { color: #9d174d; }
-.text-green-500 { color: #22c55e; }
-.text-green-600 { color: #16a34a; }
-.text-green-800 { color: #166534; }
-.text-yellow-800 { color: #854d0e; }
-.text-indigo-600 { color: #4f46e5; }
-.text-indigo-800 { color: #3730a3; }
-.text-red-800 { color: #991b1b; }
-.text-teal-800 { color: #115e59; }
-.text-slate-800 { color: #1e293b; }
-.text-emerald-800 { color: #065f46; }
-.text-orange-500 { color: #f97316; }
-.text-orange-800 { color: #9a3412; }
-.text-amber-600 { color: #d97706; }
-.text-amber-800 { color: #92400e; }
+/* Icon wrapper: the colored box holding each integration's icon */
+.integration-icon-wrapper {
+    width: 4rem; height: 4rem; border-radius: .75rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-left: auto; margin-right: auto; margin-bottom: 1rem;
+}
 
-/* Layout utilities used by renderIntegrations */
-.w-8 { width: 2rem; }
-.h-8 { height: 2rem; }
-.w-16 { width: 4rem; }
-.h-16 { height: 4rem; }
-.flex { display: flex; }
-.flex-wrap { flex-wrap: wrap; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.gap-1 { gap: .25rem; }
-.text-2xl { font-size: 1.5rem; }
-.text-xl { font-size: 1.25rem; }
-.text-xs { font-size: .75rem; }
-.font-bold { font-weight: 700; }
-.font-medium { font-weight: 500; }
-.inline-flex { display: inline-flex; }
-.px-2 { padding-left: .5rem; padding-right: .5rem; }
-.px-3 { padding-left: .75rem; padding-right: .75rem; }
-.py-1 { padding-top: .25rem; padding-bottom: .25rem; }
-.rounded-full { border-radius: 9999px; }
-.rounded-xl { border-radius: .75rem; }
-.mb-1 { margin-bottom: .25rem; }
-.mb-2 { margin-bottom: .5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mx-auto { margin-left: auto; margin-right: auto; }
+/* SVG icon inside the wrapper */
+.integration-icon-svg { width: 2rem; height: 2rem; }
+
+/* FontAwesome icon inside the wrapper */
+.integration-icon-fa { font-size: 1.5rem; }
+
+/* Card title */
+.integration-card-name { font-size: 1.25rem; font-weight: 700; margin-bottom: .5rem; }
+
+/* Tag container (flex row of tags) */
+.integration-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem; }
+
+/* Individual tag pill */
+.integration-tag {
+    display: inline-flex; align-items: center;
+    padding-left: .75rem; padding-right: .75rem;
+    padding-top: .25rem; padding-bottom: .25rem;
+    border-radius: 9999px; font-size: .75rem; font-weight: 500;
+}
+
+/* Multi-tag variant (slightly smaller horizontal padding, bottom margin) */
+.integration-tag-spaced {
+    padding-left: .5rem; padding-right: .5rem; margin-bottom: .25rem;
+}
+
+/* ===== SURFACE COLORS (background accents) ===== */
+.surface-white { background-color: #fff; }
+.surface-blue-lighter { background-color: #eff6ff; }
+.surface-blue-light { background-color: #dbeafe; }
+.surface-purple-lighter { background-color: #faf5ff; }
+.surface-purple-light { background-color: #f3e8ff; }
+.surface-green-light { background-color: #dcfce7; }
+.surface-yellow-light { background-color: #fef9c3; }
+.surface-indigo-light { background-color: #e0e7ff; }
+.surface-red-light { background-color: #fee2e2; }
+.surface-teal-light { background-color: #ccfbf1; }
+.surface-pink-light { background-color: #fce7f3; }
+.surface-slate-light { background-color: #f1f5f9; }
+.surface-emerald-light { background-color: #d1fae5; }
+.surface-orange-lighter { background-color: #fff7ed; }
+.surface-orange-light { background-color: #ffedd5; }
+.surface-amber-lighter { background-color: #fffbeb; }
+.surface-amber-light { background-color: #fef3c7; }
+
+/* ===== FOREGROUND COLORS (text/icon accents) ===== */
+.foreground-blue-light { color: #60a5fa; }
+.foreground-blue { color: #3b82f6; }
+.foreground-blue-bold { color: #2563eb; }
+.foreground-blue-dark { color: #1e40af; }
+.foreground-purple-bold { color: #9333ea; }
+.foreground-purple-dark { color: #6b21a8; }
+.foreground-pink-bold { color: #db2777; }
+.foreground-pink-dark { color: #9d174d; }
+.foreground-green { color: #22c55e; }
+.foreground-green-bold { color: #16a34a; }
+.foreground-green-dark { color: #166534; }
+.foreground-yellow-dark { color: #854d0e; }
+.foreground-indigo-bold { color: #4f46e5; }
+.foreground-indigo-dark { color: #3730a3; }
+.foreground-red-dark { color: #991b1b; }
+.foreground-teal-dark { color: #115e59; }
+.foreground-slate-dark { color: #1e293b; }
+.foreground-emerald-dark { color: #065f46; }
+.foreground-orange { color: #f97316; }
+.foreground-orange-dark { color: #9a3412; }
+.foreground-amber-bold { color: #d97706; }
+.foreground-amber-dark { color: #92400e; }
 /* Integration card */
 .integration-card {
     background: #fff; border-radius: 1rem; padding: 1.5rem;

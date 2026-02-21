@@ -377,7 +377,6 @@ function validateForm(event) {
   const workEmail = document.querySelector('input[placeholder="john@hotel.com"]');
   const companyName = document.querySelector('input[placeholder="Your Hotel Group"]');
   const countryInput = document.getElementById('country-input');
-  const submitButton = document.querySelector('button[type="submit"]');
 
   // Reset previous error indicators
   const allInputs = document.querySelectorAll('input, textarea');
@@ -391,7 +390,6 @@ function validateForm(event) {
   });
 
   let isValid = true;
-  let errorMessage = '';
 
   // Validate first name
   if (!firstName.value.trim()) {

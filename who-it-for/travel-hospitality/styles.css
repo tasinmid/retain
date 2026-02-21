@@ -13,18 +13,18 @@ input, textarea, button { font: inherit; }
 
 /* ===== UTILITIES ===== */
 .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
-.container-sm { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
-.container-md { max-width: 48rem; margin: 0 auto; }
-.text-center { text-align: center; }
-.relative { position: relative; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-4 { gap: 1rem; }
-.gap-8 { gap: 2rem; }
-.gap-12 { gap: 3rem; }
+.section-container-narrow { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+.section-container-medium { max-width: 48rem; margin: 0 auto; }
+.section-intro-centered, .section-cta-centered, .section-header-compact, .section-header-block, .section-header-mid, .stat-item-centered { text-align: center; }
+.hero-visual-wrap { position: relative; }
+/* .flex removed - merged into descriptive classes */
+/* .flex-col removed */
+/* .items-center removed */
+/* .gap-2 removed */
+/* .gap-3 removed */
+/* .gap-4 removed */
+/* .gap-8 removed */
+/* .gap-12 removed */
 .inline-flex { display: inline-flex; }
 
 /* ===== GRADIENTS & SPECIAL TEXT ===== */
@@ -1110,19 +1110,19 @@ input, textarea, button { font: inherit; }
 }
 
 /* === Utility classes to replace inline styles === */
-.relative-z10 { position: relative; z-index: 10; }
-.mb-3 { margin-bottom: 3rem; }
-.mb-3-5 { margin-bottom: 3.5rem; }
-.mb-4 { margin-bottom: 4rem; }
-.mb-5 { margin-bottom: 5rem; }
-.mt-1-25 { margin-top: 1.25rem; }
-.mt-1-5 { margin-top: 1.5rem; }
+.content-layer { position: relative; z-index: 10; }
+.section-header-compact { margin-bottom: 3rem; }
+.section-header-mid, .section-spacer-mid { margin-bottom: 3.5rem; }
+.section-header-block { margin-bottom: 4rem; }
+.section-intro-centered { margin-bottom: 5rem; }
+.section-title-offset { margin-top: 1.25rem; }
+.quote-attribution-spaced { margin-top: 1.5rem; }
 .animate-delay-200 { animation-delay: 0.2s; }
-.transition-delay-100 { transition-delay: 0.1s; }
-.transition-delay-200 { transition-delay: 0.2s; }
+.animation-stagger-1 { transition-delay: 0.1s; }
+.animation-stagger-2 { transition-delay: 0.2s; }
 .input-pr-icon { padding-right: 2.5rem; }
 .fw-800 { font-weight: 800; }
-.ml-neg-05 { margin-left: -0.5rem; }
+.icon-overlap-left { margin-left: -0.5rem; }
 
 /* Floating orbs */
 .floating-orb.orb-1 { width: 120px; height: 120px; top: 10%; right: 8%; background: #38bdf8; }
@@ -1172,9 +1172,9 @@ input, textarea, button { font: inherit; }
 
 /* Container variants */
 .container-72 { max-width: 72rem; }
-.container-64-z10 { max-width: 64rem; position: relative; z-index: 10; }
+.quotes-content-layer { max-width: 64rem; position: relative; z-index: 10; }
 .container-64-center { max-width: 64rem; text-align: center; }
-.container-72-z10 { max-width: 72rem; position: relative; z-index: 10; }
+.testimonials-content-layer { max-width: 72rem; position: relative; z-index: 10; }
 .container-80-px { max-width: 80rem; padding: 0 1.5rem; }
 
 /* VS card */
@@ -1184,3 +1184,10 @@ input, textarea, button { font: inherit; }
 .country-name-text { margin-left: 0.5rem; }
 .form-input-error { border-color: #ef4444; }
 .form-error-text { color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem; }
+
+/* Descriptive combined classes */
+.navbar-brand-row { display: flex; align-items: center; }
+.hero-stat-row { display: flex; align-items: center; gap: 0.75rem; }
+.hero-stat-detail { display: flex; align-items: center; gap: 0.5rem; }
+.chat-header-row { display: flex; align-items: center; gap: 1rem; }
+.quote-content-centered { display: flex; flex-direction: column; align-items: center; }

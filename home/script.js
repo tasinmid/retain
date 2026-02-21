@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Parallax
         const parallaxElements = [
-            { id: 'solutions-container', strength: 240 },
-            { id: 'sheen-border-container', strength: 160 }
+            { id: 'solutions-container', strength: 120 },
+            { id: 'sheen-border-container', strength: 80 }
         ];
 
         const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);

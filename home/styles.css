@@ -25,11 +25,11 @@ section { scroll-snap-align: start; }
 /* ===== LAYOUT UTILITIES ===== */
 .container-xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
 .container-lg { max-width: 72rem; margin-left: auto; margin-right: auto; }
-.text-center { text-align: center; }
-.mb-16 { margin-bottom: 4rem; }
-.mt-12 { margin-top: 3rem; }
-.mt-16 { margin-top: 4rem; }
-.font-semibold { font-weight: 600; }
+.section-heading, .section-heading-top, .section-heading-top-lg, .section-centered { text-align: center; }
+.section-heading { margin-bottom: 4rem; }
+.section-heading-top { margin-top: 3rem; }
+.section-heading-top-lg { margin-top: 4rem; }
+.pain-emphasis { font-weight: 600; }
 
 /* ===== NAVIGATION ===== */
 .main-nav {
@@ -379,7 +379,6 @@ section { scroll-snap-align: start; }
 .chat-bubble-right:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 12px 32px rgba(0,0,0,0.2);
 }
-.chat-bubble-right .font-semibold { color: #fff; font-weight: 600; }
 .chat-bubble-right::after {
     right: -7px;
     width: 14px;
@@ -467,7 +466,7 @@ section { scroll-snap-align: start; }
 .companies-section { padding-top: 1rem; padding-bottom: 0; background: white; overflow: hidden; }
 .companies-heading {
     font-size: 1.875rem; font-weight: 700; color: #111827;
-    margin-bottom: 5rem; font-family: 'Poppins', sans-serif;
+    margin-bottom: 2rem; font-family: 'Poppins', sans-serif;
 }
 @media (min-width: 768px) { .companies-heading { font-size: 2.25rem; } }
 
@@ -495,7 +494,7 @@ section { scroll-snap-align: start; }
 @media (min-width: 640px) { .company-logo.size-1 { height: 100px; margin-right: 2rem; } }
 
 /* ===== SOLUTIONS SECTION ===== */
-.solutions-wrapper { margin: 1rem 0; }
+.solutions-wrapper { margin: 0.25rem 0; }
 .solutions-wrapper-inner { max-width: 72rem; margin: 0 auto; }
 
 .solutions-container {
