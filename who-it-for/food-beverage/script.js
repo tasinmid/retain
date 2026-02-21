@@ -221,7 +221,6 @@
 
         var userMsg = document.createElement('div');
         userMsg.className = 'chat-message chat-message-user';
-        userMsg.style.maxWidth = '80%';
         userMsg.innerText = text;
         messages.appendChild(userMsg);
         requestAnimationFrame(function() { userMsg.classList.add('show'); });
@@ -230,7 +229,6 @@
 
         var typingBubble = document.createElement('div');
         typingBubble.className = 'chat-message chat-message-bot';
-        typingBubble.style.maxWidth = '80%';
         typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
         messages.appendChild(typingBubble);
         requestAnimationFrame(function() { typingBubble.classList.add('show'); });

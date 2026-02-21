@@ -55,13 +55,13 @@
                 <a href="/why-retain/" class="nav-link">Why Retain</a>
                 <a href="/contact/" class="nav-cta">Book a Call</a>
             </div>
-            <div class="mobile-menu-btn-wrap" style="display:none;">
+            <div class="mobile-menu-btn-wrap">
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
                     <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
         </div>
-        <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="mobile-menu" id="mobile-menu">
             <a href="/home/" class="mobile-menu-link">Home</a>
             <a href="/about/" class="mobile-menu-link">About</a>
             <a href="/solutions/" class="mobile-menu-link">Solutions</a>
@@ -756,22 +756,6 @@
 
     <!-- Scripts -->
     <script src="countrycode.js"></script>
-    <script>
-        // Show mobile menu button on small screens via CSS media query workaround
-        (function() {
-            var wrap = document.querySelector('.mobile-menu-btn-wrap');
-            function check() { wrap.style.display = window.innerWidth < 768 ? 'flex' : 'none'; }
-            check();
-            window.addEventListener('resize', check);
-        })();
-        // Show hero stat cards on large screens
-        (function() {
-            var cards = document.querySelectorAll('.hero-stat-card');
-            function check() { cards.forEach(function(c) { c.style.display = window.innerWidth >= 1024 ? 'block' : 'none'; }); }
-            check();
-            window.addEventListener('resize', check);
-        })();
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -3,12 +3,10 @@ const menuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 menuBtn.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
-    mobileMenu.classList.toggle('hidden');
 });
 mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
-        mobileMenu.classList.add('hidden');
     });
 });
 
@@ -148,7 +146,6 @@ document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el
             iconMsg.classList.add('icon-visible');
             iconClose.classList.add('icon-hidden');
             iconClose.classList.remove('icon-visible');
-            btn.style.background = '#111827';
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
@@ -156,7 +153,6 @@ document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el
             iconMsg.classList.remove('icon-visible');
             iconClose.classList.remove('icon-hidden');
             iconClose.classList.add('icon-visible');
-            btn.style.background = '#111827';
             btn.classList.remove('ripple-active');
         }
     }

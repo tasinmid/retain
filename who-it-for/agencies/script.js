@@ -54,15 +54,11 @@
         const isActive = win.classList.contains('is-active');
         if (isActive) {
             win.classList.remove('is-active');
-            iconMsg.style.opacity = '1'; iconMsg.style.transform = 'rotate(0) scale(1)';
-            iconClose.style.opacity = '0'; iconClose.style.transform = 'rotate(-90deg) scale(0.5)';
-            btn.style.background = '#111827';
+            btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
-            iconMsg.style.opacity = '0'; iconMsg.style.transform = 'rotate(90deg) scale(0.5)';
-            iconClose.style.opacity = '1'; iconClose.style.transform = 'rotate(0) scale(1)';
-            btn.style.background = '#111827';
+            btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
     }
@@ -161,10 +157,9 @@ window.addEventListener('scroll', () => {
         });
         document.querySelectorAll('.tab-content').forEach(function(c) {
             c.classList.remove('active');
-            c.style.display = 'none';
         });
         var target = document.getElementById(tabs[index]);
-        if (target) { target.classList.add('active'); target.style.display = 'block'; }
+        if (target) { target.classList.add('active'); }
     }
 
     document.querySelectorAll('.tab-btn').forEach(function(btn, i) {

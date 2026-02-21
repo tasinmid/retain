@@ -190,6 +190,12 @@ input, textarea, button { font-family: inherit; }
 .nav-cta:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
 
 /* Mobile menu button */
+.mobile-menu-btn-wrap {
+    display: flex;
+}
+@media (min-width: 768px) {
+    .mobile-menu-btn-wrap { display: none; }
+}
 .mobile-menu-btn {
     display: inline-flex;
     align-items: center;
@@ -206,7 +212,7 @@ input, textarea, button { font-family: inherit; }
 .mobile-menu-btn svg { height: 24px; width: 24px; }
 
 /* Mobile menu */
-.mobile-menu { padding: 0.5rem; }
+.mobile-menu { padding: 0.5rem; display: none; }
 .mobile-menu.open { display: block; }
 .mobile-menu-link {
     display: block;

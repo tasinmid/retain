@@ -250,7 +250,6 @@
             iconMsg.classList.add('icon-visible');
             iconClose.classList.add('icon-hidden');
             iconClose.classList.remove('icon-visible');
-            btn.style.background = '#111827';
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
@@ -258,7 +257,6 @@
             iconMsg.classList.remove('icon-visible');
             iconClose.classList.remove('icon-hidden');
             iconClose.classList.add('icon-visible');
-            btn.style.background = '#111827';
             btn.classList.remove('ripple-active');
         }
     }

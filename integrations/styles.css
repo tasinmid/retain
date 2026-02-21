@@ -266,6 +266,7 @@ img { max-width: 100%; display: block; }
     transition: all .4s cubic-bezier(.4,0,.2,1);
 }
 .chatbot-toggle .icon-hidden { opacity: 0; transform: rotate(-90deg) scale(.5); }
+.chatbot-toggle.chatbot-toggle-active { background-color: #ffffff; color: #0f172a; }
 
 /* Ripple */
 .ripple-active::after {

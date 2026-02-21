@@ -1091,6 +1091,10 @@ select.form-input { appearance: auto; }
     z-index: 10000; background: #111827; border: none; cursor: pointer;
 }
 #chatbot-toggle i { position: absolute; }
+#icon-msg { opacity: 1; transform: rotate(0) scale(1); }
+#icon-close { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.chatbot-toggle-active #icon-msg { opacity: 0; transform: rotate(90deg) scale(0.5); }
+.chatbot-toggle-active #icon-close { opacity: 1; transform: rotate(0) scale(1); }
 
 /* === Country Dropdown === */
 #country-dropdown {

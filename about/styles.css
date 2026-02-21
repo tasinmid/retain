@@ -46,6 +46,19 @@ ul { list-style: none; }
     display: flex;
     align-items: baseline;
 }
+/* Chatbot toggle active state */
+.chat-toggle-btn.chatbot-toggle-active {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+.chat-toggle-btn.chatbot-toggle-active #icon-msg {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+.chat-toggle-btn.chatbot-toggle-active #icon-close {
+    opacity: 1;
+    transform: none;
+}
 .navbar-logo img {
     height: 1.5rem;
     width: 1.5rem;

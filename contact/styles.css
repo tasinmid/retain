@@ -15,6 +15,10 @@ ul { list-style: none; }
 @media (min-width: 640px) { .navbar-inner { padding: 0 1.5rem; } }
 @media (min-width: 1024px) { .navbar-inner { padding: 0 2rem; } }
 .navbar-logo { display: flex; align-items: baseline; }
+/* Chatbot toggle active state */
+.chat-toggle-btn.chatbot-toggle-active { background-color: #ffffff; color: #0f172a; }
+.chat-toggle-btn.chatbot-toggle-active #icon-msg { opacity: 0; transform: rotate(90deg) scale(0.5); }
+.chat-toggle-btn.chatbot-toggle-active #icon-close { opacity: 1; transform: none; }
 .navbar-logo img { height: 1.5rem; width: 1.5rem; margin-right: 0.5rem; margin-top: 0.75rem; }
 .navbar-logo-text { font-size: 1.5rem; font-weight: 700; color: #111827; }
 .navbar-logo-sub { color: #6b7280; font-size: 0.875rem; margin-left: 0.5rem; transition: color 0.2s; }

@@ -339,6 +339,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); position: absolute; }
 .icon-hidden { opacity: 0; transform: rotate(90deg) scale(0.5); }
 .icon-hidden-reverse { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.chat-toggle.chatbot-toggle-active { background-color: #ffffff; color: #0f172a; }
 
 /* ===== Screen reader only ===== */
 .sr-only {

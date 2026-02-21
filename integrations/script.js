@@ -24,15 +24,13 @@ function toggleChat() {
         win.classList.remove('is-active');
         iconMsg.classList.remove('icon-hidden');
         iconClose.classList.add('icon-hidden');
-        btn.style.backgroundColor = '#0f172a';
-        btn.style.color = '#ffffff';
+        btn.classList.remove('chatbot-toggle-active');
         btn.classList.add('ripple-active');
     } else {
         win.classList.add('is-active');
         iconMsg.classList.add('icon-hidden');
         iconClose.classList.remove('icon-hidden');
-        btn.style.backgroundColor = '#ffffff';
-        btn.style.color = '#0f172a';
+        btn.classList.add('chatbot-toggle-active');
         btn.classList.remove('ripple-active');
     }
 }
@@ -115,3 +113,6 @@ function renderIntegrations() {
         grid.appendChild(card);
     });
 }
+
+// Initialize
+renderIntegrations();

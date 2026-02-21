@@ -63,21 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isActive = win.classList.contains('is-active');
         if (isActive) {
             win.classList.remove('is-active');
-            iconMsg.style.opacity = '1';
-            iconMsg.style.transform = '';
-            iconClose.style.opacity = '0';
-            iconClose.style.transform = 'rotate(-90deg) scale(0.5)';
-            btn.style.backgroundColor = '#0f172a';
-            btn.style.color = '#ffffff';
+            iconMsg.classList.remove('icon-hidden');
+            iconClose.classList.add('icon-hidden');
+            btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
-            iconMsg.style.opacity = '0';
-            iconMsg.style.transform = 'rotate(90deg) scale(0.5)';
-            iconClose.style.opacity = '1';
-            iconClose.style.transform = '';
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.color = '#0f172a';
+            iconMsg.classList.add('icon-hidden');
+            iconClose.classList.remove('icon-hidden');
+            btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
     }

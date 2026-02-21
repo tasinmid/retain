@@ -65,15 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
             win.classList.remove('is-active');
             iconMsg.classList.remove('icon-hidden');
             iconClose.classList.add('icon-hidden-reverse');
-            btn.style.backgroundColor = '#0f172a';
-            btn.style.color = '#ffffff';
+            btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
             iconMsg.classList.add('icon-hidden');
             iconClose.classList.remove('icon-hidden-reverse');
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.color = '#0f172a';
+            btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
     }

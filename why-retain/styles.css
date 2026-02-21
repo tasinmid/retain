@@ -134,6 +134,9 @@ ul { list-style: none; }
 .chat-toggle-btn { position: relative; width: 4rem; height: 4rem; background: #0f172a; color: #fff; border-radius: 50%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; z-index: 10000; }
 .chat-toggle-btn i { position: absolute; font-size: 1.5rem; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
 .chat-toggle-btn .icon-hidden { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.chat-toggle-btn.chatbot-toggle-active { background-color: #fff; color: #0f172a; }
+.chat-toggle-btn.chatbot-toggle-active #icon-msg { opacity: 0; transform: rotate(90deg) scale(0.5); }
+.chat-toggle-btn.chatbot-toggle-active #icon-close { opacity: 1; transform: none; }
 @keyframes ripple { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
 .ripple-active::after { content: ""; position: absolute; inset: 0; background: rgba(222,114,213,0.4); border-radius: 9999px; z-index: -1; animation: ripple 2s infinite; }
 .chat-msg-user { background: #0f172a; color: #fff; padding: 1rem; border-radius: 1.5rem 1.5rem 0 1.5rem; font-size: 0.875rem; align-self: flex-end; max-width: 80%; transform: translateY(20px); opacity: 0; transition: all 0.3s ease; }

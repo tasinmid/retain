@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function type() {
             const currentWord = words[wordIndex];
-            cursorEl.style.animation = 'blink 1s infinite step-end';
+            cursorEl.classList.add('cursor-blinking');
 
             if (!isDeleting) {
                 textEl.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
 
                 if (charIndex === currentWord.length) {
-                    cursorEl.style.animation = 'none';
+                    cursorEl.classList.remove('cursor-blinking');
                     timeoutId = setTimeout(() => {
                         isDeleting = true;
                         type();
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             wordIndex = 0;
             charIndex = 0;
             isDeleting = false;
-            cursorEl.style.animation = '';
+            cursorEl.classList.remove('cursor-blinking');
         }
 
         const observer = new IntersectionObserver(entries => {
@@ -99,8 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Parallax
         const parallaxElements = [
             { id: 'solutions-container', strength: 240 },
-            { id: 'sheen-border-container', strength: 160 },
-            { id: 'new-sphere-section', strength: 160 }
+            { id: 'sheen-border-container', strength: 160 }
         ];
 
         const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
@@ -203,49 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Carousel for New Sphere Section
-    const reviewCarousel = document.getElementById('review-carousel');
-    const prevReviewBtn = document.getElementById('prev-review');
-    const nextReviewBtn = document.getElementById('next-review');
-    const reviewItems = reviewCarousel ? reviewCarousel.querySelectorAll(':scope > div') : [];
-
-    if (reviewCarousel && prevReviewBtn && nextReviewBtn && reviewItems.length > 0) {
-        let currentIndex = 0;
-        const autoAdvanceInterval = 5000;
-        let autoAdvanceTimer;
-
-        function showReview(index) {
-            if (index < 0) {
-                currentIndex = reviewItems.length - 1;
-            } else if (index >= reviewItems.length) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-            reviewCarousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        function nextReview() { showReview(currentIndex + 1); }
-        function prevReview() { showReview(currentIndex - 1); }
-
-        function startAutoAdvance() {
-            stopAutoAdvance();
-            autoAdvanceTimer = setInterval(nextReview, autoAdvanceInterval);
-        }
-
-        function stopAutoAdvance() { clearInterval(autoAdvanceTimer); }
-
-        nextReviewBtn.addEventListener('click', nextReview);
-        prevReviewBtn.addEventListener('click', prevReview);
-        startAutoAdvance();
-
-        const newSphereSection = document.getElementById('new-sphere-section');
-        if (newSphereSection) {
-            newSphereSection.addEventListener('mouseenter', stopAutoAdvance);
-            newSphereSection.addEventListener('mouseleave', startAutoAdvance);
-        }
-    }
-    
     // Tab functionality for "From Insights to Action" section
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -483,15 +439,13 @@ document.addEventListener("DOMContentLoaded", function() {
             win.classList.remove('is-active');
             iconMsg.classList.remove('chatbot-icon-hidden');
             iconClose.classList.add('chatbot-icon-close-hidden');
-            btn.style.backgroundColor = '#0f172a';
-            btn.style.color = '#ffffff';
+            btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
             iconMsg.classList.add('chatbot-icon-hidden');
             iconClose.classList.remove('chatbot-icon-close-hidden');
-            btn.style.backgroundColor = '#ffffff';
-            btn.style.color = '#0f172a';
+            btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
     }

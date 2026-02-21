@@ -2,12 +2,7 @@
 // Retain E-commerce Page Scripts
 // ========================================
 
-// --- Page load fade-in ---
-window.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(function() {
-        document.body.classList.add('loaded');
-    });
-});
+// Page load fade-in handled by CSS animation
 
 // --- Scroll reveal ---
 (function() {
@@ -411,29 +406,7 @@ document.querySelectorAll('.tilt-card').forEach(function(card) {
     section.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
 });
 
-// --- Rotating text ---
-(function() {
-    var inner = document.querySelector('.rotating-text-inner');
-    if (!inner) return;
-    var words = inner.querySelectorAll('.rotating-word');
-    var totalOriginal = words.length;
-    var clone = words[0].cloneNode(true);
-    inner.appendChild(clone);
-    var totalWithClone = totalOriginal + 1;
-    var current = 0;
-    setInterval(function() {
-        current++;
-        inner.style.transition = 'transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)';
-        inner.style.transform = 'translateY(-' + (current * 100 / totalWithClone) + '%)';
-        if (current === totalOriginal) {
-            setTimeout(function() {
-                inner.style.transition = 'none';
-                current = 0;
-                inner.style.transform = 'translateY(0%)';
-            }, 470);
-        }
-    }, 2500);
-})();
+// Rotating text handled by CSS animation
 
 // --- WHY RETAIN scroll-triggered animations ---
 (function() {
@@ -525,13 +498,13 @@ document.querySelectorAll('.tilt-card').forEach(function(card) {
             win.classList.remove('is-active');
             iconMsg.classList.remove('icon-hidden');
             iconClose.classList.add('icon-hidden');
-            btn.style.background = '#111827';
+            btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
             iconMsg.classList.add('icon-hidden');
             iconClose.classList.remove('icon-hidden');
-            btn.style.background = '#111827';
+            btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
     }

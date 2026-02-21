@@ -487,6 +487,7 @@ section { scroll-snap-align: start; }
 
 .logo-marquee { display: flex; align-items: center; }
 .company-logo { filter: grayscale(100%); margin-right: 4rem; }
+.company-logo.no-select { user-select: none; -webkit-user-drag: none; pointer-events: none; }
 @media (min-width: 640px) { .company-logo { margin-right: 4rem; } }
 .company-logo.size-xs { height: 2.5rem; }
 @media (min-width: 640px) { .company-logo.size-xs { height: 4rem; } }
@@ -1315,6 +1316,29 @@ section { scroll-snap-align: start; }
 @keyframes dot-blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
 
 /* ===== NO-SCROLLBAR UTILITY ===== */
+/* Icon color classes */
+.icon-purple { color: #a855f7; }
+.icon-blue { color: #3b82f6; }
+.icon-green { color: #22c55e; }
+.icon-yellow { color: #eab308; }
+
+/* Cursor blinking animation class */
+.cursor-blinking { animation: blink-cursor 1s infinite step-end; }
+
+/* Chatbot toggle active state */
+.chatbot-toggle.chatbot-toggle-active {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+.chatbot-toggle.chatbot-toggle-active .icon-transition:first-of-type {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+.chatbot-toggle.chatbot-toggle-active .icon-transition:last-of-type {
+    opacity: 1;
+    transform: none;
+}
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
