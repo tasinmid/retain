@@ -594,7 +594,45 @@ ul { list-style: none; }
 /* ===== 4. INTEGRATIONS ===== */
 .sec-integrations { padding: 6rem 0; background: #f9fafb; }
 
-.integrations-orbit-wrap { position: relative; width: 100%; max-width: 36rem; aspect-ratio: 1; margin: 0 auto; }
+/* Integrations 3-column layout */
+.int-section-layout { display: flex; align-items: center; gap: 6.5rem; justify-content: center; }
+@media (max-width: 900px) { .int-section-layout { flex-direction: column; } }
+
+.int-side { display: flex; flex-direction: column; gap: 1.75rem; flex: 0 0 16rem; }
+@media (max-width: 900px) { .int-side { flex-direction: row; flex-wrap: wrap; justify-content: center; flex: auto; } }
+
+.int-side-card {
+    display: flex; align-items: center; gap: 0.625rem;
+    padding: 1rem 1.25rem; background: white;
+    border: 1px solid #e5e7eb; border-radius: 0.875rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+    animation: sideCardIn 0.6s ease calc(var(--delay)) both;
+}
+.int-side-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #c7d2fe; }
+@keyframes sideCardIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+.int-side-right .int-side-card { animation-name: sideCardInRight; }
+@keyframes sideCardInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+.int-side-icon { width: 2.75rem; height: 2.75rem; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+.int-side-icon.green { background: #ecfdf5; color: #22c55e; }
+.int-side-icon.pink { background: #fdf2f8; color: #ec4899; }
+.int-side-icon.blue { background: #eff6ff; color: #3b82f6; }
+.int-side-icon.purple { background: #eef2ff; color: #6366f1; }
+.int-side-icon.amber { background: #fffbeb; color: #f59e0b; }
+.int-side-icon.teal { background: #f0fdfa; color: #14b8a6; }
+.int-side-icon.sky { background: #f0f9ff; color: #0ea5e9; }
+.int-side-icon.orange { background: #fff7ed; color: #f97316; }
+
+.int-side-info { flex: 1; min-width: 0; }
+.int-side-info strong { font-size: 0.875rem; color: #111827; display: block; }
+.int-side-info span { font-size: 0.7rem; color: #9ca3af; }
+
+.int-side-status { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.int-side-status.online { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4); animation: statusPulse 2s ease-in-out infinite; }
+@keyframes statusPulse { 0%, 100% { box-shadow: 0 0 6px rgba(34,197,94,0.4); } 50% { box-shadow: 0 0 12px rgba(34,197,94,0.7); } }
+
+.integrations-orbit-wrap { position: relative; width: 100%; max-width: 28rem; aspect-ratio: 1; flex-shrink: 0; overflow: visible; }
 .integrations-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 2; }
 .integrations-logo { width: 4.5rem; height: 4.5rem; }
 .integrations-center span { font-size: 1.125rem; font-weight: 800; color: #111827; }
@@ -613,9 +651,13 @@ ul { list-style: none; }
 .int-icon { width: 4rem; height: 4rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.875rem; background: white; border: 1px solid #e5e7eb; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
 .int-icon.whatsapp { color: #22c55e; } .int-icon.instagram { color: #e11d48; } .int-icon.messenger { color: #3b82f6; }
 .int-icon.email { color: #6366f1; } .int-icon.sms { color: #f59e0b; } .int-icon.telegram { color: #0ea5e9; }
-.int-icon.salesforce { color: #0ea5e9; } .int-icon.shopify { color: #22c55e; } .int-icon.hubspot { color: #f97316; }
+.int-icon.salesforce { color: #0ea5e9; } .int-icon.calls { color: #14b8a6; } .int-icon.hubspot { color: #f97316; }
 .int-icon.stripe { color: #6366f1; } .int-icon.zapier { color: #f97316; } .int-icon.google { color: #3b82f6; }
 .int-node span { display: none; }
+
+/* Ensure orbit elements stay above bg */
+.int-ring { z-index: 1; }
+.integrations-center { z-index: 3; }
 
 .int-stat-row { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap; }
 .int-stat { font-size: 0.875rem; color: #6b7280; }
