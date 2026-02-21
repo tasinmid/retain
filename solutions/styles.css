@@ -553,43 +553,109 @@ ul { list-style: none; }
 
 /* ===== 3. LOYALTY ===== */
 .sec-loyalty { padding: 6rem 0; }
-.loyalty-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-@media (max-width: 900px) { .loyalty-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .loyalty-grid { grid-template-columns: 1fr; } }
 
-.loyalty-card { background: white; border: 1px solid #e5e7eb; border-radius: 1.25rem; padding: 1.5rem; text-align: center; transition: all 0.4s; overflow: hidden; }
-.loyalty-card:hover { transform: translateY(-6px); border-color: #c7d2fe; box-shadow: 0 15px 40px rgba(0,0,0,0.06); }
-.loyalty-card h3 { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 0.375rem; }
-.loyalty-card p { font-size: 0.8125rem; color: #6b7280; line-height: 1.5; }
-.loyalty-card-visual { height: 10rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+/* Journey layout */
+.loyalty-journey { position: relative; margin-bottom: 4rem; }
 
-.loyalty-tier-stack { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
-.tier { padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.3s; }
-.loyalty-card:hover .tier { transform: translateX(4px); }
-.tier-bronze { background: #fef3c7; color: #92400e; }
-.tier-silver { background: #f1f5f9; color: #475569; }
-.tier-gold { background: #fef9c3; color: #854d0e; }
-.tier-platinum { background: #eef2ff; color: #4338ca; }
+/* Connecting path line */
+.journey-path { position: absolute; top: 2.5rem; left: 0; right: 0; z-index: 0; padding: 0 3rem; }
+.journey-line-svg { width: 100%; height: 8px; display: block; }
+.journey-progress-bar { animation: journeyFill 2s ease forwards; transform-origin: left; }
+@keyframes journeyFill { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@media (max-width: 768px) { .journey-path { display: none; } }
 
-.points-counter { position: relative; }
-.points-ring { position: relative; width: 7.5rem; height: 7.5rem; }
-.points-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.points-progress { transition: stroke-dashoffset 1.5s ease; }
-.points-val { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.125rem; font-weight: 800; color: #111827; }
+/* Steps */
+.journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; z-index: 1; }
+@media (max-width: 900px) { .journey-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+@media (max-width: 480px) { .journey-steps { grid-template-columns: 1fr; } }
 
-.referral-visual { position: relative; width: 100%; height: 100%; }
-.ref-node { position: absolute; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; }
-.ref-center { top: 50%; left: 50%; transform: translate(-50%, -50%); background: #eef2ff; color: #6366f1; border: 2px solid #c7d2fe; z-index: 2; }
-.ref-1 { top: 10%; left: 20%; background: #ecfdf5; color: #22c55e; border: 1px solid #bbf7d0; }
-.ref-2 { top: 10%; right: 20%; background: #eff6ff; color: #3b82f6; border: 1px solid #bfdbfe; }
-.ref-3 { bottom: 15%; left: 50%; transform: translateX(-50%); background: #fdf2f8; color: #ec4899; border: 1px solid #fbcfe8; }
-.ref-line { position: absolute; background: #e5e7eb; }
-.ref-line-1, .ref-line-2, .ref-line-3 { width: 1px; height: 2rem; top: 30%; left: 50%; }
+.journey-step { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-.vip-badge-visual { position: relative; }
-.vip-glow { position: absolute; width: 6rem; height: 6rem; border-radius: 50%; background: rgba(99,102,241,0.12); filter: blur(20px); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: vip-pulse 2s ease-in-out infinite; }
-@keyframes vip-pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.3); } }
-.vip-badge { width: 4rem; height: 4rem; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #ec4899); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; position: relative; z-index: 1; }
+/* Step marker — the circle on the path */
+.step-marker {
+    width: 5rem; height: 5rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: white; position: relative;
+    margin-bottom: 1.25rem; z-index: 2;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+.journey-step:hover .step-marker { transform: scale(1.12); }
+.step-ring {
+    position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px dashed rgba(255,255,255,0.3);
+    animation: stepRingSpin 12s linear infinite;
+}
+@keyframes stepRingSpin { to { transform: rotate(360deg); } }
+
+.bronze-marker { background: linear-gradient(135deg, #cd7f32, #e8a85c); box-shadow: 0 8px 25px rgba(205,127,50,0.3); }
+.bronze-marker .step-ring { border-color: rgba(205,127,50,0.3); }
+.silver-marker { background: linear-gradient(135deg, #9ca3af, #d1d5db); box-shadow: 0 8px 25px rgba(156,163,175,0.3); }
+.silver-marker .step-ring { border-color: rgba(156,163,175,0.3); }
+.gold-marker { background: linear-gradient(135deg, #ca8a04, #fbbf24); box-shadow: 0 8px 25px rgba(202,138,4,0.3); }
+.gold-marker .step-ring { border-color: rgba(202,138,4,0.3); }
+.platinum-marker { background: linear-gradient(135deg, #6366f1, #a78bfa); box-shadow: 0 8px 30px rgba(99,102,241,0.35); }
+.platinum-marker .step-ring { border-color: rgba(99,102,241,0.3); }
+
+.journey-step:hover .bronze-marker { box-shadow: 0 12px 35px rgba(205,127,50,0.45); }
+.journey-step:hover .silver-marker { box-shadow: 0 12px 35px rgba(156,163,175,0.45); }
+.journey-step:hover .gold-marker { box-shadow: 0 12px 35px rgba(202,138,4,0.45); }
+.journey-step:hover .platinum-marker { box-shadow: 0 12px 35px rgba(99,102,241,0.5); }
+
+/* Step card */
+.step-card {
+    background: white; border: 1px solid #e5e7eb; border-radius: 1rem;
+    padding: 1.25rem; width: 100%; transition: all 0.4s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.journey-step:hover .step-card { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); border-color: #c7d2fe; }
+
+.step-tier-badge {
+    display: inline-block; font-size: 0.625rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem; border-radius: 1rem; margin-bottom: 0.625rem;
+}
+.step-tier-badge.bronze { background: #fef3c7; color: #92400e; }
+.step-tier-badge.silver { background: #f1f5f9; color: #475569; }
+.step-tier-badge.gold { background: #fef9c3; color: #854d0e; }
+.step-tier-badge.platinum { background: #eef2ff; color: #4338ca; }
+
+.step-card h4 { font-size: 1rem; font-weight: 800; color: #111827; margin-bottom: 0.375rem; }
+.step-card p { font-size: 0.75rem; color: #6b7280; line-height: 1.5; margin-bottom: 0.75rem; }
+
+.step-perks { display: flex; flex-direction: column; gap: 0.375rem; margin-bottom: 0.75rem; text-align: left; }
+.step-perks span { font-size: 0.6875rem; color: #374151; display: flex; align-items: center; gap: 0.375rem; }
+.step-perks i { color: #22c55e; font-size: 0.5625rem; }
+
+.step-points {
+    font-size: 0.6875rem; font-weight: 700; color: #6366f1;
+    background: #eef2ff; padding: 0.375rem 0.625rem; border-radius: 0.5rem;
+    display: inline-flex; align-items: center; gap: 0.375rem;
+}
+.step-points i { color: #f59e0b; }
+
+/* Bottom stats */
+.loyalty-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+}
+@media (max-width: 768px) { .loyalty-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .loyalty-stats { grid-template-columns: 1fr; } }
+
+.loyalty-stat-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem; background: white; border: 1px solid #e5e7eb;
+    border-radius: 1rem; transition: all 0.3s;
+}
+.loyalty-stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
+.loyalty-stat-visual { position: relative; width: 3.5rem; height: 3.5rem; flex-shrink: 0; }
+.loyalty-ring { width: 100%; height: 100%; }
+.loyalty-ring-fill { transition: stroke-dashoffset 1.5s ease; }
+.loyalty-ring-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 0.75rem; font-weight: 900; color: #111827;
+}
+.loyalty-stat-card strong { font-size: 0.8125rem; color: #111827; display: block; }
+.loyalty-stat-card span { font-size: 0.6875rem; color: #9ca3af; }
 
 /* ===== 4. INTEGRATIONS ===== */
 .sec-integrations { padding: 6rem 0; background: #f9fafb; }

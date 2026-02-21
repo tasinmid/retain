@@ -814,64 +814,137 @@
             <div class="section-header reveal">
                 <p class="section-label">Loyalty Design</p>
                 <h2 class="section-title">Custom loyalty programs<br>that <span class="gradient-text">actually work</span></h2>
+                <p class="section-desc">Design reward systems that keep customers coming back. From their first purchase to VIP status — every step is automated.</p>
             </div>
 
-            <div class="loyalty-grid reveal">
-                <div class="loyalty-card lc-1">
-                    <div class="loyalty-card-visual">
-                        <div class="loyalty-tier-stack">
-                            <div class="tier tier-bronze"><i class="fas fa-medal"></i> Bronze</div>
-                            <div class="tier tier-silver"><i class="fas fa-medal"></i> Silver</div>
-                            <div class="tier tier-gold"><i class="fas fa-medal"></i> Gold</div>
-                            <div class="tier tier-platinum"><i class="fas fa-crown"></i> Platinum</div>
-                        </div>
-                    </div>
-                    <h3>Tiered Rewards</h3>
-                    <p>Multi-level programs that incentivize progression</p>
+            <!-- Loyalty Journey -->
+            <div class="loyalty-journey reveal">
+                <!-- The path connector -->
+                <div class="journey-path">
+                    <svg class="journey-line-svg" viewBox="0 0 1000 8" preserveAspectRatio="none">
+                        <defs><linearGradient id="journeyGrad"><stop offset="0%" stop-color="#d1d5db"/><stop offset="35%" stop-color="#6366f1"/><stop offset="70%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs>
+                        <rect x="0" y="3" width="1000" height="2" rx="1" fill="#e5e7eb"/>
+                        <rect x="0" y="3" width="1000" height="2" rx="1" fill="url(#journeyGrad)" class="journey-progress-bar"/>
+                    </svg>
                 </div>
 
-                <div class="loyalty-card lc-2">
-                    <div class="loyalty-card-visual">
-                        <div class="points-counter">
-                            <div class="points-ring">
-                                <svg viewBox="0 0 120 120">
-                                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
-                                    <circle cx="60" cy="60" r="52" fill="none" stroke="url(#pointsGrad)" stroke-width="8" stroke-dasharray="327" stroke-dashoffset="80" stroke-linecap="round" class="points-progress"/>
-                                </svg>
-                                <defs><linearGradient id="pointsGrad"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs>
-                                <span class="points-val">2,450</span>
+                <!-- Journey Steps -->
+                <div class="journey-steps">
+                    <div class="journey-step" data-step="1">
+                        <div class="step-marker bronze-marker">
+                            <div class="step-ring"></div>
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-tier-badge bronze">Bronze</div>
+                            <h4>First Purchase</h4>
+                            <p>Customer joins your loyalty program automatically</p>
+                            <div class="step-perks">
+                                <span><i class="fas fa-check"></i> Welcome discount</span>
+                                <span><i class="fas fa-check"></i> Points earning starts</span>
+                                <span><i class="fas fa-check"></i> Birthday rewards</span>
                             </div>
+                            <div class="step-points"><i class="fas fa-star"></i> 0 — 500 pts</div>
                         </div>
                     </div>
-                    <h3>Points System</h3>
-                    <p>Earn & redeem points across every touchpoint</p>
-                </div>
 
-                <div class="loyalty-card lc-3">
-                    <div class="loyalty-card-visual">
-                        <div class="referral-visual">
-                            <div class="ref-node ref-center"><i class="fas fa-user"></i></div>
-                            <div class="ref-line ref-line-1"></div>
-                            <div class="ref-line ref-line-2"></div>
-                            <div class="ref-line ref-line-3"></div>
-                            <div class="ref-node ref-1"><i class="fas fa-user-plus"></i></div>
-                            <div class="ref-node ref-2"><i class="fas fa-user-plus"></i></div>
-                            <div class="ref-node ref-3"><i class="fas fa-user-plus"></i></div>
+                    <div class="journey-step" data-step="2">
+                        <div class="step-marker silver-marker">
+                            <div class="step-ring"></div>
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-tier-badge silver">Silver</div>
+                            <h4>Repeat Buyer</h4>
+                            <p>Engagement deepens with personalized rewards</p>
+                            <div class="step-perks">
+                                <span><i class="fas fa-check"></i> 2x points multiplier</span>
+                                <span><i class="fas fa-check"></i> Early access deals</span>
+                                <span><i class="fas fa-check"></i> Referral bonuses</span>
+                            </div>
+                            <div class="step-points"><i class="fas fa-star"></i> 500 — 2,000 pts</div>
                         </div>
                     </div>
-                    <h3>Referral Engine</h3>
-                    <p>Turn customers into advocates with smart referrals</p>
-                </div>
 
-                <div class="loyalty-card lc-4">
-                    <div class="loyalty-card-visual">
-                        <div class="vip-badge-visual">
-                            <div class="vip-glow"></div>
-                            <div class="vip-badge"><i class="fas fa-gem"></i></div>
+                    <div class="journey-step" data-step="3">
+                        <div class="step-marker gold-marker">
+                            <div class="step-ring"></div>
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-tier-badge gold">Gold</div>
+                            <h4>Loyal Advocate</h4>
+                            <p>Your best customers become brand ambassadors</p>
+                            <div class="step-perks">
+                                <span><i class="fas fa-check"></i> 5x points multiplier</span>
+                                <span><i class="fas fa-check"></i> Free shipping always</span>
+                                <span><i class="fas fa-check"></i> VIP support line</span>
+                            </div>
+                            <div class="step-points"><i class="fas fa-star"></i> 2,000 — 5,000 pts</div>
                         </div>
                     </div>
-                    <h3>VIP Experiences</h3>
-                    <p>Exclusive perks for your most valuable customers</p>
+
+                    <div class="journey-step" data-step="4">
+                        <div class="step-marker platinum-marker">
+                            <div class="step-ring"></div>
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-tier-badge platinum">Platinum</div>
+                            <h4>VIP Elite</h4>
+                            <p>Exclusive experiences money can't buy</p>
+                            <div class="step-perks">
+                                <span><i class="fas fa-check"></i> 10x points multiplier</span>
+                                <span><i class="fas fa-check"></i> Private events access</span>
+                                <span><i class="fas fa-check"></i> Personal account manager</span>
+                            </div>
+                            <div class="step-points"><i class="fas fa-star"></i> 5,000+ pts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom stats -->
+            <div class="loyalty-stats reveal">
+                <div class="loyalty-stat-card">
+                    <div class="loyalty-stat-visual">
+                        <svg viewBox="0 0 80 80" class="loyalty-ring">
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#e5e7eb" stroke-width="5"/>
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#6366f1" stroke-width="5" stroke-dasharray="201" stroke-dashoffset="40" stroke-linecap="round" transform="rotate(-90 40 40)" class="loyalty-ring-fill"/>
+                        </svg>
+                        <span class="loyalty-ring-center">80%</span>
+                    </div>
+                    <div><strong>Retention Lift</strong><span>After loyalty enrollment</span></div>
+                </div>
+                <div class="loyalty-stat-card">
+                    <div class="loyalty-stat-visual">
+                        <svg viewBox="0 0 80 80" class="loyalty-ring">
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#e5e7eb" stroke-width="5"/>
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="201" stroke-dashoffset="60" stroke-linecap="round" transform="rotate(-90 40 40)" class="loyalty-ring-fill"/>
+                        </svg>
+                        <span class="loyalty-ring-center">3.2x</span>
+                    </div>
+                    <div><strong>Revenue Per Member</strong><span>vs non-members</span></div>
+                </div>
+                <div class="loyalty-stat-card">
+                    <div class="loyalty-stat-visual">
+                        <svg viewBox="0 0 80 80" class="loyalty-ring">
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#e5e7eb" stroke-width="5"/>
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#ec4899" stroke-width="5" stroke-dasharray="201" stroke-dashoffset="70" stroke-linecap="round" transform="rotate(-90 40 40)" class="loyalty-ring-fill"/>
+                        </svg>
+                        <span class="loyalty-ring-center">67%</span>
+                    </div>
+                    <div><strong>Referral Rate</strong><span>Gold+ members refer friends</span></div>
+                </div>
+                <div class="loyalty-stat-card">
+                    <div class="loyalty-stat-visual">
+                        <svg viewBox="0 0 80 80" class="loyalty-ring">
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#e5e7eb" stroke-width="5"/>
+                            <circle cx="40" cy="40" r="32" fill="none" stroke="#f59e0b" stroke-width="5" stroke-dasharray="201" stroke-dashoffset="50" stroke-linecap="round" transform="rotate(-90 40 40)" class="loyalty-ring-fill"/>
+                        </svg>
+                        <span class="loyalty-ring-center">2wk</span>
+                    </div>
+                    <div><strong>Setup Time</strong><span>Fully customized & live</span></div>
                 </div>
             </div>
         </div>
