@@ -168,7 +168,7 @@
                         '<span class="chat-header-role">AI Strategist</span>' +
                     '</div>' +
                 '</div>' +
-                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem;"></i></button>' +
+                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times chat-icon-sm"></i></button>' +
             '</div>' +
             '<div id="chatbot-messages" class="chat-messages">' +
                 '<div class="chat-timestamp">Today • Online</div>' +
@@ -176,13 +176,13 @@
             '<div class="chat-input-area">' +
                 '<form id="chatbot-form" class="chat-form">' +
                     '<input type="text" id="chatbot-input" placeholder="Type a message..." class="chat-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">' +
-                    '<button type="submit" class="chat-send"><i class="fas fa-paper-plane" style="font-size:1.125rem;"></i></button>' +
+                    '<button type="submit" class="chat-send"><i class="fas fa-paper-plane chat-icon-sm"></i></button>' +
                 '</form>' +
             '</div>' +
         '</div>' +
         '<button id="chatbot-toggle" class="chat-toggle ripple-active">' +
-            '<i id="icon-msg" class="fas fa-comment-dots icon-transition" style="font-size:1.5rem;color:#fff;"></i>' +
-            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden-reverse" style="font-size:1.5rem;color:#f43f5e;"></i>' +
+            '<i id="icon-msg" class="fas fa-comment-dots icon-transition chat-icon-lg chat-icon-white"></i>' +
+            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden-reverse chat-icon-close-rose"></i>' +
         '</button>';
     document.body.appendChild(container);
 

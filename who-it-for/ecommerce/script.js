@@ -64,21 +64,6 @@
     });
 })();
 
-// --- Check mark draw animation ---
-(function() {
-    var checkObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-            if (e.isIntersecting) {
-                e.target.classList.add('drawn');
-                checkObserver.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.check-draw').forEach(function(el) {
-        checkObserver.observe(el);
-    });
-})();
-
 // --- How It Works timeline scroll animation ---
 (function() {
     var section = document.getElementById('howItWorks');
@@ -173,25 +158,17 @@
             if (isCurrent) b.classList.add('active');
             else b.classList.remove('active');
 
-            // Update dots (desktop timeline)
-            var dotInner = b.querySelector('.tab-timeline-dot-inner');
-            var dotOuter = b.querySelector('.tab-timeline-dot');
-            if (dotInner) {
-                if (isFilled) dotInner.style.background = '#f59e0b';
-                else dotInner.style.background = 'transparent';
-            }
-            if (dotOuter) {
-                if (isFilled) dotOuter.style.borderColor = '#fbbf24';
-                else dotOuter.style.borderColor = '#d1d5db';
-            }
+            // Update dots (desktop timeline) via CSS class
+            if (isFilled) b.classList.add('filled');
+            else b.classList.remove('filled');
             var label = b.querySelector('.tab-label');
             if (label) {
                 if (isCurrent) {
-                    label.style.color = '';
-                    label.style.fontWeight = '700';
+                    label.classList.add('tab-label-active');
+                    label.classList.remove('tab-label-inactive');
                 } else {
-                    label.style.color = '#6b7280';
-                    label.style.fontWeight = '';
+                    label.classList.remove('tab-label-active');
+                    label.classList.add('tab-label-inactive');
                 }
             }
         });
@@ -481,7 +458,7 @@ document.querySelectorAll('.tilt-card').forEach(function(card) {
             '</div>' +
         '</div>' +
         '<button id="chatbot-toggle" class="chatbot-toggle ripple-active">' +
-            '<i id="icon-msg" class="fas fa-comment-dots icon-transition" style="color:#ffffff"></i>' +
+            '<i id="icon-msg" class="fas fa-comment-dots icon-transition icon-msg-color"></i>' +
             '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden"></i>' +
         '</button>';
     document.body.appendChild(container);

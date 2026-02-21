@@ -86,12 +86,16 @@ img { max-width: 100%; display: block; }
 .dropdown-item.di-ecommerce i { color: #f59e0b; background: #fffbeb; }
 .dropdown-item.di-travel:hover { color: #0284c7; }
 .dropdown-item.di-travel i { color: #0ea5e9; background: #f0f9ff; }
+.dropdown-item.di-studyabroad:hover { color: #0d9488; }
+.dropdown-item.di-studyabroad i { color: #14b8a6; background: #f0fdfa; }
 .dropdown-item.di-food:hover { color: #e11d48; }
 .dropdown-item.di-food i { color: #f43f5e; background: #fff1f2; }
 .dropdown-item.di-agencies:hover { color: #7c3aed; }
 .dropdown-item.di-agencies i { color: #8b5cf6; background: #f5f3ff; }
 
 /* Mobile menu button */
+.mobile-menu-icon { height: 1.5rem; width: 1.5rem; }
+.mm-sub-group { padding-left: .75rem; }
 .mobile-menu-btn {
     display: inline-flex; align-items: center; justify-content: center;
     padding: .5rem; border-radius: .375rem; color: #9ca3af; transition: all .15s;
@@ -120,6 +124,7 @@ img { max-width: 100%; display: block; }
 .mobile-menu .mm-sub.ms-realestate:hover { border-color: #3b82f6; background: #eff6ff; }
 .mobile-menu .mm-sub.ms-ecommerce:hover { border-color: #f59e0b; background: #fffbeb; }
 .mobile-menu .mm-sub.ms-travel:hover { border-color: #0ea5e9; background: #f0f9ff; }
+.mobile-menu .mm-sub.ms-studyabroad:hover { border-color: #14b8a6; background: #f0fdfa; }
 .mobile-menu .mm-sub.ms-food:hover { border-color: #f43f5e; background: #fff1f2; }
 .mobile-menu .mm-sub.ms-agencies:hover { border-color: #8b5cf6; background: #f5f3ff; }
 .mobile-menu .mm-book-call { background: #000; color: #fff; }
@@ -370,7 +375,6 @@ img { max-width: 100%; display: block; }
 .text-2xl { font-size: 1.5rem; }
 .text-xl { font-size: 1.25rem; }
 .text-xs { font-size: .75rem; }
-.text-sm { font-size: .875rem; }
 .font-bold { font-weight: 700; }
 .font-medium { font-weight: 500; }
 .inline-flex { display: inline-flex; }
@@ -379,15 +383,10 @@ img { max-width: 100%; display: block; }
 .py-1 { padding-top: .25rem; padding-bottom: .25rem; }
 .rounded-full { border-radius: 9999px; }
 .rounded-xl { border-radius: .75rem; }
-.rounded-2xl { border-radius: 1rem; }
 .mb-1 { margin-bottom: .25rem; }
 .mb-2 { margin-bottom: .5rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
-.p-6 { padding: 1.5rem; }
-.text-center { text-align: center; }
-.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05); }
-
 /* Integration card */
 .integration-card {
     background: #fff; border-radius: 1rem; padding: 1.5rem;

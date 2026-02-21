@@ -1,3 +1,4 @@
+(function() {
 // Mobile menu toggle
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -61,6 +62,7 @@ form.addEventListener('submit', async function (e) {
     requestAnimationFrame(() => typingBubble.classList.add('show'));
     messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
 
+    input.disabled = true;
     fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,6 +72,12 @@ form.addEventListener('submit', async function (e) {
         .then(data => {
             typingBubble.innerHTML = data.reply || '';
             messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
+        })
+        .catch(function () {
+            typingBubble.innerHTML = 'Sorry, something went wrong. Please try again.';
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
         });
 });
 
@@ -116,3 +124,4 @@ function renderIntegrations() {
 
 // Initialize
 renderIntegrations();
+})();

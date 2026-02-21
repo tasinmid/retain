@@ -1,4 +1,4 @@
-// === Solutions Page Scripts ===
+// === Why Retain Page Scripts ===
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div><h4 class="chat-name">Aria</h4><span class="chat-status">AI Strategist</span></div>
                 </div>
-                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem"></i></button>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times chat-icon-sm"></i></button>
             </div>
             <div id="chatbot-messages" class="chat-messages"><div class="chat-messages-date">Today &bull; Online</div></div>
             <div class="chat-input-wrap">
                 <form id="chatbot-form" class="chat-input-form">
                     <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <button type="submit"><i class="fas fa-paper-plane" style="font-size:1.125rem"></i></button>
+                    <button type="submit"><i class="fas fa-paper-plane chat-icon-sm"></i></button>
                 </form>
             </div>
         </div>
@@ -49,10 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const isActive = win.classList.contains('is-active');
         if (isActive) {
             win.classList.remove('is-active');
+            iconMsg.classList.remove('icon-hidden');
+            iconClose.classList.add('icon-hidden');
             btn.classList.remove('chatbot-toggle-active');
             btn.classList.add('ripple-active');
         } else {
             win.classList.add('is-active');
+            iconMsg.classList.add('icon-hidden');
+            iconClose.classList.remove('icon-hidden');
             btn.classList.add('chatbot-toggle-active');
             btn.classList.remove('ripple-active');
         }
@@ -83,12 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => typingBubble.classList.add('show'));
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
 
+        input.disabled = true;
         fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_msg: text, session_id })
         }).then(r => r.json()).then(data => {
             typingBubble.innerHTML = data.reply || '';
             messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
+        }).catch(function () {
+            typingBubble.innerHTML = 'Sorry, something went wrong. Please try again.';
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
         });
     });
 })();

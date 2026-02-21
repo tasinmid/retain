@@ -483,6 +483,7 @@ ul { list-style: none; }
     align-items: center;
     justify-content: center;
     color: #cbd5e1;
+    font-size: 1.125rem;
     transition: background 0.2s;
 }
 .chat-close-btn:hover { background: rgba(255,255,255,0.1); }
@@ -532,6 +533,7 @@ ul { list-style: none; }
 }
 .chat-input-form button {
     color: #10b981;
+    font-size: 1.125rem;
     transition: transform 0.2s;
 }
 .chat-input-form button:hover { transform: scale(1.1); }

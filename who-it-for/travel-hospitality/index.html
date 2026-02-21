@@ -75,10 +75,10 @@
 
     <!-- 1. HERO -->
     <section class="hero-bg">
-        <div class="floating-orb float-a" style="width:120px;height:120px;top:10%;right:8%;background:#38bdf8;"></div>
-        <div class="floating-orb float-b" style="width:80px;height:80px;bottom:15%;left:5%;background:#6366f1;"></div>
-        <div class="floating-orb float-a" style="width:60px;height:60px;top:60%;right:25%;background:#7dd3fc;"></div>
-        <div class="container" style="position:relative;z-index:10;">
+        <div class="floating-orb float-a orb-1"></div>
+        <div class="floating-orb float-b orb-2"></div>
+        <div class="floating-orb float-a orb-3"></div>
+        <div class="container relative-z10">
             <div class="hero-grid">
                 <div class="animate-fade-in-up">
                     <span class="hero-badge">
@@ -100,7 +100,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="relative animate-fade-in-up animate-delay-200">
                     <video src="th-hero-video.mp4" autoplay loop muted playsinline poster="th-hero-hotel.png" class="hero-video"></video>
                     <div class="hero-stat-card bottom-left">
                         <div class="flex items-center gap-3">
@@ -116,7 +116,7 @@
                     <div class="hero-stat-card top-right">
                         <div class="flex items-center gap-2">
                             <div class="hero-stat-icon-sm indigo">
-                                <i class="fas fa-chart-line" style="color:#4f46e5;font-size:0.875rem;"></i>
+                                <i class="fas fa-chart-line icon-color-indigo-sm"></i>
                             </div>
                             <div>
                                 <p class="hero-stat-value-sm">+62%</p>
@@ -131,13 +131,13 @@
 
     <!-- 2. PAIN POINTS -->
     <section class="pain-section" id="pain-points">
-        <div class="pain-blob" style="top:-10%;left:-5%;width:420px;height:420px;background:radial-gradient(circle,rgba(14,165,233,0.10),transparent 70%);filter:blur(60px);"></div>
-        <div class="pain-blob" style="bottom:-8%;right:5%;width:350px;height:350px;background:radial-gradient(circle,rgba(79,70,229,0.08),transparent 70%);filter:blur(50px);"></div>
-        <div class="pain-blob" style="top:40%;right:-3%;width:260px;height:260px;background:radial-gradient(circle,rgba(14,165,233,0.06),transparent 70%);filter:blur(40px);"></div>
-        <div class="dot-pattern" style="bottom:0;right:0;width:300px;height:300px;"></div>
+        <div class="pain-blob pain-blob-1"></div>
+        <div class="pain-blob pain-blob-2"></div>
+        <div class="pain-blob pain-blob-3"></div>
+        <div class="dot-pattern dot-pattern-positioned"></div>
 
-        <div class="container" style="position:relative;z-index:10;">
-            <div class="text-center th-glass-reveal" style="margin-bottom:5rem;">
+        <div class="container relative-z10">
+            <div class="text-center th-glass-reveal mb-5">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> The Problem
                 </span>
@@ -147,44 +147,44 @@
                 <p class="section-subtitle">They loved the stay. But nobody followed up. Next time, they booked through an OTA — as if they'd never been.</p>
             </div>
 
-            <div class="th-glass-reveal" style="margin-bottom:3.5rem;">
+            <div class="th-glass-reveal mb-3-5">
                 <div class="pain-banner">
                     <img src="th-pain-banner.png" alt="Guest walking away from hotel">
                 </div>
             </div>
 
             <div class="pain-grid">
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:0ms; animation: thGlassFloat1 4.5s ease-in-out infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number">01</span>
                     <div class="pain-card-icon"><i class="fas fa-globe text-sky-500"></i></div>
                     <h3 class="pain-card-title">OTA Dependency</h3>
                     <p class="pain-card-desc">You're paying 15-25% commission to Booking.com and Expedia — for guests who already know your name and loved your property.</p>
                 </div>
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:150ms; animation: thGlassFloat2 5s ease-in-out 0.5s infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number">02</span>
                     <div class="pain-card-icon"><i class="fas fa-door-open text-sky-600"></i></div>
                     <h3 class="pain-card-title">Checkout = Goodbye</h3>
                     <p class="pain-card-desc">No post-stay follow-up. No "see you next time." The relationship dies at the front desk — and you start from zero next season.</p>
                 </div>
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:300ms; animation: thGlassFloat3 5.5s ease-in-out 1s infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number">03</span>
                     <div class="pain-card-icon"><i class="fas fa-brain text-indigo-500"></i></div>
                     <h3 class="pain-card-title">Zero Guest Memory</h3>
                     <p class="pain-card-desc">A guest returns after 8 months and gets asked "have you stayed with us before?" — no preferences remembered, no history, no recognition.</p>
                 </div>
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:450ms; animation: thGlassFloat1 6s ease-in-out 0.3s infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number indigo">04</span>
                     <div class="pain-card-icon"><i class="fas fa-coins text-indigo-500"></i></div>
                     <h3 class="pain-card-title">Points ≠ Loyalty</h3>
                     <p class="pain-card-desc">You built a points program nobody uses. Guests don't want to collect stamps — they want to feel remembered.</p>
                 </div>
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:600ms; animation: thGlassFloat2 4s ease-in-out 0.8s infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number indigo">05</span>
                     <div class="pain-card-icon"><i class="fas fa-chart-bar text-sky-500"></i></div>
                     <h3 class="pain-card-title">One Stay, One Revenue</h3>
                     <p class="pain-card-desc">A guest worth $15,000 in lifetime value checks out after one $800 stay. You never hear from them again.</p>
                 </div>
-                <div class="th-glass-card th-glass-reveal" style="transition-delay:750ms; animation: thGlassFloat3 5.5s ease-in-out 0.6s infinite;">
+                <div class="th-glass-card th-glass-reveal">
                     <span class="pain-card-number indigo">06</span>
                     <div class="pain-card-icon"><i class="fas fa-sync-alt text-sky-600"></i></div>
                     <h3 class="pain-card-title">Seasonal Reset Cycle</h3>
@@ -192,10 +192,10 @@
                 </div>
             </div>
 
-            <div class="text-center th-glass-reveal" style="transition-delay:900ms;">
+            <div class="text-center th-glass-reveal th-glass-reveal-last">
                 <p class="pain-footer-text">You're spending more on finding new guests than keeping the ones who already loved you. That math doesn't work.</p>
-                <a href="#process" style="display:inline-flex;align-items:center;color:#0284c7;font-size:0.875rem;font-weight:600;margin-top:0.25rem;">
-                    <i class="fas fa-arrow-down" style="transition:transform 0.3s;"></i>
+                <a href="#process" class="link-process">
+                    <i class="fas fa-arrow-down pain-arrow-icon"></i>
                 </a>
             </div>
         </div>
@@ -204,9 +204,9 @@
     <!-- 3. PROCESS TIMELINE -->
     <section class="process-section" id="process">
         <div class="container">
-            <div class="text-center reveal" style="margin-bottom:3rem;">
+            <div class="text-center reveal mb-3">
                 <span class="section-badge">
-                    <i class="fas fa-cogs" style="color:#0ea5e9;"></i> Our Process
+                    <i class="fas fa-cogs icon-color-sky"></i> Our Process
                 </span>
                 <h2 class="section-title"><span class="process-slide-left">Reduce OTA Dependency.</span> <span class="process-slide-right blue-gradient-text">Maximize Guest Lifetime Value.</span></h2>
                 <p class="section-subtitle">How we turn checkout into the beginning of a relationship — not the end of one.</p>
@@ -269,16 +269,16 @@
 
     <!-- 4. WITH vs WITHOUT RETAIN -->
     <section class="vs-section">
-        <div class="container" style="position:relative;z-index:10;">
-            <div class="text-center reveal" style="margin-bottom:4rem;">
+        <div class="container relative-z10">
+            <div class="text-center reveal mb-4">
                 <span class="vs-badge-label">Why Retain</span>
-                <h2 class="section-title" style="margin-top:1rem;margin-bottom:1.25rem;">Not Another Tool. <span class="gradient-headline">A Growth Partner.</span></h2>
-                <p class="section-subtitle" style="max-width:42rem;font-size:1.125rem;color:#4b5563;">Most platforms hand you software and wish you luck. Retain builds and runs your entire guest retention ecosystem — strategy, systems, and execution.</p>
+                <h2 class="section-title section-title-mt-mb">Not Another Tool. <span class="gradient-headline">A Growth Partner.</span></h2>
+                <p class="section-subtitle section-subtitle-gray">Most platforms hand you software and wish you luck. Retain builds and runs your entire guest retention ecosystem — strategy, systems, and execution.</p>
             </div>
             <div class="vs-grid">
                 <div class="th-vs-badge">VS</div>
                 <!-- Without -->
-                <div class="vs-card-dark reveal" style="transition-delay:0.1s">
+                <div class="vs-card-dark reveal transition-delay-100">
                     <div class="vs-header">
                         <div class="vs-icon red"><i class="fas fa-heart-broken"></i></div>
                         <p class="vs-header-label red">Without Retain</p>
@@ -303,13 +303,13 @@
                     </ul>
                 </div>
                 <!-- With -->
-                <div class="vs-card-sky reveal" style="transition-delay:0.2s">
+                <div class="vs-card-sky reveal transition-delay-200">
                     <div class="vs-card-corner"></div>
-                    <div class="vs-header" style="position:relative;z-index:10;">
+                    <div class="vs-header vs-header-z">
                         <div class="vs-icon sky"><i class="fas fa-heart"></i></div>
                         <p class="vs-header-label sky">With Retain</p>
                     </div>
-                    <ul class="vs-list" style="position:relative;z-index:10;">
+                    <ul class="vs-list vs-list-z">
                         <li class="vs-list-item">
                             <span class="vs-list-bullet sky"><i class="fas fa-check"></i></span>
                             <div><p class="vs-list-title-light">Lifelong guest relationships</p><p class="vs-list-desc-light">Post-stay nurture that makes them think of you first — not Booking.com</p></div>
@@ -334,13 +334,13 @@
 
     <!-- 5. VISUAL SHOWCASE — Bento Grid -->
     <section class="showcase-section">
-        <div class="container-sm" style="max-width:72rem;">
-            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+        <div class="container-sm container-72">
+            <div class="text-center reveal mb-3-5">
                 <span class="section-badge">
-                    <i class="fas fa-desktop" style="color:#0ea5e9;"></i> Platform Preview
+                    <i class="fas fa-desktop icon-color-sky"></i> Platform Preview
                 </span>
-                <h2 class="section-title" style="font-weight:800;">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
-                <p style="color:#9ca3af;max-width:42rem;margin:0 auto;font-size:1.125rem;letter-spacing:0.025em;">Real screens. Real workflows. Real results.</p>
+                <h2 class="section-title fw-800">What <span class="gradient-headline">Retain</span> Looks Like Inside</h2>
+                <p class="text-muted-sub">Real screens. Real workflows. Real results.</p>
             </div>
             <div class="showcase-grid">
                 <div class="showcase-card showcase-featured">
@@ -379,34 +379,34 @@
 
     <!-- 6. INDUSTRY QUOTES -->
     <section class="quotes-section">
-        <div class="th-quotes-blob" style="width:400px;height:400px;background:rgba(14,165,233,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
-        <div class="th-quotes-blob" style="width:350px;height:350px;background:rgba(79,70,229,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
-        <div class="th-quotes-blob" style="width:250px;height:250px;background:rgba(56,189,248,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
+        <div class="th-quotes-blob"></div>
+        <div class="th-quotes-blob"></div>
+        <div class="th-quotes-blob"></div>
         <div class="th-quotes-dots"></div>
 
-        <div class="container-sm" style="max-width:64rem;position:relative;z-index:10;">
-            <div class="text-center reveal" style="margin-bottom:4rem;">
-                <span class="section-badge" style="background:rgba(224,242,254,0.8);">🎙️ FROM THE TOP</span>
-                <h2 class="section-title" style="margin-top:1.25rem;">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
-                <p style="color:#6b7280;margin-top:1rem;max-width:42rem;margin-left:auto;margin-right:auto;font-size:1.125rem;">The biggest names in hospitality agree — guest retention wins.</p>
+        <div class="container-sm container-64-z10">
+            <div class="text-center reveal mb-4">
+                <span class="section-badge section-badge-sky">🎙️ FROM THE TOP</span>
+                <h2 class="section-title mt-1-25">The Leaders Have <span class="gradient-headline">Spoken.</span></h2>
+                <p class="text-muted-desc">The biggest names in hospitality agree — guest retention wins.</p>
             </div>
 
             <div class="th-quotes-grid">
                 <!-- Featured quote -->
                 <div class="th-glass-quote featured reveal">
                     <div class="flex flex-col items-center">
-                        <i class="fas fa-quote-left" style="color:#38bdf8;font-size:1.125rem;margin-bottom:1.25rem;display:block;"></i>
+                        <i class="fas fa-quote-left quote-icon-featured"></i>
                         <p class="quote-text-featured">"The hotel industry has to remember that <span class="gradient-headline">the guest is the center of everything we do.</span> If we lose sight of that, we lose everything."</p>
                         <div class="featured-divider">
                             <div class="featured-icons">
                                 <div class="featured-icon-circle sky-bg"><i class="fas fa-crown"></i></div>
-                                <div class="featured-icon-circle indigo-bg" style="margin-left:-0.5rem;"><i class="fas fa-gem"></i></div>
-                                <div class="featured-icon-circle blue-bg" style="margin-left:-0.5rem;"><i class="fas fa-trophy"></i></div>
+                                <div class="featured-icon-circle indigo-bg ml-neg-05"><i class="fas fa-gem"></i></div>
+                                <div class="featured-icon-circle blue-bg ml-neg-05"><i class="fas fa-trophy"></i></div>
                             </div>
                             <p class="featured-divider-text">Guest-centricity is everything —<br>own it or lose it</p>
                         </div>
                     </div>
-                    <div class="quote-attribution" style="margin-top:1.5rem;">
+                    <div class="quote-attribution mt-1-5">
                         <span class="quote-dot"></span>
                         <span class="quote-author">Arne Sorenson</span>
                         <span class="quote-role">Late CEO, Marriott International</span>
@@ -416,7 +416,7 @@
                 <!-- Quote 2 -->
                 <div class="th-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left" style="color:#38bdf8;font-size:1rem;margin-bottom:1rem;display:block;"></i>
+                        <i class="fas fa-quote-left quote-icon-sm"></i>
                         <p class="quote-text">"The future of hospitality is not about selling rooms — it's about building relationships that last beyond the stay."</p>
                     </div>
                     <div class="quote-attribution">
@@ -429,7 +429,7 @@
                 <!-- Quote 3 -->
                 <div class="th-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left" style="color:#38bdf8;font-size:1rem;margin-bottom:1rem;display:block;"></i>
+                        <i class="fas fa-quote-left quote-icon-sm"></i>
                         <p class="quote-text">"Our direct channel is the lifeblood of our business. The guest relationship is something we can never afford to outsource."</p>
                     </div>
                     <div class="quote-attribution">
@@ -442,7 +442,7 @@
                 <!-- Quote 4 -->
                 <div class="th-glass-quote reveal">
                     <div>
-                        <i class="fas fa-quote-left" style="color:#38bdf8;font-size:1rem;margin-bottom:1rem;display:block;"></i>
+                        <i class="fas fa-quote-left quote-icon-sm"></i>
                         <p class="quote-text">"Loyalty isn't about points or perks — it's about recognizing guests and making them feel known every single time they walk through our doors."</p>
                     </div>
                     <div class="quote-attribution">
@@ -457,7 +457,7 @@
 
     <!-- 7. BIG TEXT SECTION -->
     <section class="big-text-section reveal">
-        <div class="container" style="max-width:64rem;text-align:center;">
+        <div class="container container-64-center">
             <h2 class="big-text-title">
                 <span class="blue-gradient-text">Your Best Future Guests Have Already Stayed With You.</span>
                 <span class="big-text-sub">Stop starting from zero every season.</span>
@@ -471,7 +471,7 @@
     <!-- 8. STATS BANNER -->
     <section class="th-stats-banner">
         <div class="container">
-            <div class="text-center reveal" style="margin-bottom:3.5rem;">
+            <div class="text-center reveal mb-3-5">
                 <h2 class="stats-title">What Guest Retention Actually Looks Like</h2>
                 <p class="stats-subtitle">Average results across hospitality brands using Retain's retention ecosystem.</p>
             </div>
@@ -498,13 +498,13 @@
 
     <!-- 9. TESTIMONIALS -->
     <section class="testimonials-section">
-        <div class="pain-blob" style="top:-5%;right:-5%;width:300px;height:300px;background:radial-gradient(circle,rgba(14,165,233,0.08),transparent 70%);filter:blur(60px);"></div>
-        <div class="pain-blob" style="bottom:-5%;left:10%;width:250px;height:250px;background:radial-gradient(circle,rgba(79,70,229,0.06),transparent 70%);filter:blur(50px);"></div>
-        <div class="container-sm" style="max-width:72rem;position:relative;z-index:10;">
-            <div class="text-center reveal" style="margin-bottom:4rem;">
+        <div class="pain-blob testi-blob-1"></div>
+        <div class="pain-blob testi-blob-2"></div>
+        <div class="container-sm container-72-z10">
+            <div class="text-center reveal mb-4">
                 <span class="section-badge">⭐ SUCCESS STORIES</span>
-                <h2 class="section-title" style="font-weight:800;">They <span class="gradient-headline">Stopped Losing Guests.</span></h2>
-                <p style="color:#9ca3af;margin-top:1rem;max-width:36rem;margin-left:auto;margin-right:auto;font-size:1.125rem;">Here's what happened next.</p>
+                <h2 class="section-title fw-800">They <span class="gradient-headline">Stopped Losing Guests.</span></h2>
+                <p class="text-muted-sub-sm">Here's what happened next.</p>
             </div>
             <div class="testi-grid">
                 <div class="testi-card reveal">
@@ -545,7 +545,7 @@
 
     <!-- 10. CONTACT FORM -->
     <section class="contact-section" id="contactForm">
-        <div class="container" style="max-width:80rem;padding:0 1.5rem;">
+        <div class="container container-80-px">
             <div class="contact-grid">
                 <!-- Left Side -->
                 <div class="reveal">
@@ -609,7 +609,7 @@
                             <div class="form-group">
                                 <label class="form-label">Country *</label>
                                 <div class="country-input-wrap">
-                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" style="padding-right:2.5rem;">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input input-pr-icon">
                                     <div class="chevron-icon">
                                         <i class="fas fa-chevron-down"></i>
                                     </div>

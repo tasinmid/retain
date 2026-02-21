@@ -47,7 +47,7 @@
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal, .reveal-left, .icon-bounce').forEach(function(el) {
+    document.querySelectorAll('.reveal, .reveal-left').forEach(function(el) {
         revealObs.observe(el);
     });
 
@@ -218,7 +218,7 @@
                         '<span class="chat-role">AI Strategist</span>' +
                     '</div>' +
                 '</div>' +
-                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem"></i></button>' +
+                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times chat-icon-sm"></i></button>' +
             '</div>' +
             '<div id="chatbot-messages" class="no-scrollbar">' +
                 '<div class="chat-date-label">Today • Online</div>' +
@@ -231,8 +231,8 @@
             '</div>' +
         '</div>' +
         '<button id="chatbot-toggle" class="ripple-active">' +
-            '<i id="icon-msg" class="fas fa-comment-dots icon-transition icon-visible" style="font-size:1.5rem"></i>' +
-            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden" style="font-size:1.5rem"></i>' +
+            '<i id="icon-msg" class="fas fa-comment-dots icon-transition icon-visible chat-icon-lg"></i>' +
+            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden chat-icon-lg"></i>' +
         '</button>';
     document.body.appendChild(container);
 

@@ -341,11 +341,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const buttonIndex = Array.from(dropdownButtons).indexOf(button);
             const content = this.nextElementSibling;
             const icon = this.querySelector(".dropdown-chevron");
-            const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+            const isOpen = content.classList.contains("dropdown-open");
             
             if (isOpen) {
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
+                content.classList.remove("dropdown-open");
                 icon.classList.remove("rotate-180");
                 currentOpenIndex = -1;
             } else {
@@ -355,19 +354,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     const currentContent = currentButton.nextElementSibling;
                     const currentIcon = currentButton.querySelector(".dropdown-chevron");
                     
-                    currentContent.style.maxHeight = "0px";
-                    currentContent.style.opacity = "0";
+                    currentContent.classList.remove("dropdown-open");
                     currentIcon.classList.remove("rotate-180");
                     
                     setTimeout(() => {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        content.style.opacity = "1";
+                        content.classList.add("dropdown-open");
                         icon.classList.add("rotate-180");
                         currentOpenIndex = buttonIndex;
                     }, 130);
                 } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    content.style.opacity = "1";
+                    content.classList.add("dropdown-open");
                     icon.classList.add("rotate-180");
                     currentOpenIndex = buttonIndex;
                 }
@@ -481,6 +477,7 @@ document.addEventListener("DOMContentLoaded", function() {
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
 
         // Send POST request
+        input.disabled = true;
         fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -491,6 +488,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const aiText = data.reply || '';
             typingBubble.innerHTML = aiText;
             messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
+        })
+        .catch(function () {
+            typingBubble.innerHTML = 'Sorry, something went wrong. Please try again.';
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
         });
     });
 })();

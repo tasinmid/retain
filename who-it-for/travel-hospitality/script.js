@@ -177,7 +177,6 @@ document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el
 
         const userMsg = document.createElement('div');
         userMsg.className = 'chat-message user';
-        userMsg.style.maxWidth = '80%';
         userMsg.innerText = text;
         messages.appendChild(userMsg);
         requestAnimationFrame(() => userMsg.classList.add('show'));
@@ -186,7 +185,6 @@ document.querySelectorAll('.showcase-card').forEach(el => showcaseObs.observe(el
 
         const typingBubble = document.createElement('div');
         typingBubble.className = 'chat-message bot';
-        typingBubble.style.maxWidth = '80%';
         typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
         messages.appendChild(typingBubble);
         requestAnimationFrame(() => typingBubble.classList.add('show'));

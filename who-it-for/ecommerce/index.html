@@ -69,7 +69,7 @@
         <a href="/home/" class="mobile-menu-link">Home</a>
         <a href="/about/" class="mobile-menu-link">About</a>
         <a href="/solutions/" class="mobile-menu-link">Solutions</a>
-        <div style="padding-left:0.75rem;">
+        <div class="mobile-menu-indent">
             <p class="mobile-menu-sub-header">Who It's For</p>
             <a href="/who-it-for/real-estate/" class="mobile-menu-sub-link">Real Estate</a>
             <a href="/who-it-for/ecommerce/" class="mobile-menu-sub-link mobile-menu-sub-link-active">E-commerce & Retail</a>
@@ -85,17 +85,17 @@
 <!-- Hero -->
 <section class="hero dot-grid">
     <!-- Floating orbs -->
-    <div class="orb" style="width:400px;height:400px;background:radial-gradient(circle,#fbbf24,transparent);top:-100px;left:-100px;animation-delay:0s;"></div>
-    <div class="orb" style="width:300px;height:300px;background:radial-gradient(circle,#ea580c,transparent);bottom:-50px;right:-80px;animation-delay:2s;"></div>
-    <div class="orb" style="width:200px;height:200px;background:radial-gradient(circle,#f59e0b,transparent);top:40%;left:60%;animation-delay:4s;"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
     <!-- Floating badges -->
-    <div class="floating-badge" style="top:10rem;right:3rem;animation-delay:0s;">
+    <div class="floating-badge">
         <span class="floating-badge-inner">🤖 AI-Powered</span>
     </div>
-    <div class="floating-badge" style="top:14rem;right:7rem;animation-delay:1s;">
+    <div class="floating-badge">
         <span class="floating-badge-inner">📡 Omnichannel</span>
     </div>
-    <div class="floating-badge" style="bottom:8rem;left:3rem;animation-delay:0.5s;">
+    <div class="floating-badge">
         <span class="floating-badge-inner">⚡ Real-time</span>
     </div>
     <div class="hero-inner">
@@ -111,7 +111,7 @@
             </div>
         </div>
         <div class="reveal float img-hover-container">
-            <img src="ecommerce_hero_visual_1771075718834.png" alt="E-commerce retention platform" style="width:100%;border-radius:1rem;">
+            <img src="ecommerce_hero_visual_1771075718834.png" alt="E-commerce retention platform" class="hero-img-full">
         </div>
     </div>
 </section>
@@ -155,11 +155,11 @@
         <div class="bento-grid">
             <div class="bento-span-2 card-hover tilt-card bento-card bento-card-lg bento-red reveal">
                 <div>
-                    <div class="bento-card-icon bento-card-icon-lg bento-icon-red"><i class="fas fa-cart-arrow-down icon-pulse" style="font-size:1.5rem;"></i></div>
-                    <h3 style="font-size:1.25rem;">Silent Cart Abandonment</h3>
-                    <p style="font-size:1rem;">7 out of 10 carts are abandoned — and most brands have no system to bring those buyers back through WhatsApp or Messenger where they actually respond.</p>
+                    <div class="bento-card-icon bento-card-icon-lg bento-icon-red"><i class="fas fa-cart-arrow-down icon-pulse"></i></div>
+                    <h3>Silent Cart Abandonment</h3>
+                    <p>7 out of 10 carts are abandoned — and most brands have no system to bring those buyers back through WhatsApp or Messenger where they actually respond.</p>
                 </div>
-                <div class="bento-stat" style="color:#f87171;"><i class="fas fa-arrow-trend-down"></i> 70% revenue left on the table</div>
+                <div class="bento-stat bento-stat-red"><i class="fas fa-arrow-trend-down"></i> 70% revenue left on the table</div>
             </div>
             <div class="card-hover tilt-card bento-card bento-orange reveal">
                 <div class="bento-card-icon bento-icon-orange"><i class="fas fa-user-slash icon-bounce"></i></div>
@@ -167,23 +167,23 @@
                 <p>You spent ৳500–৳2000 to acquire them, they bought once, and disappeared. No follow-up, no relationship, no second order.</p>
             </div>
             <div class="card-hover tilt-card bento-card bento-yellow reveal">
-                <div class="bento-card-icon bento-icon-yellow"><i class="fas fa-comments icon-pulse" style="animation-delay:1s;"></i></div>
+                <div class="bento-card-icon bento-icon-yellow"><i class="fas fa-comments icon-pulse"></i></div>
                 <h3>Scattered Conversations</h3>
                 <p>Customer inquiries spread across WhatsApp, Instagram DMs, Messenger, and email. Your team can't remember who said what.</p>
             </div>
             <div class="bento-span-2 card-hover tilt-card bento-card bento-card-lg bento-amber reveal">
-                <div class="bento-card-icon bento-card-icon-lg bento-icon-amber"><i class="fas fa-money-bill-wave icon-bounce" style="animation-delay:0.5s;font-size:1.75rem;"></i></div>
+                <div class="bento-card-icon bento-card-icon-lg bento-icon-amber"><i class="fas fa-money-bill-wave icon-bounce"></i></div>
                 <div>
-                    <h3 style="font-size:1.25rem;">CAC Keeps Climbing</h3>
-                    <p style="font-size:1rem;">Ad costs rise 15–20% every year while your margins shrink. Without retention, you're renting customers instead of owning relationships.</p>
+                    <h3>CAC Keeps Climbing</h3>
+                    <p>Ad costs rise 15–20% every year while your margins shrink. Without retention, you're renting customers instead of owning relationships.</p>
                 </div>
             </div>
             <div class="bento-connector reveal">
                 <div>
                     <div class="bento-connector-arrows">
-                        <i class="fas fa-arrow-right" style="color:#fca5a5;"></i>
-                        <i class="fas fa-arrow-right" style="color:#fdba74;"></i>
-                        <i class="fas fa-arrow-right" style="color:#fbbf24;"></i>
+                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right"></i>
                     </div>
                     <p>These problems <span class="gradient-text">compound</span> — each one makes the others worse.</p>
                     <p class="small">The result? A leaky bucket you keep filling with expensive ads.</p>
@@ -249,8 +249,8 @@
 <!-- Feature Deep-Dive (Tabs) — Scroll-Driven -->
 <div id="scrollTabsOuter" class="deep-dive-outer">
 <section id="scrollTabsSection" class="deep-dive-section">
-    <div class="deco-dots" style="top:5rem;left:2.5rem;"></div>
-    <div class="deco-dots" style="bottom:5rem;right:2.5rem;"></div>
+    <div class="deco-dots"></div>
+    <div class="deco-dots"></div>
     <div class="deep-dive-inner">
         <div class="deep-dive-header reveal">
             <span class="section-label">DEEP DIVE</span>
@@ -307,7 +307,7 @@
             <!-- Right: Content + Image -->
             <div class="tab-content-area">
                 <div class="tab-text-wrap">
-                    <div id="tab-omni" class="tab-content" style="position:relative;">
+                    <div id="tab-omni" class="tab-content dd-tab-content-item-first">
                         <h3>One Inbox. Every Channel. <span class="gradient-text">Full Context.</span></h3>
                         <p>Every conversation — WhatsApp, Instagram, email — in one inbox with full customer context.</p>
                         <ul class="tab-checklist">
@@ -316,7 +316,7 @@
                             <li class="tab-check-item"><span class="tab-check-icon"><i class="fas fa-check"></i></span>Auto conversation summaries</li>
                         </ul>
                     </div>
-                    <div id="tab-cart" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateY(100%);visibility:hidden;">
+                    <div id="tab-cart" class="tab-content dd-tab-content-item">
                         <h3>Recover Revenue <span class="gradient-text">While You Sleep</span></h3>
                         <p>Abandoned cart? Retain fires a recovery sequence instantly — WhatsApp, email, then a personalized incentive.</p>
                         <ul class="tab-checklist">
@@ -325,7 +325,7 @@
                             <li class="tab-check-item"><span class="tab-check-icon"><i class="fas fa-check"></i></span>Real-time behavior triggers</li>
                         </ul>
                     </div>
-                    <div id="tab-profiles" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateY(100%);visibility:hidden;">
+                    <div id="tab-profiles" class="tab-content dd-tab-content-item">
                         <h3>AI That <span class="gradient-text">Remembers Everything</span></h3>
                         <p>Living customer profiles that grow with every interaction — not static data fields.</p>
                         <ul class="tab-checklist">
@@ -334,7 +334,7 @@
                             <li class="tab-check-item"><span class="tab-check-icon"><i class="fas fa-check"></i></span>Cross-channel unified history</li>
                         </ul>
                     </div>
-                    <div id="tab-analytics" class="tab-content" style="position:absolute;top:0;left:0;right:0;transform:translateY(100%);visibility:hidden;">
+                    <div id="tab-analytics" class="tab-content dd-tab-content-item">
                         <h3>Metrics That <span class="gradient-text">Predict Growth</span></h3>
                         <p>Skip vanity metrics. See LTV trends, cohort retention, and campaign-level revenue attribution.</p>
                         <ul class="tab-checklist">
@@ -347,10 +347,10 @@
                 <div class="tab-image-wrap">
                     <div class="tab-image-bg"></div>
                     <div class="tab-images-container img-hover-container float">
-                        <img id="tab-img-omni" src="customer_engagement_visual_1771075759066.png" alt="Omnichannel CRM" class="tab-img" style="position:relative;">
-                        <img id="tab-img-cart" src="cart_recovery_illustration_1771075740291.png" alt="Cart Recovery" class="tab-img" style="position:absolute;top:0;left:0;right:0;transform:translateY(70px);opacity:0;scale:0.97;visibility:hidden;">
-                        <img id="tab-img-profiles" src="unified_customer_profile_1771078936946.png" alt="Customer Memory System" class="tab-img" style="position:absolute;top:0;left:0;right:0;transform:translateY(70px);opacity:0;scale:0.97;visibility:hidden;">
-                        <img id="tab-img-analytics" src="analytics_dashboard_mockup_1771075776456.png" alt="Retention Analytics" class="tab-img" style="position:absolute;top:0;left:0;right:0;transform:translateY(70px);opacity:0;scale:0.97;visibility:hidden;">
+                        <img id="tab-img-omni" src="customer_engagement_visual_1771075759066.png" alt="Omnichannel CRM" class="tab-img dd-tab-img-item-first">
+                        <img id="tab-img-cart" src="cart_recovery_illustration_1771075740291.png" alt="Cart Recovery" class="tab-img dd-tab-img-item">
+                        <img id="tab-img-profiles" src="unified_customer_profile_1771078936946.png" alt="Customer Memory System" class="tab-img dd-tab-img-item">
+                        <img id="tab-img-analytics" src="analytics_dashboard_mockup_1771075776456.png" alt="Retention Analytics" class="tab-img dd-tab-img-item">
                     </div>
                 </div>
             </div>
@@ -595,9 +595,9 @@
 
 <!-- Quotes Section -->
 <section class="quotes-section">
-    <div class="quotes-blob" style="width:400px;height:400px;background:rgba(245,158,11,0.1);top:-100px;left:-100px;animation-delay:0s;"></div>
-    <div class="quotes-blob" style="width:350px;height:350px;background:rgba(249,115,22,0.1);bottom:-80px;right:-60px;animation-delay:-7s;"></div>
-    <div class="quotes-blob" style="width:250px;height:250px;background:rgba(253,224,71,0.12);top:40%;left:60%;animation-delay:-13s;"></div>
+    <div class="quotes-blob"></div>
+    <div class="quotes-blob"></div>
+    <div class="quotes-blob"></div>
     <div class="quotes-dot-pattern"></div>
 
     <div class="quotes-inner">
@@ -609,9 +609,9 @@
 
         <div class="quotes-grid">
             <!-- Featured quote -->
-            <div class="glass-quote featured reveal" style="display:flex;flex-direction:column;align-items:center;">
-                <div style="display:flex;flex-direction:column;align-items:center;">
-                    <i class="fas fa-quote-left quote-icon" style="font-size:1.125rem;"></i>
+            <div class="glass-quote featured reveal">
+                <div>
+                    <i class="fas fa-quote-left quote-icon quote-icon-featured"></i>
                     <p class="quote-text quote-text-featured">"Customer satisfaction is worthless. Customer loyalty is <span class="gradient-text">priceless.</span>"</p>
                     <div class="quote-featured-meta">
                         <div class="quote-featured-icons">
@@ -622,7 +622,7 @@
                         <p>Loyalty over satisfaction —<br>the foundation of compounding revenue</p>
                     </div>
                 </div>
-                <div class="quote-author" style="margin-top:1.5rem;">
+                <div class="quote-author quote-author-featured">
                     <span class="quote-author-dot"></span>
                     <span class="quote-author-name">Jeffrey Gitomer</span>
                     <span class="quote-author-title">Author & Sales Expert</span>
@@ -632,11 +632,11 @@
             <!-- Quote 2 -->
             <div class="glass-quote reveal">
                 <div>
-                    <i class="fas fa-quote-left quote-icon" style="font-size:1rem;display:block;margin-bottom:1rem;"></i>
+                    <i class="fas fa-quote-left quote-icon quote-icon-normal"></i>
                     <p class="quote-text quote-text-normal">"We see our customers as invited guests to a party, and we are the hosts. It's our job every day to make every important aspect of the customer experience a little better."</p>
                 </div>
                 <div class="quote-author">
-                    <span class="quote-author-dot" style="width:6px;height:6px;"></span>
+                    <span class="quote-author-dot quote-author-dot-sm"></span>
                     <span class="quote-author-name">Jeff Bezos</span>
                     <span class="quote-author-title">Founder of Amazon</span>
                 </div>
@@ -645,11 +645,11 @@
             <!-- Quote 3 -->
             <div class="glass-quote reveal">
                 <div>
-                    <i class="fas fa-quote-left quote-icon" style="font-size:1rem;display:block;margin-bottom:1rem;"></i>
+                    <i class="fas fa-quote-left quote-icon quote-icon-normal"></i>
                     <p class="quote-text quote-text-normal">"If you do build a great experience, customers tell each other about that. Word of mouth is very powerful."</p>
                 </div>
                 <div class="quote-author">
-                    <span class="quote-author-dot" style="width:6px;height:6px;"></span>
+                    <span class="quote-author-dot quote-author-dot-sm"></span>
                     <span class="quote-author-name">Jeff Bezos</span>
                     <span class="quote-author-title">Founder of Amazon</span>
                 </div>
@@ -658,11 +658,11 @@
             <!-- Quote 4 -->
             <div class="glass-quote reveal">
                 <div>
-                    <i class="fas fa-quote-left quote-icon" style="font-size:1rem;display:block;margin-bottom:1rem;"></i>
+                    <i class="fas fa-quote-left quote-icon quote-icon-normal"></i>
                     <p class="quote-text quote-text-normal">"The purpose of a business is to create a customer who creates customers."</p>
                 </div>
                 <div class="quote-author">
-                    <span class="quote-author-dot" style="width:6px;height:6px;"></span>
+                    <span class="quote-author-dot quote-author-dot-sm"></span>
                     <span class="quote-author-name">Shiv Singh</span>
                     <span class="quote-author-title">Marketing Executive & Author</span>
                 </div>
@@ -678,8 +678,8 @@
             <!-- Left -->
             <div class="reveal-left">
                 <span class="section-label contact-left-header">GET STARTED</span>
-                <h2 style="font-family:'Poppins',sans-serif;font-size:1.875rem;font-weight:800;color:#111827;margin-bottom:1rem;line-height:1.2;">Let's Build Your <span class="gradient-text">Retention Ecosystem</span></h2>
-                <p style="color:#6b7280;font-size:1.125rem;margin-bottom:2rem;">Book a free consultation with our team</p>
+                <h2 class="contact-heading">Let's Build Your <span class="gradient-text">Retention Ecosystem</span></h2>
+                <p class="contact-subtext">Book a free consultation with our team</p>
                 <div class="contact-features">
                     <div class="contact-feature">
                         <div class="contact-feature-icon contact-feature-icon-amber"><i class="fas fa-search"></i></div>
@@ -737,7 +737,7 @@
                         <div class="form-group">
                             <label class="form-label">Country *</label>
                             <div class="country-input-wrap">
-                                <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" style="padding-right:2.5rem;">
+                                <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input form-input-country">
                                 <div class="country-input-chevron">
                                     <i class="fas fa-chevron-down"></i>
                                 </div>

@@ -15,7 +15,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-inner">
-            <div style="display:flex;align-items:center">
+            <div class="d-flex-center">
                 <a href="/home/" class="navbar-brand">
                     <img src="/lightFavicon.png" alt="Retain Logo">
                     <span class="navbar-brand-name">Retain</span>
@@ -57,7 +57,7 @@
             </div>
             <div class="mobile-menu-btn-wrap">
                 <button id="mobile-menu-btn" class="mobile-menu-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:1.5rem;height:1.5rem"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="svg-icon-md"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
         </div>
@@ -78,11 +78,11 @@
 
     <!-- 1. HERO -->
     <section class="hero-mesh">
-        <div class="floating-orb float-a" style="width:120px;height:120px;top:10%;right:8%;background:#a78bfa;"></div>
-        <div class="floating-orb float-b" style="width:80px;height:80px;bottom:15%;left:5%;background:#9333ea;"></div>
-        <div class="floating-orb float-a" style="width:60px;height:60px;top:60%;right:25%;background:#c4b5fd;"></div>
+        <div class="floating-orb float-a orb-1"></div>
+        <div class="floating-orb float-b orb-2"></div>
+        <div class="floating-orb float-a orb-3"></div>
 
-        <div class="container-lg" style="position:relative;z-index:10">
+        <div class="container-lg relative-z10">
             <div class="hero-grid">
                 <div class="animate-fade-in-up">
                     <span class="hero-badge">
@@ -104,12 +104,12 @@
                         </a>
                     </div>
                 </div>
-                <div class="animate-fade-in-up" style="position:relative;animation-delay:0.2s;">
+                <div class="animate-fade-in-up relative-z10 animate-delay-200">
                     <video autoplay muted loop playsinline class="hero-video"><source src="ag-hero-video.mp4" type="video/mp4"></video>
-                    <div class="hero-stat-card hero-stat-bottom glass-card" style="padding:1rem">
-                        <div style="display:flex;align-items:center;gap:0.75rem">
-                            <div class="stat-icon-lg violet-gradient" style="display:flex;align-items:center;justify-content:center">
-                                <i class="fas fa-redo" style="color:#fff;font-size:1.125rem"></i>
+                    <div class="hero-stat-card hero-stat-bottom glass-card p-md">
+                        <div class="d-flex-center-gap-md">
+                            <div class="stat-icon-lg violet-gradient d-flex-center-justify">
+                                <i class="fas fa-redo icon-color-white-sm"></i>
                             </div>
                             <div>
                                 <p class="stat-value-lg">4.2×</p>
@@ -117,8 +117,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-stat-card hero-stat-top glass-card" style="padding:0.75rem">
-                        <div style="display:flex;align-items:center;gap:0.5rem">
+                    <div class="hero-stat-card hero-stat-top glass-card p-sm">
+                        <div class="d-flex-center-gap-sm">
                             <div class="stat-icon-sm">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -163,12 +163,12 @@
     <!-- 3. PAIN POINTS -->
     <section class="pain-section" id="pain-points">
         <div class="pain-bg-blob"></div>
-        <div class="container-md" style="position:relative;z-index:10">
+        <div class="container-md relative-z10">
             <div class="text-center section-mb reveal">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> The Problem
                 </span>
-                <h2 class="section-title" style="max-width:56rem;margin-left:auto;margin-right:auto">
+                <h2 class="section-title section-title-wide">
                     Why Do Clients <span class="violet-gradient-text">Disappear After Delivery?</span>
                 </h2>
                 <p class="section-subtitle">The project ends. The relationship shouldn't.</p>
@@ -177,7 +177,7 @@
             <div class="bento-pain-grid">
                 <!-- Card 1: Featured -->
                 <div class="gradient-border-card reveal stagger-1 bento-featured">
-                    <div class="gradient-border-card-inner" style="display:flex;flex-direction:column;justify-content:center">
+                    <div class="gradient-border-card-inner d-flex-col-center">
                         <div class="pain-icon-lg">
                             <i class="fas fa-ghost"></i>
                         </div>
@@ -231,7 +231,7 @@
 
     <!-- 4. WHICH AGENCIES USE RETAIN? -->
     <section class="agencies-section">
-        <div class="container-md" style="position:relative;z-index:10">
+        <div class="container-md relative-z10">
             <div class="text-center section-mb reveal">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> Every Agency Type
@@ -244,8 +244,8 @@
 
             <div class="agency-card-grid reveal">
                 <div class="agency-card stagger-1">
-                    <div class="agency-card-icon" style="background:#f5f3ff">
-                        <i class="fas fa-bullhorn" style="color:#7c3aed;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-violet">
+                        <i class="fas fa-bullhorn icon-color-violet"></i>
                     </div>
                     <h3>Digital Marketing</h3>
                     <p class="agency-tagline">Campaigns end. Relationships don't have to.</p>
@@ -255,8 +255,8 @@
                     </ul>
                 </div>
                 <div class="agency-card stagger-2">
-                    <div class="agency-card-icon" style="background:#faf5ff">
-                        <i class="fas fa-code" style="color:#9333ea;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-purple">
+                        <i class="fas fa-code icon-color-purple"></i>
                     </div>
                     <h3>Dev & Tech Agencies</h3>
                     <p class="agency-tagline">Launch day is just the beginning.</p>
@@ -266,8 +266,8 @@
                     </ul>
                 </div>
                 <div class="agency-card stagger-3">
-                    <div class="agency-card-icon" style="background:#f5f3ff">
-                        <i class="fas fa-palette" style="color:#7c3aed;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-violet">
+                        <i class="fas fa-palette icon-color-violet"></i>
                     </div>
                     <h3>Creative Studios</h3>
                     <p class="agency-tagline">Design once, retain forever.</p>
@@ -277,8 +277,8 @@
                     </ul>
                 </div>
                 <div class="agency-card stagger-1">
-                    <div class="agency-card-icon" style="background:#faf5ff">
-                        <i class="fas fa-newspaper" style="color:#9333ea;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-purple">
+                        <i class="fas fa-newspaper icon-color-purple"></i>
                     </div>
                     <h3>PR & Comms</h3>
                     <p class="agency-tagline">Stay top of mind between headlines.</p>
@@ -288,8 +288,8 @@
                     </ul>
                 </div>
                 <div class="agency-card stagger-2">
-                    <div class="agency-card-icon" style="background:#f5f3ff">
-                        <i class="fas fa-pen-nib" style="color:#7c3aed;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-violet">
+                        <i class="fas fa-pen-nib icon-color-violet"></i>
                     </div>
                     <h3>Content & Copy</h3>
                     <p class="agency-tagline">Words that keep working after delivery.</p>
@@ -299,8 +299,8 @@
                     </ul>
                 </div>
                 <div class="agency-card stagger-3">
-                    <div class="agency-card-icon" style="background:#faf5ff">
-                        <i class="fas fa-briefcase" style="color:#9333ea;font-size:1.25rem"></i>
+                    <div class="agency-card-icon agency-card-icon-purple">
+                        <i class="fas fa-briefcase icon-color-purple"></i>
                     </div>
                     <h3>Consultancy</h3>
                     <p class="agency-tagline">Advice that compounds over time.</p>
@@ -381,65 +381,65 @@
     <!-- 5.5 WITH VS WITHOUT RETAIN -->
     <section class="wr-section">
         <div class="ag-wr-bg-gradient"></div>
-        <div class="ag-wr-orb" style="width:200px;height:200px;top:-5%;left:10%;background:rgba(139,92,246,0.08);"></div>
-        <div class="ag-wr-orb" style="width:150px;height:150px;bottom:10%;right:5%;background:rgba(147,51,234,0.06);animation-delay:2s;"></div>
-        <div class="container-lg" style="position:relative;z-index:10">
+        <div class="ag-wr-orb"></div>
+        <div class="ag-wr-orb"></div>
+        <div class="container-lg relative-z10">
             <div class="text-center section-mb reveal">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> Why Retain
                 </span>
                 <h2 class="wr-title">Not Another CRM. <span class="violet-gradient-text">A Retention Ecosystem.</span></h2>
-                <p style="color:#6b7280;font-size:1.125rem;max-width:42rem;margin:0 auto">Most tools help you manage projects. Retain helps you keep the clients — from first lead to closed deal to lifetime retainer.</p>
+                <p class="text-gray-desc">Most tools help you manage projects. Retain helps you keep the clients — from first lead to closed deal to lifetime retainer.</p>
             </div>
 
             <div class="wr-grid">
                 <div class="ag-wr-vs-badge">VS</div>
                 <!-- Without Retain -->
-                <div class="ag-wr-card-dark reveal" style="transition-delay:0.1s">
+                <div class="ag-wr-card-dark reveal transition-delay-100">
                     <div class="wr-card-header">
-                        <div class="wr-header-icon red"><i class="fas fa-heart-broken" style="color:#f87171;font-size:1.125rem"></i></div>
+                        <div class="wr-header-icon red"><i class="fas fa-heart-broken icon-color-red-sm"></i></div>
                         <p class="wr-header-label red">Without Retain</p>
                     </div>
                     <ul class="wr-list">
-                        <li class="wr-list-item" style="transition-delay:0.1s">
+                        <li class="wr-list-item transition-delay-100">
                             <span class="wr-list-icon red ag-wr-x-shake"><i class="fas fa-times"></i></span>
                             <div><p class="wr-item-title">Leads go cold in your inbox</p><p class="wr-item-desc">Prospects inquire, you reply once, then forget. No follow-up system, no pipeline visibility.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.2s">
+                        <li class="wr-list-item transition-delay-200">
                             <span class="wr-list-icon red ag-wr-x-shake"><i class="fas fa-times"></i></span>
                             <div><p class="wr-item-title">Deals close but clients vanish</p><p class="wr-item-desc">Project delivered, invoice paid, relationship over. No system to turn projects into retainers.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.3s">
+                        <li class="wr-list-item transition-delay-300">
                             <span class="wr-list-icon red ag-wr-x-shake"><i class="fas fa-times"></i></span>
                             <div><p class="wr-item-title">No memory of past clients</p><p class="wr-item-desc">A client returns after 6 months and you scramble to remember their brand, goals, and history.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.4s">
+                        <li class="wr-list-item transition-delay-400">
                             <span class="wr-list-icon red ag-wr-x-shake"><i class="fas fa-times"></i></span>
                             <div><p class="wr-item-title">Always hunting new business</p><p class="wr-item-desc">Every month starts from zero. Cold outreach, proposals, pitches — repeat forever.</p></div>
                         </li>
                     </ul>
                 </div>
                 <!-- With Retain -->
-                <div class="ag-wr-card-violet reveal" style="transition-delay:0.2s">
+                <div class="ag-wr-card-violet reveal transition-delay-200">
                     <div class="corner-glow"></div>
-                    <div class="wr-card-header" style="position:relative;z-index:10">
-                        <div class="wr-header-icon violet"><i class="fas fa-heart" style="color:#7c3aed;font-size:1.125rem"></i></div>
+                    <div class="wr-card-header relative-z10">
+                        <div class="wr-header-icon violet"><i class="fas fa-heart icon-color-violet-sm"></i></div>
                         <p class="wr-header-label violet">With Retain</p>
                     </div>
-                    <ul class="wr-list" style="position:relative;z-index:10">
-                        <li class="wr-list-item" style="transition-delay:0.15s">
+                    <ul class="wr-list relative-z10">
+                        <li class="wr-list-item transition-delay-150">
                             <span class="wr-list-icon violet"><i class="fas fa-check"></i></span>
                             <div><p class="wr-item-title">Leads nurtured automatically</p><p class="wr-item-desc">Every inquiry gets smart follow-ups. Warm leads stay warm until they're ready to close.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.25s">
+                        <li class="wr-list-item transition-delay-250">
                             <span class="wr-list-icon violet"><i class="fas fa-check"></i></span>
                             <div><p class="wr-item-title">Deals close and relationships grow</p><p class="wr-item-desc">Post-project engagement kicks in automatically — upsells, check-ins, and retainer offers at the right time.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.35s">
+                        <li class="wr-list-item transition-delay-350">
                             <span class="wr-list-icon violet"><i class="fas fa-check"></i></span>
                             <div><p class="wr-item-title">Full client memory, always</p><p class="wr-item-desc">Every conversation, project, and preference stored. Pick up right where you left off, every time.</p></div>
                         </li>
-                        <li class="wr-list-item" style="transition-delay:0.45s">
+                        <li class="wr-list-item transition-delay-450">
                             <span class="wr-list-icon violet"><i class="fas fa-check"></i></span>
                             <div><p class="wr-item-title">Revenue compounds on its own</p><p class="wr-item-desc">Past clients come back, refer others, and your pipeline fills without cold outreach.</p></div>
                         </li>
@@ -589,11 +589,11 @@
 
     <!-- 8. INDUSTRY QUOTES -->
     <section class="quotes-section">
-        <div class="quotes-blob" style="width:400px;height:400px;top:-10%;left:-5%;background:rgba(196,181,253,0.2);"></div>
-        <div class="quotes-blob" style="width:300px;height:300px;bottom:-5%;right:-3%;background:rgba(216,180,254,0.15);animation-delay:3s;"></div>
+        <div class="quotes-blob"></div>
+        <div class="quotes-blob"></div>
         <div class="quotes-dots"></div>
 
-        <div class="container-md" style="position:relative;z-index:10">
+        <div class="container-md relative-z10">
             <div class="text-center section-mb reveal">
                 <span class="section-badge">
                     <span class="pulse-dot"></span> Words of Wisdom
@@ -607,7 +607,7 @@
                 <div class="glass-quote featured">
                     <div>
                         <i class="fas fa-quote-left quote-icon-lg"></i>
-                        <p class="quote-text-lg">"Acquiring a new customer costs <span class="violet-gradient-text" style="font-weight:700">5× to 25× more</span> than retaining one. For agencies, every lost client is a marketing budget burned."</p>
+                        <p class="quote-text-lg">"Acquiring a new customer costs <span class="violet-gradient-text fw-700">5× to 25× more</span> than retaining one. For agencies, every lost client is a marketing budget burned."</p>
                         <img src="ag-quote-image.png" alt="Agency team collaboration" class="quote-img">
                     </div>
                     <div class="quote-footer">
@@ -661,7 +661,7 @@
                     <p class="bigtext-desc">
                         Every client you've ever worked with is a relationship waiting to be reignited. Not with cold emails. Not with generic newsletters. With memory — the kind that remembers their goals, their challenges, and exactly when to show up again.
                     </p>
-                    <a href="#contactForm" class="btn-primary cta-shimmer" style="display:inline-flex;align-items:center;gap:0.5rem">
+                    <a href="#contactForm" class="btn-primary cta-shimmer d-inline-flex-center-gap">
                         Start Retaining Clients <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -674,7 +674,7 @@
 
     <!-- 10. STATS WITH PROGRESS RINGS -->
     <section class="stats-dark">
-        <div class="container-md" style="position:relative;z-index:10">
+        <div class="container-md relative-z10">
             <div class="text-center section-mb reveal">
                 <h2 class="stats-title">The Numbers Don't Lie</h2>
                 <p class="stats-subtitle">Agencies using retention systems see transformative results.</p>
@@ -686,7 +686,7 @@
                             <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
                             <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad1)" stroke-width="8" stroke-linecap="round"
                                 stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.67"/>
-                            <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#9333ea"/></linearGradient></defs>
+                            <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#9333ea"/></linearGradient></defs>
                         </svg>
                         <div class="stat-ring-value">
                             <span class="stat-counter" data-target="67" data-suffix="%">0%</span>
@@ -700,7 +700,7 @@
                             <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
                             <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad2)" stroke-width="8" stroke-linecap="round"
                                 stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.42"/>
-                            <defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#a78bfa"/><stop offset="100%" style="stop-color:#7c3aed"/></linearGradient></defs>
+                            <defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>
                         </svg>
                         <div class="stat-ring-value">
                             <span class="stat-counter" data-target="4.2" data-suffix="×">0×</span>
@@ -714,7 +714,7 @@
                             <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
                             <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad3)" stroke-width="8" stroke-linecap="round"
                                 stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.83"/>
-                            <defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#c084fc"/></linearGradient></defs>
+                            <defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#c084fc"/></linearGradient></defs>
                         </svg>
                         <div class="stat-ring-value">
                             <span class="stat-counter" data-target="83" data-suffix="%">0%</span>
@@ -728,7 +728,7 @@
                             <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(139,92,246,0.15)" stroke-width="8"/>
                             <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="none" stroke="url(#grad4)" stroke-width="8" stroke-linecap="round"
                                 stroke-dasharray="339.292" stroke-dashoffset="339.292" data-target="0.38"/>
-                            <defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#9333ea"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
+                            <defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#9333ea"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>
                         </svg>
                         <div class="stat-ring-value">
                             <span class="stat-counter" data-target="38" data-suffix="%">0%</span>
@@ -819,7 +819,7 @@
                     <h2 class="section-title-md">
                         Ready to Stop <span class="violet-gradient-text">Losing Clients?</span>
                     </h2>
-                    <p style="color:#4b5563;font-size:1.125rem;line-height:1.75;margin-bottom:2rem">
+                    <p class="text-gray-body">
                         Whether you're a 2-person freelance duo or a 200-person agency, Retain builds the retention engine your business is missing. Let's talk about turning your past clients into your best revenue stream.
                     </p>
                     <div class="contact-checklist">
@@ -859,7 +859,7 @@
                             <div class="form-group">
                                 <label class="form-label">Country *</label>
                                 <div class="country-input-wrap">
-                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" required style="padding-right:2.5rem">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input input-pr-icon" required>
                                     <div class="chevron">
                                         <i class="fas fa-chevron-down"></i>
                                     </div>
@@ -895,7 +895,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Message (Optional)</label>
-                                <textarea class="form-input" rows="3" placeholder="Tell us about your agency..." style="resize:none"></textarea>
+                                <textarea class="form-input textarea-noresize" rows="3" placeholder="Tell us about your agency..."></textarea>
                             </div>
                             <button type="submit" class="form-submit cta-shimmer">
                                 Book My Free Call <i class="fas fa-arrow-right"></i>

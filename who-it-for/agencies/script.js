@@ -24,7 +24,7 @@
                         <span class="chat-role">AI Strategist</span>
                     </div>
                 </div>
-                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem"></i></button>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times chat-icon-sm"></i></button>
             </div>
             <div id="chatbot-messages">
                 <div class="chat-today">Today • Online</div>
@@ -33,13 +33,13 @@
                 <form id="chatbot-form">
                     <input type="text" id="chatbot-input" placeholder="Type a message..."
                         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <button type="submit"><i class="fas fa-paper-plane" style="font-size:1.125rem"></i></button>
+                    <button type="submit"><i class="fas fa-paper-plane chat-icon-sm"></i></button>
                 </form>
             </div>
         </div>
         <button id="chatbot-toggle" class="ripple-active">
-            <i id="icon-msg" class="fas fa-comment-dots icon-transition" style="font-size:1.5rem;color:#fff"></i>
-            <i id="icon-close" class="fas fa-chevron-down icon-transition" style="font-size:1.5rem;color:#8b5cf6;opacity:0;transform:rotate(-90deg) scale(0.5)"></i>
+            <i id="icon-msg" class="fas fa-comment-dots icon-transition chat-icon-lg chat-icon-white"></i>
+            <i id="icon-close" class="fas fa-chevron-down icon-transition chat-icon-close-violet"></i>
         </button>
     `;
     document.body.appendChild(container);

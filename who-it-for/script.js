@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         '<span class="chat-role">AI Strategist</span>' +
                     '</div>' +
                 '</div>' +
-                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem"></i></button>' +
+                '<button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times chat-icon-sm"></i></button>' +
             '</div>' +
             '<div id="chatbot-messages" class="chat-messages">' +
                 '<div class="chat-timestamp">Today • Online</div>' +
@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
             '</div>' +
         '</div>' +
         '<button id="chatbot-toggle" class="chat-toggle ripple-active">' +
-            '<i id="icon-msg" class="fas fa-comment-dots icon-transition" style="font-size:1.5rem"></i>' +
-            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden-reverse" style="font-size:1.5rem"></i>' +
+            '<i id="icon-msg" class="fas fa-comment-dots icon-transition chat-icon-lg"></i>' +
+            '<i id="icon-close" class="fas fa-chevron-down icon-transition icon-hidden-reverse chat-icon-lg"></i>' +
         '</button>';
     document.body.appendChild(container);
 
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(function () { typingBubble.classList.add('show'); });
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
 
+        input.disabled = true;
         fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -115,6 +116,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (data) {
             typingBubble.innerHTML = data.reply || '';
             messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
+        })
+        .catch(function () {
+            typingBubble.innerHTML = 'Sorry, something went wrong. Please try again.';
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
         });
     });
 })();

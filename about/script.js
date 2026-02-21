@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="chat-status">AI Strategist</span>
                     </div>
                 </div>
-                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times" style="font-size:1.125rem"></i></button>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times"></i></button>
             </div>
             <div id="chatbot-messages" class="chat-messages">
                 <div class="chat-messages-date">Today &bull; Online</div>
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="chat-input-wrap">
                 <form id="chatbot-form" class="chat-input-form">
                     <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                    <button type="submit"><i class="fas fa-paper-plane" style="font-size:1.125rem"></i></button>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => typingBubble.classList.add('show'));
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
 
+        input.disabled = true;
         fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -114,6 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const aiText = data.reply || '';
             typingBubble.innerHTML = aiText;
             messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
+        })
+        .catch(function () {
+            typingBubble.innerHTML = 'Sorry, something went wrong. Please try again.';
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.disabled = false;
         });
     });
 })();

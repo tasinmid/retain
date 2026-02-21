@@ -214,7 +214,7 @@ function populateCountryOptions(countries = countryData) {
     const option = document.createElement('div');
     option.className = 'country-option';
     option.setAttribute('data-index', index);
-    option.innerHTML = `${country.flag} <span style="margin-left:0.5rem;">${country.name}</span>`;
+    option.innerHTML = `${country.flag} <span class="country-name-text">${country.name}</span>`;
 
     option.addEventListener('click', () => {
       selectCountry(country);
@@ -374,17 +374,16 @@ function validateForm(event) {
   event.preventDefault(); // Prevent default form submission
 
   // Get all required fields
-  const firstName = document.querySelector('input[placeholder="First Name"]');
-  const lastName = document.querySelector('input[placeholder="Last Name"]');
-  const workEmail = document.querySelector('input[placeholder="your.email@company.com"]');
-  const companyName = document.querySelector('input[placeholder="Company Name"]');
+  const firstName = document.querySelector('input[placeholder="John"]');
+  const lastName = document.querySelector('input[placeholder="Doe"]');
+  const workEmail = document.querySelector('input[placeholder="john@agency.com"]');
   const countryInput = document.getElementById('country-input');
   const submitButton = document.querySelector('button[type="submit"]');
 
   // Reset previous error indicators
   const allInputs = document.querySelectorAll('input, textarea');
   allInputs.forEach(input => {
-    input.style.borderColor = '';
+    input.classList.remove('form-input-error');
     // Remove any existing error messages
     const existingError = input.parentNode.querySelector('.error-message');
     if (existingError) {
@@ -397,14 +396,14 @@ function validateForm(event) {
 
   // Validate first name
   if (!firstName.value.trim()) {
-    firstName.style.borderColor = '#ef4444';
+    firstName.classList.add('form-input-error');
     showError(firstName, 'First name is required');
     isValid = false;
   }
 
   // Validate last name
   if (!lastName.value.trim()) {
-    lastName.style.borderColor = '#ef4444';
+    lastName.classList.add('form-input-error');
     showError(lastName, 'Last name is required');
     isValid = false;
   }
@@ -412,25 +411,18 @@ function validateForm(event) {
   // Validate email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!workEmail.value.trim()) {
-    workEmail.style.borderColor = '#ef4444';
+    workEmail.classList.add('form-input-error');
     showError(workEmail, 'Work email is required');
     isValid = false;
   } else if (!emailRegex.test(workEmail.value.trim())) {
-    workEmail.style.borderColor = '#ef4444';
+    workEmail.classList.add('form-input-error');
     showError(workEmail, 'Please enter a valid email address');
     isValid = false;
   }
 
-  // Validate company name
-  if (!companyName.value.trim()) {
-    companyName.style.borderColor = '#ef4444';
-    showError(companyName, 'Company name is required');
-    isValid = false;
-  }
-
-  // Validate country
+    // Validate country
   if (!countryInput.value.trim() || countryInput.value.trim() === "Select or type a country...") {
-    countryInput.style.borderColor = '#ef4444';
+    countryInput.classList.add('form-input-error');
     showError(countryInput, 'Country is required');
     isValid = false;
   }
@@ -455,7 +447,7 @@ function validateForm(event) {
 function showError(field, message) {
   // Create error message element
   const errorDiv = document.createElement('div');
-  errorDiv.className = 'error-message'; errorDiv.style.cssText = 'color:#ef4444;font-size:0.75rem;margin-top:0.25rem;';
+  errorDiv.className = 'error-message form-error-text';
   errorDiv.textContent = message;
 
   // Add error message after the field
