@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Retain</title>
+    <meta name="description" content="Book a consultation with Retain. Let's build your customer retention system together.">
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <a href="/home/" class="nav-brand-link">
+                    <img src="/lightFavicon.png" alt="Retain Logo" class="nav-brand-logo">
+                    <span class="nav-brand-name">Retain</span>
+                </a>
+                <a href="https://solven.app/" class="nav-brand-sub" target="_blank" rel="noopener noreferrer">by Solven</a>
+            </div>
+            <div class="nav-links">
+                <a href="/home/" class="nav-link">Home</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/solutions/" class="nav-link">Solutions</a>
+                <div class="nav-dropdown">
+                    <button class="nav-dropdown-btn">Industries <i class="fas fa-chevron-down chevron-icon"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="/industries/real-estate/" class="nav-dropdown-item hover-blue"><i class="fas fa-home dropdown-icon blue"></i> Real Estate</a>
+                        <a href="/industries/ecommerce/" class="nav-dropdown-item hover-amber"><i class="fas fa-shopping-bag dropdown-icon amber"></i> E-commerce &amp; Retail</a>
+                        <a href="/industries/travel-hospitality/" class="nav-dropdown-item hover-sky"><i class="fas fa-plane dropdown-icon sky"></i> Travel &amp; Hospitality</a>
+                        <a href="/industries/food-beverage/" class="nav-dropdown-item hover-rose"><i class="fas fa-utensils dropdown-icon rose"></i> Food &amp; Beverage</a>
+                        <a href="/industries/agencies/" class="nav-dropdown-item hover-violet"><i class="fas fa-briefcase dropdown-icon violet"></i> Agencies</a>
+                        <a href="/industries/study-abroad/" class="nav-dropdown-item hover-teal"><i class="fas fa-graduation-cap dropdown-icon teal"></i> Study Abroad</a>
+                    </div>
+                </div>
+                <a href="/why-retain/" class="nav-link">Why Retain</a>
+                <a href="/contact/" class="nav-cta active">Book a Call</a>
+            </div>
+            <div class="mobile-nav-btn-wrapper">
+                <button id="mobile-menu-button" class="mobile-menu-btn">
+                    <span class="sr-only">Open main menu</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu-wrapper">
+            <div class="mobile-menu-inner">
+                <a href="/home/" class="mobile-nav-link">Home</a>
+                <a href="/about/" class="mobile-nav-link">About</a>
+                <a href="/solutions/" class="mobile-nav-link">Solutions</a>
+                <div class="mobile-sub-nav">
+                    <p class="mobile-sub-label">Industries</p>
+                    <a href="/industries/real-estate/" class="mobile-sub-link">Real Estate</a>
+                    <a href="/industries/ecommerce/" class="mobile-sub-link">E-commerce & Retail</a>
+                    <a href="/industries/travel-hospitality/" class="mobile-sub-link">Travel & Hospitality</a>
+                    <a href="/industries/food-beverage/" class="mobile-sub-link">Food & Beverage</a>
+                    <a href="/industries/agencies/" class="mobile-sub-link">Agencies</a>
+                    <a href="/industries/study-abroad/" class="mobile-sub-link">Study Abroad</a>
+                </div>
+                <a href="/why-retain/" class="mobile-nav-link">Why Retain</a>
+                <a href="/contact/" class="mobile-nav-cta">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="contact-hero">
+        <div class="contact-hero-bg">
+            <div class="contact-orb contact-orb-1"></div>
+            <div class="contact-orb contact-orb-2"></div>
+            <div class="contact-grid-lines"></div>
+        </div>
+        <div class="container">
+            <div class="contact-hero-content reveal">
+                <div class="contact-badge"><span class="badge-dot"></span> Let's Talk</div>
+                <h1 class="contact-title">Ready to build a retention<br>system that <span class="gradient-text">actually works?</span></h1>
+                <p class="contact-subtitle">Book a free 15-minute consultation. We'll discuss your business, your challenges, and whether Retain is the right fit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Left: Contact Form -->
+                <div class="contact-form-side reveal">
+                    <div class="form-card">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company Name</label>
+                                <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                            </div>
+                            <div class="form-group form-group-country">
+                                <label>Country *</label>
+                                <div class="country-wrap">
+                                    <input type="text" id="country-input" placeholder="Select or type a country..." class="form-input" autocomplete="off">
+                                    <div class="country-chevron"><i class="fas fa-chevron-down"></i></div>
+                                    <div id="country-dropdown" class="country-dropdown">
+                                        <div id="country-options" class="country-options"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="phone-row">
+                                    <div class="phone-code" id="phone-code">+</div>
+                                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="interest">What are you interested in?</label>
+                                <div class="custom-select-wrap" id="interest-wrap">
+                                    <input type="hidden" name="interest" id="interest" value="">
+                                    <div class="custom-select-trigger" id="interest-trigger">
+                                        <span class="custom-select-value" id="interest-value">Select an option</span>
+                                        <i class="fas fa-chevron-down custom-select-arrow"></i>
+                                    </div>
+                                    <div class="custom-select-dropdown" id="interest-dropdown">
+                                        <div class="custom-select-option" data-value="full-system"><i class="fas fa-layer-group opt-icon purple"></i> Full Retention System</div>
+                                        <div class="custom-select-option" data-value="email-marketing"><i class="fas fa-envelope opt-icon pink"></i> Email Marketing</div>
+                                        <div class="custom-select-option" data-value="ai-calling"><i class="fas fa-phone-alt opt-icon teal"></i> AI Cold Calling</div>
+                                        <div class="custom-select-option" data-value="loyalty"><i class="fas fa-crown opt-icon amber"></i> Loyalty Programs</div>
+                                        <div class="custom-select-option" data-value="multichannel"><i class="fas fa-comments opt-icon blue"></i> Multi-Channel Messaging</div>
+                                        <div class="custom-select-option" data-value="other"><i class="fas fa-ellipsis-h opt-icon gray"></i> Something Else</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Tell us about your goals</label>
+                                <textarea id="message" name="message" rows="4" placeholder="What challenges are you facing with customer retention?"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn" id="form-submit-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <div class="form-success" id="form-success">
+                                <div class="success-icon"><i class="fas fa-check"></i></div>
+                                <h3>Message sent!</h3>
+                                <p>We'll get back to you within 24 hours.</p>
+                                <div class="form-next-steps">
+                                    <h4>What happens next?</h4>
+                                    <div class="form-steps">
+                                        <div class="form-step">
+                                            <div class="form-step-num">1</div>
+                                            <div>
+                                                <strong>Discovery call</strong>
+                                                <span>We learn about your business & challenges</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-step">
+                                            <div class="form-step-num">2</div>
+                                            <div>
+                                                <strong>Custom strategy</strong>
+                                                <span>We design a retention system for you</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-step">
+                                            <div class="form-step-num">3</div>
+                                            <div>
+                                                <strong>Launch & grow</strong>
+                                                <span>We install, operate & optimize — you see results</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right: Info Cards -->
+                <div class="contact-info-side reveal">
+                    <!-- Book a call card -->
+                    <div class="info-card info-card-primary">
+                        <div class="info-card-glow"></div>
+                        <div class="info-card-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h3>Book a 15-min call</h3>
+                        <p>Skip the form. Talk to our team directly and get answers in real-time.</p>
+                        <button class="info-cta-btn" id="book-call-btn">
+                            Schedule Now <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Contact methods -->
+                    <div class="info-card">
+                        <div class="info-card-icon small"><i class="fas fa-envelope"></i></div>
+                        <h4>Email us</h4>
+                        <a href="mailto:retain@solven.app" class="info-link">retain@solven.app</a>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-card-icon small"><i class="fas fa-phone"></i></div>
+                        <h4>Call us</h4>
+                        <a href="tel:+8801234567890" class="info-link">+880 1234-567890</a>
+                    </div>
+
+                    <!-- What happens next -->
+                    <div class="info-card info-card-steps">
+                        <h4>What happens next?</h4>
+                        <div class="next-steps">
+                            <div class="next-step">
+                                <div class="step-num">1</div>
+                                <div>
+                                    <strong>Discovery call</strong>
+                                    <span>We learn about your business & challenges</span>
+                                </div>
+                            </div>
+                            <div class="next-step">
+                                <div class="step-num">2</div>
+                                <div>
+                                    <strong>Custom strategy</strong>
+                                    <span>We design a retention system for you</span>
+                                </div>
+                            </div>
+                            <div class="next-step">
+                                <div class="step-num">3</div>
+                                <div>
+                                    <strong>Launch & grow</strong>
+                                    <span>We install, operate & optimize — you see results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="contact-faq">
+        <div class="container">
+            <h2 class="faq-title reveal">Frequently asked questions</h2>
+            <div class="faq-grid reveal">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How long does setup take?</h4>
+                    <p>Most retention systems are fully operational within 2–4 weeks. We handle everything — from strategy to technical setup to launch.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> Do I need technical knowledge?</h4>
+                    <p>Not at all. We install and operate everything for you. Your team just needs to show up to the onboarding call.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> What industries do you work with?</h4>
+                    <p>Real estate, e-commerce, travel, F&B, agencies, education — any business that values repeat customers.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle"></i> How is pricing structured?</h4>
+                    <p>We offer custom packages based on your business size and needs. Book a call and we'll give you a transparent quote.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-brand-name">Retain</span>
+                <p class="footer-brand-tagline">Building customer loyalty systems</p>
+            </div>
+            <div class="footer-copy">© 2026 Retain. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script src="countrycode.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

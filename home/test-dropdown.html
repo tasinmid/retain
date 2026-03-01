@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test</title>
+    <style>
+        .dropdown-card {
+            background: white; border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb; overflow: hidden;
+            margin: 20px;
+        }
+
+        .ultra-smooth-dropdown-btn {
+            width: 100%; text-align: left; padding: 1.5rem; cursor: pointer;
+            background: linear-gradient(to right, #f9fafb, #f3f4f6);
+            font-weight: 700; display: flex; justify-content: space-between;
+            align-items: center; border: none; font-family: inherit;
+            font-size: inherit; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ultra-smooth-dropdown-content {
+            max-height: 0; opacity: 0; overflow: hidden;
+            transform: translateY(-10px);
+            -webkit-transform: translateY(-10px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            -webkit-transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .ultra-smooth-dropdown-content.dropdown-open {
+            max-height: 800px; opacity: 1;
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+        }
+
+        .dropdown-content-inner {
+            padding: 1.5rem; 
+            background: linear-gradient(to right, #f9fafb, #f3f4f6);
+        }
+
+        .rotate-180 { 
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+        }
+
+        #debug {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="debug">Debug: Ready</div>
+    
+    <div class="dropdown-card">
+        <button class="ultra-smooth-dropdown-btn" id="test-btn">
+            <div class="dropdown-btn-left">
+                <div class="dropdown-number purple"><span>1</span></div>
+                <span class="dropdown-title hover-purple">Test Dropdown (Mobile)</span>
+            </div>
+            <i class="dropdown-chevron">▼</i>
+        </button>
+        <div class="ultra-smooth-dropdown-content" id="test-content">
+            <div class="dropdown-content-inner">
+                <p>This is test content for mobile dropdown testing.</p>
+                <p>If you can see this, the dropdown is working!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const debug = document.getElementById('debug');
+        const button = document.getElementById('test-btn');
+        const content = document.getElementById('test-content');
+        const chevron = button.querySelector('.dropdown-chevron');
+        
+        let touchStartY = 0;
+        let touchStartX = 0;
+        
+        // Log all events
+        button.addEventListener('click', (e) => {
+            debug.textContent = 'Event: click';
+            toggleDropdown();
+        });
+        
+        button.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+            debug.textContent = `Touch start: ${touchStartX},${touchStartY}`;
+        }, { passive: true });
+        
+        button.addEventListener('touchend', (e) => {
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaY = Math.abs(touchEndY - touchStartY);
+            const deltaX = Math.abs(touchEndX - touchStartX);
+            
+            debug.textContent = `Touch end: Δ=${deltaX},${deltaY}`;
+            
+            if (deltaY < 10 && deltaX < 10) {
+                e.preventDefault();
+                toggleDropdown();
+            }
+        }, { passive: false });
+        
+        function toggleDropdown() {
+            const isOpen = content.classList.contains('dropdown-open');
+            
+            if (isOpen) {
+                content.classList.remove('dropdown-open');
+                chevron.classList.remove('rotate-180');
+                debug.textContent += ' → Closed';
+            } else {
+                content.classList.add('dropdown-open');
+                chevron.classList.add('rotate-180');
+                debug.textContent += ' → Opened';
+            }
+        }
+        
+        // Detect touch device
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        debug.textContent += ` | Touch: ${isTouchDevice}`;
+    </script>
+</body>
+</html>

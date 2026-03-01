@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Retain</title>
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand">
+                <a href="/home/">
+                    <img src="/lightFavicon.png" alt="Retain Logo">
+                    <span class="navbar-brand-name">Retain</span>
+                </a>
+                <a href="https://solven.app/" class="navbar-by" target="_blank" rel="noopener noreferrer">by Solven</a>
+            </div>
+            <div class="navbar-links">
+                <a href="/home/" class="nav-link">Home</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/solutions/" class="nav-link active">Solutions</a>
+                <div class="dropdown">
+                    <button class="dropdown-trigger nav-link">
+                        Industries
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="/industries/real-estate/" class="dropdown-item di-realestate">
+                            <i class="fas fa-home"></i> Real Estate
+                        </a>
+                        <a href="/industries/ecommerce/" class="dropdown-item di-ecommerce">
+                            <i class="fas fa-shopping-bag"></i> E-commerce &amp; Retail
+                        </a>
+                        <a href="/industries/travel-hospitality/" class="dropdown-item di-travel">
+                            <i class="fas fa-plane"></i> Travel &amp; Hospitality
+                        </a>
+                        <a href="/industries/food-beverage/" class="dropdown-item di-food">
+                            <i class="fas fa-utensils"></i> Food &amp; Beverage
+                        </a>
+                        <a href="/industries/agencies/" class="dropdown-item di-agencies">
+                            <i class="fas fa-briefcase"></i> Agencies
+                        </a>
+                        <a href="/industries/study-abroad/" class="dropdown-item di-studyabroad">
+                            <i class="fas fa-graduation-cap"></i> Study Abroad
+                        </a>
+                    </div>
+                </div>
+                <a href="/why-retain/" class="nav-link">Why Retain</a>
+                <a href="/contact/" class="btn-book-call">Book a Call</a>
+            </div>
+            <button id="mobile-menu-button" class="mobile-menu-btn">
+                <span class="sr-only">Open main menu</span>
+                <svg class="mobile-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="/home/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/solutions/" class="mm-active">Solutions</a>
+            <div class="mm-sub-group">
+                <p class="mm-section-label">Industries</p>
+                <a href="/industries/real-estate/" class="mm-sub ms-realestate">Real Estate</a>
+                <a href="/industries/ecommerce/" class="mm-sub ms-ecommerce">E-commerce &amp; Retail</a>
+                <a href="/industries/travel-hospitality/" class="mm-sub ms-travel">Travel &amp; Hospitality</a>
+                <a href="/industries/food-beverage/" class="mm-sub ms-food">Food &amp; Beverage</a>
+                <a href="/industries/agencies/" class="mm-sub ms-agencies">Agencies</a>
+                <a href="/industries/study-abroad/" class="mm-sub ms-studyabroad">Study Abroad</a>
+            </div>
+            <a href="/why-retain/">Why Retain</a>
+            <a href="/contact/" class="mm-book-call">Book a Call</a>
+        </div>
+    </nav>
+
+    <!-- Chat Widget -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chat-header">
+                <div class="chat-header-bar"></div>
+                <div class="chat-header-info">
+                    <div class="chat-avatar-wrap">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="chat-avatar" alt="AI Avatar">
+                        <span class="chat-avatar-dot"></span>
+                    </div>
+                    <div>
+                        <h4 class="chat-header-name">Aria</h4>
+                        <span class="chat-header-role">AI Strategist</span>
+                    </div>
+                </div>
+                <button id="chatbot-close" class="chat-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="chatbot-messages" class="chat-messages">
+                <div class="chat-messages-today">Today • Online</div>
+            </div>
+            <div class="chat-input-area">
+                <form id="chatbot-form" class="chat-form">
+                    <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <button id="chatbot-toggle" class="chatbot-toggle ripple-active">
+            <i id="icon-msg" class="fas fa-comment-dots"></i>
+            <i id="icon-close" class="fas fa-chevron-down icon-hidden"></i>
+        </button>
+    </div>
+
+    <!-- Integrations Page Content -->
+    <section class="integrations-section">
+        <div class="integrations-container">
+            <div class="integrations-header">
+                <h1>All <span class="highlight">Integrations</span></h1>
+                <p>Connect Retain with your favorite tools and platforms to create a seamless customer experience</p>
+            </div>
+            <div id="integrations-grid" class="integrations-grid"></div>
+        </div>
+        <div class="integrations-cta">
+            <h2>Looking for a specific integration?</h2>
+            <p>Can't find the tool you're looking for? Contact us and we'll work with you to create a custom integration.</p>
+            <a href="/contact/" class="cta-btn sheen-button">
+                Request Integration
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span>Retain</span>
+                <p>Building customer loyalty systems</p>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 Retain. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="integrations-data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

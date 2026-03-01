@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Retain</title>
+    <link rel="icon" type="image/png" href="/darkFavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="logos--notion-icon" viewBox="0 0 256 268"><path fill="#fff" d="M16.092 11.538L164.09.608c18.179-1.56 22.85-.508 34.28 7.801l47.243 33.282C253.406 47.414 256 48.975 256 55.207v182.527c0 11.439-4.155 18.205-18.696 19.24L65.44 267.378c-10.913.517-16.11-1.043-21.825-8.327L8.826 213.814C2.586 205.487 0 199.254 0 191.97V29.726c0-9.352 4.155-17.153 16.092-18.188"/><path d="M164.09.608L16.092 11.538C4.155 12.573 0 20.374 0 29.726v162.245c0 7.284 2.585 13.516 8.826 21.843l34.789 45.237c5.715 7.284 10.912 8.844 21.825 8.327l171.864-10.404c14.532-1.035 18.696-7.801 18.696-19.24V55.207c0-5.911-2.336-7.614-9.21-12.66l-1.185-.856L198.37 8.409C186.94.1 182.27-.952 164.09.608M69.327 52.22c-14.033.945-17.216 1.159-25.186-5.323L23.876 30.778c-2.06-2.086-1.026-4.69 4.163-5.207l142.274-10.395c11.947-1.043 18.17 3.12 22.842 6.758l24.401 17.68c1.043.525 3.638 3.637.517 3.637L71.146 52.095zm-16.36 183.954V81.222c0-6.767 2.077-9.887 8.3-10.413L230.02 60.93c5.724-.517 8.31 3.12 8.31 9.879v153.917c0 6.767-1.044 12.49-10.387 13.008l-161.487 9.361c-9.343.517-13.489-2.594-13.489-10.921M212.377 89.53c1.034 4.681 0 9.362-4.681 9.897l-7.783 1.542v114.404c-6.758 3.637-12.981 5.715-18.18 5.715c-8.308 0-10.386-2.604-16.609-10.396l-50.898-80.079v77.476l16.1 3.646s0 9.362-12.989 9.362l-35.814 2.077c-1.043-2.086 0-7.284 3.63-8.318l9.351-2.595V109.823l-12.98-1.052c-1.044-4.68 1.55-11.439 8.826-11.965l38.426-2.585l52.958 81.113v-71.76l-13.498-1.552c-1.043-5.733 3.111-9.896 8.3-10.404z"/></symbol>
+    </svg>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    
+                    fontFamily: {
+                        raleway: ['Raleway', 'sans-serif'],
+                        robotoMono: ['Roboto Mono', 'monospace'],
+                        prompt: ['Prompt', 'sans-serif'],
+                        googleSans: ['Google Sans', 'sans-serif'],
+                        rubik: ['Rubik', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1f2937',
+                        secondary: '#6b7280',
+                        customBlue: '#87a6df',
+                        darkBlue: '#060525',
+                        lightPurple: '#F2F1FD',
+                        borderPurple: '#B1ADCE'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-snap-type: y mandatory;
+            overflow-x: hidden;
+        }
+        section {
+            scroll-snap-align: start;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        #typewriter-cursor {
+            font-family: 'Inter', monospace;
+            color: #1f2937;
+            display: inline-block;
+            margin-left: 2px;
+            line-height: 1;
+        }
+        #typewriter-wrapper.is-typing #typewriter-cursor {
+            animation: blink 1s infinite step-end;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #chatbot-window {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: scale(0.8) translateY(40px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            transform-origin: bottom right;
+        }
+        #chatbot-window.is-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .ripple-active::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(16, 185, 129, 0.4);
+            border-radius: 9999px;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar { 
+            display: none; 
+        }
+        ::selection {
+            background-color: black;
+            color: white;
+        }
+        ::-moz-selection {
+            background-color: black;
+            color: white;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link.active::after {
+            width: 66.66%;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .chat-bubble {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .chat-bubble:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .chat-bubble::after, .chat-bubble::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .chat-bubble-left {
+            background-color: white;
+            border: 2px solid black;
+        }
+        .chat-bubble-left::after {
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+            top: 20px;
+            right: -10px;
+            z-index: 1;
+        }
+        .chat-bubble-left::before {
+            border-width: 12px 0 12px 12px;
+            border-color: transparent transparent transparent black;
+            top: 18px;
+            right: -14px;
+            z-index: 0;
+        }
+        .chat-bubble-right {
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+        }
+        .chat-bubble-right .font-semibold {
+            color: white;
+        }
+        .chat-bubble-right::after {
+            border-width: 10px 10px 10px 0;
+            border-color: transparent black transparent transparent;
+            top: 20px;
+            left: -10px;
+            z-index: 1;
+        }
+        .chat-bubble-right::before {
+            border-width: 12px 12px 12px 0;
+            border-color: transparent black transparent transparent;
+            top: 18px;
+            left: -14px;
+            z-index: 0;
+        }
+
+        .heading-underline {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 66.66%;
+            height: 3px;
+            background-color: white;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .heading-underline:hover::after {
+            width: 100%;
+        }
+
+        .heading-underline-black {
+            position: relative;
+            text-decoration: none; /* Ensure no default underline */
+        }
+
+        .heading-underline-black::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; /* Adjust as needed for vertical position */
+            left: 0; /* Align to the left of the parent span */
+            width: 66.66%; /* Initial 2/3 width */
+            height: 3px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .heading-underline-black:hover::after {
+            width: 100%; /* Full width on hover */
+        }
+        
+        /* Tab Navigation Styles */
+        .tab-active {
+            border-color: #1f2937 !important; /* gray-900 */
+            color: #1f2937 !important; /* gray-900 */
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-viz.active {
+            display: block;
+        }
+        
+        .tab-viz {
+            display: none;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            animation: marquee-scroll 40s linear infinite;
+            width: max-content; /* Ensure content takes full width */
+            will-change: transform;
+        }
+
+        @media (min-width: 768px) {
+            .marquee-content {
+                animation-duration: 60s;
+            }
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scrolls one full set of logos */
+        }
+
+        @keyframes marquee-scroll-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-reverse {
+            animation-name: marquee-scroll-reverse;
+        }
+
+        #cursor-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0) 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #solutions-container:hover #cursor-glow {
+            opacity: 1;
+        }
+
+        #solutions-container, #sheen-border-container {
+            transition: transform 0.1s linear; /* Use linear for direct scroll mapping */
+        }
+
+        .purple-sheen-text {
+            background: linear-gradient(115deg,
+                black 0%,
+                black 30%,
+                #9b4dff 45%,
+                #9b4dff 55%,
+                black 70%,
+                black 100%
+            );
+            background-size: 300% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: shine 7s linear infinite;
+        }
+
+                @keyframes shine {
+
+                    0% { background-position: -300% center; }
+
+                    100% { background-position: 300% center; }
+
+                }
+
+        
+
+                .sheen-border-wrapper {
+
+                  background: linear-gradient(115deg,
+
+                    #B1ADCE 0%,
+
+                    #B1ADCE 40%,
+
+                    #F2F1FD 50%, /* Lighter purple sheen */
+
+                    #B1ADCE 60%,
+
+                    #B1ADCE 100%
+
+                  );
+
+                  background-size: 300% auto;
+
+                  animation: shine 7s linear infinite;
+
+                }
+
+        .sheen-button {
+            background: linear-gradient(115deg,
+                #4f00bc 0%, /* Darker purple */
+                #6f00e6 30%, /* Medium purple */
+                #9b4dff 50%, /* Lighter purple for the sheen */
+                #6f00e6 70%,
+                #4f00bc 100%
+            );
+            background-size: 300% auto;
+            animation: shine 7s linear infinite;
+            color: white; /* Ensure text is white */
+            transition: background-position 0.3s ease; /* Smooth transition for hover effect */
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex items-baseline">
+                        <a href="/home/" class="flex items-baseline">
+                            <img src="/lightFavicon.png" alt="Retain Logo" class="h-6 w-6 mr-2 mt-3">
+                            <span class="text-2xl font-bold text-gray-900">Retain</span>
+                        </a>
+                        <a href="https://solven.app/" class="text-gray-500 hover:text-gray-700 transition-colors text-sm ml-2" target="_blank" rel="noopener noreferrer">by Solven</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="/home/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Home</a>
+                    <a href="/about/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">About</a>
+                    <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">How It Works</a>
+                    <a href="/solutions/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link active">Solutions</a>
+                    <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Who It's For</a>
+                    <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 transition-colors font-medium nav-link">Why Retain</a>
+                    <a href="/contact/" class="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium whitespace-nowrap">
+                        Book a Call
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/home/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/how-it-works/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">How It Works</a>
+                <a href="/solutions/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium bg-gray-200">Solutions</a>
+                <a href="/who-it-for/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Who It's For</a>
+                <a href="/why-retain/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Why Retain</a>
+                <a href="/contact/" class="bg-black text-white block px-3 py-2 rounded-md text-base font-medium">Book a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chat Widget -->
+    <div id="chatbot-container" class="fixed bottom-8 right-8 z-[9999] flex flex-col items-end font-sans">
+        <div id="chatbot-window" class="mb-6 w-96 max-w-[90vw] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col border border-slate-100" style="height:600px;">
+            <div class="glass-header p-6 text-white flex justify-between items-center relative overflow-hidden shrink-0" style="background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <img src="https://ui-avatars.com/api/?name=AI&background=10b981&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-500/30 shadow-lg">
+                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg leading-none">Aria</h4>
+                        <span class="text-xs text-emerald-300 font-medium tracking-wide uppercase">AI Strategist</span>
+                    </div>
+                </div>
+                <button id="chatbot-close" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/10 transition-all text-slate-300"><i class="fas fa-times text-lg"></i></button>
+            </div>
+
+            <div id="chatbot-messages" class="flex-1 flex flex-col overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-50 to-white no-scrollbar">
+                <div class="text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Today • Online</div>
+            </div>
+
+            <div class="p-6 bg-white border-t border-slate-50 flex-shrink-0">
+                <form id="chatbot-form" class="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-3 w-full">
+                    <input type="text" id="chatbot-input" placeholder="Type a message..." class="bg-transparent border-none outline-none flex-1 text-sm"
+                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button type="submit" class="text-emerald-500 transition-transform hover:scale-110"><i class="fas fa-paper-plane text-lg"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <button id="chatbot-toggle" class="ripple-active relative w-16 h-16 bg-slate-900 text-white rounded-full shadow-2xl flex items-center justify-center z-[10000] focus:outline-none">
+            <i id="icon-msg" class="fas fa-comment-dots text-2xl absolute icon-transition"></i>
+            <i id="icon-close" class="fas fa-chevron-down text-2xl absolute icon-transition opacity-0 -rotate-90 scale-50"></i>
+        </button>
+    </div>
+
+    <!-- Integrations Page Content -->
+    <section class="py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-rubik">
+                    All <span class="text-purple-600">Integrations</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Connect Retain with your favorite tools and platforms to create a seamless customer experience
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Integration Card 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:salesforce" data-width="24" data-height="24" style="color: #00A1E0;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Salesforce</h3>
+                    <p class="text-gray-600 mb-4">Sync customer data seamlessly with your Salesforce CRM</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            CRM
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:facebook" data-width="24" data-height="24" style="color: #1877F2;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Facebook</h3>
+                    <p class="text-gray-600 mb-4">Connect with Facebook to engage customers through social media</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            Social Media
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 3 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:shopify" data-width="24" data-height="24" style="color: #96BF48;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Shopify</h3>
+                    <p class="text-gray-600 mb-4">Integrate with your Shopify store to track customer purchases</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            E-commerce
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 4 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:instagram-icon" data-width="24" data-height="24" style="color: #E4405F;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Instagram</h3>
+                    <p class="text-gray-600 mb-4">Engage with customers through Instagram DMs and comments</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Social Media
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 5 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="ic:baseline-email" data-width="24" data-height="24" style="color: #EA4335;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Mailchimp</h3>
+                    <p class="text-gray-600 mb-4">Sync customer contacts and email campaign data</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Email Marketing
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 6 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="bx:bxl-messenger" data-width="24" data-height="24" style="color: #0084FF;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Messenger</h3>
+                    <p class="text-gray-600 mb-4">Connect with Facebook Messenger for direct customer communication</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 7 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:whatsapp-icon" data-width="24" data-height="24" style="color: #25D366;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">WhatsApp</h3>
+                    <p class="text-gray-600 mb-4">Connect your WhatsApp Business account for customer messaging</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 8 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:twitter" data-width="24" data-height="24" style="color: #1DA1F2;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Twitter (X)</h3>
+                    <p class="text-gray-600 mb-4">Engage with customers through Twitter/X DMs and mentions</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Social Media
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 9 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="simple-icons:hubspot" data-width="24" data-height="24" style="color: #FF7A59;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">HubSpot</h3>
+                    <p class="text-gray-600 mb-4">Connect with HubSpot CRM to manage customer relationships</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                            CRM
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 10 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:telegram" data-width="24" data-height="24" style="color: #2AABEE;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Telegram</h3>
+                    <p class="text-gray-600 mb-4">Connect with Telegram for secure customer messaging</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 11 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="simple-icons:notion" data-width="24" data-height="24" style="color: #000000;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Notion</h3>
+                    <p class="text-gray-600 mb-4">Sync customer data and project information with Notion</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-800">
+                            Productivity Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 12 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:discord-icon" data-width="24" data-height="24" style="color: #5865F2;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Discord</h3>
+                    <p class="text-gray-600 mb-4">Connect with Discord for community engagement</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Community Platform
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 13 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="simple-icons:clickup" data-width="24" data-height="24" style="color: #2AACEF;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">ClickUp</h3>
+                    <p class="text-gray-600 mb-4">Integrate with ClickUp to manage customer-related tasks</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            Project Management
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 14 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:slack-icon" data-width="24" data-height="24" style="color: #E01E5A;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Slack</h3>
+                    <p class="text-gray-600 mb-4">Connect with Slack for team collaboration and communication</p>
+                    <div class="flex flex-wrap justify-center gap-1">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 mb-1">
+                            Team Management
+                        </span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mb-1">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 15 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:google-drive" data-width="24" data-height="24" style="color: #4285F4;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Google Sheets</h3>
+                    <p class="text-gray-600 mb-4">Connect with Google Sheets for customer data storage</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Data Storage
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 16 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="logos:skype" data-width="24" data-height="24" style="color: #00AFF0;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Skype</h3>
+                    <p class="text-gray-600 mb-4">Connect with Skype for video calls and messaging</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 17 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="ic:outline-campaign" data-width="24" data-height="24" style="color: #FF6B35;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Marketing Automation</h3>
+                    <p class="text-gray-600 mb-4">Integrate with marketing platforms for personalized campaigns</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            Automation Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 18 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="simple-icons:viber" data-width="24" data-height="24" style="color: #7360F2;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Viber</h3>
+                    <p class="text-gray-600 mb-4">Connect with Viber for customer communication</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Communication Channel
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 19 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify" data-icon="ic:outline-link" data-width="24" data-height="24" style="color: #2196F3;"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Make</h3>
+                    <p class="text-gray-600 mb-4">Connect with Make to automate workflows and integrate services</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Automation Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 20 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-network-wired text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">n8n</h3>
+                    <p class="text-gray-600 mb-4">Connect with n8n to build automated workflows with visual tools</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Automation Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 21 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-sitemap text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Voiceflow</h3>
+                    <p class="text-gray-600 mb-4">Connect with Voiceflow to design and deploy voice experiences</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            AI/ML Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 22 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-robot text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Botpress</h3>
+                    <p class="text-gray-600 mb-4">Connect with Botpress to build conversational AI assistants</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            AI/ML Tool
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Integration Card 23 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microphone-alt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Vapi</h3>
+                    <p class="text-gray-600 mb-4">Connect with Vapi to create voice-enabled applications</p>
+                    <div class="flex justify-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                            AI/ML Tool
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Looking for a specific integration?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                    Can't find the tool you're looking for? Contact us and we'll work with you to create a custom integration.
+                </p>
+                <a href="/contact/" class="inline-flex items-center justify-center sheen-button text-white px-8 py-3 rounded-lg font-medium group">
+                    Request Integration
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white rounded-t-3xl shadow-[0_-20px_50px_-10px_rgba(0,0,0,0.7)] py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-2xl font-bold text-gray-900">Retain</span>
+                    <p class="text-gray-600 mt-1 text-sm">Building customer loyalty systems</p>
+                </div>
+                <div class="text-gray-600 text-sm text-center md:text-right">
+                    <p>© 2026 Retain. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        #chatbot-container {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar { 
+            display: none; 
+        }
+        .chat-message {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: inline-block;
+            word-break: break-word;
+        }
+        .chat-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .typing-dots {
+            display: inline-flex;
+            gap: 3px;
+            align-items: center;
+            justify-content: center;
+        }
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background-color: black;
+            border-radius: 50%;
+            animation: blink 1.4s infinite both;
+        }
+        .typing-dots span:nth-child(1) { animation-delay: 0s; }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+
+        .icon-transition { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+    </style>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Chat widget functionality
+        // ---- 2. Session ID ----
+        let session_id = sessionStorage.getItem('chatwidget_session_id');
+        if (!session_id) {
+            session_id = crypto.randomUUID();
+            sessionStorage.setItem('chatwidget_session_id', session_id);
+        }
+
+        // ---- 4. Toggle Logic ----
+        const btn = document.getElementById('chatbot-toggle');
+        const win = document.getElementById('chatbot-window');
+        const iconMsg = document.getElementById('icon-msg');
+        const iconClose = document.getElementById('icon-close');
+        const closeBtn = document.getElementById('chatbot-close');
+
+        function toggleChat() {
+            const isActive = win.classList.contains('is-active');
+            if (isActive) {
+                win.classList.remove('is-active');
+                iconMsg.classList.remove('opacity-0','rotate-90','scale-50');
+                iconClose.classList.add('opacity-0','-rotate-90','scale-50');
+                btn.style.backgroundColor = '#0f172a';
+                btn.style.color = '#ffffff';
+                btn.classList.add('ripple-active');
+            } else {
+                win.classList.add('is-active');
+                iconMsg.classList.add('opacity-0','rotate-90','scale-50');
+                iconClose.classList.remove('opacity-0','-rotate-90','scale-50');
+                btn.style.backgroundColor = '#ffffff';
+                btn.style.color = '#0f172a';
+                btn.classList.remove('ripple-active');
+            }
+        }
+
+        btn.addEventListener('click', toggleChat);
+        closeBtn.addEventListener('click', toggleChat);
+
+        // ---- 5. Message Sending + Persistent Typing ----
+        const form = document.getElementById('chatbot-form');
+        const input = document.getElementById('chatbot-input');
+        const messages = document.getElementById('chatbot-messages');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+
+            // ---- User bubble ----
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-slate-900 text-white p-4 rounded-3xl rounded-br-none shadow text-sm self-end chat-message';
+            userMsg.style.maxWidth = 'fit-content';
+            userMsg.style.maxWidth = '80%';
+            userMsg.innerText = text;
+            messages.appendChild(userMsg);
+            requestAnimationFrame(() => userMsg.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            input.value = '';
+
+            // ---- AI typing bubble ----
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'bg-white text-black p-4 rounded-3xl rounded-bl-none shadow text-sm self-start chat-message';
+            typingBubble.style.maxWidth = 'fit-content';
+            typingBubble.style.maxWidth = '80%';
+            typingBubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+            messages.appendChild(typingBubble);
+            requestAnimationFrame(() => typingBubble.classList.add('show'));
+            messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+
+            // ---- Send POST request ----
+            fetch('https://tahmidn8n.solven.app/webhook-test/retain-chatwidget', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_msg: text, session_id })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const aiText = data.reply || '';
+                typingBubble.innerHTML = aiText;
+                messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+            })
+            // No catch: typing bubble stays until reply arrives
+        });
+    </script>
+</body>
+</html>
