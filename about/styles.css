@@ -1778,28 +1778,70 @@ ul { list-style: none; }
 .care-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    gap: 0.75rem;
+    padding: 0.625rem 1.5rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(99, 102, 241, 0.4);
     border-radius: 9999px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+    position: relative;
+    overflow: hidden;
 }
 
 .care-badge::before {
     content: '';
-    width: 6px;
-    height: 6px;
-    background: #6366f1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: badgeShimmer 3s ease-in-out infinite;
+}
+
+@keyframes badgeShimmer {
+    0%, 100% {
+        transform: translateX(-100%) skewX(-20deg);
+    }
+    50% {
+        transform: translateX(100%) skewX(-20deg);
+    }
+}
+
+.care-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);
+    }
+}
+
+.care-badge-icon {
+    color: #a78bfa;
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
 }
 
 .care-badge span {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #818cf8;
+    color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
 }
 
 .care-title {
