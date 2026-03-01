@@ -424,7 +424,7 @@ section { scroll-snap-align: start; }
 }
 
 /* Dynamic center text */
-#dynamic-center-text { position: absolute; left: 0; width: 100%; z-index: 10; }
+#dynamic-center-text { position: absolute; left: 0; width: 100%; z-index: 10; transform: translateZ(0); will-change: transform; }
 
 /* ===== SHEEN BORDER / EXTRA SECTION ===== */
 .sheen-section { padding: 3rem 1.5rem; margin-top: 8rem; transform: translateZ(0); backface-visibility: hidden; }
@@ -470,9 +470,10 @@ section { scroll-snap-align: start; }
 .purple-sheen-text {
     background: linear-gradient(115deg, black 0%, black 30%, #9b4dff 45%, #9b4dff 55%, black 70%, black 100%);
     background-size: 300% auto; background-clip: text; -webkit-background-clip: text;
-    color: transparent; animation: shine 10s linear infinite;
+    color: transparent; animation: shine 15s linear infinite;
     transform: translateZ(0);
     backface-visibility: hidden;
+    will-change: background-position;
 }
 
 @keyframes shine { 0% { background-position: -300% center; } 100% { background-position: 300% center; } }
@@ -480,11 +481,12 @@ section { scroll-snap-align: start; }
 .sheen-button {
     display: inline-flex; align-items: center; justify-content: center;
     background: linear-gradient(115deg, #4f00bc 0%, #6f00e6 30%, #9b4dff 50%, #6f00e6 70%, #4f00bc 100%);
-    background-size: 300% auto; animation: shine 10s linear infinite;
+    background-size: 300% auto; animation: shine 15s linear infinite;
     color: white; padding: 0.75rem 2rem; border-radius: 0.5rem;
     font-weight: 500; text-decoration: none; transition: background-position 0.3s;
     transform: translateZ(0);
     backface-visibility: hidden;
+    will-change: background-position;
 }
 .sheen-button i { margin-left: 0.5rem; transition: transform 0.2s; }
 .sheen-button:hover i { transform: translateX(4px); }
@@ -493,7 +495,7 @@ section { scroll-snap-align: start; }
 .companies-section { padding-top: 1rem; padding-bottom: 0; background: white; overflow: hidden; }
 .companies-heading {
     font-size: 1.875rem; font-weight: 700; color: #111827;
-    margin-bottom: 2rem; font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.75rem; font-family: 'Poppins', sans-serif;
 }
 @media (min-width: 768px) { .companies-heading { font-size: 2.25rem; } }
 
@@ -599,7 +601,7 @@ section { scroll-snap-align: start; }
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.solutions-container, #sheen-border-container { transition: transform 0.1s linear; will-change: transform; transform: translateZ(0); }
+.solutions-container, #sheen-border-container { will-change: transform; transform: translateZ(0); backface-visibility: hidden; }
 
 .solutions-heading {
     color: white; font-size: 1.875rem; font-weight: 600;
@@ -897,15 +899,17 @@ section { scroll-snap-align: start; }
 @media (min-width: 768px) { .integration-heading { font-size: 3.75rem; } }
 @media (min-width: 1024px) { .integration-heading { font-size: 4.5rem; } }
 
-#split-heading-top, #split-heading-bottom { display: block; }
+#split-heading-top, #split-heading-bottom { display: block; will-change: transform, opacity; transform: translateZ(0); }
 
 .tool-list {
     display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 4rem;
 }
-.tool-item { display: flex; align-items: center; }
+.tool-item { display: flex; align-items: center; transform: translateZ(0); backface-visibility: hidden; }
 .tool-icon {
     width: 3rem; height: 3rem; background: #f3f4f6; border-radius: 0.5rem;
     display: flex; align-items: center; justify-content: center; margin-right: 1rem;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 .tool-name { color: #374151; font-weight: 500; }
 .tool-icon-blue { color: #2563eb; font-size: 1.25rem; }
@@ -1014,6 +1018,8 @@ section { scroll-snap-align: start; }
     background: white; border-radius: 1rem;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     border: 1px solid #e5e7eb; overflow: hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .ultra-smooth-dropdown-btn {
@@ -1339,6 +1345,8 @@ section { scroll-snap-align: start; }
     border-radius: 1.5rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
     padding: 2rem; border: 1px solid #f3f4f6;
     transition: all 0.5s;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 .review-card:hover {
     transform: translateY(-12px);
@@ -1842,7 +1850,7 @@ section { scroll-snap-align: start; }
     
     .companies-heading {
         font-size: 1.75rem;
-        margin-bottom: 2rem;
+        margin-bottom: 0.75rem;
     }
     
     .logo-marquee {

@@ -84,10 +84,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cursor glow & Parallax for solutions section
+    // Cache scroll animation elements
     const solutionsContainer = document.getElementById('solutions-container');
-    if (solutionsContainer) {
-        const cursorGlow = document.getElementById('cursor-glow');
+    const cursorGlow = document.getElementById('cursor-glow');
+    const parallaxElements = [
+        { id: 'solutions-container', strength: 120, el: null },
+        { id: 'sheen-border-container', strength: 80, el: null }
+    ];
+    parallaxElements.forEach(p => { p.el = document.getElementById(p.id); });
+
+    const soundFamiliarSection = document.getElementById('sound-familiar-section');
+    const chatBubbles = [
+        { el: document.getElementById('chat-bubble-1'), startX: -40, startY: -20, endX: 0, endY: 0 },
+        { el: document.getElementById('chat-bubble-2'), startX: 40, startY: -20, endX: 0, endY: 0 },
+        { el: document.getElementById('chat-bubble-3'), startX: -40, startY: 0, endX: 0, endY: 0 },
+        { el: document.getElementById('chat-bubble-4'), startX: 40, startY: 0, endX: 0, endY: 0 },
+        { el: document.getElementById('chat-bubble-5'), startX: -40, startY: 20, endX: 0, endY: 0 }
+    ];
+
+    const splitHeadingTop = document.getElementById('split-heading-top');
+    const splitHeadingBottom = document.getElementById('split-heading-bottom');
+    const tabSection = document.getElementById('insights-section');
+
+    // Cursor glow (mousemove - separate because it's not scroll-based)
+    if (solutionsContainer && cursorGlow) {
         solutionsContainer.addEventListener('mousemove', (e) => {
             const rect = solutionsContainer.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -95,135 +115,42 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorGlow.style.left = `${x}px`;
             cursorGlow.style.top = `${y}px`;
         });
-
-        // Parallax
-        const parallaxElements = [
-            { id: 'solutions-container', strength: 120 },
-            { id: 'sheen-border-container', strength: 80 }
-        ];
-
-        const parallaxContainers = parallaxElements.map(p => ({ ...p, el: document.getElementById(p.id) })).filter(p => p.el);
-
-        if (parallaxContainers.length > 0) {
-            let parallaxRAF = null;
-            const updateParallax = () => {
-                const viewportHeight = window.innerHeight;
-                parallaxContainers.forEach(({ el, strength }) => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < viewportHeight && rect.bottom > 0) {
-                        const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
-                        let translateY = progress * (strength / 2);
-
-                        if (el.id === 'solutions-container') {
-                            translateY -= 40;
-                        }
-
-                        el.style.transform = `translateY(${translateY}px)`;
-                    }
-                });
-
-                // Dynamic centering for the text block
-                const soundFamiliarSection = document.getElementById('sound-familiar-section');
-                const sheenBorderContainer = document.getElementById('sheen-border-container');
-                const dynamicText = document.getElementById('dynamic-center-text');
-
-                if (soundFamiliarSection && sheenBorderContainer && dynamicText) {
-                    const topRect = soundFamiliarSection.getBoundingClientRect();
-                    const bottomRect = sheenBorderContainer.getBoundingClientRect();
-                    const parentRect = dynamicText.offsetParent.getBoundingClientRect();
-
-                    const topBoundary = topRect.bottom - parentRect.top;
-                    const bottomBoundary = bottomRect.top - parentRect.top;
-                    
-                    const textHeight = dynamicText.offsetHeight;
-                    
-                    const middle = topBoundary + ((bottomBoundary - topBoundary) * 0.4) - (textHeight / 2);
-                    
-                    dynamicText.style.top = `${middle}px`;
-                }
-                parallaxRAF = null;
-            };
-
-            window.addEventListener('scroll', () => {
-                if (!parallaxRAF) {
-                    parallaxRAF = requestAnimationFrame(updateParallax);
-                }
-            }, { passive: true });
-            
-            // Initial position on page load
-            updateParallax();
-        }
     }
 
-    // Scroll animation for "Sound familiar?" section
-    const soundFamiliarSection = document.getElementById('sound-familiar-section');
-    if (soundFamiliarSection) {
-        const chatBubbles = [
-            { el: document.getElementById('chat-bubble-1'), startX: -40, startY: -20, endX: 0, endY: 0 },
-            { el: document.getElementById('chat-bubble-2'), startX: 40, startY: -20, endX: 0, endY: 0 },
-            { el: document.getElementById('chat-bubble-3'), startX: -40, startY: 0, endX: 0, endY: 0 },
-            { el: document.getElementById('chat-bubble-4'), startX: 40, startY: 0, endX: 0, endY: 0 },
-            { el: document.getElementById('chat-bubble-5'), startX: -40, startY: 20, endX: 0, endY: 0 }
-        ];
-
-        function setBubblesToFinalState() {
-            chatBubbles.forEach(bubble => {
-                if (bubble.el) {
-                    bubble.el.style.transform = `translateX(0) translateY(0)`;
-                    bubble.el.style.opacity = 1;
-                }
-            });
-        }
-
-        function applyProgress(progress) {
-            chatBubbles.forEach(bubble => {
-                if (bubble.el) {
-                    const currentX = bubble.startX * (1 - progress);
-                    const currentY = bubble.startY * (1 - progress);
-                    bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
-                    bubble.el.style.opacity = progress;
-                }
-            });
-        }
-
-        let isMobileView = window.innerWidth < 768;
-
-        if (isMobileView) {
-            setBubblesToFinalState();
-        } else {
-            let bubblesRAF = null;
-            function onScroll() {
-                const rect = soundFamiliarSection.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                // progress 0 = section top enters bottom of viewport
-                // progress 1 = section top reaches 40% from top of viewport
-                let progress = (windowHeight - rect.top) / (windowHeight * 0.6);
-                progress = Math.max(0, Math.min(1, progress));
-                applyProgress(progress);
-                bubblesRAF = null;
-            }
-
-            window.addEventListener('scroll', () => {
-                if (!bubblesRAF) {
-                    bubblesRAF = requestAnimationFrame(onScroll);
-                }
-            }, { passive: true });
-            onScroll();
-        }
-
-        window.addEventListener('resize', () => {
-            const newIsMobileView = window.innerWidth < 768;
-            if (isMobileView !== newIsMobileView) {
-                location.reload();
+    // UNIFIED SCROLL HANDLER - single RAF for all scroll animations
+    let unifiedRAF = null;
+    let isMobileView = window.innerWidth < 768;
+    
+    function setBubblesToFinalState() {
+        chatBubbles.forEach(bubble => {
+            if (bubble.el) {
+                bubble.el.style.transform = `translateX(0) translateY(0)`;
+                bubble.el.style.opacity = 1;
             }
         });
+    }
+
+    function applyProgress(progress) {
+        chatBubbles.forEach(bubble => {
+            if (bubble.el) {
+                const currentX = bubble.startX * (1 - progress);
+                const currentY = bubble.startY * (1 - progress);
+                bubble.el.style.transform = `translateX(${currentX}%) translateY(${currentY}%)`;
+                bubble.el.style.opacity = progress;
+            }
+        });
+    }
+
+    isMobileView = window.innerWidth < 768;
+    if (isMobileView) {
+        setBubblesToFinalState();
     }
 
     // Tab functionality for "From Insights to Action" section
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
     const tabVisualizations = document.querySelectorAll('.tab-viz');
-    const tabSection = document.getElementById('insights-section');
+    const tabIds = ['profile', 'reply', 'reach', 'upsell'];
 
     // Active style class map for tab buttons
     const tabActiveStyles = {
@@ -378,97 +305,118 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize mobile auto-swap
     setupMobileAutoSwap();
+
+    // UNIFIED SCROLL HANDLER - single RAF for all scroll animations
+    let currentTabId = null;
     
-    // Split heading animation for integration section
-    const splitHeadingTop = document.getElementById('split-heading-top');
-    const splitHeadingBottom = document.getElementById('split-heading-bottom');
+    function switchToTab(tabId) {
+        if (currentTabId === tabId) return;
+        currentTabId = tabId;
+        const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+        if (targetButton && !targetButton.classList.contains('tab-active')) {
+            targetButton.click();
+        }
+    }
     
-    if (splitHeadingTop && splitHeadingBottom) {
-        let splitHeadingRAF = null;
-        const headingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    window.addEventListener('scroll', updateSplitHeading, { passive: true });
-                } else {
-                    window.removeEventListener('scroll', updateSplitHeading);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        headingObserver.observe(splitHeadingTop.parentElement.parentElement);
-        
-        function handleSplitHeadingAnimation() {
+    function unifiedScrollHandler() {
+        const viewportHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+
+        // 1. Parallax for solutions section - DISABLED (removed floating from "How to achieve it?")
+        // if (solutionsContainer) {
+        //     const rect = solutionsContainer.getBoundingClientRect();
+        //     if (rect.top < viewportHeight && rect.bottom > 0) {
+        //         const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
+        //         let translateY = progress * 60 - 40;
+        //         solutionsContainer.style.transform = `translateY(${translateY}px)`;
+        //     }
+        // }
+
+        // Parallax for sheen-border-container - DISABLED (removed floating from "goal" section)
+        // const sheenBorderContainer = document.getElementById('sheen-border-container');
+        // if (sheenBorderContainer) {
+        //     const rect = sheenBorderContainer.getBoundingClientRect();
+        //     if (rect.top < viewportHeight && rect.bottom > 0) {
+        //         const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / (viewportHeight / 2);
+        //         const translateY = progress * 40;
+        //         sheenBorderContainer.style.transform = `translateY(${translateY}px)`;
+        //     }
+        // }
+
+        // Dynamic centering for text block - DISABLED (connected to floating sections)
+        // const dynamicText = document.getElementById('dynamic-center-text');
+        // if (soundFamiliarSection && sheenBorderContainer && dynamicText) {
+        //     const topRect = soundFamiliarSection.getBoundingClientRect();
+        //     const bottomRect = sheenBorderContainer.getBoundingClientRect();
+        //     
+        //     const topBoundary = topRect.bottom;
+        //     const bottomBoundary = bottomRect.top;
+        //     const textHeight = dynamicText.offsetHeight;
+        //     const middle = (topBoundary + bottomBoundary) * 0.4 - textHeight / 2;
+        //     
+        //     dynamicText.style.transform = `translateY(${middle}px)`;
+        // }
+
+        // 2. Chat bubbles animation for "Sound familiar?" section
+        if (soundFamiliarSection && !isMobileView) {
+            const rect = soundFamiliarSection.getBoundingClientRect();
+            let progress = (viewportHeight - rect.top) / (viewportHeight * 0.6);
+            progress = Math.max(0, Math.min(1, progress));
+            applyProgress(progress);
+        }
+
+        // 3. Split heading animation for integration section
+        if (splitHeadingTop && splitHeadingBottom) {
             const rect = splitHeadingTop.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const scrollPosition = window.scrollY + windowHeight / 2;
-            const elementPosition = rect.top + window.scrollY + rect.height / 2;
+            const scrollPosition = scrollY + viewportHeight / 2;
+            const elementPosition = rect.top + scrollY + rect.height / 2;
             const distanceFromCenter = scrollPosition - elementPosition;
-            const maxDistance = windowHeight / 2;
+            const maxDistance = viewportHeight / 2;
             const scrollPercentage = Math.max(-1, Math.min(1, distanceFromCenter / maxDistance));
             
             const offset = scrollPercentage * 50;
             splitHeadingTop.style.transform = `translateX(${offset}px)`;
             splitHeadingBottom.style.transform = `translateX(${-offset}px)`;
-            
-            const opacity = 1 - Math.abs(scrollPercentage) * 0.3;
-            splitHeadingTop.style.opacity = opacity;
-            splitHeadingBottom.style.opacity = opacity;
-            splitHeadingRAF = null;
+            splitHeadingTop.style.opacity = 1 - Math.abs(scrollPercentage) * 0.3;
+            splitHeadingBottom.style.opacity = 1 - Math.abs(scrollPercentage) * 0.3;
         }
-        
-        function updateSplitHeading() {
-            if (!splitHeadingRAF) {
-                splitHeadingRAF = requestAnimationFrame(handleSplitHeadingAnimation);
-            }
-        }
-    }
-    
-    // Scroll-based tab switching functionality
-    if (tabSection) {
-        const tabIds = ['profile', 'reply', 'reach', 'upsell'];
-        let tabScrollRAF = null;
-        
-        const tabObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    window.addEventListener('scroll', updateTabs, { passive: true });
-                } else {
-                    window.removeEventListener('scroll', updateTabs);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        tabObserver.observe(tabSection);
-        
-        function handleScroll() {
+
+        // 4. Scroll-based tab switching
+        if (tabSection && window.innerWidth > 768) {
             const rect = tabSection.getBoundingClientRect();
-            const sectionTop = rect.top + window.scrollY;
+            const sectionTop = rect.top + scrollY;
             const sectionHeight = rect.height;
-            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            const scrollPosition = scrollY + viewportHeight / 2;
             
             const scrollPercentage = Math.max(0, Math.min(1, (scrollPosition - sectionTop) / sectionHeight));
-            
-            const tabIndex = Math.floor(scrollPercentage * tabIds.length);
-            const activeTabIndex = Math.min(tabIndex, tabIds.length - 1);
-            const activeTabId = tabIds[activeTabIndex];
-            
-            switchToTab(activeTabId);
-            tabScrollRAF = null;
+            const tabIndex = Math.min(Math.floor(scrollPercentage * tabIds.length), tabIds.length - 1);
+            switchToTab(tabIds[tabIndex]);
         }
-        
-        function updateTabs() {
-            if (!tabScrollRAF) {
-                tabScrollRAF = requestAnimationFrame(handleScroll);
-            }
-        }
-        
-        function switchToTab(tabId) {
-            const targetButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
-            if (targetButton && !targetButton.classList.contains('tab-active')) {
-                targetButton.click();
-            }
-        }
+
+        unifiedRAF = null;
     }
+
+    // Single scroll listener with RAF
+    window.addEventListener('scroll', () => {
+        if (!unifiedRAF) {
+            unifiedRAF = requestAnimationFrame(unifiedScrollHandler);
+        }
+    }, { passive: true });
+
+    // Initial calls
+    unifiedScrollHandler();
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+        const newIsMobileView = window.innerWidth < 768;
+        if (isMobileView !== newIsMobileView) {
+            isMobileView = newIsMobileView;
+            if (isMobileView) {
+                setBubblesToFinalState();
+            }
+            unifiedScrollHandler();
+        }
+    });
 });
 
 // Click-only dropdown functionality
