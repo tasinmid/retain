@@ -79,4 +79,68 @@ document.addEventListener('DOMContentLoaded', () => {
         .to(titleHighlightMark, { width: '100%', ease: 'power3.inOut', delay: 0.5, rotate: '-2deg' }, "<")
         .to(titleHighlightContent, { color: '#fff', delay: 0.2 }, "<");
     }
+
+    // ---- Journey Section Height & Layout Logic ----
+    const journeySection = document.querySelector('.journey-section');
+    
+    if (journeySection && window.innerWidth > 639) {
+        const journeyBlocksContainer = document.querySelector('.journey-blocks-container');
+        const journeyBlockItemOdd = document.querySelectorAll('.journey-blocks-container .journey-block-item:nth-child(odd)');
+        let maxHeight = 0;
+
+        if (journeyBlockItemOdd) {
+            // Calculate maximum height from odd items
+            for (let i = 0; i < journeyBlockItemOdd.length; i++) {
+                const el = journeyBlockItemOdd[i];
+                const height = el.getBoundingClientRect().height;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            }
+
+            // Set same height for all odd items
+            for (let i = 0; i < journeyBlockItemOdd.length; i++) {
+                journeyBlockItemOdd[i].style.height = `${Math.round(maxHeight)}px`;
+            }
+        }
+
+        // Add top margin to even-numbered items for zigzag pattern
+        const journeyBlockItemEven = document.querySelectorAll('.journey-blocks-container .journey-block-item:nth-child(even)');
+
+        if (journeyBlockItemEven) {
+            for (let i = 0; i < journeyBlockItemEven.length; i++) {
+                journeyBlockItemEven[i].style.marginTop = `${Math.round(maxHeight)}px`;
+            }
+        }
+    }
+
+    // ---- Journey Section Reveal Animation ----
+    const journeyItems = document.querySelectorAll('.journey-block-item');
+
+    if (journeyItems) {
+        const journeyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const item = entry.target;
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(30px)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    journeyObserver.unobserve(item);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        journeyItems.forEach(item => {
+            journeyObserver.observe(item);
+        });
+    }
 });
