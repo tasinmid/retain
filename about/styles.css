@@ -1767,7 +1767,7 @@ ul { list-style: none; }
 .core-values-title {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 700;
     color: #1a1a1a;
     text-align: center;
     line-height: 1.2;
@@ -1796,7 +1796,7 @@ ul { list-style: none; }
     bottom: 0;
     left: 0;
     width: 0%;
-    background: #9A7197;
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 50%, #3B82F6 100%);
     z-index: 10;
 }
 
@@ -1809,6 +1809,7 @@ ul { list-style: none; }
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
+    z-index: 1;
 }
 @media (min-width: 640px) { .core-values-wrapper { padding: 3rem 1.5rem; } }
 
@@ -1901,6 +1902,7 @@ ul { list-style: none; }
 @media (max-width: 639px) {
     .core-values-title {
         font-size: 1.5rem;
+        font-weight: 700;
     }
     
     .core-value-card {
@@ -2462,7 +2464,7 @@ ul { list-style: none; }
 .core-values-title {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 700;
     color: #1a1a1a;
     text-align: center;
     line-height: 1.2;
@@ -2491,7 +2493,7 @@ ul { list-style: none; }
     bottom: 0;
     left: 0;
     width: 0%;
-    background: #9A7197;
+    background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 50%, #3B82F6 100%);
     z-index: 10;
 }
 
@@ -2509,6 +2511,7 @@ ul { list-style: none; }
     flex-direction: column;
     align-items: center;
     padding: 2rem 1rem;
+    z-index: 1;
 }
 @media (min-width: 640px) { .core-values-wrapper { padding: 3rem 1.5rem; } }
 
